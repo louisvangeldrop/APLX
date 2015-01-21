@@ -15,5 +15,6 @@ var APLArray = (function () {
     };
     return APLArray;
 })();
+// Array.prototype.push.apply(ar1,ar2) //concatenate
 // }
 //# sourceMappingURL=diversen.js.map

@@ -14,6 +14,7 @@ function primitiveDyadic(omega, primitive) {
 }
 function floor(omega) {
     try {
+        // Array.isArray(omega) 
         omega = (typeof omega === 'number') ? [omega] : omega;
         var length = omega.length;
         var counter, results = new Array(length);
@@ -44,14 +45,31 @@ function indexGenerator(omega) {
 }
 var iota = indexGenerator;
 function gradeUp(omega) {
+    function compare(l, r) {
+        loop++;
+        if (l.value < r.value) {
+            return -1;
+        }
+        else if (l.value > r.value) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
     try {
         omega = (typeof omega === 'number') ? [omega] : omega;
-        var length = omega.length;
-        var counter, results = new Array(length);
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = Math.floor(omega[counter]);
+        var length = omega.length, loop = 0;
+        var omegaIndex = [], results = [], indices = [];
+        for (var counter = 0; counter < length; counter++) {
+            omegaIndex[counter] = { value: omega[counter], index: counter };
         }
-        return results;
+        results = omegaIndex.sort(compare);
+        for (var counter = 0; counter < length; counter++) {
+            indices.push(results[counter].index);
+        }
+        console.log('Loops :' + loop);
+        return indices;
     }
     catch (error) {
     }
@@ -59,9 +77,21 @@ function gradeUp(omega) {
     }
 }
 function gradeDown(omega) {
+    function compare(l, r) {
+        if (l < r) {
+            return -1;
+        }
+        else if (l > r) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
     try {
         omega = (typeof omega === 'number') ? [omega] : omega;
         var length = omega.length;
+        results = omega.sort(compare);
         var counter, results = new Array(length);
         for (counter = 0; counter < length; counter++) {
             results[counter] = Math.floor(omega[counter]);
