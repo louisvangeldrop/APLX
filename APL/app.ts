@@ -13,6 +13,7 @@ class Greeter {
     }
 
     start() {
+        var zz=Number.iota(100)
         var aa = 10000000
         var bb=Number.iota(aa)
         var dd =Array.iota(aa)
