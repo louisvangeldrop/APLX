@@ -1,0 +1,103 @@
+﻿
+//module Monadic {
+
+interface Number {
+    iota<T>(length?: T): number[]
+    rotate<T>(array: T[])
+}
+
+interface NumberConstructor {
+    iota<T>(length?: T): number[]
+    rotate<T>(array: T[])
+}
+
+interface Array<T> {
+    //ceiling(array: [number])
+    //floor(array: [number])
+    iota(length: number)
+}
+
+interface ArrayConstructor {
+    ceiling(array: number[]): number[]
+    floor(array: number[]): number[]
+    iota<T>(length: T): number[]
+
+}
+
+Array.floor = function (omega) {
+    try {
+        var length = omega.length
+        var counter,
+            results = new Array(length)
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = Math.floor(omega[counter])
+        }
+        return results
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
+
+Array.iota = function <T>(omega: number|number[]): number[] {
+
+    try {
+        var length
+        if (typeof omega === "number") { length = omega } else { length = omega[0] }
+
+        var counter,
+            results = new Array<number>(length)
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = counter
+        }
+        return results
+    }
+    catch (error) { }
+    finally { }
+}
+
+Array.prototype.iota = Array.iota
+
+Number.prototype.rotate = function (omega) {
+    //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
+    try {
+        var counter,
+            max = omega.length,
+            results = new Array(max);
+        if (this > 0) {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this >= max ? counter + this - max : counter + this]
+            }
+        } else {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this < 0 ? counter + this - max : counter + this]
+            }
+        }
+        return results
+    }
+    catch (error) {
+        throw new Error('foutje')
+    }
+    finally {
+    }
+}
+
+Number.iota = function (omega?: number): number[] {
+    //if (typeof this === "number") { let length = this } else { let length = this[0] }
+    try {
+        var length: number = omega  // this
+        var counter,
+            results = new Array<number>(length)
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = counter
+        }
+        return results
+    }
+    catch (error) { }
+    finally { }
+}
+
+ 
+
+ 
