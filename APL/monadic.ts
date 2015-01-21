@@ -1,29 +1,6 @@
 ﻿
 //module Monadic {
 
-interface Number {
-    iota<T>(length?: T): number[]
-    rotate<T>(array: T[])
-}
-
-interface NumberConstructor {
-    iota<T>(length?: T): number[]
-    rotate<T>(array: T[])
-}
-
-interface Array<T> {
-    //ceiling(array: [number])
-    //floor(array: [number])
-    iota(length: number)
-}
-
-interface ArrayConstructor {
-    ceiling(array: number[]): number[]
-    floor(array: number[]): number[]
-    iota<T>(length: T): number[]
-
-}
-
 Array.floor = function (omega) {
     try {
         var length = omega.length
@@ -40,24 +17,26 @@ Array.floor = function (omega) {
     }
 }
 
-Array.iota = function <T>(omega: number|number[]): number[] {
+Array.iota = indexGenerator
 
-    try {
-        var length
-        if (typeof omega === "number") { length = omega } else { length = omega[0] }
+//function <T>(omega: number|number[]): number[]{
 
-        var counter,
-            results = new Array<number>(length)
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = counter
-        }
-        return results
-    }
-    catch (error) { }
-    finally { }
-}
+//    try {
+//        var length
+//        if (typeof omega === "number") { length = omega } else { length = omega[0] }
 
-Array.prototype.iota = Array.iota
+//        var counter,
+//            results = new Array<number>(length)
+//        for (counter = 0; counter < length; counter++) {
+//            results[counter] = counter
+//        }
+//        return results
+//    }
+//    catch (error) { }
+//    finally { }
+//}
+
+Array.prototype.iota = indexGenerator
 
 Number.prototype.rotate = function (omega) {
     //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
@@ -83,20 +62,22 @@ Number.prototype.rotate = function (omega) {
     }
 }
 
-Number.iota = function (omega?: number): number[] {
-    //if (typeof this === "number") { let length = this } else { let length = this[0] }
-    try {
-        var length: number = omega  // this
-        var counter,
-            results = new Array<number>(length)
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = counter
-        }
-        return results
-    }
-    catch (error) { }
-    finally { }
-}
+Number.iota = indexGenerator
+
+//function (omega?: number): number[]{
+//    //if (typeof this === "number") { let length = this } else { let length = this[0] }
+//    try {
+//        var length: number = omega  // this
+//        var counter,
+//            results = new Array<number>(length)
+//        for (counter = 0; counter < length; counter++) {
+//            results[counter] = counter
+//        }
+//        return results
+//    }
+//    catch (error) { }
+//    finally { }
+//}
 
  
 

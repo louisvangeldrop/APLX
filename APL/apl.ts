@@ -1,22 +1,44 @@
-﻿
-//module APL {
-    // declare var Array, Number
+﻿// Monadic Functions
 
-    //type APLArray=Array<string|number|boolean|any>
+interface Number {
+    iota<T>(length?: T): number[]
+    rotate<T>(array: T[])
+}
 
-    //export interface IAPLArray extends Array<string|number|boolean|any> {
-    //    slash()
-    //}
-   
-     class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
-        constructor(private length?: number) {   // super kan niet. Array is een interface
+interface NumberConstructor {
+    iota<T>(length?: T): number[]
+    rotate<T>(array: T[])
+}
+
+interface Array<T> {
+    //ceiling(array: [number])
+    //floor(array: [number])
+    iota(length: number)
+}
+
+interface ArrayConstructor {
+    ceiling(array: number[]): number[]
+    floor(array: number[]): number[]
+    iota<T>(length: T): number[]
+
+}
+
+
+
+
+function indexGenerator(omega?: number): number[] {
+    //
+    try {
+        
+        // if (typeof omega === "number") {  length = omega } else { length = omega[0] }
+        var length: number = typeof omega === 'number' ? omega : omega[0]
+        var counter,
+            results = new Array<number>(length)
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = counter
         }
-
-        plus(omega) {
-            this.plus = function (omega) { var aa = this.length }
-        }
+        return results
     }
-
-   
-    
-// }
+    catch (error) { }
+    finally { }
+}

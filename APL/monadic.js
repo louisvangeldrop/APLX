@@ -13,27 +13,22 @@ Array.floor = function (omega) {
     finally {
     }
 };
-Array.iota = function (omega) {
-    try {
-        var length;
-        if (typeof omega === "number") {
-            length = omega;
-        }
-        else {
-            length = omega[0];
-        }
-        var counter, results = new Array(length);
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = counter;
-        }
-        return results;
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.iota = Array.iota;
+Array.iota = indexGenerator;
+//function <T>(omega: number|number[]): number[]{
+//    try {
+//        var length
+//        if (typeof omega === "number") { length = omega } else { length = omega[0] }
+//        var counter,
+//            results = new Array<number>(length)
+//        for (counter = 0; counter < length; counter++) {
+//            results[counter] = counter
+//        }
+//        return results
+//    }
+//    catch (error) { }
+//    finally { }
+//}
+Array.prototype.iota = indexGenerator;
 Number.prototype.rotate = function (omega) {
     try {
         var counter, max = omega.length, results = new Array(max);
@@ -55,18 +50,19 @@ Number.prototype.rotate = function (omega) {
     finally {
     }
 };
-Number.iota = function (omega) {
-    try {
-        var length = omega; // this
-        var counter, results = new Array(length);
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = counter;
-        }
-        return results;
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
+Number.iota = indexGenerator;
+//function (omega?: number): number[]{
+//    //if (typeof this === "number") { let length = this } else { let length = this[0] }
+//    try {
+//        var length: number = omega  // this
+//        var counter,
+//            results = new Array<number>(length)
+//        for (counter = 0; counter < length; counter++) {
+//            results[counter] = counter
+//        }
+//        return results
+//    }
+//    catch (error) { }
+//    finally { }
+//}
 //# sourceMappingURL=monadic.js.map

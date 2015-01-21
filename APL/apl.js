@@ -1,19 +1,17 @@
-//module APL {
-// declare var Array, Number
-//type APLArray=Array<string|number|boolean|any>
-//export interface IAPLArray extends Array<string|number|boolean|any> {
-//    slash()
-//}
-var APLArray = (function () {
-    function APLArray(length) {
-        this.length = length;
+// Monadic Functions
+function indexGenerator(omega) {
+    try {
+        // if (typeof omega === "number") {  length = omega } else { length = omega[0] }
+        var length = typeof omega === 'number' ? omega : omega[0];
+        var counter, results = new Array(length);
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = counter;
+        }
+        return results;
     }
-    APLArray.prototype.plus = function (omega) {
-        this.plus = function (omega) {
-            var aa = this.length;
-        };
-    };
-    return APLArray;
-})();
-// }
+    catch (error) {
+    }
+    finally {
+    }
+}
 //# sourceMappingURL=apl.js.map

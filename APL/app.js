@@ -8,8 +8,10 @@ var Greeter = (function () {
     }
     Greeter.prototype.start = function () {
         var _this = this;
+        // console.profile('Number.iota')
         var aa = 10000000;
         var bb = Number.iota(aa);
+        //  console.profileEnd()
         var dd = Array.iota(aa);
         var ee = dd.times(dd);
         var rot = [-10];
