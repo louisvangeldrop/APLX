@@ -50,6 +50,7 @@ function indexGenerator(omega?: number): number[] {
     catch (error) { }
     finally { }
 }
+var iota = indexGenerator
 
 function gradeUp(omega): number[] {
     try {

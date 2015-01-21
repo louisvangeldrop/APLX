@@ -42,6 +42,7 @@ function indexGenerator(omega) {
     finally {
     }
 }
+var iota = indexGenerator;
 function gradeUp(omega) {
     try {
         omega = (typeof omega === 'number') ? [omega] : omega;
