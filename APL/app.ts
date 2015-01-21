@@ -13,14 +13,13 @@ class Greeter {
     }
 
     start() {
-       // console.profile('Number.iota')
+        // console.profile('Number.iota')
         var aa = 10000000
-        var bb = Number.iota(aa)
-      //  console.profileEnd()
+        var bb = Number.iota([aa])
+        //  console.profileEnd()
         var dd = Array.iota(aa)
         var ee = dd.times(dd)
-        var rot = [-10]
-        var rr = rot.rotate(dd)
+        var rr = (-10).rotate(dd)
 
         var som = dd.reduce(function (l, r) { return l - r })
         console.log('som: ' + som) // ${som}')

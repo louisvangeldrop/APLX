@@ -1,18 +1,4 @@
-//Array.prototype.primitive = function (omega, primitive) {
-//    try {
-//        var counter, // let counter,
-//            max = Math.min(this.length, omega.length),
-//            results = new Array(max);
-//        for (counter = 0; counter < max; counter++) {
-//            results[counter] = primitive(this[counter], omega[counter])
-//        }
-//        return results
-//    }
-//    catch (error) {
-//    }
-//    finally {
-//    }
-//}
+// Array.prototype.primitive = 
 Array.prototype.plus = function (omega) {
     try {
         var counter, max = Math.min(this.length, omega.length), results = new Array(max);
@@ -81,6 +67,27 @@ Array.prototype.rotate = function (omega) {
         return results;
     }
     catch (error) {
+    }
+    finally {
+    }
+};
+Number.prototype.rotate = function (omega) {
+    try {
+        var counter, max = omega.length, results = new Array(max);
+        if (this > 0) {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this >= max ? counter + this - max : counter + this];
+            }
+        }
+        else {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this < 0 ? counter + this - max : counter + this];
+            }
+        }
+        return results;
+    }
+    catch (error) {
+        throw new Error('foutje');
     }
     finally {
     }

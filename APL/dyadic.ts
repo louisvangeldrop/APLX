@@ -1,31 +1,5 @@
 ﻿
-interface Array<T> {
-    primitive(left,right): T[]
-    plus(omega): T[]
-    minus(omega): T[]
-    times(omega): T[]
-    divide(omega): T[]
-    rotate(omega): T[]
-    slash(omega): T[]
-
-}
- 
-
-    //Array.prototype.primitive = function (omega, primitive) {
-    //    try {
-    //        var counter, // let counter,
-    //            max = Math.min(this.length, omega.length),
-    //            results = new Array(max);
-    //        for (counter = 0; counter < max; counter++) {
-    //            results[counter] = primitive(this[counter], omega[counter])
-    //        }
-    //        return results
-    //    }
-    //    catch (error) {
-    //    }
-    //    finally {
-    //    }
-    //}
+   // Array.prototype.primitive = 
 
     Array.prototype.plus = function (omega) {
         //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem + omegaItem })
@@ -118,4 +92,28 @@ interface Array<T> {
         finally {
         }
     }
+
+Number.prototype.rotate = function (omega) {
+    //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
+    try {
+        var counter,
+            max = omega.length,
+            results = new Array(max);
+        if (this > 0) {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this >= max ? counter + this - max : counter + this]
+            }
+        } else {
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = omega[counter + this < 0 ? counter + this - max : counter + this]
+            }
+        }
+        return results
+    }
+    catch (error) {
+        throw new Error('foutje')
+    }
+    finally {
+    }
+}
 
