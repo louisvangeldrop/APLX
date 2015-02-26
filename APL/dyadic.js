@@ -26,6 +26,9 @@ Array.prototype.minus = function (omega) {
     }
 };
 Array.prototype.times = function (omega) {
+    return primitiveDyadic(omega, function (thisItem, omegaItem) {
+        return thisItem * omegaItem;
+    });
     try {
         var counter, max = Math.min(this.length, omega.length), results = new Array(max);
         for (counter = 0; counter < max; counter++) {

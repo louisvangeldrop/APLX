@@ -36,7 +36,7 @@
     }
 
     Array.prototype.times = function (omega) {
-        //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem * omegaItem })
+       return primitiveDyadic(omega, (thisItem, omegaItem) => { return thisItem * omegaItem })
         try {
             var counter,
                 max = Math.min(this.length, omega.length),
