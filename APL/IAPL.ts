@@ -17,13 +17,13 @@ interface ArrayConstructor {
 }
 
 interface Array<T> {
-    primitive(left, right): T[]
-    iota(length: number)
-    plus(omega): T[]
-    minus(omega): T[]
-    times(omega): T[]
-    divide(omega): T[]
-    rotate(omega): T[]
-    slash(omega): T[]
+    primitive(left?, right?): T[]
+    iota(length?: number)
+    plus(omega?): T[]
+    minus(omega?): T[]
+    times(omega?): T[]
+    divide(omega?): T[]
+    rotate(omega?): T[]
+    slash(omega?): T[]
 
 } 

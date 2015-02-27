@@ -1,10 +1,22 @@
-Array.prototype.primitive = function primitiveDyadic(omega, primitive) {
+Array.prototype.primitive = function primitive(omega, primitive) {
     try {
-        var counter, max = Math.min(this.length, omega.length), results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = primitive(this[counter], omega[counter]);
+        // xxx.times()
+        var counter, max, results;
+        if (typeof omega === 'undefined') {
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = primitive(this[counter]);
+            }
+            return results;
         }
-        return results;
+        else {
+            max = Math.min(this.length, omega.length), results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = primitive(this[counter], omega[counter]);
+            }
+            return results;
+        }
     }
     catch (error) {
     }
@@ -38,9 +50,16 @@ Array.prototype.minus = function (omega) {
     }
 };
 Array.prototype.times = function (omega) {
-    return this.primitive(omega, function (alphaItem, omegaItem) {
-        return alphaItem * omegaItem;
-    });
+    if (typeof omega === 'undefined') {
+        return this.primitive(omega, function (alphaItem, omegaItem) {
+            return alphaItem > 0 ? 1 : alphaItem < 0 ? -1 : 0;
+        });
+    }
+    else {
+        return this.primitive(omega, function (alphaItem, omegaItem) {
+            return alphaItem * omegaItem;
+        });
+    }
     try {
         var counter, max = Math.min(this.length, omega.length), results = new Array(max);
         for (counter = 0; counter < max; counter++) {

@@ -9,10 +9,11 @@ var Greeter = (function () {
     Greeter.prototype.start = function () {
         var _this = this;
         // console.profile('Number.iota')
-        var aa = 5000000;
+        var aa = 1000000;
         var dd = iota(aa);
         //  console.profileEnd()
         var zz = gradeUp(dd); // [2,3,4,5,4,3,2])
+        var sign = dd.times();
         var ee = dd.times(dd);
         var rr = [-10].rotate(dd);
         var som = ee.reduce(function (l, r) {
