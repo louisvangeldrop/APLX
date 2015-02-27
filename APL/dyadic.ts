@@ -1,5 +1,19 @@
 ﻿
-   // Array.prototype.primitive = 
+Array.prototype.primitive = function primitiveDyadic(omega, primitive) {
+    try {
+        var counter, // let counter,
+            max = Math.min(this.length, omega.length),
+            results = new Array(max);
+        for (counter = 0; counter < max; counter++) {
+            results[counter] = primitive(this[counter], omega[counter])
+        }
+        return results
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
 
     Array.prototype.plus = function (omega) {
         //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem + omegaItem })
@@ -36,7 +50,7 @@
     }
 
     Array.prototype.times = function (omega) {
-       return primitiveDyadic(omega, (thisItem, omegaItem) => { return thisItem * omegaItem })
+       return this.primitive(omega, (alphaItem, omegaItem) => { return alphaItem * omegaItem })
         try {
             var counter,
                 max = Math.min(this.length, omega.length),

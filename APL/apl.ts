@@ -1,22 +1,5 @@
 ﻿// Monadic Functions
 
-
-function primitiveDyadic(omega, primitive) {
-    try {
-        var counter, // let counter,
-            max = Math.min(this.length, omega.length),
-            results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = primitive(this[counter], omega[counter])
-        }
-        return results
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
-
 function floor(omega) {
     try {
         // Array.isArray(omega) 

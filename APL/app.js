@@ -9,13 +9,13 @@ var Greeter = (function () {
     Greeter.prototype.start = function () {
         var _this = this;
         // console.profile('Number.iota')
-        var aa = 1000000;
+        var aa = 5000000;
         var dd = iota(aa);
         //  console.profileEnd()
         var zz = gradeUp(dd); // [2,3,4,5,4,3,2])
         var ee = dd.times(dd);
         var rr = [-10].rotate(dd);
-        var som = dd.reduce(function (l, r) {
+        var som = ee.reduce(function (l, r) {
             return l - r;
         });
         console.log('som: ' + som); // ${som}')
