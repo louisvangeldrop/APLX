@@ -1,6 +1,5 @@
 ﻿// https://github.com/Microsoft/TypeScript/wiki
 
-
 class Greeter {
     element: HTMLElement;
     span: HTMLElement;
@@ -18,6 +17,8 @@ class Greeter {
         // console.profile('Number.iota')
         var aa = 5000000
         var dd = iota(aa)
+        var ss = dd.slice()
+        ss[0] = 0
         //  console.profileEnd()
        
         //      var zz = gradeUp(dd)       // [2,3,4,5,4,3,2])
@@ -29,8 +30,9 @@ class Greeter {
         rr = rotate(dd)
         var ff = function (l, r) { return r - l }
 
-        var min= ee.aplReduce((l, r) => { return l - r })
-        console.log(`min: $(min)`) // ${som}')
+        var min = ee.aplReduce((l, r) => { return l - r })
+        var som = ee.reduceRight((l, r) => { return r-l })
+        console.log(`min: ${min} som: ${som}`)
 
         this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
     }

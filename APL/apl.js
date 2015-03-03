@@ -5,7 +5,6 @@ function floor(omega) {
         omega = (typeof omega === 'number') ? [omega] : omega;
         var length = omega.length;
         var counter, results = new Array(length);
-        results = Math.floor.call(null, omega);
         for (counter = 0; counter < length; counter++) {
             results[counter] = Math.floor(omega[counter]);
         }

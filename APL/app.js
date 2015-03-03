@@ -12,6 +12,8 @@ var Greeter = (function () {
         // console.profile('Number.iota')
         var aa = 5000000;
         var dd = iota(aa);
+        var ss = dd.slice();
+        ss[0] = 0;
         //  console.profileEnd()
         //      var zz = gradeUp(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.times();
@@ -26,7 +28,10 @@ var Greeter = (function () {
         var min = ee.aplReduce(function (l, r) {
             return l - r;
         });
-        console.log("min: $(min)"); // ${som}')
+        var som = ee.reduceRight(function (l, r) {
+            return r - l;
+        });
+        console.log("min: " + min + " som: " + som);
         this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
     };
     Greeter.prototype.stop = function () {
