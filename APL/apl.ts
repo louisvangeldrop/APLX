@@ -7,6 +7,7 @@ function floor(omega) {
         var length = omega.length
         var counter,
             results = new Array(length)
+       results= Math.floor.call(null,omega)
         for (counter = 0; counter < length; counter++) {
             results[counter] = Math.floor(omega[counter])
         }
@@ -50,7 +51,7 @@ function gradeUp(omega): number[] {
     try {
         omega = (typeof omega === 'number') ? [omega] : omega
         var length = omega.length,
-        loop=0
+            loop = 0
         var omegaIndex = [],
             results = [],
             indices = []
@@ -61,7 +62,7 @@ function gradeUp(omega): number[] {
         for (var counter = 0; counter < length; counter++) {
             indices.push(results[counter].index)
         }
-        console.log('Loops :' +loop)
+        console.log('Loops :' + loop)
         return indices
     }
     catch (error) {
@@ -70,7 +71,7 @@ function gradeUp(omega): number[] {
     }
 }
 
-function gradeDown(omega): number[]{
+function gradeDown(omega): number[] {
     function compare(l, r) {
         if (l < r) {
             return -1;
@@ -84,7 +85,7 @@ function gradeDown(omega): number[]{
     try {
         omega = (typeof omega === 'number') ? [omega] : omega
         var length = omega.length
-        results=omega.sort(compare)
+        results = omega.sort(compare)
         var counter,
             results = new Array(length)
         for (counter = 0; counter < length; counter++) {
@@ -116,4 +117,29 @@ function index(omega): number[] {
     }
     finally {
     }
+}
+
+function shape(omega): number[] {
+    try {
+        // Array.isArray(omega) 
+        omega = (typeof omega === 'number') ? [omega] : omega
+        return omega.length
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
+
+function rotate(omega){
+    try {
+        // Array.isArray(omega) 
+        omega = (typeof omega === 'number') ? [omega] : omega
+        return omega.reverse()
+    }
+    catch (error) {
+    }
+    finally {
+    }
+   
 }

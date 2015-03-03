@@ -25,5 +25,6 @@ interface Array<T> {
     divide(omega?): T[]
     rotate(omega?): T[]
     slash(omega?): T[]
+    aplReduce(alpha?,omega?):T[]
 
 } 

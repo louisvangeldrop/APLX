@@ -5,6 +5,7 @@ function floor(omega) {
         omega = (typeof omega === 'number') ? [omega] : omega;
         var length = omega.length;
         var counter, results = new Array(length);
+        results = Math.floor.call(null, omega);
         for (counter = 0; counter < length; counter++) {
             results[counter] = Math.floor(omega[counter]);
         }
@@ -100,6 +101,28 @@ function index(omega) {
             results[counter] = Math.floor(omega[counter]);
         }
         return results;
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
+function shape(omega) {
+    try {
+        // Array.isArray(omega) 
+        omega = (typeof omega === 'number') ? [omega] : omega;
+        return omega.length;
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
+function rotate(omega) {
+    try {
+        // Array.isArray(omega) 
+        omega = (typeof omega === 'number') ? [omega] : omega;
+        return omega.reverse();
     }
     catch (error) {
     }

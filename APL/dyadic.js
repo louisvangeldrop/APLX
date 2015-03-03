@@ -1,3 +1,5 @@
+// Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+//                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 Array.prototype.primitive = function primitive(omega, primitive) {
     try {
         // xxx.times()
@@ -125,5 +127,10 @@ Number.prototype.rotate = function (omega) {
     }
     finally {
     }
+};
+Array.prototype.aplReduce = function (omega) {
+    return this.reduceRight(function (l, r) {
+        return omega(r, l);
+    });
 };
 //# sourceMappingURL=dyadic.js.map

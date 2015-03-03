@@ -1,4 +1,8 @@
-﻿Array.prototype.primitive = function primitive(omega?, primitive?) {  // uitkijken met lambda this. klopt niet meer 
+﻿// Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+//                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+
+
+Array.prototype.primitive = function primitive(omega?, primitive?) {  // uitkijken met lambda. this. klopt niet meer 
     try {
         // xxx.times()
         var counter, // let counter,
@@ -7,6 +11,12 @@
         if (typeof omega === 'undefined') {
             max = this.length
             results = new Array(max)
+
+
+            //for (var i in this) {
+            //    var a=i
+            //}
+
             for (counter = 0; counter < max; counter++) {
                 results[counter] = primitive(this[counter])
             }
@@ -149,3 +159,6 @@ Number.prototype.rotate = function (omega) {
     }
 }
 
+Array.prototype.aplReduce = function (omega) {
+    return this.reduceRight((l, r) => { return omega(r, l) })
+}

@@ -1,3 +1,6 @@
+// https://github.com/ngn/apl
+// http://ngn.github.io/apl/web/index.html
+// http://repl.it/languages/APL
 //module APL {
 // declare var Array, Number
 //type APLArray=Array<string|number|boolean|any>
