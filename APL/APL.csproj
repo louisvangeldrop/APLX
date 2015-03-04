@@ -19,6 +19,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="APL Compiler\apl.js" />
+    <Content Include="APL Compiler\grade.js">
+      <DependentUpon>grade.coffee</DependentUpon>
+    </Content>
     <Content Include="app.css" />
     <Content Include="index.html" />
     <Content Include="web.config" />
@@ -37,6 +40,10 @@
     <TypeScriptCompile Include="structural primitive functions.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="APL Compiler\grade.coffee" />
+    <Content Include="APL Compiler\grade.js.map">
+      <DependentUpon>grade.js</DependentUpon>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
