@@ -10,7 +10,7 @@ var Greeter = (function () {
     Greeter.prototype.start = function () {
         var _this = this;
         // console.profile('Number.iota')
-        var aa = 5000000;
+        var aa = 5e6;
         var dd = iota(aa);
         var ss = dd.slice();
         ss[0] = 0;
@@ -22,9 +22,6 @@ var Greeter = (function () {
         var fl = floor(dd);
         var rr = [-10].rotate(dd);
         rr = rotate(dd);
-        var ff = function (l, r) {
-            return r - l;
-        };
         var min = ee.aplReduce(function (l, r) {
             return l - r;
         });

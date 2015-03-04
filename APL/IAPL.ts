@@ -28,3 +28,4 @@ interface Array<T> {
     aplReduce(alpha?,omega?):T[]
 
 } 
+

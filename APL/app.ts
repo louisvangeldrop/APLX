@@ -15,7 +15,7 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var aa = 5000000
+        var aa = 5e6
         var dd = iota(aa)
         var ss = dd.slice()
         ss[0] = 0
@@ -28,10 +28,9 @@ class Greeter {
         var fl = floor(dd)
         var rr = [-10].rotate(dd)
         rr = rotate(dd)
-        var ff = function (l, r) { return r - l }
 
         var min = ee.aplReduce((l, r) => { return l - r })
-        var som = ee.reduceRight((l, r) => { return r-l })
+        var som = ee.reduceRight((l, r) => { return r - l })
         console.log(`min: ${min} som: ${som}`)
 
         this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);

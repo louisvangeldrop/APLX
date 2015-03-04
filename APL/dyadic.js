@@ -1,8 +1,7 @@
 // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-Array.prototype.primitive = function primitive(omega, primitive) {
+function primitive(omega, primitive) {
     try {
-        // xxx.times()
         var counter, max, results;
         if (typeof omega === 'undefined') {
             max = this.length;
@@ -24,14 +23,26 @@ Array.prototype.primitive = function primitive(omega, primitive) {
     }
     finally {
     }
-};
+}
+Array.prototype.primitive = primitive;
 Array.prototype.plus = function (omega) {
     try {
-        var counter, max = Math.min(this.length, omega.length), results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] + omega[counter];
+        var counter, max, results;
+        if (typeof omega === 'undefined') {
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = Math.abs(this[counter]);
+            }
+            return results;
         }
-        return results;
+        else {
+            max = Math.min(this.length, omega.length), results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] + omega[counter];
+            }
+            return results;
+        }
     }
     catch (error) {
     }
@@ -40,34 +51,46 @@ Array.prototype.plus = function (omega) {
 };
 Array.prototype.minus = function (omega) {
     try {
-        var counter, max = Math.min(this.length, omega.length), results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] - omega[counter];
+        var counter, max, results;
+        if (typeof omega === 'undefined') {
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = -this[counter];
+            }
+            return results;
         }
-        return results;
+        else {
+            max = Math.min(this.length, omega.length), results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] - omega[counter];
+            }
+            return results;
+        }
     }
     catch (error) {
     }
     finally {
     }
 };
-Array.prototype.times = function (omega) {
-    if (typeof omega === 'undefined') {
-        return this.primitive(omega, function (alphaItem, omegaItem) {
-            return alphaItem > 0 ? 1 : alphaItem < 0 ? -1 : 0;
-        });
-    }
-    else {
-        return this.primitive(omega, function (alphaItem, omegaItem) {
-            return alphaItem * omegaItem;
-        });
-    }
+Array.prototype.times = function times(omega) {
     try {
-        var counter, max = Math.min(this.length, omega.length), results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] * omega[counter];
+        var counter, max, results;
+        if (typeof omega === 'undefined') {
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
+            }
+            return results;
         }
-        return results;
+        else {
+            max = Math.min(this.length, omega.length), results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] + omega[counter];
+            }
+            return results;
+        }
     }
     catch (error) {
     }
@@ -76,11 +99,22 @@ Array.prototype.times = function (omega) {
 };
 Array.prototype.divide = function (omega) {
     try {
-        var counter, max = Math.min(this.length, omega.length), results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] / omega[counter];
+        var counter, max, results;
+        if (typeof omega === 'undefined') {
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = 1 / this[counter];
+            }
+            return results;
         }
-        return results;
+        else {
+            max = Math.min(this.length, omega.length), results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] / omega[counter];
+            }
+            return results;
+        }
     }
     catch (error) {
     }

@@ -2,21 +2,14 @@
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
 
-Array.prototype.primitive = function primitive(omega?, primitive?) {  // uitkijken met lambda. this. klopt niet meer 
+function primitive(omega?, primitive?) {  // uitkijken met lambda. this. klopt niet meer 
     try {
-        // xxx.times()
         var counter, // let counter,
             max,
             results
         if (typeof omega === 'undefined') {
             max = this.length
             results = new Array(max)
-
-
-            //for (var i in this) {
-            //    var a=i
-            //}
-
             for (counter = 0; counter < max; counter++) {
                 results[counter] = primitive(this[counter])
             }
@@ -36,17 +29,29 @@ Array.prototype.primitive = function primitive(omega?, primitive?) {  // uitkijk
     finally {
     }
 }
-
+Array.prototype.primitive = primitive
 Array.prototype.plus = function (omega) {
     //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem + omegaItem })
     try {
-        var counter,
+        var counter, // let counter,
+            max,
+            results
+        if (typeof omega === 'undefined') {
+            max = this.length
+            results = new Array(max)
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = Math.abs(this[counter])
+            }
+            return results
+        }
+        else {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] + omega[counter]
+            for (counter = 0; counter < max; counter++) {
+                results[counter] =this[counter]+ omega[counter]
+            }
+            return results
         }
-        return results
     }
     catch (error) {
     }
@@ -57,13 +62,25 @@ Array.prototype.plus = function (omega) {
 Array.prototype.minus = function (omega) {
     //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem - omegaItem })
     try {
-        var counter,
+        var counter, // let counter,
+            max,
+            results
+        if (typeof omega === 'undefined') {
+            max = this.length
+            results = new Array(max)
+            for (counter = 0; counter < max; counter++) {
+                results[counter] =-this[counter]
+            }
+            return results
+        }
+        else {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] - omega[counter]
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter]- omega[counter]
+            }
+            return results
         }
-        return results
     }
     catch (error) {
     }
@@ -71,39 +88,57 @@ Array.prototype.minus = function (omega) {
     }
 }
 
-Array.prototype.times = function (omega) {
-    if (typeof omega === 'undefined') {
-        return this.primitive(omega,(alphaItem, omegaItem) => { return alphaItem > 0 ? 1 : alphaItem < 0 ? -1 : 0 })
-    }
-    else {
-        return this.primitive(omega,(alphaItem, omegaItem) => { return alphaItem * omegaItem })
-    }
-
+Array.prototype.times = function times (omega) {
     try {
-        var counter,
+        var counter, // let counter,
+            max,
+            results
+        if (typeof omega === 'undefined') {
+            max = this.length
+            results = new Array(max)
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter] > 0 ? 1 : this[counter]< 0 ? -1 : 0
+            }
+            return results
+        }
+        else {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] * omega[counter]
+            for (counter = 0; counter < max; counter++) {
+                results[counter] =this[counter]+ omega[counter]
+            }
+            return results
         }
-        return results
     }
     catch (error) {
     }
     finally {
     }
+   
 }
 
 Array.prototype.divide = function (omega) {
     //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
     try {
-        var counter,
+        var counter, // let counter,
+            max,
+            results
+        if (typeof omega === 'undefined') {
+            max = this.length
+            results = new Array(max)
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = 1/this[counter]
+            }
+            return results
+        }
+        else {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] / omega[counter]
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = this[counter]/ omega[counter]
+            }
+            return results
         }
-        return results
     }
     catch (error) {
     }
