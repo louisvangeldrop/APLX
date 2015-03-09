@@ -44,6 +44,9 @@
     <Content Include="APL Compiler\grade.js.map">
       <DependentUpon>grade.js</DependentUpon>
     </Content>
+    <Content Include="APL Compiler\apl.coffee" />
+    <Content Include="APL Compiler\array.coffee" />
+    <Content Include="APL Compiler\helpers.coffee" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
