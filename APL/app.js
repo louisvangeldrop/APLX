@@ -15,7 +15,8 @@ var Greeter = (function () {
         var ss = dd.slice();
         ss[0] = 0;
         //  console.profileEnd()
-        //      var zz = gradeUp(dd)       // [2,3,4,5,4,3,2])
+        var qq = gradeUp(dd);
+        var zz = gradeUpSort(dd); // [2,3,4,5,4,3,2])
         var sign = dd.times();
         //var bb=dd+dd not supported
         var ee = dd.times(dd);

@@ -30,6 +30,7 @@ function primitive(omega?, primitive?) {  // uitkijken met lambda. this. klopt n
     }
 }
 Array.prototype.primitive = primitive
+
 Array.prototype.plus = function (omega) {
     //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem + omegaItem })
     try {
