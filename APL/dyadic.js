@@ -1,3 +1,6 @@
+//#region "Number"
+//#endregion
+//#region "Vector"
 // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 function primitive(omega, primitive) {
@@ -141,6 +144,11 @@ Array.prototype.rotate = function (omega) {
     finally {
     }
 };
+Array.prototype.aplReduce = function (omega) {
+    return this.reduceRight(function (l, r) {
+        return omega(r, l);
+    });
+};
 Number.prototype.rotate = function (omega) {
     try {
         var counter, max = omega.length, results = new Array(max);
@@ -162,9 +170,8 @@ Number.prototype.rotate = function (omega) {
     finally {
     }
 };
-Array.prototype.aplReduce = function (omega) {
-    return this.reduceRight(function (l, r) {
-        return omega(r, l);
-    });
+Number.prototype.sign = function () {
+    return this > 0 ? 1 : this < 0 ? -1 : 0;
 };
+//#endregion 
 //# sourceMappingURL=dyadic.js.map

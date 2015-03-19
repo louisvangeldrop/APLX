@@ -1,4 +1,9 @@
-﻿// Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+﻿//#region "Number"
+
+//#endregion
+ 
+//#region "Vector"
+// Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
 
@@ -31,6 +36,7 @@ function primitive(omega?, primitive?) {  // uitkijken met lambda. this. klopt n
 }
 Array.prototype.primitive = primitive
 
+
 Array.prototype.plus = function (omega) {
     //return this.primitive(omega, (thisItem, omegaItem) => { return thisItem + omegaItem })
     try {
@@ -49,7 +55,7 @@ Array.prototype.plus = function (omega) {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
             for (counter = 0; counter < max; counter++) {
-                results[counter] =this[counter]+ omega[counter]
+                results[counter] = this[counter] + omega[counter]
             }
             return results
         }
@@ -70,7 +76,7 @@ Array.prototype.minus = function (omega) {
             max = this.length
             results = new Array(max)
             for (counter = 0; counter < max; counter++) {
-                results[counter] =-this[counter]
+                results[counter] = -this[counter]
             }
             return results
         }
@@ -78,7 +84,7 @@ Array.prototype.minus = function (omega) {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
             for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter]- omega[counter]
+                results[counter] = this[counter] - omega[counter]
             }
             return results
         }
@@ -89,7 +95,7 @@ Array.prototype.minus = function (omega) {
     }
 }
 
-Array.prototype.times = function times (omega) {
+Array.prototype.times = function times(omega) {
     try {
         var counter, // let counter,
             max,
@@ -98,7 +104,7 @@ Array.prototype.times = function times (omega) {
             max = this.length
             results = new Array(max)
             for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] > 0 ? 1 : this[counter]< 0 ? -1 : 0
+                results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
             }
             return results
         }
@@ -106,7 +112,7 @@ Array.prototype.times = function times (omega) {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
             for (counter = 0; counter < max; counter++) {
-                results[counter] =this[counter]+ omega[counter]
+                results[counter] = this[counter] + omega[counter]
             }
             return results
         }
@@ -115,7 +121,7 @@ Array.prototype.times = function times (omega) {
     }
     finally {
     }
-   
+
 }
 
 Array.prototype.divide = function (omega) {
@@ -128,7 +134,7 @@ Array.prototype.divide = function (omega) {
             max = this.length
             results = new Array(max)
             for (counter = 0; counter < max; counter++) {
-                results[counter] = 1/this[counter]
+                results[counter] = 1 / this[counter]
             }
             return results
         }
@@ -136,7 +142,7 @@ Array.prototype.divide = function (omega) {
             max = Math.min(this.length, omega.length),
             results = new Array(max);
             for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter]/ omega[counter]
+                results[counter] = this[counter] / omega[counter]
             }
             return results
         }
@@ -171,6 +177,10 @@ Array.prototype.rotate = function (omega) {
     }
 }
 
+Array.prototype.aplReduce = function (omega) {
+    return this.reduceRight((l, r) => { return omega(r, l) })
+}
+
 Number.prototype.rotate = function (omega) {
     //return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
     try {
@@ -195,6 +205,10 @@ Number.prototype.rotate = function (omega) {
     }
 }
 
-Array.prototype.aplReduce = function (omega) {
-    return this.reduceRight((l, r) => { return omega(r, l) })
+Number.prototype.sign = function (): number {
+    return this > 0 ? 1 : this < 0 ? -1 : 0
+
 }
+
+
+//#endregion

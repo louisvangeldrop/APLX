@@ -1,6 +1,4 @@
-﻿// Monadic Functions
-
-function floor(omega) {
+﻿function floor(omega) {
     try {
         // Array.isArray(omega) 
         omega = (typeof omega === 'number') ? [omega] : omega
@@ -10,6 +8,25 @@ function floor(omega) {
         //  results= Math.floor.call(null,omega)
         for (counter = 0; counter < length; counter++) {
             results[counter] = Math.floor(omega[counter])
+        }
+        return results
+    }
+    catch (error) {
+    }
+    finally {
+    }
+}
+
+function ceiling(omega) {
+    try {
+        // Array.isArray(omega) 
+        omega = (typeof omega === 'number') ? [omega] : omega
+        var length = omega.length
+        var counter,
+            results = new Array(length)
+        //  results= Math.floor.call(null,omega)
+        for (counter = 0; counter < length; counter++) {
+            results[counter] = Math.ceil(omega[counter])
         }
         return results
     }
@@ -78,7 +95,7 @@ function gradeUp(omega, indices?: number[], low?: number, high?: number): number
         indices = (typeof (indices) === 'undefined') ? iota(omega.length) : indices
         low = (typeof (low) === 'undefined') ? 0 : low
         high = (typeof (high) === 'undefined') ? omega.length - 1 : high
-        if (high<=low) return indices
+        if (high <= low) return indices
         var midValue = omega[indices[Math.floor((low + high) / 2)]]
         var t1, t2
         var t3: boolean, t4: boolean
@@ -98,19 +115,12 @@ function gradeUp(omega, indices?: number[], low?: number, high?: number): number
             }
         }
         gradeUp(omega, indices, low, j)
-        gradeUp(omega,indices,i,high)
+        gradeUp(omega, indices, i, high)
     }
     catch (error) {
     }
     finally {
     }
-
-
-
-
-
-
-
     return indices
 }
 
@@ -174,7 +184,7 @@ function shape(omega): number[] {
     }
 }
 
-function rotate(omega) {
+function reverse(omega) {
     try {
         // Array.isArray(omega) 
         omega = (typeof omega === 'number') ? [omega] : omega
@@ -186,3 +196,17 @@ function rotate(omega) {
     }
 
 }
+
+
+Object.defineProperty(Array.prototype, "sign", {
+    get: function () {
+      var  max = this.length
+       var results = new Array(max)
+        for (var counter = 0; counter < max; counter++) {
+            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
+        }
+        return results
+    },
+    set: function () {
+    }
+})

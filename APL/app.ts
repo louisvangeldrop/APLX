@@ -15,7 +15,8 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var aa = 5e6
+        var aa = 5e3
+        
         var dd = iota(aa)
         var ss = dd.slice()
         ss[0] = 0
@@ -23,11 +24,12 @@ class Greeter {
         var qq = gradeUp(dd)
         var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.times()
+        sign=dd.sign()
         //var bb=dd+dd not supported
         var ee = dd.times(dd)
         var fl = floor(dd)
         var rr = [-10].rotate(dd)
-        rr = rotate(dd)
+        rr = reverse(dd)
 
         var min = ee.aplReduce((l, r) => { return l - r })
         var som = ee.reduceRight((l, r) => { return r - l })

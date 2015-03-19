@@ -1,1 +1,1 @@
-{"version":3,"file":"monadic.js","sourceRoot":"","sources":["monadic.ts"],"names":[],"mappings":"AACA,kBAAkB;AAElB,KAAK,CAAC,KAAK,GAAG,KAAK,CAAA;AAEnB,KAAK,CAAC,IAAI,GAAG,cAAc,CAAA;AAE3B,KAAK,CAAC,SAAS,CAAC,IAAI,GAAG,cAAc,CAAA;AAErC,MAAM,CAAC,IAAI,GAAG,cAAc,CAAA"}
+{"version":3,"file":"monadic.js","sourceRoot":"","sources":["monadic.ts"],"names":[],"mappings":"AACA,oBAAoB;AAEpB,qBAAqB;AAErB,6BAA6B;AAE7B,uCAAuC;AAEvC,8BAA8B"}
