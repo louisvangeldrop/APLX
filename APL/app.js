@@ -10,15 +10,17 @@ var Greeter = (function () {
     Greeter.prototype.start = function () {
         var _this = this;
         // console.profile('Number.iota')
-        var aa = 5e3;
+        var aa = 5e6;
+        var bb = aa.roll();
+        var gg = aa.deal(aa);
         var dd = iota(aa);
         var ss = dd.slice();
         ss[0] = 0;
         //  console.profileEnd()
-        var qq = gradeUp(dd);
-        var zz = gradeUpSort(dd); // [2,3,4,5,4,3,2])
-        var sign = dd.times();
-        sign = dd.sign();
+        //var qq = gradeUp(dd)
+        //var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
+        var sign = dd.sign();
+        //   sign=dd.sign()
         //var bb=dd+dd not supported
         var ee = dd.times(dd);
         var fl = floor(dd);

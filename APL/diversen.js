@@ -11,6 +11,13 @@ var APLArray = (function () {
     function APLArray(length) {
         this.length = length;
     }
+    Object.defineProperty(APLArray.prototype, "shape", {
+        get: function () {
+            return [this.length];
+        },
+        enumerable: true,
+        configurable: true
+    });
     APLArray.prototype.plus = function (omega) {
         this.plus = function (omega) {
             var aa = this.length;

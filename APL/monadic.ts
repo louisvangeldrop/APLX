@@ -1,14 +1,14 @@
-﻿//#region "Monadic"
+﻿//#region "Scalar"
 
-Number.ceiling = function () {
+Number.prototype.ceiling = function () {
     return Math.ceil(this)
 }
 
-Number.exponential = function () {
-    return  Math.exp(this)
+Number.prototype.exponential = function () {
+    return Math.exp(this)
 }
 
-Number.factorial = function () {
+Number.prototype.factorial = function () {
     var result = 1
     for (var i = 1; i <= this; i++) {
         result = result * i
@@ -16,25 +16,65 @@ Number.factorial = function () {
     return result
 }
 
-Number.floor = function () {
+Number.prototype.floor = function () {
     return Math.floor(this)
 }
 
-Number.identity = function () {
+Number.prototype.identity = function () {
     return this
 }
 
+Number.prototype.ln = function () {
+    return Math.log(this)
+}
 
-Object.defineProperty(Number.prototype, "sign", {
-    get: function () {
-        return this > 0 ? 1 : this < 0 ? -1 : 0
+Number.prototype.magnitude = function () {
+    return Math.abs(this)
+}
+
+Number.prototype.negate = function () {
+    return -this
+}
+
+Number.prototype.pi = function () {
+    return Math.PI
+}
+
+Number.prototype.reciprocal = function () {
+    return 1 / this
+}
+
+Number.prototype.roll = function () {
+    return Math.floor(Math.random() * this)
+}
+
+Number.prototype.same = function () {
+    return this
+}
+
+Number.prototype.sign = function () {
+    return this > 0 ? 1 : this < 0 ? -1 : 0
+}
+
+Number.prototype.indexGenerator = function () {
+    var results = new Array<number>(this)
+    for (var counter = 0; counter < this; counter++) {
+        results[counter] = counter
     }
-})
+    return results
+}
+
+
+//Object.defineProperty(Number.prototype, "sign", {
+//    get: function () {
+//        return this > 0 ? 1 : this < 0 ? -1 : 0
+//    }
+//})
 
 
 //#endregion
 
-//#region "Dyadic"
+//#region "Vector"
 function floor(omega) {
     try {
         // Array.isArray(omega) 
@@ -44,7 +84,7 @@ function floor(omega) {
             results = new Array(length)
         //  results= Math.floor.call(null,omega)
         for (counter = 0; counter < length; counter++) {
-            results[counter] = Math.floor(omega[counter])
+            results[counter] = Math.floor(omega[counter]) // omega[counter].floor()  veel trager
         }
         return results
     }
@@ -234,19 +274,39 @@ function reverse(omega) {
 
 }
 
-
-Object.defineProperty(Array.prototype, "sign", {
-    get: function () {
-        var max = this.length
-        var results = new Array(max)
-        for (var counter = 0; counter < max; counter++) {
+Array.prototype.sign = function times() {
+    try {
+        var counter, // let counter,
+            max,
+            results
+        max = this.length
+        results = new Array(max)
+        for (counter = 0; counter < max; counter++) {
             results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
         }
         return results
-    },
-    set: function () {
+
     }
-})
+    catch (error) {
+    }
+    finally {
+    }
+
+}
+
+
+//Object.defineProperty(Array.prototype, "sign", {
+//    get: function () {
+//        var max = this.length
+//        var results = new Array(max)
+//        for (var counter = 0; counter < max; counter++) {
+//            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
+//        }
+//        return results
+//    },
+//    set: function () {
+//    }
+//})
 //#endregion
 
 

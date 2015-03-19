@@ -4,6 +4,8 @@ interface Number {
     iota(length?): number[]
     ravel<T>(T):T[]
     rotate<T>(array: T[])
+    deal(omega: number): number[]
+    indexGenerator(length?): number[]
     sign(): number
     identity(): number
     negate(): number

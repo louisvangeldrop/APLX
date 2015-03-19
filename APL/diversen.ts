@@ -20,7 +20,9 @@
      class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
         constructor(private length?: number) {   // super kan niet. Array is een interface
         }
-
+        get shape(): number[]{
+            return [this.length]
+        }
         plus(omega) {
             this.plus = function (omega) { var aa = this.length }
         }
