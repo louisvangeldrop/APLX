@@ -378,15 +378,25 @@ Number.prototype.rotate = function (omega) {
     finally {
     }
 }
-Number.prototype.deal = function (omega: number) {
-    var results = omega.indexGenerator()
-    var h: number, j: number
-    for (var i = 0; i < this; i++) {
+
+var deal = function (omega: number, alpha?: number) {
+    var results = indexGenerator(omega)
+    var h: number, j: number, alpha: number
+    for (var i = 0; i < alpha; i++) {
         j = i + Math.floor(Math.random() * (omega - i))
         h = results[i]; results[i] = results[j]; results[j] = h
     }
     results.slice(0, this)
     return results
+}
+
+Number.prototype.deal = function (omega): number[] {
+    return deal(omega, this.valueOf())
+}
+
+Array.prototype.deal = function (omega): number[]{
+    return deal(omega,this[0].valueOf())
+    
 }
 
 

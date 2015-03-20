@@ -4,7 +4,7 @@ interface Number {
     iota(length?): number[]
     ravel<T>(T):T[]
     rotate<T>(array: T[])
-    deal(omega: number): number[]
+    deal(omega: number,alpha?:number): number[]
     indexGenerator(length?): number[]
     sign(): number
     identity(): number
@@ -53,6 +53,7 @@ interface ArrayConstructor {
 interface Array<T> {
     sign():T[]
     primitive(left?, right?): T[]
+    deal(omega: number, alpha?: number): number[]
     iota(length?: number)
     plus(omega?): T[]
     minus(omega?): T[]

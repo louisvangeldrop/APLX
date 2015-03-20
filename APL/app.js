@@ -13,6 +13,7 @@ var Greeter = (function () {
         var aa = 5e6;
         var bb = aa.roll();
         var gg = aa.deal(aa);
+        //      var hh=aa.deal(aa) // 6x zo langzaam
         var dd = iota(aa);
         var ss = dd.slice();
         ss[0] = 0;
@@ -26,11 +27,11 @@ var Greeter = (function () {
         var fl = floor(dd);
         var rr = [-10].rotate(dd);
         rr = reverse(dd);
-        var min = ee.aplReduce(function (l, r) {
+        var min = gg.aplReduce(function (l, r) {
             return l - r;
         });
-        var som = ee.reduceRight(function (l, r) {
-            return r - l;
+        var som = gg.reduceRight(function (l, r) {
+            return r + l;
         });
         console.log("min: " + min + " som: " + som);
         this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);

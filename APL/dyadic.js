@@ -315,10 +315,10 @@ Number.prototype.rotate = function (omega) {
     finally {
     }
 };
-Number.prototype.deal = function (omega) {
-    var results = omega.indexGenerator();
-    var h, j;
-    for (var i = 0; i < this; i++) {
+var deal = function (omega, alpha) {
+    var results = indexGenerator(omega);
+    var h, j, alpha;
+    for (var i = 0; i < alpha; i++) {
         j = i + Math.floor(Math.random() * (omega - i));
         h = results[i];
         results[i] = results[j];
@@ -326,6 +326,12 @@ Number.prototype.deal = function (omega) {
     }
     results.slice(0, this);
     return results;
+};
+Number.prototype.deal = function (omega) {
+    return deal(omega, this.valueOf());
+};
+Array.prototype.deal = function (omega) {
+    return deal(omega, this[0].valueOf());
 };
 //#endregion 
 //# sourceMappingURL=dyadic.js.map
