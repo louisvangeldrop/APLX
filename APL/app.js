@@ -56,6 +56,7 @@ var Greeter = (function () {
         performance.measure("Array.reduce", "Array.reduce start", "Array.reduce stop");
         // Print marks
         var perfMarks = performance.getEntriesByType("measure"); // "mark"
+        var perfEntries = performance.getEntries();
         for (var i = 0; i < perfMarks.length; i++) {
             this.spanCPU.innerHTML += "Name: " + perfMarks[i].name + " - " + "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
         }
