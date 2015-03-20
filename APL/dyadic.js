@@ -290,7 +290,11 @@ Array.prototype.rotate = function (omega) {
     }
 };
 Array.prototype.aplReduce = function (omega) {
-    return this.reduceRight(function (l, r) {
+    // return this.reduceRight((l, r) => { return omega(r, l) })
+    return aplReduce(omega, this);
+};
+var aplReduce = function (omega, alpha) {
+    return alpha.reduceRight(function (l, r) {
         return omega(r, l);
     });
 };

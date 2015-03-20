@@ -352,7 +352,12 @@ Array.prototype.rotate = function (omega) {
 }
 
 Array.prototype.aplReduce = function (omega) {
-    return this.reduceRight((l, r) => { return omega(r, l) })
+   // return this.reduceRight((l, r) => { return omega(r, l) })
+    return aplReduce(omega, this)
+}
+
+var aplReduce = function (omega, alpha) {
+    return alpha.reduceRight((l, r) => { return omega(r, l) })
 }
 
 Number.prototype.rotate = function (omega) {
@@ -394,9 +399,9 @@ Number.prototype.deal = function (omega): number[] {
     return deal(omega, this.valueOf())
 }
 
-Array.prototype.deal = function (omega): number[]{
-    return deal(omega,this[0].valueOf())
-    
+Array.prototype.deal = function (omega): number[] {
+    return deal(omega, this[0].valueOf())
+
 }
 
 
