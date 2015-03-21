@@ -45,9 +45,12 @@ var Greeter = (function () {
         });
         performance.mark("Array.APLreduce stop");
         performance.mark("Array.reduce start");
+        t0 = performance.now();
         var som = gg.reduceRight(function (l, r) {
             return r + l;
         });
+        t0 = performance.now() - t0;
+        this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />";
         performance.mark("Array.reduce stop");
         console.log("min: " + min + " som: " + som);
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
