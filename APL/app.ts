@@ -25,19 +25,23 @@ class Greeter {
         var bb = aa.roll()
         var t0 = performance.now()
         performance.mark("Array.deal start")
-        var gg = aa.deal(aa)
+        var dd = aa.deal(aa)
         performance.mark("Array.deal stop")
         t0 = performance.now() - t0
         console.log(`Array.deal: ${t0}`)
   //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         
         //      var hh=aa.deal(aa) // 6x zo langzaam
-        var dd = iota(aa)
+    //    var dd = iota(aa)
         var ss = dd.slice()
         ss[0] = 0
         //  console.profileEnd()
-        //var qq = gradeUp(dd)
-        //var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
+        // dd=iota(aa)
+        t0 = performance.now()
+        var qq = gradeUpSort(dd)
+        t0 = performance.now() - t0
+        this.spanCPU.innerHTML += "\n grapeUp CPU-tijd: " + t0.toString() + "<br />"
+   //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.sign()
         //   sign=dd.sign()
         //var bb=dd+dd not supported
@@ -48,11 +52,11 @@ class Greeter {
         var rr = [-10].rotate(dd)
         rr = reverse(dd)
         performance.mark("Array.APLreduce start")
-        var min = gg.aplReduce((l, r) => { return l - r })
+        var min = dd.aplReduce((l, r) => { return l - r })
         performance.mark("Array.APLreduce stop")
         performance.mark("Array.reduce start")
         t0=performance.now()
-        var som = gg.reduceRight((l, r) => { return r + l })
+        var som = dd.reduceRight((l, r) => { return r + l })
         t0 = performance.now() - t0
         this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />"
         performance.mark("Array.reduce stop")
