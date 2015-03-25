@@ -14,7 +14,7 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var aa = 1000000
+        var aa = 5000000
         var dd = iota(aa)
         //  console.profileEnd()
         var zz = gradeUp(dd)       // [2,3,4,5,4,3,2])
