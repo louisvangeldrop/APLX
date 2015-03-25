@@ -18,19 +18,139 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="APL Compiler\apl.js" />
+    <Content Include="APL Compiler\grade.js">
+      <DependentUpon>grade.coffee</DependentUpon>
+    </Content>
     <Content Include="app.css" />
     <Content Include="index.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="apl.ts" />
+    <TypeScriptCompile Include="monadic.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="dyadic.ts" />
     <TypeScriptCompile Include="iapl.ts" />
-    <TypeScriptCompile Include="monadic.ts" />
+    <TypeScriptCompile Include="miscellaneous primitive functions.ts" />
+    <TypeScriptCompile Include="dyadic.ts" />
+    <TypeScriptCompile Include="primitive operators.ts" />
+    <TypeScriptCompile Include="scalar primitive.ts" />
+    <TypeScriptCompile Include="selection primitive functions.ts" />
+    <TypeScriptCompile Include="structural primitive functions.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="APL Compiler\grade.coffee" />
+    <Content Include="APL Compiler\grade.js.map">
+      <DependentUpon>grade.js</DependentUpon>
+    </Content>
+    <Content Include="APL Compiler\apl.coffee" />
+    <Content Include="APL Compiler\array.coffee" />
+    <Content Include="APL Compiler\helpers.coffee" />
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\arithmetic.coffee">
+      <Link>APL Compiler\Vocabulary\arithmetic.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\backslash.coffee">
+      <Link>APL Compiler\Vocabulary\backslash.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\circle.coffee">
+      <Link>APL Compiler\Vocabulary\circle.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\comma.coffee">
+      <Link>APL Compiler\Vocabulary\comma.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\comparisons.coffee">
+      <Link>APL Compiler\Vocabulary\comparisons.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\compose.coffee">
+      <Link>APL Compiler\Vocabulary\compose.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\cupcap.coffee">
+      <Link>APL Compiler\Vocabulary\cupcap.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\decode.coffee">
+      <Link>APL Compiler\Vocabulary\decode.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\dot.coffee">
+      <Link>APL Compiler\Vocabulary\dot.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\each.coffee">
+      <Link>APL Compiler\Vocabulary\each.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\encode.coffee">
+      <Link>APL Compiler\Vocabulary\encode.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\epsilon.coffee">
+      <Link>APL Compiler\Vocabulary\epsilon.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\exclamation.coffee">
+      <Link>APL Compiler\Vocabulary\exclamation.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\execute.coffee">
+      <Link>APL Compiler\Vocabulary\execute.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\find.coffee">
+      <Link>APL Compiler\Vocabulary\find.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\floorceil.coffee">
+      <Link>APL Compiler\Vocabulary\floorceil.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\fork.coffee">
+      <Link>APL Compiler\Vocabulary\fork.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\format.coffee">
+      <Link>APL Compiler\Vocabulary\format.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\grade.coffee">
+      <Link>APL Compiler\Vocabulary\grade.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\identity.coffee">
+      <Link>APL Compiler\Vocabulary\identity.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\iota.coffee">
+      <Link>APL Compiler\Vocabulary\iota.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\leftshoe.coffee">
+      <Link>APL Compiler\Vocabulary\leftshoe.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\logic.coffee">
+      <Link>APL Compiler\Vocabulary\logic.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\poweroperator.coffee">
+      <Link>APL Compiler\Vocabulary\poweroperator.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\quad.coffee">
+      <Link>APL Compiler\Vocabulary\quad.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\question.coffee">
+      <Link>APL Compiler\Vocabulary\question.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\raise.coffee">
+      <Link>APL Compiler\Vocabulary\raise.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\rho.coffee">
+      <Link>APL Compiler\Vocabulary\rho.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\rotate.coffee">
+      <Link>APL Compiler\Vocabulary\rotate.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\slash.coffee">
+      <Link>APL Compiler\Vocabulary\slash.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\squish.coffee">
+      <Link>APL Compiler\Vocabulary\squish.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\take.coffee">
+      <Link>APL Compiler\Vocabulary\take.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\transpose.coffee">
+      <Link>APL Compiler\Vocabulary\transpose.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\variant.coffee">
+      <Link>APL Compiler\Vocabulary\variant.coffee</Link>
+    </Content>
+    <Content Include="..\..\..\..\Documenten\APL\APL Javascript compiler\apl-master\src\vocabulary\vhelpers.coffee">
+      <Link>APL Compiler\Vocabulary\vhelpers.coffee</Link>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
