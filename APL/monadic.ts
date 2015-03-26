@@ -1,75 +1,101 @@
 ﻿//#region "Scalar"
 
-Number.prototype.ceiling = function () {
-    return Math.ceil(this)
-}
-
-Number.prototype.exponential = function () {
-    return Math.exp(this)
-}
-
-Number.prototype.factorial = function () {
-    var result = 1
-    for (var i = 1; i <= this; i++) {
-        result = result * i
+Object.defineProperty(Number.prototype, "ceiling", {
+    get: function () {
+        return Math.ceil(this)
     }
-    return result
-}
+})
 
-Number.prototype.floor = function () {
-    return Math.floor(this)
-}
-
-Number.prototype.identity = function () {
-    return this
-}
-
-Number.prototype.ln = function () {
-    return Math.log(this)
-}
-
-Number.prototype.magnitude = function () {
-    return Math.abs(this)
-}
-
-Number.prototype.negate = function () {
-    return -this
-}
-
-Number.prototype.pi = function () {
-    return Math.PI
-}
-
-Number.prototype.reciprocal = function () {
-    return 1 / this
-}
-
-Number.prototype.roll = function () {
-    return Math.floor(Math.random() * this)
-}
-
-Number.prototype.same = function () {
-    return this
-}
-
-Number.prototype.sign = function () {
-    return this > 0 ? 1 : this < 0 ? -1 : 0
-}
-
-Number.prototype.indexGenerator = function () {
-    var results = new Array<number>(this)
-    for (var counter = 0; counter < this; counter++) {
-        results[counter] = counter
+Object.defineProperty(Number.prototype, "exponential", {
+    get: function () {
+        return Math.exp(this)
     }
-    return results
-}
+})
+
+Object.defineProperty(Number.prototype, "factorial", {
+    get: function () {
+        var result = 1
+        for (var i = 1; i <= this; i++) {
+            result = result * i
+        }
+        return result
+    }
+})
+
+Object.defineProperty(Number.prototype, "floor", {
+    get: function () {
+        return Math.floor(this)
+    }
+})
+
+Object.defineProperty(Number.prototype, "identity", {
+    get: function () {
+        return this
+    }
+})
+
+Object.defineProperty(Number.prototype, "ln", {
+    get: function () {
+        return Math.log(this)
+    }
+})
+
+Object.defineProperty(Number.prototype, "magnitude", {
+    get: function () {
+        return Math.abs(this)
+    }
+})
+
+Object.defineProperty(Number.prototype, "negate", {
+    get: function () {
+        return -this
+    }
+})
+
+Object.defineProperty(Number.prototype, "pi", {
+    get: function () {
+        return Math.PI
+    }
+})
+
+Object.defineProperty(Number.prototype, "reciprocal", {
+    get: function () {
+        return 1 / this
+    }
+})
+
+Object.defineProperty(Number.prototype, "roll", {
+    get: function () {
+        return Math.floor(Math.random() * this)
+    }
+})
+
+Object.defineProperty(Number.prototype, "same", {
+    get: function () {
+        return this
+    }
+})
+
+//Number.prototype.sign = function () {
+//    return this > 0 ? 1 : this < 0 ? -1 : 0
+//}
+
+Object.defineProperty(Number.prototype, "indexGenerator", {
+    get: function () {
+        var results = new Array<number>(this)
+        for (var counter = 0; counter < this; counter++) {
+            results[counter] = counter
+        }
+        return results
+    }
+})
 
 
-//Object.defineProperty(Number.prototype, "sign", {
-//    get: function () {
-//        return this > 0 ? 1 : this < 0 ? -1 : 0
-//    }
-//})
+Object.defineProperty(Number.prototype, "sign", {
+    get: function () {
+        return this > 0 ? 1 : this < 0 ? -1 : 0
+    }
+})
 
 
 //#endregion
@@ -294,19 +320,21 @@ Array.prototype.sign = function times() {
 
 }
 
+var arraySign = function () {
+    var max = this.length
+        , results = new Array(max)
+    for (var counter = 0; counter < max; counter++) {
+        results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
+    }
+    return results
+}
 
-//Object.defineProperty(Array.prototype, "sign", {
-//    get: function () {
-//        var max = this.length
-//        var results = new Array(max)
-//        for (var counter = 0; counter < max; counter++) {
-//            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
-//        }
-//        return results
-//    },
-//    set: function () {
-//    }
-//})
+Object.defineProperty(Array.prototype, "signProp", {
+    get: arraySign,
+    //set: function () {
+    //}
+})
+
 //#endregion
 
 

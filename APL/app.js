@@ -15,7 +15,7 @@ var Greeter = (function () {
         var _this = this;
         // console.profile('Number.iota')
         var aa = 5e6;
-        var bb = aa.roll();
+        var bb = aa.roll;
         var t0 = performance.now();
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
@@ -25,12 +25,15 @@ var Greeter = (function () {
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
+        t0 = performance.now();
+        var vv = dd.signProp;
+        t0 = performance.now() - t0;
         var ss = dd.slice();
         ss[0] = 0;
         //  console.profileEnd()
         // dd=iota(aa)
         t0 = performance.now();
-        var qq = gradeUpSort(dd);
+        var qq = gradeUpSort(dd); // 
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n grapeUp CPU-tijd: " + t0.toString() + "<br />";
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
