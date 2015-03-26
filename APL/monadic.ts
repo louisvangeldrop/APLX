@@ -300,25 +300,25 @@ function reverse(omega) {
 
 }
 
-Array.prototype.sign = function times() {
-    try {
-        var counter, // let counter,
-            max,
-            results
-        max = this.length
-        results = new Array(max)
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
-        }
-        return results
+//Array.prototype.sign = function times() {
+//    try {
+//        var counter, // let counter,
+//            max,
+//            results
+//        max = this.length
+//        results = new Array(max)
+//        for (counter = 0; counter < max; counter++) {
+//            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
+//        }
+//        return results
 
-    }
-    catch (error) {
-    }
-    finally {
-    }
+//    }
+//    catch (error) {
+//    }
+//    finally {
+//    }
 
-}
+//}
 
 var arraySign = function () {
     var max = this.length
@@ -329,7 +329,7 @@ var arraySign = function () {
     return results
 }
 
-Object.defineProperty(Array.prototype, "signProp", {
+Object.defineProperty(Array.prototype, "sign", {
     get: arraySign,
     //set: function () {
     //}

@@ -1,25 +1,10 @@
 ﻿//#region "Monadic Scalar Primitive"
 
 interface Number {
-    ravel<T>(T):T[]
     rotate<T>(array: T[])
-    deal(omega: number,alpha?:number): number[]
-    indexGenerator: number[]
-    sign: number
-    identity: number
-    negate: number
-    reciprocal: number
-    exponential: number
-    ln: number
-    pi: number
-    factorial: number
-    roll: number
-    magnitude: number
-    ceiling: number
-    floor: number
-    same: number
-
-
+    deal(omega: number, alpha?: number): number[]
+   
+   
 }
 
 //#endregion
@@ -50,8 +35,8 @@ interface ArrayConstructor {
 }
 
 interface Array<T> {
-    sign(): T[]
-    signProp: T[]
+    // sign(): T[]
+    // signProp: T[]
     primitive(left?, right?): T[]
     deal(omega: number, alpha?: number): number[]
     iota(length?: number)
@@ -61,7 +46,7 @@ interface Array<T> {
     divide(omega?): T[]
     rotate(omega?): T[]
     slash(omega?): T[]
-    aplReduce(alpha?,omega?):T[]
+    aplReduce(alpha?, omega?): T[]
 
 } 
 

@@ -27,10 +27,11 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="iapl dyadic.ts" />
     <TypeScriptCompile Include="monadic.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="iapl.ts" />
+    <TypeScriptCompile Include="iapl monadic.ts" />
     <TypeScriptCompile Include="miscellaneous primitive functions.ts" />
     <TypeScriptCompile Include="dyadic.ts" />
     <TypeScriptCompile Include="primitive operators.ts" />

@@ -26,7 +26,7 @@ var Greeter = (function () {
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
         t0 = performance.now();
-        var vv = dd.signProp;
+        var vv = dd.sign;
         t0 = performance.now() - t0;
         var ss = dd.slice();
         ss[0] = 0;
@@ -37,7 +37,7 @@ var Greeter = (function () {
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n grapeUp CPU-tijd: " + t0.toString() + "<br />";
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
-        var sign = dd.sign();
+        var sign = dd.sign;
         //   sign=dd.sign()
         //var bb=dd+dd not supported
         performance.mark("Array.times start");
