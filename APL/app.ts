@@ -41,9 +41,9 @@ class Greeter {
         //  console.profileEnd()
         // dd=iota(aa)
         t0 = performance.now()
-        var qq = gradeUpSort(dd)  // 
+        var qq = dd.gradeUp
         t0 = performance.now() - t0
-        this.spanCPU.innerHTML += "\n grapeUp CPU-tijd: " + t0.toString() + "<br />"
+        this.spanCPU.innerHTML += "\n gradeUp CPU-tijd: " + t0.toString() + "<br />"
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.sign
         //   sign=dd.sign()
@@ -51,9 +51,12 @@ class Greeter {
         performance.mark("Array.times start")
         var ee = dd.times(dd)
         performance.mark("Array.times stop")
-        var fl = floor(dd)
+        t0 = performance.now()
+        var cl=dd.ceiling
+        t0 = performance.now() - t0
+        var fl = dd.floor
         var rr = [-10].rotate(dd)
-        rr = reverse(dd)
+        rr = dd.transpose
         performance.mark("Array.APLreduce start")
         var min = dd.aplReduce((l, r) => { return l - r })
         performance.mark("Array.APLreduce stop")

@@ -352,7 +352,7 @@ Array.prototype.rotate = function (omega) {
 }
 
 Array.prototype.aplReduce = function (omega) {
-   // return this.reduceRight((l, r) => { return omega(r, l) })
+    // return this.reduceRight((l, r) => { return omega(r, l) })
     return aplReduce(omega, this)
 }
 
@@ -385,7 +385,7 @@ Number.prototype.rotate = function (omega) {
 }
 
 var deal = function (omega: number, alpha?: number) {
-    var results = indexGenerator(omega)
+    var results = omega.indexGenerator
     var h: number, j: number, alpha: number
     for (var i = 0; i < alpha; i++) {
         j = i + Math.floor(Math.random() * (omega - i))

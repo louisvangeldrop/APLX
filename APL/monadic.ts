@@ -1,6 +1,6 @@
 ﻿//#region "Scalar"
 
-Object.defineProperty(Number.prototype, "ceiling", {
+Object.defineProperty(Number.prototype, "ceiling", {            //
     get: function () {
         return Math.ceil(this)
     }
@@ -101,224 +101,206 @@ Object.defineProperty(Number.prototype, "sign", {
 //#endregion
 
 //#region "Vector"
-function floor(omega) {
-    try {
-        // Array.isArray(omega) 
-        omega = (typeof omega === 'number') ? [omega] : omega
-        var length = omega.length
-        var counter,
-            results = new Array(length)
-        //  results= Math.floor.call(null,omega)
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = Math.floor(omega[counter]) // omega[counter].floor()  veel trager
-        }
-        return results
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
 
-function ceiling(omega) {
-    try {
-        // Array.isArray(omega) 
-        omega = (typeof omega === 'number') ? [omega] : omega
-        var length = omega.length
-        var counter,
-            results = new Array(length)
-        //  results= Math.floor.call(null,omega)
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = Math.ceil(omega[counter])
+Object.defineProperty(Array.prototype, "floor", {
+    get: function (): number[] {
+        try {
+            // Array.isArray(this) 
+            var length = this.length
+            var counter,
+                results = new Array(length)
+            //  results= Math.floor.call(null,this)
+            for (counter = 0; counter < length; counter++) {
+                results[counter] = Math.floor(this[counter]) // this[counter].floor()  veel trager
+            }
+            return results
         }
-        return results
+        catch (error) {
+        }
+        finally {
+        }
     }
-    catch (error) {
+
+})
+
+
+
+Object.defineProperty(Array.prototype, "ceiling", {
+    get: function () {
+        try {
+            // Array.isArray(this) 
+            var length = this.length
+            var counter,
+                results = new Array(length)
+            //  results= Math.floor.call(null,this)
+            for (counter = 0; counter < length; counter++) {        // met counter in gaat niet, neemt ook alle functies etc mee.
+                results[counter] = Math.ceil(this[counter])
+            }
+            return results
+        }
+        catch (error) {
+        }
+        finally {
+        }
     }
-    finally {
-    }
-}
+})
 
 // Non-Scalar Selector Functions
 
-function indexGenerator(omega?: number): number[] {
-    //
-    try {
-        var length: number = (typeof omega === 'number') ? omega : omega[0]
-        var counter,
-            results = new Array<number>(length)
-        for (counter = 0; counter < length; counter++) {
-            results[counter] = counter
-        }
-        return results
-    }
-    catch (error) { }
-    finally { }
-}
-var iota = indexGenerator
-
-function gradeUpSort(omega): number[] {
-    function compare(l, r) {
-        loop++
-        if (l.value < r.value) {
-            return -1;
-        } else if (l.value > r.value) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-    try {
-        omega = (typeof omega === 'number') ? [omega] : omega
-        var length = omega.length,
-            loop = 0
-        var omegaIndex = [],
-            results = [],
-            indices = []
-        for (var counter = 0; counter < length; counter++) {
-            omegaIndex[counter] = { value: omega[counter], index: counter }
-        }
-        results = omegaIndex.sort(compare)
-        for (var counter = 0; counter < length; counter++) {
-            indices.push(results[counter].index)
-        }
-        console.log('Loops :' + loop)
-        return indices
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
-
-function gradeUp(omega, indices?: number[], low?: number, high?: number): number[] {
-    try {
-
-        omega = (typeof omega === 'number') ? [omega] : omega
-        indices = (typeof (indices) === 'undefined') ? iota(omega.length) : indices
-        low = (typeof (low) === 'undefined') ? 0 : low
-        high = (typeof (high) === 'undefined') ? omega.length - 1 : high
-        if (high <= low) return indices
-        var midValue = omega[indices[Math.floor((low + high) / 2)]]
-        var t1, t2
-        var t3: boolean, t4: boolean
-        var i = low, j = high
-        while (i <= j) {
-            t1 = indices[i], t2 = indices[j]
-            t3 = omega[t1] >= midValue, t4 = omega[t2] <= midValue
-            if (t3 && t4) {         // swap elements
-                indices[i] = t2
-                indices[j] = t1
-                i = i + 1
-                j = j - 1
+Object.defineProperty(Array.prototype, "indexGenerator", {
+    get: function (): number[] {
+        //
+        try {
+            var length = this[0]
+            var counter,
+                results = new Array<number>(length)
+            for (counter = 0; counter < length; counter++) {
+                results[counter] = counter
             }
-            else {
-                if (t3 === false) { i++ }
-                if (t4 === false) { j-- }
+            return results
+        }
+        catch (error) { }
+        finally { }
+    }
+})
+
+Object.defineProperty(Array.prototype, "gradeUp", {
+    get: function (): number[] {
+        function compare(l, r) {
+            loop++
+            if (l.value < r.value) {
+                return -1;
+            } else if (l.value > r.value) {
+                return 1;
+            } else {
+                return 0;
             }
         }
-        gradeUp(omega, indices, low, j)
-        gradeUp(omega, indices, i, high)
+        try {
+            var length = this.length,
+                loop = 0
+            var thisIndex = [],
+                results = [],
+                indices = []
+            for (var counter = 0; counter < length; counter++) {
+                thisIndex[counter] = { value: this[counter], index: counter }
+            }
+            results = thisIndex.sort(compare)
+            for (var counter = 0; counter < length; counter++) {
+                indices.push(results[counter].index)
+            }
+            console.log('Loops :' + loop)
+            return indices
+        }
+        catch (error) {
+        }
+        finally {
+        }
     }
-    catch (error) {
-    }
-    finally {
-    }
-    return indices
-}
+})
 
-function gradeDown(omega): number[] {
-    function compare(l, r) {
-        if (l < r) {
-            return -1;
-        } else if (l > r) {
-            return 1;
-        } else {
-            return 0;
+
+Object.defineProperty(Array.prototype, "gradeUpQS", {             // quickSort
+    get: function () {
+        gradeUp(this)
+        var gradeUp=function (omega, indices?: number[], low?: number, high?: number): number[] {
+            try {
+                omega = (typeof omega === 'number') ? [omega] : omega
+                indices = (typeof (indices) === 'undefined') ? omega.length.indexGenerator : indices
+                low = (typeof (low) === 'undefined') ? 0 : low
+                high = (typeof (high) === 'undefined') ? omega.length - 1 : high
+                if (high <= low) return indices
+                var midValue = omega[indices[Math.floor((low + high) / 2)]]
+                var t1, t2
+                var t3: boolean, t4: boolean
+                var i = low, j = high
+                while (i <= j) {
+                    t1 = indices[i], t2 = indices[j]
+                    t3 = omega[t1] >= midValue, t4 = omega[t2] <= midValue
+                    if (t3 && t4) {         // swap elements
+                        indices[i] = t2
+                        indices[j] = t1
+                        i = i + 1
+                        j = j - 1
+                    }
+                    else {
+                        if (t3 === false) { i++ }
+                        if (t4 === false) { j-- }
+                    }
+                }
+                gradeUp(omega, indices, low, j)
+                gradeUp(omega, indices, i, high)
+            }
+            catch (error) {
+            }
+            finally {
+            }
+            return indices
         }
     }
 
-    try {
-        omega = (typeof omega === 'number') ? [omega] : omega
-        var length = omega.length
-        results = omega.sort(compare)
-        var counter,
-            results = new Array(length)
-        for (counter = 0; counter < length; counter++) {
+})
 
-            results[counter] = Math.floor(omega[counter])
+Object.defineProperty(Array.prototype, "gradeDown", {
+    get: function gradeDown(): number[] {
+        function compare(l, r) {
+            if (l < r) {
+                return -1;
+            } else if (l > r) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
-        return results
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
 
-function index(omega): number[] {
-    try {
-        var alpha = (typeof this === 'number') ? [this] : this
-        omega = (typeof omega === 'number') ? [omega] : omega
-        var length = omega.length
-        var counter,
-            results = new Array(length)
-        for (counter = 0; counter < length; counter++) {
+        try {
+            var length = this.length
+            results = this.sort(compare)
+            var counter,
+                results = new Array(length)
+            for (counter = 0; counter < length; counter++) {
 
-            results[counter] = Math.floor(omega[counter])
+                results[counter] = Math.floor(this[counter])
+            }
+            return results
         }
-        return results
+        catch (error) {
+        }
+        finally {
+        }
     }
-    catch (error) {
+})
+
+
+
+Object.defineProperty(Array.prototype, "shape", {
+    get: function shape(): number[] {
+        try {
+            // Array.isArray(this) 
+            return this.length
+        }
+        catch (error) {
+        }
+        finally {
+        }
     }
-    finally {
+})
+
+Object.defineProperty(Array.prototype, "transpose", {
+    get: function reverse() {
+        try {
+            // Array.isArray(this) 
+            return this.reverse()
+        }
+        catch (error) {
+        }
+        finally {
+        }
+
     }
 }
+    )
 
-function shape(omega): number[] {
-    try {
-        // Array.isArray(omega) 
-        omega = (typeof omega === 'number') ? [omega] : omega
-        return omega.length
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
-
-function reverse(omega) {
-    try {
-        // Array.isArray(omega) 
-        omega = (typeof omega === 'number') ? [omega] : omega
-        return omega.reverse()
-    }
-    catch (error) {
-    }
-    finally {
-    }
-
-}
-
-//Array.prototype.sign = function times() {
-//    try {
-//        var counter, // let counter,
-//            max,
-//            results
-//        max = this.length
-//        results = new Array(max)
-//        for (counter = 0; counter < max; counter++) {
-//            results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
-//        }
-//        return results
-
-//    }
-//    catch (error) {
-//    }
-//    finally {
-//    }
-
-//}
 
 var arraySign = function () {
     var max = this.length

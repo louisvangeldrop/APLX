@@ -320,7 +320,7 @@ Number.prototype.rotate = function (omega) {
     }
 };
 var deal = function (omega, alpha) {
-    var results = indexGenerator(omega);
+    var results = omega.indexGenerator;
     var h, j, alpha;
     for (var i = 0; i < alpha; i++) {
         j = i + Math.floor(Math.random() * (omega - i));

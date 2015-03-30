@@ -2,9 +2,8 @@
 
 interface Number {
     rotate<T>(array: T[])
-    deal(omega: number, alpha?: number): number[]
-   
-   
+    deal(omega: number): number[]
+     
 }
 
 //#endregion
