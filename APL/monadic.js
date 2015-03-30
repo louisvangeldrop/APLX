@@ -138,27 +138,27 @@ Object.defineProperty(Array.prototype, "indexGenerator", {
 });
 Object.defineProperty(Array.prototype, "gradeUp", {
     get: function () {
-        function compare(l, r) {
+        var compare = function (alpha, omega) {
             loop++;
-            if (l.value < r.value) {
+            if (alpha.value < omega.value) {
                 return -1;
             }
-            else if (l.value > r.value) {
+            else if (alpha.value > omega.value) {
                 return 1;
             }
             else {
                 return 0;
             }
-        }
+        };
         try {
             var length = this.length, loop = 0;
-            var thisIndex = [], results = [], indices = [];
+            var thisIndex = new Array(length), results = new Array(length), indices = new Array(length);
             for (var counter = 0; counter < length; counter++) {
                 thisIndex[counter] = { value: this[counter], index: counter };
             }
             results = thisIndex.sort(compare);
             for (var counter = 0; counter < length; counter++) {
-                indices.push(results[counter].index);
+                indices[counter] = results[counter].index;
             }
             console.log('Loops :' + loop);
             return indices;
@@ -171,7 +171,6 @@ Object.defineProperty(Array.prototype, "gradeUp", {
 });
 Object.defineProperty(Array.prototype, "gradeUpQS", {
     get: function () {
-        gradeUp(this);
         var gradeUp = function (omega, indices, low, high) {
             try {
                 omega = (typeof omega === 'number') ? [omega] : omega;
@@ -211,29 +210,35 @@ Object.defineProperty(Array.prototype, "gradeUpQS", {
             }
             return indices;
         };
+        return gradeUp(this);
     }
 });
 Object.defineProperty(Array.prototype, "gradeDown", {
-    get: function gradeDown() {
-        function compare(l, r) {
-            if (l < r) {
-                return -1;
-            }
-            else if (l > r) {
+    get: function () {
+        var compare = function (alpha, omega) {
+            loop++;
+            if (alpha.value < omega.value) {
                 return 1;
+            }
+            else if (alpha.value > omega.value) {
+                return -1;
             }
             else {
                 return 0;
             }
-        }
+        };
         try {
-            var length = this.length;
-            results = this.sort(compare);
-            var counter, results = new Array(length);
-            for (counter = 0; counter < length; counter++) {
-                results[counter] = Math.floor(this[counter]);
+            var length = this.length, loop = 0;
+            var thisIndex = new Array(length), results = new Array(length), indices = new Array(length);
+            for (var counter = 0; counter < length; counter++) {
+                thisIndex[counter] = { value: this[counter], index: counter };
             }
-            return results;
+            results = thisIndex.sort(compare);
+            for (var counter = 0; counter < length; counter++) {
+                indices[counter] = results[counter].index;
+            }
+            console.log('Loops :' + loop);
+            return indices;
         }
         catch (error) {
         }

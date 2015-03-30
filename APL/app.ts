@@ -21,7 +21,7 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var aa = 5e6
+        var aa = 1e6
         var bb = aa.roll
         var t0 = performance.now()
         performance.mark("Array.deal start")
@@ -36,12 +36,17 @@ class Greeter {
         t0 = performance.now()
         var vv = dd.sign
         t0 = performance.now() - t0
+        this.spanCPU.innerHTML += "\n sign CPU-tijd: " + t0.toString() + "<br />"
         var ss = dd.slice()
         ss[0] = 0
         t0 = performance.now()
-        var qq = dd.gradeUp
+        var qq = dd.gradeDown    //   QS  QS is ietsje langzamer dan Array.sort met index
         t0 = performance.now() - t0
-        this.spanCPU.innerHTML += "\n gradeUp CPU-tijd: " + t0.toString() + "<br />"
+        this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
+        t0 = performance.now()
+        qq = dd.sort()
+        t0 = performance.now() - t0
+        this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.sign
         //   sign=dd.sign()
@@ -52,7 +57,7 @@ class Greeter {
         t0 = performance.now()
         var cl = dd.ceiling
         t0 = performance.now() - t0
-        this.spanCPU.innerHTML += "\n ceilingd CPU-tijd: " + t0.toString() + "<br />"
+        this.spanCPU.innerHTML += "\n ceiling CPU-tijd: " + t0.toString() + "<br />"
         var fl = dd.floor
         t0 = performance.now()
         var rr = [-10].rotate(dd)
