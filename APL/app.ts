@@ -22,7 +22,9 @@ class Greeter {
     start() {
         // console.profile('Number.iota')
         var aa = 1e6
-        var bb = aa.roll
+        var ll = 1e5
+        var bb = aa.roll;
+        //[ll,aa]=[aa,ll]
         var t0 = performance.now()
         performance.mark("Array.deal start")
         var dd = aa.deal(aa)

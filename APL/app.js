@@ -15,13 +15,15 @@ var Greeter = (function () {
         var _this = this;
         // console.profile('Number.iota')
         var aa = 1e6;
+        var ll = 1e5;
         var bb = aa.roll;
+        //[ll,aa]=[aa,ll]
         var t0 = performance.now();
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
         performance.mark("Array.deal stop");
         t0 = performance.now() - t0;
-        console.log("Array.deal: " + t0);
+        console.log(`Array.deal: ${t0}`);
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
@@ -69,7 +71,7 @@ var Greeter = (function () {
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />";
         performance.mark("Array.reduce stop");
-        console.log("min: " + min + " som: " + som);
+        console.log(`min: ${min} som: ${som}`);
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
