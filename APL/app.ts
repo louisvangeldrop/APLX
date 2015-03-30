@@ -52,6 +52,7 @@ class Greeter {
         t0 = performance.now()
         var cl = dd.ceiling
         t0 = performance.now() - t0
+        this.spanCPU.innerHTML += "\n ceilingd CPU-tijd: " + t0.toString() + "<br />"
         var fl = dd.floor
         t0 = performance.now()
         var rr = [-10].rotate(dd)

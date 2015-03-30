@@ -46,7 +46,7 @@ Number.prototype.deal = function (omega: number): number[] {
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
 
-Array.prototype.primitive = function (omega?, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. this. klopt niet meer 
+Array.prototype.primitive = function (omega?, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. "this." klopt niet meer 
     try {
         var counter, // let counter,
             max,
@@ -78,19 +78,19 @@ Array.prototype.primitive = function (omega?, primitive?) {  // Xxsneller dan fu
 ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
 Array.prototype.plus = function (omega) {
-    return this.primitive(omega,(thisItem, omegaItem) => { return thisItem + omegaItem })
+    return this.primitive(omega,(alpha, omega) => { return alpha + omega })
 }
 
 Array.prototype.minus = function (omega) {
-    return this.primitive(omega,(thisItem, omegaItem) => { return thisItem - omegaItem })
+    return this.primitive(omega,(alpha, omega) => { return alpha - omega })
 }
 
 Array.prototype.times = function times(omega) {
-    return this.primitive(omega,(thisItem, omegaItem) => { return thisItem * omegaItem })
+    return this.primitive(omega,(alpha, omega) => { return alpha * omega })
 }
 
 Array.prototype.divide = function (omega) {
-    return this.primitive(omega,(thisItem, omegaItem) => { return thisItem / omegaItem })
+    return this.primitive(omega,(alpha, omega) => { return alpha / omega })
 }
 
 Array.prototype.rotate = function (omega) {

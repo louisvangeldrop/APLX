@@ -67,23 +67,23 @@ Array.prototype.primitive = function (omega, primitive) {
 // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
 ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 Array.prototype.plus = function (omega) {
-    return this.primitive(omega, function (thisItem, omegaItem) {
-        return thisItem + omegaItem;
+    return this.primitive(omega, function (alpha, omega) {
+        return alpha + omega;
     });
 };
 Array.prototype.minus = function (omega) {
-    return this.primitive(omega, function (thisItem, omegaItem) {
-        return thisItem - omegaItem;
+    return this.primitive(omega, function (alpha, omega) {
+        return alpha - omega;
     });
 };
 Array.prototype.times = function times(omega) {
-    return this.primitive(omega, function (thisItem, omegaItem) {
-        return thisItem * omegaItem;
+    return this.primitive(omega, function (alpha, omega) {
+        return alpha * omega;
     });
 };
 Array.prototype.divide = function (omega) {
-    return this.primitive(omega, function (thisItem, omegaItem) {
-        return thisItem / omegaItem;
+    return this.primitive(omega, function (alpha, omega) {
+        return alpha / omega;
     });
 };
 Array.prototype.rotate = function (omega) {
