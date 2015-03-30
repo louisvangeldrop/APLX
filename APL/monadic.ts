@@ -15,7 +15,8 @@ Object.defineProperty(Number.prototype, "exponential", {
 Object.defineProperty(Number.prototype, "factorial", {
     get: function () {
         var result = 1
-        for (var i = 1; i <= this; i++) {
+        var myThis = this.valueOf()
+        for (var i = 1; i <= myThis; i++) {
             result = result * i
         }
         return result
@@ -24,7 +25,8 @@ Object.defineProperty(Number.prototype, "factorial", {
 
 Object.defineProperty(Number.prototype, "floor", {
     get: function () {
-        return Math.floor(this)
+        var myThis = this.valueOf()
+        return Math.floor(myThis)
     }
 })
 
@@ -54,7 +56,7 @@ Object.defineProperty(Number.prototype, "negate", {
 
 Object.defineProperty(Number.prototype, "pi", {
     get: function () {
-        return Math.PI
+        return Math.PI*this
     }
 })
 
@@ -82,8 +84,9 @@ Object.defineProperty(Number.prototype, "same", {
 
 Object.defineProperty(Number.prototype, "indexGenerator", {
     get: function () {
-        var results = new Array<number>(this)
-        for (var counter = 0; counter < this; counter++) {
+        var max = this.valueOf()                // In Chrome 10xsneller dan het gebruik van "this"
+        var results = new Array<number>(max)    // sneller dan []
+        for (var counter = 0; counter < max; counter++) {
             results[counter] = counter
         }
         return results
@@ -131,7 +134,7 @@ Object.defineProperty(Array.prototype, "ceiling", {
             // Array.isArray(this) 
             var length = this.length
             var counter,
-                results = new Array(length)
+                results = new Array<number>(length)
             //  results= Math.floor.call(null,this)
             for (counter = 0; counter < length; counter++) {        // met counter in gaat niet, neemt ook alle functies etc mee.
                 results[counter] = Math.ceil(this[counter])
@@ -151,7 +154,7 @@ Object.defineProperty(Array.prototype, "indexGenerator", {
     get: function (): number[] {
         //
         try {
-            var length = this[0]
+            var length = this[0].valueOf()
             var counter,
                 results = new Array<number>(length)
             for (counter = 0; counter < length; counter++) {
@@ -203,7 +206,7 @@ Object.defineProperty(Array.prototype, "gradeUp", {
 Object.defineProperty(Array.prototype, "gradeUpQS", {             // quickSort
     get: function () {
         gradeUp(this)
-        var gradeUp=function (omega, indices?: number[], low?: number, high?: number): number[] {
+        var gradeUp = function (omega, indices?: number[], low?: number, high?: number): number[] {
             try {
                 omega = (typeof omega === 'number') ? [omega] : omega
                 indices = (typeof (indices) === 'undefined') ? omega.length.indexGenerator : indices

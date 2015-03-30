@@ -38,8 +38,6 @@ class Greeter {
         t0 = performance.now() - t0
         var ss = dd.slice()
         ss[0] = 0
-        //  console.profileEnd()
-        // dd=iota(aa)
         t0 = performance.now()
         var qq = dd.gradeUp
         t0 = performance.now() - t0
@@ -52,10 +50,13 @@ class Greeter {
         var ee = dd.times(dd)
         performance.mark("Array.times stop")
         t0 = performance.now()
-        var cl=dd.ceiling
+        var cl = dd.ceiling
         t0 = performance.now() - t0
         var fl = dd.floor
+        t0 = performance.now()
         var rr = [-10].rotate(dd)
+        t0 = performance.now() - t0
+        this.spanCPU.innerHTML += "\n rotate CPU-tijd: " + t0.toString() + "<br />"
         rr = dd.transpose
         performance.mark("Array.APLreduce start")
         var min = dd.aplReduce((l, r) => { return l - r })
