@@ -46,12 +46,13 @@ Number.prototype.deal = function (omega: number): number[] {
 //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
 
-Array.prototype.primitive = function (omega?, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. "this." klopt niet meer 
+Array.prototype.primitive = function (omega, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. "this." klopt niet meer 
     try {
         var counter, // let counter,
             max,
             results
-        if (typeof omega === 'undefined') {
+        if (typeof primitive === 'undefined') {  // omega is nu de primitive
+            primitive=omega
             max = this.length
             results = new Array(max)
             for (counter = 0; counter < max; counter++) {

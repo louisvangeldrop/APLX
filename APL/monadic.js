@@ -87,36 +87,16 @@ Object.defineProperty(Number.prototype, "sign", {
 //#region "Vector"
 Object.defineProperty(Array.prototype, "floor", {
     get: function () {
-        try {
-            // Array.isArray(this) 
-            var length = this.length;
-            var counter, results = new Array(length);
-            for (counter = 0; counter < length; counter++) {
-                results[counter] = Math.floor(this[counter]); // this[counter].floor()  veel trager
-            }
-            return results;
-        }
-        catch (error) {
-        }
-        finally {
-        }
+        return this.primitive(function (alpha) {
+            return Math.floor(alpha);
+        });
     }
 });
 Object.defineProperty(Array.prototype, "ceiling", {
     get: function () {
-        try {
-            // Array.isArray(this) 
-            var length = this.length;
-            var counter, results = new Array(length);
-            for (counter = 0; counter < length; counter++) {
-                results[counter] = Math.ceil(this[counter]);
-            }
-            return results;
-        }
-        catch (error) {
-        }
-        finally {
-        }
+        return this.primitive(function (alpha) {
+            return Math.ceil(alpha);
+        });
     }
 });
 // Non-Scalar Selector Functions

@@ -107,44 +107,15 @@ Object.defineProperty(Number.prototype, "sign", {
 
 Object.defineProperty(Array.prototype, "floor", {
     get: function (): number[] {
-        try {
-            // Array.isArray(this) 
-            var length = this.length
-            var counter,
-                results = new Array(length)
-            //  results= Math.floor.call(null,this)
-            for (counter = 0; counter < length; counter++) {
-                results[counter] = Math.floor(this[counter]) // this[counter].floor()  veel trager
-            }
-            return results
-        }
-        catch (error) {
-        }
-        finally {
-        }
+        return this.primitive((alpha) => { return Math.floor(alpha) })
     }
-
 })
 
 
 
 Object.defineProperty(Array.prototype, "ceiling", {
     get: function () {
-        try {
-            // Array.isArray(this) 
-            var length = this.length
-            var counter,
-                results = new Array<number>(length)
-            //  results= Math.floor.call(null,this)
-            for (counter = 0; counter < length; counter++) {        // met counter in gaat niet, neemt ook alle functies etc mee.
-                results[counter] = Math.ceil(this[counter])
-            }
-            return results
-        }
-        catch (error) {
-        }
-        finally {
-        }
+        return this.primitive((alpha) => { return Math.ceil(alpha) })
     }
 })
 
@@ -239,7 +210,7 @@ Object.defineProperty(Array.prototype, "gradeUpQS", {             // quickSort
             }
             return indices
         }
-       return gradeUp(this)
+        return gradeUp(this)
     }
 
 })

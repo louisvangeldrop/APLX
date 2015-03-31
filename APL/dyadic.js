@@ -43,7 +43,8 @@ Number.prototype.deal = function (omega) {
 Array.prototype.primitive = function (omega, primitive) {
     try {
         var counter, max, results;
-        if (typeof omega === 'undefined') {
+        if (typeof primitive === 'undefined') {
+            primitive = omega;
             max = this.length;
             results = new Array(max);
             for (counter = 0; counter < max; counter++) {

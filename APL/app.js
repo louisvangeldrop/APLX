@@ -23,7 +23,7 @@ var Greeter = (function () {
         var dd = aa.deal(aa);
         performance.mark("Array.deal stop");
         t0 = performance.now() - t0;
-        console.log(`Array.deal: ${t0}`);
+        console.log("Array.deal: " + t0);
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
@@ -34,13 +34,13 @@ var Greeter = (function () {
         var ss = dd.slice();
         ss[0] = 0;
         t0 = performance.now();
-        var qq = dd.gradeDown; //   QS  QS is ietsje langzamer dan Array.sort met index
+        var qq = dd.gradeUp; //   QS  QS is even snel als Array.sort met index
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />";
-        t0 = performance.now();
-        qq = dd.sort();
-        t0 = performance.now() - t0;
-        this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />";
+        //t0 = performance.now()
+        //qq = dd.sort()
+        //t0 = performance.now() - t0
+        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
         var sign = dd.sign;
         //   sign=dd.sign()
@@ -71,7 +71,7 @@ var Greeter = (function () {
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />";
         performance.mark("Array.reduce stop");
-        console.log(`min: ${min} som: ${som}`);
+        console.log("min: " + min + " som: " + som);
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
