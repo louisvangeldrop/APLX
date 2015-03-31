@@ -21,6 +21,7 @@ var Greeter = (function () {
         var t0 = performance.now();
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
+        var kk = dd.negate;
         var maxValue = dd.aplReduce(function (l, r) {
             return Math.max(l, r);
         });

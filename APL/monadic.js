@@ -68,9 +68,11 @@ var Monadic;
                 return this;
             }
         });
-        //Number.prototype.sign = function () {
-        //    return this > 0 ? 1 : this < 0 ? -1 : 0
-        //}
+        Object.defineProperty(Number.prototype, "sign", {
+            get: function () {
+                return this > 0 ? 1 : this < 0 ? -1 : 0;
+            }
+        });
         Object.defineProperty(Number.prototype, "indexGenerator", {
             get: function () {
                 var max = this.valueOf(); // In Chrome 10xsneller dan het gebruik van "this"
@@ -81,14 +83,37 @@ var Monadic;
                 return results;
             }
         });
-        Object.defineProperty(Number.prototype, "sign", {
-            get: function () {
-                return this > 0 ? 1 : this < 0 ? -1 : 0;
-            }
-        });
-    })(Scalar || (Scalar = {}));
+    })(Scalar = Monadic.Scalar || (Monadic.Scalar = {}));
     var Vector;
     (function (Vector) {
+        Object.defineProperty(Array.prototype, "ceiling", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return Math.ceil(alpha);
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "exponential", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return Math.exp(alpha);
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "factorial", {
+            get: function () {
+                var factorial = function (alpha) {
+                    var result = 1;
+                    for (var i = 1; i <= alpha; i++) {
+                        result = result * i;
+                    }
+                    return result;
+                };
+                return this.primitive(function (alpha) {
+                    return factorial(alpha);
+                });
+            }
+        });
         Object.defineProperty(Array.prototype, "floor", {
             get: function () {
                 return this.primitive(function (alpha) {
@@ -96,11 +121,61 @@ var Monadic;
                 });
             }
         });
-        Object.defineProperty(Array.prototype, "ceiling", {
+        Object.defineProperty(Array.prototype, "identity", {
+            get: function () {
+                return this;
+            }
+        });
+        Object.defineProperty(Array.prototype, "ln", {
             get: function () {
                 return this.primitive(function (alpha) {
-                    return Math.ceil(alpha);
+                    return Math.log(alpha);
                 });
+            }
+        });
+        Object.defineProperty(Array.prototype, "magnitude", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return Math.abs(alpha);
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "negate", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return -alpha;
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "pi", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return Math.PI * alpha;
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "reciprocal", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return 1 / alpha;
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "roll", {
+            get: function () {
+                return this.primitive(function (alpha) {
+                    return Math.floor(Math.random() * alpha);
+                });
+            }
+        });
+        Object.defineProperty(Array.prototype, "sign", {
+            // get: arraySign,
+            get: function () {
+                var max = this.length, results = new Array(max);
+                for (var counter = 0; counter < max; counter++) {
+                    results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
+                }
+                return results;
             }
         });
         // Non-Scalar Selector Functions
@@ -254,16 +329,6 @@ var Monadic;
                 }
             }
         });
-        Object.defineProperty(Array.prototype, "sign", {
-            // get: arraySign,
-            get: function () {
-                var max = this.length, results = new Array(max);
-                for (var counter = 0; counter < max; counter++) {
-                    results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
-                }
-                return results;
-            }
-        });
-    })(Vector || (Vector = {}));
+    })(Vector = Monadic.Vector || (Monadic.Vector = {}));
 })(Monadic || (Monadic = {}));
 //# sourceMappingURL=monadic.js.map

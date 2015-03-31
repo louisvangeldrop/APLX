@@ -1,6 +1,6 @@
 ﻿module Dyadic {
 
-    module Scalar {
+    export module Scalar {
 
         Number.prototype.rotate = function (omega) {
             var myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
@@ -40,7 +40,7 @@
         }
     }
 
-    module Vector {
+    export module Vector {
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
@@ -110,4 +110,5 @@
 
         }
     }
+
 }

@@ -38,7 +38,7 @@ var Dyadic;
             };
             return deal(omega, this.valueOf()); // 6xsneller dan function deal (...){}
         };
-    })(Scalar || (Scalar = {}));
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
     var Vector;
     (function (Vector) {
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
@@ -104,6 +104,6 @@ var Dyadic;
         Array.prototype.deal = function (omega) {
             return this[0].deal(omega); //, this[0].valueOf())
         };
-    })(Vector || (Vector = {}));
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
 })(Dyadic || (Dyadic = {}));
 //# sourceMappingURL=dyadic.js.map

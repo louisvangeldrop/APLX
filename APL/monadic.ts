@@ -1,7 +1,7 @@
 ﻿module Monadic {
 
-    module Scalar {
- 
+    export module Scalar {
+
         Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {
                 return Math.ceil(this)
@@ -80,9 +80,11 @@
             }
         })
 
-        //Number.prototype.sign = function () {
-        //    return this > 0 ? 1 : this < 0 ? -1 : 0
-        //}
+        Object.defineProperty(Number.prototype, "sign", {
+            get: function () {
+                return this > 0 ? 1 : this < 0 ? -1 : 0
+            }
+        })
 
         Object.defineProperty(Number.prototype, "indexGenerator", {
             get: function () {
@@ -95,23 +97,9 @@
             }
         })
 
-
-        Object.defineProperty(Number.prototype, "sign", {
-            get: function () {
-                return this > 0 ? 1 : this < 0 ? -1 : 0
-            }
-        })
     }
 
-    module Vector {
-
-        Object.defineProperty(Array.prototype, "floor", {
-            get: function (): number[] {
-                return this.primitive((alpha) => { return Math.floor(alpha) })
-            }
-        })
-
-
+    export module Vector {
 
         Object.defineProperty(Array.prototype, "ceiling", {
             get: function () {
@@ -119,6 +107,87 @@
             }
         })
 
+        Object.defineProperty(Array.prototype, "exponential", {
+            get: function () {
+                return this.primitive((alpha) => { return Math.exp(alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "factorial", {
+            get: function () {
+                var factorial = function (alpha) {
+                    var result = 1
+                    for (var i = 1; i <= alpha; i++) {
+                        result = result * i
+                    }
+                    return result
+                }
+                return this.primitive((alpha) => { return factorial(alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "floor", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return Math.floor(alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "identity", {
+            get: function (): number[] {
+                return this
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "ln", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return Math.log(alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "magnitude", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return Math.abs(alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "negate", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return -alpha })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "pi", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return Math.PI * alpha })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "reciprocal", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return 1 / alpha })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "roll", {
+            get: function (): number[] {
+                return this.primitive((alpha) => { return Math.floor(Math.random() * alpha) })
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "sign", {
+            // get: arraySign,
+            get: function () {
+                var max = this.length
+                    , results = new Array(max)
+                for (var counter = 0; counter < max; counter++) {
+                    results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
+                }
+                return results
+            }
+            //set: function () {
+            //}
+        })      
+        
         // Non-Scalar Selector Functions
 
         Object.defineProperty(Array.prototype, "indexGenerator", {
@@ -172,7 +241,6 @@
                 }
             }
         })
-
 
         Object.defineProperty(Array.prototype, "gradeUpQS", {             // quickSort
             get: function () {
@@ -250,8 +318,6 @@
             }
         })
 
-
-
         Object.defineProperty(Array.prototype, "shape", {
             get: function shape(): number[] {
                 try {
@@ -277,22 +343,8 @@
                 }
 
             }
-        }
-            )
-
-         Object.defineProperty(Array.prototype, "sign", {
-            // get: arraySign,
-            get: function () {
-                var max = this.length
-                    , results = new Array(max)
-                for (var counter = 0; counter < max; counter++) {
-                    results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0
-                }
-                return results
-            }
-            //set: function () {
-            //}
         })
+
     }
 
 }
