@@ -28,6 +28,7 @@ class Greeter {
         var t0 = performance.now()
         performance.mark("Array.deal start")
         var dd = aa.deal(aa)
+        var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         performance.mark("Array.deal stop")
         t0 = performance.now() - t0
         console.log(`Array.deal: ${t0}`)

@@ -21,6 +21,9 @@ var Greeter = (function () {
         var t0 = performance.now();
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
+        var maxValue = dd.aplReduce(function (l, r) {
+            return Math.max(l, r);
+        });
         performance.mark("Array.deal stop");
         t0 = performance.now() - t0;
         console.log("Array.deal: " + t0);
@@ -34,7 +37,7 @@ var Greeter = (function () {
         var ss = dd.slice();
         ss[0] = 0;
         t0 = performance.now();
-        var qq = dd.gradeUp; //   QS  QS is even snel als Array.sort met index
+        var qq = dd.gradeUp; //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />";
         //t0 = performance.now()

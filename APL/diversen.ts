@@ -8,8 +8,8 @@
 
 
 
-//module APL {
-    // declare var Array, Number
+module APL {
+     declare var Array, Number
 
     //type APLArray=Array<string|number|boolean|any>
 
@@ -30,4 +30,9 @@
 
 // Array.prototype.push.apply(ar1,ar2) //concatenate
     
-// }
+ }
+
+
+module Dyadic {
+
+}
