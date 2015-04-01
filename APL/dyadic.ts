@@ -45,9 +45,8 @@
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
-
         Array.prototype.primitive = function (omega, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. "this." klopt niet meer 
-            try {
+            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
                 var counter, // let counter,
                     max,
                     results
@@ -68,30 +67,35 @@
                     }
                     return results
                 }
-            }
-            catch (error) {
-            }
-            finally {
-            }
+            //}
+            //catch (error) {
+            //   // throw error
+            //}
+            //finally {
+            //}
         }
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
+        export var plus = (alpha, omega) => { return alpha + omega }
         Array.prototype.plus = function (omega) {
-            return this.primitive(omega,(alpha, omega) => { return alpha + omega })
+            return this.primitive(omega, plus)
         }
 
+        export var minus = (alpha, omega) => { return alpha - omega }
         Array.prototype.minus = function (omega) {
-            return this.primitive(omega,(alpha, omega) => { return alpha - omega })
+            return this.primitive(omega, minus)
         }
 
-        Array.prototype.times = function times(omega) {
-            return this.primitive(omega,(alpha, omega) => { return alpha * omega })
+        export var times = (alpha, omega) => { return alpha * omega }
+        Array.prototype.times = function (omega) {
+            return this.primitive(omega, times)
         }
 
+        export var divide = (alpha, omega) => { return alpha / omega }
         Array.prototype.divide = function (omega) {
-            return this.primitive(omega,(alpha, omega) => { return alpha / omega })
+            return this.primitive(omega, divide)
         }
 
         Array.prototype.rotate = function (omega) {

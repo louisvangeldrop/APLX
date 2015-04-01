@@ -86,39 +86,40 @@ var Monadic;
     })(Scalar = Monadic.Scalar || (Monadic.Scalar = {}));
     var Vector;
     (function (Vector) {
+        Vector.ceiling = function (alpha) {
+            return Math.ceil(alpha);
+        };
         Object.defineProperty(Array.prototype, "ceiling", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.ceil(alpha);
-                });
+                return this.primitive(Vector.ceiling);
             }
         });
+        Vector.exponential = function (alpha) {
+            return Math.exp(alpha);
+        };
         Object.defineProperty(Array.prototype, "exponential", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.exp(alpha);
-                });
+                return this.primitive(Vector.exponential);
             }
         });
+        Vector.factorial = function (alpha) {
+            var result = 1;
+            for (var i = 1; i <= alpha; i++) {
+                result = result * i;
+            }
+            return result;
+        };
         Object.defineProperty(Array.prototype, "factorial", {
             get: function () {
-                var factorial = function (alpha) {
-                    var result = 1;
-                    for (var i = 1; i <= alpha; i++) {
-                        result = result * i;
-                    }
-                    return result;
-                };
-                return this.primitive(function (alpha) {
-                    return factorial(alpha);
-                });
+                return this.primitive(Vector.factorial); //(alpha) => { return factorial(alpha) }
             }
         });
+        Vector.floor = function (alpha) {
+            return Math.floor(alpha);
+        };
         Object.defineProperty(Array.prototype, "floor", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.floor(alpha);
-                });
+                return this.primitive(Vector.floor);
             }
         });
         Object.defineProperty(Array.prototype, "identity", {
@@ -126,56 +127,61 @@ var Monadic;
                 return this;
             }
         });
+        Vector.ln = function (alpha) {
+            return Math.log(alpha);
+        };
         Object.defineProperty(Array.prototype, "ln", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.log(alpha);
-                });
+                return this.primitive(Vector.ln);
             }
         });
+        Vector.magnitude = function (alpha) {
+            return Math.abs(alpha);
+        };
         Object.defineProperty(Array.prototype, "magnitude", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.abs(alpha);
-                });
+                return this.primitive(Vector.magnitude);
             }
         });
+        Vector.negate = function (alpha) {
+            return -alpha;
+        };
         Object.defineProperty(Array.prototype, "negate", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return -alpha;
-                });
+                return this.primitive(Vector.negate);
             }
         });
+        Vector.pi = function (alpha) {
+            return Math.PI * alpha;
+        };
         Object.defineProperty(Array.prototype, "pi", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.PI * alpha;
-                });
+                return this.primitive(Vector.pi);
             }
         });
+        Vector.reciprocal = function (alpha) {
+            return 1 / alpha;
+        };
         Object.defineProperty(Array.prototype, "reciprocal", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return 1 / alpha;
-                });
+                return this.primitive(Vector.reciprocal);
             }
         });
+        Vector.roll = function (alpha) {
+            return Math.floor(Math.random() * alpha);
+        };
         Object.defineProperty(Array.prototype, "roll", {
             get: function () {
-                return this.primitive(function (alpha) {
-                    return Math.floor(Math.random() * alpha);
-                });
+                return this.primitive(Vector.roll);
             }
         });
+        Vector.sign = function (alpha) {
+            return alpha > 0 ? 1 : alpha < 0 ? -1 : 0;
+        };
         Object.defineProperty(Array.prototype, "sign", {
-            // get: arraySign,
+            // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
-                var max = this.length, results = new Array(max);
-                for (var counter = 0; counter < max; counter++) {
-                    results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
-                }
-                return results;
+                return this.primitive(Vector.sign);
             }
         });
         // Non-Scalar Selector Functions

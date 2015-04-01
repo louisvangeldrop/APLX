@@ -44,51 +44,56 @@ var Dyadic;
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
         Array.prototype.primitive = function (omega, primitive) {
-            try {
-                var counter, max, results;
-                if (typeof primitive === 'undefined') {
-                    primitive = omega;
-                    max = this.length;
-                    results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter]);
-                    }
-                    return results;
+            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+            var counter, max, results;
+            if (typeof primitive === 'undefined') {
+                primitive = omega;
+                max = this.length;
+                results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter]);
                 }
-                else {
-                    max = Math.min(this.length, omega.length), results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter], omega[counter]);
-                    }
-                    return results;
+                return results;
+            }
+            else {
+                max = Math.min(this.length, omega.length), results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter], omega[counter]);
                 }
+                return results;
             }
-            catch (error) {
-            }
-            finally {
-            }
+            //}
+            //catch (error) {
+            //   // throw error
+            //}
+            //finally {
+            //}
         };
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+        Vector.plus = function (alpha, omega) {
+            return alpha + omega;
+        };
         Array.prototype.plus = function (omega) {
-            return this.primitive(omega, function (alpha, omega) {
-                return alpha + omega;
-            });
+            return this.primitive(omega, Vector.plus);
+        };
+        Vector.minus = function (alpha, omega) {
+            return alpha - omega;
         };
         Array.prototype.minus = function (omega) {
-            return this.primitive(omega, function (alpha, omega) {
-                return alpha - omega;
-            });
+            return this.primitive(omega, Vector.minus);
         };
-        Array.prototype.times = function times(omega) {
-            return this.primitive(omega, function (alpha, omega) {
-                return alpha * omega;
-            });
+        Vector.times = function (alpha, omega) {
+            return alpha * omega;
+        };
+        Array.prototype.times = function (omega) {
+            return this.primitive(omega, Vector.times);
+        };
+        Vector.divide = function (alpha, omega) {
+            return alpha / omega;
         };
         Array.prototype.divide = function (omega) {
-            return this.primitive(omega, function (alpha, omega) {
-                return alpha / omega;
-            });
+            return this.primitive(omega, Vector.divide);
         };
         Array.prototype.rotate = function (omega) {
             return this[0].rotate(omega);

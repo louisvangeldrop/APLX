@@ -1,4 +1,6 @@
 // https://github.com/Microsoft/TypeScript/wiki
+var vector = Dyadic.Vector;
+var scalar = Dyadic.Scalar;
 var Greeter = (function () {
     function Greeter(element) {
         this.element = element;
@@ -12,8 +14,8 @@ var Greeter = (function () {
         this.spanCPU.innerHTML = "<br/>";
     }
     Greeter.prototype.start = function () {
-        var _this = this;
         // console.profile('Number.iota')
+        var _this = this;
         var aa = 1e6;
         var ll = 1e5;
         var bb = aa.roll;
@@ -22,6 +24,7 @@ var Greeter = (function () {
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
         var kk = dd.negate;
+        var fac = [10].factorial;
         var maxValue = dd.aplReduce(function (l, r) {
             return Math.max(l, r);
         });
@@ -63,15 +66,11 @@ var Greeter = (function () {
         this.spanCPU.innerHTML += "\n rotate CPU-tijd: " + t0.toString() + "<br />";
         rr = dd.transpose;
         performance.mark("Array.APLreduce start");
-        var min = dd.aplReduce(function (l, r) {
-            return l - r;
-        });
+        var min = dd.aplReduce(vector.minus);
         performance.mark("Array.APLreduce stop");
         performance.mark("Array.reduce start");
         t0 = performance.now();
-        var som = dd.reduceRight(function (l, r) {
-            return r + l;
-        });
+        var som = dd.reduceRight(vector.plus);
         t0 = performance.now() - t0;
         this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />";
         performance.mark("Array.reduce stop");
