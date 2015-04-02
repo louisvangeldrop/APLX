@@ -5,6 +5,8 @@
 
 module APL {
      declare var Array, Number
+     type APLNumber=Number
+     type APLVector=number[]|string[]
 
     //type APLArray=Array<string|number|boolean|any>
 
