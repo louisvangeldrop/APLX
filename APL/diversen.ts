@@ -29,7 +29,6 @@ module APL {
     
  }
 
-
 module Dyadic {
 
 }

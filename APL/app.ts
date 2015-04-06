@@ -33,7 +33,7 @@ class Greeter {
         performance.mark("Array.deal start")
         var dd = aa.deal(aa)
         var kk = dd.negate
-        var fac= [10].factorial
+        var fac = [10].factorial
         var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         performance.mark("Array.deal stop")
         t0 = performance.now() - t0
@@ -76,17 +76,11 @@ class Greeter {
         performance.mark("Array.APLreduce start")
         var min = dd.aplReduce(vector.minus)
         performance.mark("Array.APLreduce stop")
-        performance.mark("Array.reduce start")
-        t0 = performance.now()
-        var som = dd.reduceRight(vector.plus)
-        t0 = performance.now() - t0
-        this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />"
-        performance.mark("Array.reduce stop")
-        console.log(`min: ${min} som: ${som}`)
+        this.spanCPU.innerHTML += showPerformance(performance.now(), " APL reduceRight", dd.reduceRight(vector.plus))
+        //       console.log(`min: ${min} som: ${som}`)
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop")
         performance.measure("Array.times", "Array.times start", "Array.times stop")
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
-        performance.measure("Array.reduce", "Array.reduce start", "Array.reduce stop")
         // Print marks
         var perfMarks = performance.getEntriesByType("measure");   // "mark"
         var perfEntries = performance.getEntries()
@@ -102,7 +96,13 @@ class Greeter {
     stop() {
         clearTimeout(this.timerToken);
     }
+}
 
+var showPerformance = function (performanceNow, text: string, expression) {
+    var t0 = performanceNow
+    var result = expression
+    t0 = performance.now() - t0
+    return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 
 window.onload = () => {
