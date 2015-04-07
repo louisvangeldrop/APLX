@@ -34,10 +34,7 @@ var Greeter = (function () {
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
-        t0 = performance.now();
-        var vv = dd.sign;
-        t0 = performance.now() - t0;
-        this.spanCPU.innerHTML += "\n sign CPU-tijd: " + t0.toString() + "<br />";
+        this.spanCPU.innerHTML += showPerformance(performance.now(), "sign", dd.sign);
         var ss = dd.slice();
         ss[0] = 0;
         t0 = performance.now();
@@ -68,7 +65,7 @@ var Greeter = (function () {
         performance.mark("Array.APLreduce start");
         var min = dd.aplReduce(vector.minus);
         performance.mark("Array.APLreduce stop");
-        this.spanCPU.innerHTML += showPerformance(performance.now(), " APL reduceRight", dd.reduceRight(vector.plus));
+        this.spanCPU.innerHTML += showPerformance(performance.now(), "Array.reduceRight", dd.reduceRight(vector.plus));
         //       console.log(`min: ${min} som: ${som}`)
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");
@@ -87,9 +84,8 @@ var Greeter = (function () {
     return Greeter;
 })();
 var showPerformance = function (performanceNow, text, expression) {
-    var t0 = performanceNow;
-    var result = expression;
-    t0 = performance.now() - t0;
+    //   var result = expression
+    var t0 = performance.now() - performanceNow;
     return "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
 };
 window.onload = function () {

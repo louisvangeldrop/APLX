@@ -95,6 +95,42 @@ var Dyadic;
         Array.prototype.divide = function (omega) {
             return this.primitive(omega, Vector.divide);
         };
+        Vector.residue = function (alpha, omega) {
+            return omega % alpha;
+        };
+        Array.prototype.residue = function (omega) {
+            return this.primitive(omega, Vector.residue);
+        };
+        Vector.minimum = function (alpha, omega) {
+            return Math.min(alpha, omega);
+        };
+        Array.prototype.minimum = function (omega) {
+            return this.primitive(omega, Vector.minimum);
+        };
+        Vector.maximum = function (alpha, omega) {
+            return Math.max(alpha, omega);
+        };
+        Array.prototype.maximum = function (omega) {
+            return this.primitive(omega, Vector.maximum);
+        };
+        Vector.power = function (alpha, omega) {
+            return Math.pow(alpha, omega);
+        };
+        Array.prototype.power = function (omega) {
+            return this.primitive(omega, Vector.power);
+        };
+        Vector.logarithm = function (alpha, omega) {
+            return Math.log(omega) / Math.log(alpha);
+        };
+        Array.prototype.logarithm = function (omega) {
+            return this.primitive(omega, Vector.logarithm);
+        };
+        Vector.binomial = function (alpha, omega) {
+            return Math.max(alpha, omega);
+        };
+        Array.prototype.binomial = function (omega) {
+            return this.primitive(omega, Vector.binomial);
+        };
         Array.prototype.rotate = function (omega) {
             return this[0].rotate(omega);
         };
