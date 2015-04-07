@@ -123,7 +123,7 @@
             return this.primitive(omega, logarithm)
         }
 
-        export var binomial = (alpha, omega) => { return Math.max(alpha, omega) }
+        export var binomial = (alpha:number, omega:number) => { return omega.factorial/(alpha.factorial* (omega-alpha).factorial) }
         Array.prototype.binomial = function (omega) {
             return this.primitive(omega, binomial)
         }

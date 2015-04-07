@@ -126,7 +126,7 @@ var Dyadic;
             return this.primitive(omega, Vector.logarithm);
         };
         Vector.binomial = function (alpha, omega) {
-            return Math.max(alpha, omega);
+            return omega.factorial / (alpha.factorial * (omega - alpha).factorial);
         };
         Array.prototype.binomial = function (omega) {
             return this.primitive(omega, Vector.binomial);
