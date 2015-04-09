@@ -35,6 +35,7 @@ var Greeter = (function () {
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
         this.spanCPU.innerHTML += showPerformance(performance.now(), "sign", dd.sign);
+        this.spanCPU.innerHTML += showPerformance(performance.now(), "identity", dd.same);
         var ss = dd.slice();
         ss[0] = 0;
         t0 = performance.now();
@@ -63,9 +64,9 @@ var Greeter = (function () {
         this.spanCPU.innerHTML += "\n rotate CPU-tijd: " + t0.toString() + "<br />";
         rr = dd.transpose;
         performance.mark("Array.APLreduce start");
-        var min = dd.aplReduce(vector.minus);
+        var min = dd.aplReduce(scalar.minus);
         performance.mark("Array.APLreduce stop");
-        this.spanCPU.innerHTML += showPerformance(performance.now(), "Array.reduceRight", dd.reduceRight(vector.plus));
+        this.spanCPU.innerHTML += showPerformance(performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
         //       console.log(`min: ${min} som: ${som}`)
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");

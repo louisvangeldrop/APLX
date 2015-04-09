@@ -2,6 +2,26 @@
 
     export module Scalar {
 
+        export var plus = (alpha, omega) => { return alpha + omega }
+
+        export var minus = (alpha, omega) => { return alpha - omega }
+
+        export var times = (alpha, omega) => { return alpha * omega }
+
+        export var divide = (alpha, omega) => { return alpha / omega }
+
+        export var residue = (alpha, omega) => { return omega % alpha }
+
+        export var minimum = (alpha, omega) => { return Math.min(alpha, omega) }
+
+        export var maximum = (alpha, omega) => { return Math.max(alpha, omega) }
+
+        export var power = (alpha, omega) => { return Math.pow(alpha, omega) }
+
+        export var logarithm = (alpha, omega) => { return Math.log(omega) / Math.log(alpha) }
+
+        export var binomial = (alpha: number, omega: number) => { return omega.factorial / (alpha.factorial * (omega - alpha).factorial) }   // zie !.coffee voor meer details
+
         Number.prototype.rotate = function (omega) {
             var myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             try {
@@ -78,54 +98,46 @@
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
-        export var plus = (alpha, omega) => { return alpha + omega }
+        
         Array.prototype.plus = function (omega) {
-            return this.primitive(omega, plus)
+            return this.primitive(omega, scalar.plus)
         }
-
-        export var minus = (alpha, omega) => { return alpha - omega }
+      
         Array.prototype.minus = function (omega) {
-            return this.primitive(omega, minus)
+            return this.primitive(omega, scalar.minus)
         }
-
-        export var times = (alpha, omega) => { return alpha * omega }
+       
         Array.prototype.times = function (omega) {
-            return this.primitive(omega, times)
+            return this.primitive(omega, scalar.times)
         }
-
-        export var divide = (alpha, omega) => { return alpha / omega }
+        
         Array.prototype.divide = function (omega) {
-            return this.primitive(omega, divide)
+            return this.primitive(omega, scalar.divide)
         }
-
-        export var residue = (alpha, omega) => { return omega % alpha }
+        
         Array.prototype.residue = function (omega) {
-            return this.primitive(omega, residue)
+            return this.primitive(omega, scalar.residue)
         }
-
-        export var minimum = (alpha, omega) => { return Math.min(alpha,omega) }
+        
         Array.prototype.minimum = function (omega) {
-            return this.primitive(omega, minimum)
+            return this.primitive(omega, scalar.minimum)
         }
-
-        export var maximum = (alpha, omega) => { return Math.max(alpha, omega) }
+        
         Array.prototype.maximum = function (omega) {
-            return this.primitive(omega, maximum)
+            return this.primitive(omega, scalar.maximum)
         }
 
-        export var power = (alpha, omega) => { return Math.pow(alpha, omega) }
-        Array.prototype.power = function (omega) {
-            return this.primitive(omega, power)
+                Array.prototype.power = function (omega) {
+                    return this.primitive(omega, scalar.power)
         }
 
-        export var logarithm = (alpha, omega) => { return Math.log( omega) /Math.log(alpha)}
+        
         Array.prototype.logarithm = function (omega) {
-            return this.primitive(omega, logarithm)
+            return this.primitive(omega, scalar.logarithm)
         }
 
-        export var binomial = (alpha:number, omega:number) => { return omega.factorial/(alpha.factorial* (omega-alpha).factorial) }
-        Array.prototype.binomial = function (omega) {
-            return this.primitive(omega, binomial)
+               Array.prototype.binomial = function (omega) {
+                   return this.primitive(omega, scalar.binomial)
         }
 
         Array.prototype.rotate = function (omega) {

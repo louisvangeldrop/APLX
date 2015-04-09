@@ -2,6 +2,36 @@ var Dyadic;
 (function (Dyadic) {
     var Scalar;
     (function (Scalar) {
+        Scalar.plus = function (alpha, omega) {
+            return alpha + omega;
+        };
+        Scalar.minus = function (alpha, omega) {
+            return alpha - omega;
+        };
+        Scalar.times = function (alpha, omega) {
+            return alpha * omega;
+        };
+        Scalar.divide = function (alpha, omega) {
+            return alpha / omega;
+        };
+        Scalar.residue = function (alpha, omega) {
+            return omega % alpha;
+        };
+        Scalar.minimum = function (alpha, omega) {
+            return Math.min(alpha, omega);
+        };
+        Scalar.maximum = function (alpha, omega) {
+            return Math.max(alpha, omega);
+        };
+        Scalar.power = function (alpha, omega) {
+            return Math.pow(alpha, omega);
+        };
+        Scalar.logarithm = function (alpha, omega) {
+            return Math.log(omega) / Math.log(alpha);
+        };
+        Scalar.binomial = function (alpha, omega) {
+            return omega.factorial / (alpha.factorial * (omega - alpha).factorial);
+        }; // zie !.coffee voor meer details
         Number.prototype.rotate = function (omega) {
             var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
             try {
@@ -71,65 +101,35 @@ var Dyadic;
         };
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-        Vector.plus = function (alpha, omega) {
-            return alpha + omega;
-        };
         Array.prototype.plus = function (omega) {
-            return this.primitive(omega, Vector.plus);
-        };
-        Vector.minus = function (alpha, omega) {
-            return alpha - omega;
+            return this.primitive(omega, scalar.plus);
         };
         Array.prototype.minus = function (omega) {
-            return this.primitive(omega, Vector.minus);
-        };
-        Vector.times = function (alpha, omega) {
-            return alpha * omega;
+            return this.primitive(omega, scalar.minus);
         };
         Array.prototype.times = function (omega) {
-            return this.primitive(omega, Vector.times);
-        };
-        Vector.divide = function (alpha, omega) {
-            return alpha / omega;
+            return this.primitive(omega, scalar.times);
         };
         Array.prototype.divide = function (omega) {
-            return this.primitive(omega, Vector.divide);
-        };
-        Vector.residue = function (alpha, omega) {
-            return omega % alpha;
+            return this.primitive(omega, scalar.divide);
         };
         Array.prototype.residue = function (omega) {
-            return this.primitive(omega, Vector.residue);
-        };
-        Vector.minimum = function (alpha, omega) {
-            return Math.min(alpha, omega);
+            return this.primitive(omega, scalar.residue);
         };
         Array.prototype.minimum = function (omega) {
-            return this.primitive(omega, Vector.minimum);
-        };
-        Vector.maximum = function (alpha, omega) {
-            return Math.max(alpha, omega);
+            return this.primitive(omega, scalar.minimum);
         };
         Array.prototype.maximum = function (omega) {
-            return this.primitive(omega, Vector.maximum);
-        };
-        Vector.power = function (alpha, omega) {
-            return Math.pow(alpha, omega);
+            return this.primitive(omega, scalar.maximum);
         };
         Array.prototype.power = function (omega) {
-            return this.primitive(omega, Vector.power);
-        };
-        Vector.logarithm = function (alpha, omega) {
-            return Math.log(omega) / Math.log(alpha);
+            return this.primitive(omega, scalar.power);
         };
         Array.prototype.logarithm = function (omega) {
-            return this.primitive(omega, Vector.logarithm);
-        };
-        Vector.binomial = function (alpha, omega) {
-            return omega.factorial / (alpha.factorial * (omega - alpha).factorial);
+            return this.primitive(omega, scalar.logarithm);
         };
         Array.prototype.binomial = function (omega) {
-            return this.primitive(omega, Vector.binomial);
+            return this.primitive(omega, scalar.binomial);
         };
         Array.prototype.rotate = function (omega) {
             return this[0].rotate(omega);

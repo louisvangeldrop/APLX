@@ -2,75 +2,113 @@ var Monadic;
 (function (Monadic) {
     var Scalar;
     (function (Scalar) {
+        Scalar.ceiling = function (alpha) {
+            return Math.ceil(alpha);
+        };
+        Scalar.exponential = function (alpha) {
+            return Math.exp(alpha);
+        };
+        Scalar.factorial = function (alpha) {
+            var result = 1;
+            for (var i = 1; i <= alpha; i++) {
+                result = result * i;
+            }
+            return result;
+        };
+        Scalar.floor = function (alpha) {
+            return Math.floor(alpha);
+        };
+        Scalar.identity = function (alpha) {
+            return alpha;
+        };
+        Scalar.ln = function (alpha) {
+            return Math.log(alpha);
+        };
+        Scalar.magnitude = function (alpha) {
+            return Math.abs(alpha);
+        };
+        Scalar.negate = function (alpha) {
+            return -alpha;
+        };
+        Scalar.pi = function (alpha) {
+            return Math.PI * alpha;
+        };
+        Scalar.reciprocal = function (alpha) {
+            return 1 / alpha;
+        };
+        Scalar.roll = function (alpha) {
+            return Math.floor(Math.random() * alpha);
+        };
+        Scalar.roll = function (alpha) {
+            return Math.floor(Math.random() * alpha);
+        };
+        Scalar.sign = function (alpha) {
+            return alpha > 0 ? 1 : alpha < 0 ? -1 : 0;
+        };
         Object.defineProperty(Number.prototype, "ceiling", {
             get: function () {
-                return Math.ceil(this);
+                return Scalar.ceiling(this);
             }
         });
         Object.defineProperty(Number.prototype, "exponential", {
             get: function () {
-                return Math.exp(this);
+                return Scalar.exponential(this);
             }
         });
         Object.defineProperty(Number.prototype, "factorial", {
             get: function () {
-                var result = 1;
-                var myThis = this.valueOf();
-                for (var i = 1; i <= myThis; i++) {
-                    result = result * i;
-                }
-                return result;
+                return Scalar.factorial(this.valueOf());
             }
         });
         Object.defineProperty(Number.prototype, "floor", {
             get: function () {
                 var myThis = this.valueOf();
-                return Math.floor(myThis);
+                return Scalar.floor(this);
             }
         });
         Object.defineProperty(Number.prototype, "identity", {
             get: function () {
-                return this;
+                return Scalar.identity(this);
             }
         });
         Object.defineProperty(Number.prototype, "ln", {
             get: function () {
-                return Math.log(this);
+                return Scalar.ln(this);
             }
         });
         Object.defineProperty(Number.prototype, "magnitude", {
             get: function () {
-                return Math.abs(this);
+                return Scalar.magnitude(this);
             }
         });
         Object.defineProperty(Number.prototype, "negate", {
             get: function () {
-                return -this;
+                return Scalar.negate(this);
             }
         });
         Object.defineProperty(Number.prototype, "pi", {
             get: function () {
-                return Math.PI * this;
+                return Scalar.pi(this);
             }
         });
         Object.defineProperty(Number.prototype, "reciprocal", {
             get: function () {
-                return 1 / this;
+                return Scalar.reciprocal(this);
             }
         });
         Object.defineProperty(Number.prototype, "roll", {
             get: function () {
-                return Math.floor(Math.random() * this);
+                return Scalar.roll(this);
             }
         });
         Object.defineProperty(Number.prototype, "same", {
             get: function () {
-                return this;
+                return Scalar.identity(this);
             }
         });
         Object.defineProperty(Number.prototype, "sign", {
             get: function () {
-                return this > 0 ? 1 : this < 0 ? -1 : 0;
+                return Scalar.sign(this);
             }
         });
         Object.defineProperty(Number.prototype, "indexGenerator", {
@@ -86,102 +124,70 @@ var Monadic;
     })(Scalar = Monadic.Scalar || (Monadic.Scalar = {}));
     var Vector;
     (function (Vector) {
-        Vector.ceiling = function (alpha) {
-            return Math.ceil(alpha);
-        };
         Object.defineProperty(Array.prototype, "ceiling", {
             get: function () {
-                return this.primitive(Vector.ceiling);
+                return this.primitive(Scalar.ceiling);
             }
         });
-        Vector.exponential = function (alpha) {
-            return Math.exp(alpha);
-        };
         Object.defineProperty(Array.prototype, "exponential", {
             get: function () {
-                return this.primitive(Vector.exponential);
+                return this.primitive(Scalar.exponential);
             }
         });
-        Vector.factorial = function (alpha) {
-            var result = 1;
-            for (var i = 1; i <= alpha; i++) {
-                result = result * i;
-            }
-            return result;
-        };
         Object.defineProperty(Array.prototype, "factorial", {
             get: function () {
-                return this.primitive(Vector.factorial); //(alpha) => { return factorial(alpha) }
+                return this.primitive(Scalar.factorial); //(alpha) => { return factorial(alpha) }
             }
         });
-        Vector.floor = function (alpha) {
-            return Math.floor(alpha);
-        };
         Object.defineProperty(Array.prototype, "floor", {
             get: function () {
-                return this.primitive(Vector.floor);
+                return this.primitive(Scalar.floor);
             }
         });
         Object.defineProperty(Array.prototype, "identity", {
             get: function () {
-                return this;
+                return Scalar.identity(this);
             }
         });
-        Vector.ln = function (alpha) {
-            return Math.log(alpha);
-        };
+        Object.defineProperty(Array.prototype, "same", {
+            get: function () {
+                return Scalar.identity(this);
+            }
+        });
         Object.defineProperty(Array.prototype, "ln", {
             get: function () {
-                return this.primitive(Vector.ln);
+                return this.primitive(Scalar.ln);
             }
         });
-        Vector.magnitude = function (alpha) {
-            return Math.abs(alpha);
-        };
         Object.defineProperty(Array.prototype, "magnitude", {
             get: function () {
-                return this.primitive(Vector.magnitude);
+                return this.primitive(Scalar.magnitude);
             }
         });
-        Vector.negate = function (alpha) {
-            return -alpha;
-        };
         Object.defineProperty(Array.prototype, "negate", {
             get: function () {
-                return this.primitive(Vector.negate);
+                return this.primitive(Scalar.negate);
             }
         });
-        Vector.pi = function (alpha) {
-            return Math.PI * alpha;
-        };
         Object.defineProperty(Array.prototype, "pi", {
             get: function () {
-                return this.primitive(Vector.pi);
+                return this.primitive(Scalar.pi);
             }
         });
-        Vector.reciprocal = function (alpha) {
-            return 1 / alpha;
-        };
         Object.defineProperty(Array.prototype, "reciprocal", {
             get: function () {
-                return this.primitive(Vector.reciprocal);
+                return this.primitive(Scalar.reciprocal);
             }
         });
-        Vector.roll = function (alpha) {
-            return Math.floor(Math.random() * alpha);
-        };
         Object.defineProperty(Array.prototype, "roll", {
             get: function () {
-                return this.primitive(Vector.roll);
+                return this.primitive(Scalar.roll);
             }
         });
-        Vector.sign = function (alpha) {
-            return alpha > 0 ? 1 : alpha < 0 ? -1 : 0;
-        };
         Object.defineProperty(Array.prototype, "sign", {
             // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
-                return this.primitive(Vector.sign);
+                return this.primitive(Scalar.sign);
             }
         });
         // Non-Scalar Selector Functions
