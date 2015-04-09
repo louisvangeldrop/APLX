@@ -62,6 +62,8 @@ class Greeter {
         performance.mark("Array.times start")
         var ee = dd.times(dd)
         performance.mark("Array.times stop")
+        this.spanCPU.innerHTML += showPerformance(performance.now(),"negate",dd.negate)
+        this.spanCPU.innerHTML += showPerformance(performance.now(),"map -alpha", dd.map((alpha) => { return -alpha }))
         t0 = performance.now()
         var cl = dd.ceiling
         t0 = performance.now() - t0
