@@ -10,17 +10,22 @@ var APL;
     var APLArray = (function () {
         function APLArray(length) {
             this.length = length;
+            this._array = new Array(length);
         }
         Object.defineProperty(APLArray.prototype, "shape", {
+            // property "shape"
             get: function () {
-                return [this.length];
+                return this._array.length;
+            },
+            set: function (length) {
+                //TODO:
             },
             enumerable: true,
             configurable: true
         });
         APLArray.prototype.plus = function (omega) {
             this.plus = function (omega) {
-                var aa = this.length;
+                var aa = this._array.length;
             };
         };
         return APLArray;

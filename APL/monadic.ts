@@ -33,7 +33,7 @@
 
         export var sign = (alpha) => { return alpha > 0 ? 1 : alpha < 0 ? -1 : 0 }
 
-        Object.defineProperty(Number.prototype, "ceiling", {            //
+           Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {
                 return Scalar.ceiling(this)
             }

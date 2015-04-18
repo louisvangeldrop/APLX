@@ -4,9 +4,9 @@
 // http://repl.it/languages/APL
 
 module APL {
-     declare var Array, Number
-     type APLNumber=Number
-     type APLVector=number[]|string[]
+    declare var Array, Number
+    type APLNumber=Number
+    type APLVector=number[]|string[]
 
     //type APLArray=Array<string|number|boolean|any>
 
@@ -14,20 +14,32 @@ module APL {
     //    slash()
     //}
    
-     class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
-        constructor(private length?: number) {   // super kan niet. Array is een interface
+    class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
+        _array: T
+        constructor(private length?: number|number[]) {   // "super" kan helaas niet. Array is een interface
+            this._array = new Array(length)
         }
-        get shape(): number[]{
-            return [this.length]
+
+        // property "shape"
+
+        get shape(): number|number[] {
+            return this._array.length
         }
+
+        set shape(length: number|number[]) {
+            //TODO:
+
+        }
+
+
         plus(omega) {
-            this.plus = function (omega) { var aa = this.length }
+            this.plus = function (omega) { var aa = this._array.length }
         }
     }
 
-// Array.prototype.push.apply(ar1,ar2) //concatenate
+    // Array.prototype.push.apply(ar1,ar2) //concatenate
     
- }
+}
 
 module Dyadic {
 
