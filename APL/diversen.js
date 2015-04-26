@@ -31,4 +31,14 @@ var APL;
         return APLArray;
     })();
 })(APL || (APL = {}));
+var HTMLPerformance = (function () {
+    function HTMLPerformance(element, performanceNow, text, expression) {
+        this.element = element;
+        //   var result = expression
+        var t0 = performance.now() - performanceNow;
+        element.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+        //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    }
+    return HTMLPerformance;
+})();
 //# sourceMappingURL=diversen.js.map

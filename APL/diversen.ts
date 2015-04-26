@@ -44,3 +44,13 @@ module APL {
 module Dyadic {
 
 }
+
+class HTMLPerformance {
+    constructor(public element: HTMLElement,  performanceNow, text: string, expression) {
+        //   var result = expression
+        var t0 = performance.now() - performanceNow
+        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+
+  //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    }
+}

@@ -71,7 +71,7 @@ var Greeter = (function () {
         performance.mark("Array.APLreduce start");
         var min = dd.aplReduce(scalar.minus);
         performance.mark("Array.APLreduce stop");
-        this.spanCPU.innerHTML += showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
+        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
         //       console.log(`min: ${min} som: ${som}`)
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");
@@ -93,7 +93,7 @@ var showPerformance = function (spanCPU, performanceNow, text, expression) {
     //   var result = expression
     var t0 = performance.now() - performanceNow;
     spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
-    return "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 };
 window.onload = function () {
     var el = document.getElementById('content');
