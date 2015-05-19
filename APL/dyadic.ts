@@ -67,26 +67,27 @@
 
         Array.prototype.primitive = function (omega, primitive?) {  // Xxsneller dan function primitive(...) {} .Uitkijken met lambda. "this." klopt niet meer 
             //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-                var counter, // let counter,
-                    max,
-                    results
-                if (typeof primitive === 'undefined') {  // omega is nu de primitive
-                    primitive = omega
-                    max = this.length
-                    results = new Array(max)
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter])
-                    }
-                    return results
+            var counter, // let counter,
+                max,
+                results
+            if (typeof primitive === 'undefined') {  // omega is nu de primitive
+                primitive = omega
+                max = this.length
+                results = new Array(max)
+                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter])
                 }
-                else {
-                    max = Math.min(this.length, omega.length),
-                    results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter], omega[counter])
-                    }
-                    return results
+                return results
+            }
+            else {
+                max = Math.min(this.length, omega.length),
+                results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter], omega[counter])
                 }
+                return results
+            }
             //}
             //catch (error) {
             //   // throw error
@@ -102,42 +103,42 @@
         Array.prototype.plus = function (omega) {
             return this.primitive(omega, scalar.plus)
         }
-      
+
         Array.prototype.minus = function (omega) {
             return this.primitive(omega, scalar.minus)
         }
-       
+
         Array.prototype.times = function (omega) {
             return this.primitive(omega, scalar.times)
         }
-        
+
         Array.prototype.divide = function (omega) {
             return this.primitive(omega, scalar.divide)
         }
-        
+
         Array.prototype.residue = function (omega) {
             return this.primitive(omega, scalar.residue)
         }
-        
+
         Array.prototype.minimum = function (omega) {
             return this.primitive(omega, scalar.minimum)
         }
-        
+
         Array.prototype.maximum = function (omega) {
             return this.primitive(omega, scalar.maximum)
         }
 
-                Array.prototype.power = function (omega) {
-                    return this.primitive(omega, scalar.power)
+        Array.prototype.power = function (omega) {
+            return this.primitive(omega, scalar.power)
         }
 
-        
+
         Array.prototype.logarithm = function (omega) {
             return this.primitive(omega, scalar.logarithm)
         }
 
-               Array.prototype.binomial = function (omega) {
-                   return this.primitive(omega, scalar.binomial)
+        Array.prototype.binomial = function (omega) {
+            return this.primitive(omega, scalar.binomial)
         }
 
         Array.prototype.rotate = function (omega) {
