@@ -1,341 +1,130 @@
-//#region "Number"
-//#endregion
-//#region "Vector"
-// Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
-//                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-function primitive(omega, primitive) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = primitive(this[counter]);
+var Dyadic;
+(function (Dyadic) {
+    var Scalar;
+    (function (Scalar) {
+        Scalar.plus = function (alpha, omega) { return alpha + omega; };
+        Scalar.minus = function (alpha, omega) { return alpha - omega; };
+        Scalar.times = function (alpha, omega) { return alpha * omega; };
+        Scalar.divide = function (alpha, omega) { return alpha / omega; };
+        Scalar.residue = function (alpha, omega) { return omega % alpha; };
+        Scalar.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
+        Scalar.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
+        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); };
+        Scalar.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
+        Scalar.binomial = function (alpha, omega) { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
+        Number.prototype.rotate = function (omega) {
+            var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
+            try {
+                var counter, max = omega.length, results = new Array(max);
+                if (this > 0) {
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis];
+                    }
+                }
+                else {
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis];
+                    }
+                }
+                return results;
             }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = primitive(this[counter], omega[counter]);
+            catch (error) {
+                throw new Error('foutje');
             }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-}
-Array.prototype.primitive = primitive;
-Array.prototype.plus = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = Math.abs(this[counter]);
+            finally {
             }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] + omega[counter];
+        };
+        Number.prototype.deal = function (omega) {
+            var deal = function (omega, alpha) {
+                var results = omega.indexGenerator;
+                var h, j, alpha;
+                for (var i = 0; i < alpha; i++) {
+                    j = i + Math.floor(Math.random() * (omega - i));
+                    h = results[i];
+                    results[i] = results[j];
+                    results[j] = h;
+                }
+                return results.slice(0, alpha);
+            };
+            return deal(omega, this.valueOf()); // 6xsneller dan function deal (...){}
+        };
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    var Vector;
+    (function (Vector) {
+        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+        //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+        Array.prototype.primitive = function (omega, primitive) {
+            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+            var counter, max, results;
+            if (typeof primitive === 'undefined') {
+                primitive = omega;
+                max = this.length;
+                results = new Array(max);
+                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter]);
+                }
+                return results;
             }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.minus = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = -this[counter];
+            else {
+                max = Math.min(this.length, omega.length),
+                    results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter], omega[counter]);
+                }
+                return results;
             }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] - omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.times = function times(omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] + omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.divide = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = 1 / this[counter];
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] / omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.rotate = function (omega) {
-    try {
-        var counter, max = omega.length, offSet = this[0], results = new Array(max);
-        if (this > 0) {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + offSet >= max ? counter + offSet - max : counter + offSet];
-            }
-        }
-        else {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + offSet < 0 ? counter + offSet + max : counter + offSet];
-            }
-        }
-        return results;
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.aplReduce = function (omega) {
-    return this.reduceRight(function (l, r) {
-        return omega(r, l);
-    });
-};
-Number.prototype.rotate = function (omega) {
-    try {
-        var counter, max = omega.length, results = new Array(max);
-        if (this > 0) {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + this >= max ? counter + this - max : counter + this];
-            }
-        }
-        else {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + this < 0 ? counter + this - max : counter + this];
-            }
-        }
-        return results;
-    }
-    catch (error) {
-        throw new Error('foutje');
-    }
-    finally {
-    }
-};
-//Number.prototype.sign = function (): number {
-//    // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
-////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-Array.prototype.plus = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = Math.abs(this[counter]);
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] + omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.minus = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = -this[counter];
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] - omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.times = function times(omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] > 0 ? 1 : this[counter] < 0 ? -1 : 0;
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] + omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.divide = function (omega) {
-    try {
-        var counter, max, results;
-        if (typeof omega === 'undefined') {
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = 1 / this[counter];
-            }
-            return results;
-        }
-        else {
-            max = Math.min(this.length, omega.length), results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = this[counter] / omega[counter];
-            }
-            return results;
-        }
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.rotate = function (omega) {
-    try {
-        var counter, max = omega.length, offSet = this[0], results = new Array(max);
-        if (this > 0) {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + offSet >= max ? counter + offSet - max : counter + offSet];
-            }
-        }
-        else {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + offSet < 0 ? counter + offSet + max : counter + offSet];
-            }
-        }
-        return results;
-    }
-    catch (error) {
-    }
-    finally {
-    }
-};
-Array.prototype.aplReduce = function (omega) {
-    // return this.reduceRight((l, r) => { return omega(r, l) })
-    return aplReduce(omega, this);
-};
-var aplReduce = function (omega, alpha) {
-    return alpha.reduceRight(function (l, r) {
-        return omega(r, l);
-    });
-};
-Number.prototype.rotate = function (omega) {
-    try {
-        var counter, max = omega.length, results = new Array(max);
-        if (this > 0) {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + this >= max ? counter + this - max : counter + this];
-            }
-        }
-        else {
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = omega[counter + this < 0 ? counter + this - max : counter + this];
-            }
-        }
-        return results;
-    }
-    catch (error) {
-        throw new Error('foutje');
-    }
-    finally {
-    }
-};
-var deal = function (omega, alpha) {
-    var results = indexGenerator(omega);
-    var h, j, alpha;
-    for (var i = 0; i < alpha; i++) {
-        j = i + Math.floor(Math.random() * (omega - i));
-        h = results[i];
-        results[i] = results[j];
-        results[j] = h;
-    }
-    results.slice(0, this);
-    return results;
-};
-Number.prototype.deal = function (omega) {
-    return deal(omega, this.valueOf());
-};
-Array.prototype.deal = function (omega) {
-    return deal(omega, this[0].valueOf());
-};
-//#endregion 
+            //}
+            //catch (error) {
+            //   // throw error
+            //}
+            //finally {
+            //}
+        };
+        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+        ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+        Array.prototype.plus = function (omega) {
+            return this.primitive(omega, scalar.plus);
+        };
+        Array.prototype.minus = function (omega) {
+            return this.primitive(omega, scalar.minus);
+        };
+        Array.prototype.times = function (omega) {
+            return this.primitive(omega, scalar.times);
+        };
+        Array.prototype.divide = function (omega) {
+            return this.primitive(omega, scalar.divide);
+        };
+        Array.prototype.residue = function (omega) {
+            return this.primitive(omega, scalar.residue);
+        };
+        Array.prototype.minimum = function (omega) {
+            return this.primitive(omega, scalar.minimum);
+        };
+        Array.prototype.maximum = function (omega) {
+            return this.primitive(omega, scalar.maximum);
+        };
+        Array.prototype.power = function (omega) {
+            return this.primitive(omega, scalar.power);
+        };
+        Array.prototype.logarithm = function (omega) {
+            return this.primitive(omega, scalar.logarithm);
+        };
+        Array.prototype.binomial = function (omega) {
+            return this.primitive(omega, scalar.binomial);
+        };
+        Array.prototype.rotate = function (omega) {
+            return this[0].rotate(omega);
+        };
+        Array.prototype.aplReduce = function (omega) {
+            var aplReduce = function (omega, alpha) {
+                return alpha.reduceRight(function (l, r) { return omega(r, l); });
+            };
+            return aplReduce(omega, this);
+        };
+        Array.prototype.deal = function (omega) {
+            return this[0].deal(omega); //, this[0].valueOf())
+        };
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
+})(Dyadic || (Dyadic = {}));
 //# sourceMappingURL=dyadic.js.map

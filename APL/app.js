@@ -1,4 +1,6 @@
 // https://github.com/Microsoft/TypeScript/wiki
+var vector = Dyadic.Vector;
+var scalar = Dyadic.Scalar;
 var Greeter = (function () {
     function Greeter(element) {
         this.element = element;
@@ -14,53 +16,66 @@ var Greeter = (function () {
     Greeter.prototype.start = function () {
         var _this = this;
         // console.profile('Number.iota')
-        var aa = 5e6;
-        var bb = aa.roll();
+        var spanCPU = this.spanCPU;
+        var aa = 1e6;
+        var ll = 1e5;
+        var bb = aa.roll;
+        //[ll,aa]=[aa,ll]
         var t0 = performance.now();
         performance.mark("Array.deal start");
         var dd = aa.deal(aa);
+        var kk = dd.negate;
+        var fac = [10].factorial;
+        var maxValue = dd.aplReduce(function (l, r) {
+            return Math.max(l, r);
+        });
         performance.mark("Array.deal stop");
         t0 = performance.now() - t0;
         console.log("Array.deal: " + t0);
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         //      var hh=aa.deal(aa) // 6x zo langzaam
         //    var dd = iota(aa)
+        showPerformance(spanCPU, performance.now(), "sign", dd.sign);
+        showPerformance(spanCPU, performance.now(), "identity", dd.same);
         var ss = dd.slice();
         ss[0] = 0;
-        //  console.profileEnd()
-        // dd=iota(aa)
         t0 = performance.now();
-        var qq = gradeUpSort(dd);
+        var qq = dd.gradeUp; //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         t0 = performance.now() - t0;
-        this.spanCPU.innerHTML += "\n grapeUp CPU-tijd: " + t0.toString() + "<br />";
+        this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />";
+        //t0 = performance.now()
+        //qq = dd.sort()
+        //t0 = performance.now() - t0
+        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
         //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
-        var sign = dd.sign();
+        var sign = dd.sign;
         //   sign=dd.sign()
         //var bb=dd+dd not supported
         performance.mark("Array.times start");
         var ee = dd.times(dd);
         performance.mark("Array.times stop");
-        var fl = floor(dd);
-        var rr = [-10].rotate(dd);
-        rr = reverse(dd);
-        performance.mark("Array.APLreduce start");
-        var min = dd.aplReduce(function (l, r) {
-            return l - r;
-        });
-        performance.mark("Array.APLreduce stop");
-        performance.mark("Array.reduce start");
+        showPerformance(spanCPU, performance.now(), "negate", dd.negate);
+        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map(function (alpha) {
+            return -alpha;
+        }));
         t0 = performance.now();
-        var som = dd.reduceRight(function (l, r) {
-            return r + l;
-        });
+        var cl = dd.ceiling;
         t0 = performance.now() - t0;
-        this.spanCPU.innerHTML += "\n reduceRight CPU-tijd: " + t0.toString() + "<br />";
-        performance.mark("Array.reduce stop");
-        console.log("min: " + min + " som: " + som);
+        this.spanCPU.innerHTML += "\n ceiling CPU-tijd: " + t0.toString() + "<br />";
+        var fl = dd.floor;
+        t0 = performance.now();
+        var rr = [-10].rotate(dd);
+        t0 = performance.now() - t0;
+        this.spanCPU.innerHTML += "\n rotate CPU-tijd: " + t0.toString() + "<br />";
+        rr = dd.transpose;
+        performance.mark("Array.APLreduce start");
+        var min = dd.aplReduce(scalar.minus);
+        performance.mark("Array.APLreduce stop");
+        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
+        //       console.log(`min: ${min} som: ${som}`)
         performance.measure("Array.deal", "Array.deal start", "Array.deal stop");
         performance.measure("Array.times", "Array.times start", "Array.times stop");
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
-        performance.measure("Array.reduce", "Array.reduce start", "Array.reduce stop");
         // Print marks
         var perfMarks = performance.getEntriesByType("measure"); // "mark"
         var perfEntries = performance.getEntries();
@@ -74,6 +89,12 @@ var Greeter = (function () {
     };
     return Greeter;
 })();
+var showPerformance = function (spanCPU, performanceNow, text, expression) {
+    //   var result = expression
+    var t0 = performance.now() - performanceNow;
+    spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+};
 window.onload = function () {
     var el = document.getElementById('content');
     var greeter = new Greeter(el);
