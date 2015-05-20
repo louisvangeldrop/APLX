@@ -29,7 +29,6 @@ class Greeter {
         var ll = 1e5
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
         var bb = aa.roll;
-        this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
         //[ll,aa]=[aa,ll]
         var t0 = performance.now()
         performance.mark("Array.deal start")
@@ -105,7 +104,7 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
     //   var result = expression
     var t0 = performance.now() - performanceNow
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
-   // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 
 window.onload = () => {
