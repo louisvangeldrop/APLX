@@ -25,10 +25,11 @@ class Greeter {
     start() {
         // console.profile('Number.iota')
         var spanCPU = this.spanCPU
-        var aa = 1e6
+        var aa = 5e6
         var ll = 1e5
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
         var bb = aa.roll;
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
         //[ll,aa]=[aa,ll]
         var t0 = performance.now()
         performance.mark("Array.deal start")
