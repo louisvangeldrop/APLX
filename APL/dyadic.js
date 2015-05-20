@@ -2,36 +2,16 @@ var Dyadic;
 (function (Dyadic) {
     var Scalar;
     (function (Scalar) {
-        Scalar.plus = function (alpha, omega) {
-            return alpha + omega;
-        };
-        Scalar.minus = function (alpha, omega) {
-            return alpha - omega;
-        };
-        Scalar.times = function (alpha, omega) {
-            return alpha * omega;
-        };
-        Scalar.divide = function (alpha, omega) {
-            return alpha / omega;
-        };
-        Scalar.residue = function (alpha, omega) {
-            return omega % alpha;
-        };
-        Scalar.minimum = function (alpha, omega) {
-            return Math.min(alpha, omega);
-        };
-        Scalar.maximum = function (alpha, omega) {
-            return Math.max(alpha, omega);
-        };
-        Scalar.power = function (alpha, omega) {
-            return Math.pow(alpha, omega);
-        };
-        Scalar.logarithm = function (alpha, omega) {
-            return Math.log(omega) / Math.log(alpha);
-        };
-        Scalar.binomial = function (alpha, omega) {
-            return omega.factorial / (alpha.factorial * (omega - alpha).factorial);
-        }; // zie !.coffee voor meer details
+        Scalar.plus = function (alpha, omega) { return alpha + omega; };
+        Scalar.minus = function (alpha, omega) { return alpha - omega; };
+        Scalar.times = function (alpha, omega) { return alpha * omega; };
+        Scalar.divide = function (alpha, omega) { return alpha / omega; };
+        Scalar.residue = function (alpha, omega) { return omega % alpha; };
+        Scalar.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
+        Scalar.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
+        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); };
+        Scalar.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
+        Scalar.binomial = function (alpha, omega) { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
         Number.prototype.rotate = function (omega) {
             var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
             try {
@@ -80,13 +60,15 @@ var Dyadic;
                 primitive = omega;
                 max = this.length;
                 results = new Array(max);
+                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
                 for (counter = 0; counter < max; counter++) {
                     results[counter] = primitive(this[counter]);
                 }
                 return results;
             }
             else {
-                max = Math.min(this.length, omega.length), results = new Array(max);
+                max = Math.min(this.length, omega.length),
+                    results = new Array(max);
                 for (counter = 0; counter < max; counter++) {
                     results[counter] = primitive(this[counter], omega[counter]);
                 }
@@ -136,9 +118,7 @@ var Dyadic;
         };
         Array.prototype.aplReduce = function (omega) {
             var aplReduce = function (omega, alpha) {
-                return alpha.reduceRight(function (l, r) {
-                    return omega(r, l);
-                });
+                return alpha.reduceRight(function (l, r) { return omega(r, l); });
             };
             return aplReduce(omega, this);
         };
