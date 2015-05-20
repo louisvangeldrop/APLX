@@ -27,6 +27,7 @@ class Greeter {
         var spanCPU = this.spanCPU
         var aa = 1e6
         var ll = 1e5
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
         var bb = aa.roll;
         //[ll,aa]=[aa,ll]
         var t0 = performance.now()
