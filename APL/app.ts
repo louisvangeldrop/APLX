@@ -24,15 +24,17 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
+        var parms = location.search.split('?')
+        var aantal:number = parms.length > 1? parseFloat(parms[1].replace('/',' ')): 5e6
+
         var spanCPU = this.spanCPU
-        var aa = 5e6
         var ll = 1e5
-        var bb = aa.roll;
-        this.spanCPU.innerHTML += `\n Aantal elementen = ${aa} <br />`
-        //[ll,aa]=[aa,ll]
+        var bb = aantal.roll;
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
+        //[ll,aantal]=[aantal,ll]
         var t0 = performance.now()
         performance.mark("Array.deal start")
-        var dd = aa.deal(aa)
+        var dd = aantal.deal(aantal)
         var kk = dd.negate
         var fac = [10].factorial
         var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
@@ -41,8 +43,8 @@ class Greeter {
         console.log(`Array.deal: ${t0}`)
         //      this.spanCPU.innerHTML = "\n CPU-tijd: " + t0.toString()
         
-        //      var hh=aa.deal(aa) // 6x zo langzaam
-        //    var dd = iota(aa)
+        //      var hh=aantal.deal(aantal) // 6x zo langzaam
+        //    var dd = iota(aantal)
         showPerformance(spanCPU, performance.now(), "sign", dd.sign)
 
         showPerformance(spanCPU, performance.now(), "identity", dd.same)
@@ -104,7 +106,7 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
     //   var result = expression
     var t0 = performance.now() - performanceNow
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
-   // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 
 window.onload = () => {
