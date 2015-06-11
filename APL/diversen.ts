@@ -3,8 +3,6 @@
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
 
-
-
 module APL {
     declare var Array, Number
     type APLNumber=Number

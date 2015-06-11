@@ -4,6 +4,7 @@ import vector = Dyadic.Vector
 import scalar = Dyadic.Scalar
 
  // import * as aaa from "/diversen";
+// import aaa = APL
 
 class Greeter {
     element: HTMLElement;
