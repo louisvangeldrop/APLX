@@ -1,6 +1,8 @@
 ﻿module Monadic {
 
     export module Scalar {
+        // TODO Extra scalar UNDO HACK
+
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
 
         export var exponential = (alpha) => { return Math.exp(alpha) }

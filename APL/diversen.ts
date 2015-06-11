@@ -14,20 +14,29 @@ module APL {
     //    slash()
     //}
    
-    class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
+    /**
+    * Extends the Array object wityh APL array functions
+    */
+    export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
         _array: T
         constructor(private length?: number|number[]) {   // "super" kan helaas niet. Array is een interface
             this._array = new Array(length)
         }
 
         // property "shape"
-
+        /**
+        * 
+         * @param {number} Aantal element in de vector
+         */
         get shape(): number|number[] {
             return this._array.length
         }
-
+         /**
+        * Zet het aantal elementen in de vector
+         * @param {number} Aantal element in de vector
+         */
         set shape(length: number|number[]) {
-            //TODO:
+            //TODO: Zet de shape van het Array. 
 
         }
 
@@ -46,11 +55,11 @@ module Dyadic {
 }
 
 class HTMLPerformance {
-    constructor(public element: HTMLElement,  performanceNow, text: string, expression) {
+    constructor(public element: HTMLElement, performanceNow, text: string, expression) {
         //   var result = expression
         var t0 = performance.now() - performanceNow
         element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 
-  //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+        //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
     }
 }
