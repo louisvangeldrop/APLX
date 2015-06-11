@@ -3,6 +3,8 @@
 import vector = Dyadic.Vector
 import scalar = Dyadic.Scalar
 
+ // import * as aaa from "/diversen";
+
 class Greeter {
     element: HTMLElement;
     span: HTMLElement;

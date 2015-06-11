@@ -3,6 +3,8 @@
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
 
+
+
 module APL {
     declare var Array, Number
     type APLNumber=Number
@@ -18,23 +20,24 @@ module APL {
     * Extends the Array object wityh APL array functions
     */
     export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
-        _array: T
+        private _array: T
         constructor(private length?: number|number[]) {   // "super" kan helaas niet. Array is een interface
             this._array = new Array(length)
         }
 
         // property "shape"
         /**
-        * 
-         * @param {number} Aantal element in de vector
+         * 
+         * @param {number} 
+         * @return {Array} Aantal element in de vector
          */
         get shape(): number|number[] {
             return this._array.length
         }
-         /**
-        * Zet het aantal elementen in de vector
-         * @param {number} Aantal element in de vector
-         */
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
         set shape(length: number|number[]) {
             //TODO: Zet de shape van het Array. 
 
