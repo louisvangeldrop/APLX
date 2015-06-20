@@ -29,7 +29,7 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var apl = new APL.APLArray
+       //  var apl = new APL.APLArray
         
         var parms = location.search.split('?')
         var aantal:number = parms.length > 1? parseFloat(parms[1].replace('/',' ')): 5e6
