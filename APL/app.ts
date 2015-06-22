@@ -3,7 +3,7 @@
 import vector = Dyadic.Vector
 import scalar = Dyadic.Scalar
 
- // import * as aaa from "/diversen";
+// import * as aaa from "/diversen";
 // import aaa = APL
 
 class Greeter {
@@ -29,10 +29,10 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-       //  var apl = new APL.APLArray
+        //  var apl = new APL.APLArray
         
         var parms = location.search.split('?')
-        var aantal:number = parms.length > 1? parseFloat(parms[1].replace('/',' ')): 5e6
+        var aantal: number = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6
 
         var spanCPU = this.spanCPU
         var ll = 1e5
@@ -40,6 +40,7 @@ class Greeter {
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
         var t0 = performance.now()
+        var startPerformance = t0
         performance.mark("Array.deal start")
         var dd = aantal.deal(aantal)
         var kk = dd.negate
@@ -60,6 +61,7 @@ class Greeter {
         t0 = performance.now()
         var qq = dd.gradeUp  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         t0 = performance.now() - t0
+        var cpuGradeUp=t0
         this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
         //t0 = performance.now()
         //qq = dd.sort()
@@ -100,7 +102,9 @@ class Greeter {
             "Name: " + perfMarks[i].name + " - " +
             "CPU Time: " + perfMarks[i].duration + "<br />";  //  perfMarks[i].startTime
         }
-
+        var totalCpu = performance.now() - startPerformance
+        this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`
+        this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu-cpuGradeUp}<br />`
         this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
     }
 
