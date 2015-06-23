@@ -4,7 +4,7 @@
 // http://repl.it/languages/APL
 
 module APL {
-    declare var Array, Number
+    //   declare var Array, Number
     type APLNumber=Number
     type APLVector=number[]|string[]
 
@@ -18,9 +18,15 @@ module APL {
     * Extends the Array object wityh APL array functions
     */
     export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
-        private _array: T
-        constructor(private length?: number|number[]) {   // "super" kan helaas niet. Array is een interface
-            this._array = new Array(length)
+        //private _array: T
+        constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]
+            APLArray = typeof APLArray === 'undefined' ? new Array<T>() : APLArray
+
+            if (typeof length !== 'undefined') {
+                APLArray.length = length
+            }
+           
+            //  this._array = new Array<T>(length)
         }
 
         // property "shape"
@@ -30,7 +36,7 @@ module APL {
          * @return {Array} Aantal element in de vector
          */
         get shape(): number|number[] {
-            return this._array.length
+            return this.APLArray.length
         }
         /**
        * Zet het aantal elementen in de vector
@@ -43,7 +49,7 @@ module APL {
 
 
         plus(omega) {
-            this.plus = function (omega) { var aa = this._array.length }
+            this.plus = function (omega) { var aa = this.Array.length }
         }
     }
 

@@ -19,6 +19,15 @@
 
         export var identity = (alpha) => { return alpha }
 
+        export var indexGenerator = (alpha) => {
+            // In Chrome 10xsneller dan het gebruik van "this"
+            var results = new Array<number>(alpha)    // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter
+            }
+            return results
+        }
+
         export var ln = (alpha) => { return Math.log(alpha) }
 
         export var magnitude = (alpha) => { return Math.abs(alpha) }
@@ -31,11 +40,11 @@
 
         export var roll = (alpha) => { return Math.floor(Math.random() * alpha) }
 
-        export var roll = (alpha) => { return Math.floor(Math.random() * alpha) }
+        export var round = (alpha) => { return Math.round(alpha) }
 
         export var sign = (alpha) => { return alpha > 0 ? 1 : alpha < 0 ? -1 : 0 }
 
-           Object.defineProperty(Number.prototype, "ceiling", {            //
+        Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {
                 return Scalar.ceiling(this)
             }
@@ -49,7 +58,7 @@
 
         Object.defineProperty(Number.prototype, "factorial", {
             get: function () {
-                return Scalar.factorial(this.valueOf())
+                return Scalar.factorial(this)
             }
         })
 
@@ -102,6 +111,12 @@
             }
         })
 
+        Object.defineProperty(Number.prototype, "round", {            //
+            get: function () {
+                return Scalar.round(this)
+            }
+        })
+
         Object.defineProperty(Number.prototype, "same", {
             get: function () {
                 return Scalar.identity(this)
@@ -116,12 +131,14 @@
 
         Object.defineProperty(Number.prototype, "indexGenerator", {
             get: function () {
-                var max = this.valueOf()                // In Chrome 10xsneller dan het gebruik van "this"
-                var results = new Array<number>(max)    // sneller dan []
-                for (var counter = 0; counter < max; counter++) {
-                    results[counter] = counter
-                }
-                return results
+                return Scalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
+              
+                //var max = this.valueOf()
+                //var results = new Array<number>(max)    // sneller dan []
+                //for (var counter = 0; counter < max; counter++) {
+                //    results[counter] = counter
+                //}
+                //return results
             }
         })
     }
@@ -200,6 +217,12 @@
             }
         })
 
+        Object.defineProperty(Array.prototype, "round", {
+            get: function (): number[] {
+                return this.primitive(Scalar.round)
+            }
+        })
+
         Object.defineProperty(Array.prototype, "sign", {
             // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
@@ -214,6 +237,7 @@
         Object.defineProperty(Array.prototype, "indexGenerator", {
             get: function (): number[] {
                 //
+                return this.primitive(Scalar.indexGenerator)
                 try {
                     var length = this[0].valueOf()
                     var counter,
