@@ -88,12 +88,14 @@
                 }
                 return results
             }
+            
             //}
             //catch (error) {
             //   // throw error
             //}
             //finally {
             //}
+
         }
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
