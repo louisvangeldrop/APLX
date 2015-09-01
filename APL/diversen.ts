@@ -47,7 +47,6 @@
 
         }
 
-
         plus(omega) {
             this.plus = function (omega) { var aa = this.Array.length }
         }
