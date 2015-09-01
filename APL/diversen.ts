@@ -3,7 +3,7 @@
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
 
-module APL {
+ module APL {               //export
     //   declare var Array, Number
     type APLNumber=Number
     type APLVector=number[]|string[]
@@ -18,9 +18,9 @@ module APL {
     * Extends the Array object wityh APL array functions
     */
     export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
-        //private _array: T
+       
         constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]
-            APLArray = typeof APLArray === 'undefined' ? new Array<T>() : APLArray
+            this.APLArray = typeof APLArray === 'undefined' ? new Array<T>() : APLArray
 
             if (typeof length !== 'undefined') {
                 APLArray.length = length

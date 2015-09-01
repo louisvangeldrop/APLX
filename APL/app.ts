@@ -1,10 +1,10 @@
 ﻿// https://github.com/Microsoft/TypeScript/wiki
 
+//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan module Dyadic
+//import {APL} from "diversen";
+
 import vector = Dyadic.Vector
 import scalar = Dyadic.Scalar
-
-// import * as aaa from "/diversen";
-// import aaa = APL
 
 class Greeter {
     element: HTMLElement;
@@ -29,7 +29,7 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        //  var apl = new APL.APLArray
+        var apl = new APL.APLArray().APLArray
         
         var parms = location.search.split('?')
         var aantal: number = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6

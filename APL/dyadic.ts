@@ -1,4 +1,4 @@
-﻿module Dyadic {
+﻿ module Dyadic {            // export module voor ES6
 
     export module Scalar {
 
