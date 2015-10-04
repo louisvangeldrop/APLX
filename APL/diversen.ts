@@ -17,6 +17,9 @@
     /**
     * Extends the Array object wityh APL array functions
     */
+
+    export class myArray extends Array<string | number | boolean | any> { }
+       
     export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
        
         constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]

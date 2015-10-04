@@ -1,50 +1,50 @@
-﻿ namespace Dyadic {            // export namespace voor ES6
+﻿namespace Dyadic {            // export namespace voor ES6
 
     export namespace Scalar {
 
-        export var plus = (alpha, omega) => { return alpha + omega }
+        export var plus = (alpha, omega) => alpha + omega
 
-        export var minus = (alpha, omega) => { return alpha - omega }
+        export var minus = (alpha, omega) => alpha - omega
 
-        export var times = (alpha, omega) => { return alpha * omega }
+        export var times = (alpha, omega) => alpha * omega
 
-        export var divide = (alpha, omega) => { return alpha / omega }
+        export var divide = (alpha, omega) => alpha / omega
 
-        export var residue = (alpha, omega) => { return omega % alpha }
+        export var residue = (alpha, omega) => omega % alpha
 
-        export var minimum = (alpha, omega) => { return Math.min(alpha, omega) }
+        export var minimum = (alpha, omega) => Math.min(alpha, omega)
 
-        export var maximum = (alpha, omega) => { return Math.max(alpha, omega) }
+        export var maximum = (alpha, omega) => Math.max(alpha, omega)
 
-        export var power = (alpha, omega) => { return Math.pow(alpha, omega) }
+        export var power = (alpha, omega) => Math.pow(alpha, omega)
 
-        export var logarithm = (alpha, omega) => { return Math.log(omega) / Math.log(alpha) }
+        export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha)
 
-        export var binomial = (alpha: number, omega: number) => { return omega.factorial / (alpha.factorial * (omega - alpha).factorial) }   // zie !.coffee voor meer details
+        export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
 
         Number.prototype.rotate = function (omega) {
             var myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
-       //     try {
-                var counter,
-                    max = omega.length,
-                    results = new Array(max);
-                if (myThis > 0) {
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis]
-                    }
-                } else {
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis]
-                    }
+            //     try {
+            var counter,
+                max = omega.length,
+                results = new Array(max);
+            if (myThis > 0) {
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis]
                 }
-                return results
+            } else {
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis]
+                }
             }
-            //catch (error) {
-            //    throw new Error('foutje')
-            //}
-            //finally {
-            //}
-       // }
+            return results
+        }
+        //catch (error) {
+        //    throw new Error('foutje')
+        //}
+        //finally {
+        //}
+        // }
 
         Number.prototype.deal = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {
