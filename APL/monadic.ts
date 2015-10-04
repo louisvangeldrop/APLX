@@ -1,6 +1,6 @@
-﻿module Monadic {
+﻿namespace Monadic {
 
-    export module Scalar {
+    export namespace Scalar {
         // TODO Extra scalar UNDO HACK
 
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
@@ -143,7 +143,7 @@
         })
     }
 
-    export module Vector {
+    export namespace Vector {
 
         Object.defineProperty(Array.prototype, "ceiling", {
             get: function () {

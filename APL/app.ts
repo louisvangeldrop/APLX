@@ -1,6 +1,6 @@
 ﻿// https://github.com/Microsoft/TypeScript/wiki
 
-//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan module Dyadic
+//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
 //import {APL} from "diversen";
 
 import vector = Dyadic.Vector

@@ -1,6 +1,6 @@
-﻿ module Dyadic {            // export module voor ES6
+﻿ namespace Dyadic {            // export namespace voor ES6
 
-    export module Scalar {
+    export namespace Scalar {
 
         export var plus = (alpha, omega) => { return alpha + omega }
 
@@ -60,7 +60,7 @@
         }
     }
 
-    export module Vector {
+    export namespace Vector {
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 

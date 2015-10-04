@@ -3,7 +3,7 @@
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
 
- module APL {               //export
+ namespace APL {               //export
     //   declare var Array, Number
     type APLNumber=Number
     type APLVector=number[]|string[]
@@ -56,7 +56,7 @@
     
 }
 
-module Dyadic {
+namespace Dyadic {
 
 }
 
