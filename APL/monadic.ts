@@ -15,9 +15,9 @@
             return result
         }
 
-        export var floor = (alpha) => { return Math.floor(alpha) }
+        export var floor = (alpha) =>  Math.floor(alpha) 
 
-        export var identity = (alpha) => { return alpha }
+        export var identity = (alpha) => alpha 
 
         export var indexGenerator = (alpha) => {
             // In Chrome 10xsneller dan het gebruik van "this"
@@ -28,21 +28,21 @@
             return results
         }
 
-        export var ln = (alpha) => { return Math.log(alpha) }
+        export var ln = (alpha) =>  Math.log(alpha) 
 
-        export var magnitude = (alpha) => { return Math.abs(alpha) }
+        export var magnitude = (alpha) =>  Math.abs(alpha) 
 
-        export var negate = (alpha) => { return -alpha }
+        export var negate = (alpha) =>   -alpha 
 
-        export var pi = (alpha) => { return Math.PI * alpha }
+        export var pi = (alpha) =>  Math.PI * alpha 
 
-        export var reciprocal = (alpha) => { return 1 / alpha }
+        export var reciprocal = (alpha) =>  1 / alpha 
 
-        export var roll = (alpha) => { return Math.floor(Math.random() * alpha) }
+        export var roll = (alpha) =>  Math.floor(Math.random() * alpha) 
 
-        export var round = (alpha) => { return Math.round(alpha) }
+        export var round = (alpha) =>  Math.round(alpha) 
 
-        export var sign = (alpha) => { return alpha > 0 ? 1 : alpha < 0 ? -1 : 0 }
+        export var sign = (alpha) =>  alpha > 0 ? 1 : alpha < 0 ? -1 : 0 
 
         Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {

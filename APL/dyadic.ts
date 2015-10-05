@@ -23,10 +23,10 @@
         export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
 
         Number.prototype.rotate = function (omega) {
-            var myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
+            let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             //     try {
-            var counter,
-                max = omega.length,
+            let counter: number,
+                max: number = omega.length,
                 results = new Array(max);
             if (myThis > 0) {
                 for (counter = 0; counter < max; counter++) {
@@ -48,8 +48,8 @@
 
         Number.prototype.deal = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {
-                var results = omega.indexGenerator
-                var h: number, j: number, alpha: number
+                let results = omega.indexGenerator
+                let h: number, j: number
                 for (var i = 0; i < alpha; i++) {
                     j = i + Math.floor(Math.random() * (omega - i))
                     h = results[i]; results[i] = results[j]; results[j] = h
@@ -66,9 +66,11 @@
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
         Array.prototype.primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
+            // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
+            
             //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-            var counter, // let counter,
-                max,
+            let counter: number, // let counter,
+                max: number,
                 results
             if (typeof primitive === 'undefined') {  // omega is nu de primitive
                 primitive = omega

@@ -3,10 +3,10 @@
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
 
- namespace APL {               //export
+namespace APL {               //export
     //   declare var Array, Number
-    type APLNumber=Number
-    type APLVector=number[]|string[]
+    type APLNumber = Number
+    type APLVector = number[] | string[]
 
     //type APLArray=Array<string|number|boolean|any>
 
@@ -18,9 +18,40 @@
     * Extends the Array object wityh APL array functions
     */
 
-    export class myArray extends Array<string | number | boolean | any> { }
-       
-    export class APLArray<T extends Array<string|number|boolean|any>>{  //IAPLArray
+    export class Vector extends Array<string | number | boolean | any> {
+
+        constructor(public Vector?, length?, ...rest) {
+            super(typeof Vector !== 'undefined' ?Vector:length)
+            var myThis=this
+            let aa = new Array([10].indexGenerator)
+        }
+
+        get louis(): number {
+            let bb = this.length
+            return 2 + 2
+        }
+
+        // property "shape"
+        /**
+         * 
+         * @param {number} 
+         * @return {Array} Aantal element in de vector
+         */
+        get rho(): number | number[] {
+            return this.length
+        }
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
+        set rho(length: number | number[]) {
+            //TODO: Zet de shape van het Array. 
+
+        }
+
+    }
+           
+    export class APLArray<T extends Array<string | number | boolean | any>>{  //IAPLArray
        
         constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]
             this.APLArray = typeof APLArray === 'undefined' ? new Array<T>() : APLArray
@@ -38,14 +69,14 @@
          * @param {number} 
          * @return {Array} Aantal element in de vector
          */
-        get shape(): number|number[] {
+        get shape(): number | number[] {
             return this.APLArray.length
         }
         /**
        * Zet het aantal elementen in de vector
         * @param {number} Aantal element in de vector
         */
-        set shape(length: number|number[]) {
+        set shape(length: number | number[]) {
             //TODO: Zet de shape van het Array. 
 
         }
