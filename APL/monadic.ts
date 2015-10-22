@@ -1,7 +1,7 @@
 ﻿namespace Monadic {
 
     export namespace Scalar {
-        // TODO Extra scalar UNDO HACK
+        // TODO Extra scalar UNDO HACK. See Task List
 
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
 
