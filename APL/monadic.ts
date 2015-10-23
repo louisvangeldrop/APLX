@@ -111,6 +111,12 @@
             }
         })
 
+        //Object.defineProperty(Number.prototype, "deal", {         // mag niet omdat deal ook een functie is
+        //    get: function () {
+        //        return roll(this)
+        //    }
+        //})
+
         Object.defineProperty(Number.prototype, "round", {            //
             get: function () {
                 return Scalar.round(this)
