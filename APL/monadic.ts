@@ -15,9 +15,9 @@
             return result
         }
 
-        export var floor = (alpha) =>  Math.floor(alpha) 
+        export var floor = (alpha) => Math.floor(alpha)
 
-        export var identity = (alpha) => alpha 
+        export var identity = (alpha) => alpha
 
         export var indexGenerator = (alpha) => {
             // In Chrome 10xsneller dan het gebruik van "this"
@@ -28,21 +28,23 @@
             return results
         }
 
-        export var ln = (alpha) =>  Math.log(alpha) 
+        export var ln = (alpha) => Math.log(alpha)
 
-        export var magnitude = (alpha) =>  Math.abs(alpha) 
+        export var magnitude = (alpha) => Math.abs(alpha)
 
-        export var negate = (alpha) =>   -alpha 
+        export var negative = (alpha) => !alpha
 
-        export var pi = (alpha) =>  Math.PI * alpha 
+        export var not = (alpha) => ~alpha
 
-        export var reciprocal = (alpha) =>  1 / alpha 
+        export var pi = (alpha) => Math.PI * alpha
 
-        export var roll = (alpha) =>  Math.floor(Math.random() * alpha) 
+        export var reciprocal = (alpha) => 1 / alpha
 
-        export var round = (alpha) =>  Math.round(alpha) 
+        export var roll = (alpha) => Math.floor(Math.random() * alpha)
 
-        export var sign = (alpha) =>  alpha > 0 ? 1 : alpha < 0 ? -1 : 0 
+        export var round = (alpha) => Math.round(alpha)
+
+        export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
 
         Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {
@@ -87,9 +89,15 @@
             }
         })
 
-        Object.defineProperty(Number.prototype, "negate", {
+        Object.defineProperty(Number.prototype, "negative", {
             get: function () {
-                return Scalar.negate(this)
+                return Scalar.negative(this)
+            }
+        })
+
+        Object.defineProperty(Number.prototype, "not", {
+            get: function () {
+                return Scalar.not(this)
             }
         })
 
@@ -129,9 +137,9 @@
             }
         })
 
-        Object.defineProperty(Number.prototype, "sign", {
+        Object.defineProperty(Number.prototype, "signum", {
             get: function () {
-                return Scalar.sign(this)
+                return Scalar.signum(this)
             }
         })
 
@@ -199,9 +207,15 @@
             }
         })
 
-        Object.defineProperty(Array.prototype, "negate", {
+        Object.defineProperty(Array.prototype, "negative", {
             get: function (): number[] {
-                return this.primitive(Scalar.negate)
+                return this.primitive(Scalar.negative)
+            }
+        })
+
+        Object.defineProperty(Array.prototype, "not", {
+            get: function (): number[] {
+                return this.primitive(Scalar.not)
             }
         })
 
@@ -229,10 +243,10 @@
             }
         })
 
-        Object.defineProperty(Array.prototype, "sign", {
+        Object.defineProperty(Array.prototype, "signum", {
             // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
-                return this.primitive(Scalar.sign)
+                return this.primitive(Scalar.signum)
             }
             //set: function () {
             //}
