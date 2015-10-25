@@ -11,7 +11,7 @@ interface Number {
 interface NumberConstructor {
     iota<T>(length?: T): number[]
     rotate<T>(array: T[])
-    sign(): number
+    signum(): number
     identity(): number
     negate(): number
     reciprocal(): number
@@ -34,8 +34,8 @@ interface ArrayConstructor {
 }
 
 interface Array<T> {
-    // sign(): T[]
-    // signProp: T[]
+    // signum(): T[]
+    // sigumnProp: T[]
     primitive(left?, right?): T[]
     deal(omega: number, alpha?: number): number[]
     iota(length?: number)

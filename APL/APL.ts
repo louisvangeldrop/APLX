@@ -244,11 +244,7 @@
             //set: function () {
             //}
         })      
-        
-        // Non-Scalar Selector Functions
-
-      
-
+ 
     }
 
 ///#endregion
@@ -499,7 +495,7 @@ namespace Dyadic {            // export namespace voor ES6
             // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
             
             //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-            let counter: number, // let counter,
+            let counter: number, 
                 max: number,
                 results
             if (typeof primitive === 'undefined') {  // omega is nu de primitive
@@ -542,7 +538,11 @@ namespace Dyadic {            // export namespace voor ES6
             return this.primitive(omega, scalar.minus)
         }
 
-        Array.prototype.times = function (omega) {
+        //Array.prototype.times = function (omega) {
+        //    return this.primitive(omega, scalar.times)
+        //}
+
+        Array.prototype['times'] = function (omega) {
             return this.primitive(omega, scalar.times)
         }
 
@@ -580,7 +580,7 @@ namespace Dyadic {            // export namespace voor ES6
         }
 
         Array.prototype.aplReduce = function (omega) {
-            var aplReduce = function (omega, alpha) {
+            let aplReduce = function (omega, alpha) {
                 return alpha.reduceRight((l, r) => { return omega(r, l) })
             }
             return aplReduce(omega, this)

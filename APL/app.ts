@@ -45,7 +45,7 @@ class Greeter {
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal.deal(aantal))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
        
-        showPerformance(spanCPU, performance.now(), "sign", dd.sign)
+        showPerformance(spanCPU, performance.now(), "sign", dd.signum)
 
         showPerformance(spanCPU, performance.now(), "identity", dd.same)
         //var ss = dd.slice()

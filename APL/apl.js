@@ -418,8 +418,7 @@ var Dyadic;
         Array.prototype.primitive = function (omega, primitive) {
             // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
             //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-            var counter, // let counter,
-            max, results;
+            var counter, max, results;
             if (typeof primitive === 'undefined') {
                 primitive = omega;
                 max = this.length;
@@ -453,7 +452,10 @@ var Dyadic;
         Array.prototype.minus = function (omega) {
             return this.primitive(omega, scalar.minus);
         };
-        Array.prototype.times = function (omega) {
+        //Array.prototype.times = function (omega) {
+        //    return this.primitive(omega, scalar.times)
+        //}
+        Array.prototype['times'] = function (omega) {
             return this.primitive(omega, scalar.times);
         };
         Array.prototype.divide = function (omega) {

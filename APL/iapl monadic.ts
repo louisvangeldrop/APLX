@@ -4,7 +4,7 @@ interface Number {
     //rotate<T>(array: T[])
     //deal(omega: number, alpha?: number): number[]
    
-    sign: number
+    signum: number
     identity: number
     negate: number
     reciprocal: number
@@ -28,7 +28,7 @@ interface Number {
 interface NumberConstructor {
     iota<T>(length?: T): number[]
     rotate<T>(array: T[])
-    sign(): number
+    signum(): number
     identity(): number
     negate(): number
     reciprocal(): number
@@ -48,7 +48,7 @@ interface NumberConstructor {
 //#region "Monadic Scalar Vector Primitive"
 
 interface Array<T> {
-    sign: T[]
+    signum: T[]
     identity: T[]
     gradeUp: T[]
     gradeUpQS: T[]
