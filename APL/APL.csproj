@@ -25,6 +25,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="APL.ts" />
     <TypeScriptCompile Include="iapl dyadic.ts" />
     <TypeScriptCompile Include="iapl monadic.ts" />
     <TypeScriptCompile Include="monadic.ts" />
