@@ -1,6 +1,9 @@
 ﻿namespace Monadic {
 
-    export namespace Scalar {
+    ///#region "Scalar"
+    ///#endregion
+
+    export namespace Atom {
         // TODO Extra scalar UNDO HACK. See Task List
 
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
@@ -18,15 +21,6 @@
         export var floor = (alpha) => Math.floor(alpha)
 
         export var identity = (alpha) => alpha
-
-        export var indexGenerator = (alpha) => {
-            // In Chrome 10xsneller dan het gebruik van "this"
-            var results = new Array<number>(alpha)    // sneller dan []
-            for (var counter = 0; counter < alpha; counter++) {
-                results[counter] = counter
-            }
-            return results
-        }
 
         export var ln = (alpha) => Math.log(alpha)
 
@@ -48,74 +42,74 @@
 
         Object.defineProperty(Number.prototype, "ceiling", {            //
             get: function () {
-                return Scalar.ceiling(this)
+                return Atom.ceiling(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "exponential", {
             get: function () {
-                return Scalar.exponential(this)
+                return Atom.exponential(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "factorial", {
             get: function () {
-                return Scalar.factorial(this)
+                return Atom.factorial(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "floor", {
             get: function () {
                 var myThis = this.valueOf()
-                return Scalar.floor(this)
+                return Atom.floor(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "identity", {
             get: function () {
-                return Scalar.identity(this)
+                return Atom.identity(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "ln", {
             get: function () {
-                return Scalar.ln(this)
+                return Atom.ln(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "magnitude", {
             get: function () {
-                return Scalar.magnitude(this)
+                return Atom.magnitude(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "negative", {
             get: function () {
-                return Scalar.negative(this)
+                return Atom.negative(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "not", {
             get: function () {
-                return Scalar.not(this)
+                return Atom.not(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "pi", {
             get: function () {
-                return Scalar.pi(this)
+                return Atom.pi(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "reciprocal", {
             get: function () {
-                return Scalar.reciprocal(this)
+                return Atom.reciprocal(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "roll", {
             get: function () {
-                return roll(this)
+                return Atom.roll(this)
             }
         })
 
@@ -127,25 +121,25 @@
 
         Object.defineProperty(Number.prototype, "round", {            //
             get: function () {
-                return Scalar.round(this)
+                return Atom.round(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "same", {
             get: function () {
-                return Scalar.identity(this)
+                return Atom.identity(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "signum", {
             get: function () {
-                return Scalar.signum(this)
+                return Atom.signum(this)
             }
         })
 
         Object.defineProperty(Number.prototype, "indexGenerator", {
             get: function () {
-                return Scalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
+                return NonScalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
               
                 //var max = this.valueOf()
                 //var results = new Array<number>(max)    // sneller dan []
@@ -161,92 +155,92 @@
 
         Object.defineProperty(Array.prototype, "ceiling", {
             get: function () {
-                return this.primitive(Scalar.ceiling)
+                return this.primitive(Atom.ceiling)
             }
         })
 
         Object.defineProperty(Array.prototype, "exponential", {
             get: function () {
-                return this.primitive(Scalar.exponential)
+                return this.primitive(Atom.exponential)
             }
         })
 
         Object.defineProperty(Array.prototype, "factorial", {
             get: function () {
-                return this.primitive(Scalar.factorial)   //(alpha) => { return factorial(alpha) }
+                return this.primitive(Atom.factorial)   //(alpha) => { return factorial(alpha) }
             }
         })
 
         Object.defineProperty(Array.prototype, "floor", {
             get: function (): number[] {
-                return this.primitive(Scalar.floor)
+                return this.primitive(Atom.floor)
             }
         })
 
         Object.defineProperty(Array.prototype, "identity", {
             get: function (): number[] {
-                return Scalar.identity(this)
+                return Atom.identity(this)
             }
         })
 
         Object.defineProperty(Array.prototype, "same", {
             get: function (): number[] {
-                return Scalar.identity(this)
+                return Atom.identity(this)
             }
         })
 
         Object.defineProperty(Array.prototype, "ln", {
             get: function (): number[] {
-                return this.primitive(Scalar.ln)
+                return this.primitive(Atom.ln)
             }
         })
 
         Object.defineProperty(Array.prototype, "magnitude", {
             get: function (): number[] {
-                return this.primitive(Scalar.magnitude)
+                return this.primitive(Atom.magnitude)
             }
         })
 
         Object.defineProperty(Array.prototype, "negative", {
             get: function (): number[] {
-                return this.primitive(Scalar.negative)
+                return this.primitive(Atom.negative)
             }
         })
 
         Object.defineProperty(Array.prototype, "not", {
             get: function (): number[] {
-                return this.primitive(Scalar.not)
+                return this.primitive(Atom.not)
             }
         })
 
         Object.defineProperty(Array.prototype, "pi", {
             get: function (): number[] {
-                return this.primitive(Scalar.pi)
+                return this.primitive(Atom.pi)
             }
         })
 
         Object.defineProperty(Array.prototype, "reciprocal", {
             get: function (): number[] {
-                return this.primitive(Scalar.reciprocal)
+                return this.primitive(Atom.reciprocal)
             }
         })
 
         Object.defineProperty(Array.prototype, "roll", {
             get: function (): number[] {
-                return this.primitive(Scalar.roll)
+                return this.primitive(Atom.roll)
             }
         })
 
         Object.defineProperty(Array.prototype, "round", {
             get: function (): number[] {
-                return this.primitive(Scalar.round)
+                return this.primitive(Atom.round)
             }
         })
 
         Object.defineProperty(Array.prototype, "signum", {
             // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
-                return this.primitive(Scalar.signum)
+                return this.primitive(Atom.signum)
             }
             //set: function () {
             //}
@@ -254,10 +248,25 @@
         
         // Non-Scalar Selector Functions
 
+      
+
+    }
+
+    namespace NonScalar {
+
+        export var indexGenerator = (alpha) => {
+            // In Chrome 10xsneller dan het gebruik van "this"
+            var results = new Array<number>(alpha)    // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter
+            }
+            return results
+        }
+
         Object.defineProperty(Array.prototype, "indexGenerator", {
             get: function (): number[] {
                 //
-                return this.primitive(Scalar.indexGenerator)
+                return this.primitive(NonScalar.indexGenerator)
                 try {
                     var length = this[0].valueOf()
                     var counter,
@@ -408,8 +417,8 @@
                 }
 
             }
-        })
 
+        })
     }
 
 }

@@ -29,11 +29,11 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        var apl = new APL.Vector()
-       var aplg= apl.gradeDown
+        // var apl = new APL.Vector()
+        //  var aplg= apl.gradeDown
         var parms = location.search.split('?')
         var aantal: number = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6
-                
+
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5].indexGenerator
 
