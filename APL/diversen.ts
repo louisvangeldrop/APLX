@@ -24,6 +24,7 @@ namespace APL {               //export
             super(typeof Vector !== 'undefined' ?Vector:length)
             var myThis=this
             let aa = new Array([10].indexGenerator)
+            for (let i of aa) { i }
         }
 
         get louis(): number {
