@@ -1,4 +1,5 @@
-//#region "Monadic Scalar Numeric Primitive"
+//#region "Interfaces"
+//#endregion
 var Monadic;
 (function (Monadic) {
     ///#region "Scalar Monadic"
