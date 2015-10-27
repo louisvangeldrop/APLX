@@ -26,8 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="APL.ts" />
-    <TypeScriptCompile Include="iapl dyadic.ts" />
-    <TypeScriptCompile Include="iapl monadic.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="miscellaneous primitive functions.ts" />
