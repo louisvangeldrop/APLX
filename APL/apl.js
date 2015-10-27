@@ -1,3 +1,4 @@
+//#region "Monadic Scalar Numeric Primitive"
 var Monadic;
 (function (Monadic) {
     ///#region "Scalar Monadic"

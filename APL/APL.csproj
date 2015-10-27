@@ -28,11 +28,6 @@
     <TypeScriptCompile Include="APL.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="miscellaneous primitive functions.ts" />
-    <TypeScriptCompile Include="primitive operators.ts" />
-    <TypeScriptCompile Include="scalar primitive.ts" />
-    <TypeScriptCompile Include="selection primitive functions.ts" />
-    <TypeScriptCompile Include="structural primitive functions.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="rapsodeapl %282%29.pubxml" />
