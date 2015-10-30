@@ -51,7 +51,7 @@ class Greeter {
         //var ss = dd.slice()
         //ss[0] = 0
         t0 = performance.now()
-        //var qq = dd.gradeUp  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
+        //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp)
         var cpuGradeUp = performance.now() - t0
         //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
@@ -100,6 +100,7 @@ class Greeter {
 
 var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: string, expression) {
     //   var result = expression
+    console.time("")
     var t0 = performance.now() - performanceNow
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
