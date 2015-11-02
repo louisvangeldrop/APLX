@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="APL.ts" />
+    <TypeScriptCompile Include="APLPrefix.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
   </ItemGroup>

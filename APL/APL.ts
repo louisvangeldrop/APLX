@@ -1,4 +1,6 @@
-﻿//#region "Interfaces"
+﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix
+
+//#region "Interfaces"
 
 interface NumberConstructor {
     iota<T>(length?: T): number[]
@@ -137,204 +139,191 @@ namespace Monadic {
 
         export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
 
-        Object.defineProperty(Number.prototype, "ceiling", {            //
+        Object.defineProperty(Number.prototype, prefix + "ceiling", {            //
             get: function () {
                 return Atom.ceiling(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "exponential", {
+        Object.defineProperty(Number.prototype, prefix + "exponential", {
             get: function () {
                 return Atom.exponential(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "factorial", {
+        Object.defineProperty(Number.prototype, prefix + "factorial", {
             get: function () {
                 return Atom.factorial(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "floor", {
+        Object.defineProperty(Number.prototype, prefix + "floor", {
             get: function () {
                 var myThis = this.valueOf()
                 return Atom.floor(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "identity", {
+        Object.defineProperty(Number.prototype, prefix + "identity", {
             get: function () {
                 return Atom.identity(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "ln", {
+        Object.defineProperty(Number.prototype, prefix + "ln", {
             get: function () {
                 return Atom.ln(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "magnitude", {
+        Object.defineProperty(Number.prototype, prefix + "magnitude", {
             get: function () {
                 return Atom.magnitude(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "negative", {
+        Object.defineProperty(Number.prototype, prefix + "negative", {
             get: function () {
                 return Atom.negative(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "not", {
+        Object.defineProperty(Number.prototype, prefix + "not", {
             get: function () {
                 return Atom.not(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "pi", {
+        Object.defineProperty(Number.prototype, prefix + "pi", {
             get: function () {
                 return Atom.pi(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "reciprocal", {
+        Object.defineProperty(Number.prototype, prefix + "reciprocal", {
             get: function () {
                 return Atom.reciprocal(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "roll", {
+        Object.defineProperty(Number.prototype, prefix + "roll", {
             get: function () {
                 return Atom.roll(this)
             }
         })
 
-        //Object.defineProperty(Number.prototype, "deal", {         // mag niet omdat deal ook een functie is
-        //    get: function () {
-        //        return roll(this)
-        //    }
-        //})
-
-        Object.defineProperty(Number.prototype, "round", {            //
+        Object.defineProperty(Number.prototype, prefix + "round", {            //
             get: function () {
                 return Atom.round(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "same", {
+        Object.defineProperty(Number.prototype, prefix + "same", {
             get: function () {
                 return Atom.identity(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "signum", {
+        Object.defineProperty(Number.prototype, prefix + "signum", {
             get: function () {
                 return Atom.signum(this)
             }
         })
 
-        Object.defineProperty(Number.prototype, "indexGenerator", {
+        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
             get: function () {
                 return NonScalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
-              
-                //var max = this.valueOf()
-                //var results = new Array<number>(max)    // sneller dan []
-                //for (var counter = 0; counter < max; counter++) {
-                //    results[counter] = counter
-                //}
-                //return results
             }
         })
     }
 
     export namespace Vector {
 
-        Object.defineProperty(Array.prototype, "ceiling", {
+        Object.defineProperty(Array.prototype, prefix + "ceiling", {
             get: function () {
                 return this.primitive(Atom.ceiling)
             }
         })
 
-        Object.defineProperty(Array.prototype, "exponential", {
+        Object.defineProperty(Array.prototype, prefix + "exponential", {
             get: function () {
                 return this.primitive(Atom.exponential)
             }
         })
 
-        Object.defineProperty(Array.prototype, "factorial", {
+        Object.defineProperty(Array.prototype, prefix + "factorial", {
             get: function () {
                 return this.primitive(Atom.factorial)   //(alpha) => { return factorial(alpha) }
             }
         })
 
-        Object.defineProperty(Array.prototype, "floor", {
+        Object.defineProperty(Array.prototype, prefix + "floor", {
             get: function (): number[] {
                 return this.primitive(Atom.floor)
             }
         })
 
-        Object.defineProperty(Array.prototype, "identity", {
+        Object.defineProperty(Array.prototype, prefix + "identity", {
             get: function (): number[] {
                 return Atom.identity(this)
             }
         })
 
-        Object.defineProperty(Array.prototype, "same", {
+        Object.defineProperty(Array.prototype, prefix + "same", {
             get: function (): number[] {
                 return Atom.identity(this)
             }
         })
 
-        Object.defineProperty(Array.prototype, "ln", {
+        Object.defineProperty(Array.prototype, prefix + "ln", {
             get: function (): number[] {
                 return this.primitive(Atom.ln)
             }
         })
 
-        Object.defineProperty(Array.prototype, "magnitude", {
+        Object.defineProperty(Array.prototype, prefix + "magnitude", {
             get: function (): number[] {
                 return this.primitive(Atom.magnitude)
             }
         })
 
-        Object.defineProperty(Array.prototype, "negative", {
+        Object.defineProperty(Array.prototype, prefix + "negative", {
             get: function (): number[] {
                 return this.primitive(Atom.negative)
             }
         })
 
-        Object.defineProperty(Array.prototype, "not", {
+        Object.defineProperty(Array.prototype, prefix + "not", {
             get: function (): number[] {
                 return this.primitive(Atom.not)
             }
         })
 
-        Object.defineProperty(Array.prototype, "pi", {
+        Object.defineProperty(Array.prototype, prefix + "pi", {
             get: function (): number[] {
                 return this.primitive(Atom.pi)
             }
         })
 
-        Object.defineProperty(Array.prototype, "reciprocal", {
+        Object.defineProperty(Array.prototype, prefix + "reciprocal", {
             get: function (): number[] {
                 return this.primitive(Atom.reciprocal)
             }
         })
 
-        Object.defineProperty(Array.prototype, "roll", {
+        Object.defineProperty(Array.prototype, prefix + "roll", {
             get: function (): number[] {
                 return this.primitive(Atom.roll)
             }
         })
 
-        Object.defineProperty(Array.prototype, "round", {
+        Object.defineProperty(Array.prototype, prefix + "round", {
             get: function (): number[] {
                 return this.primitive(Atom.round)
             }
         })
 
-        Object.defineProperty(Array.prototype, "signum", {
+        Object.defineProperty(Array.prototype, prefix + "signum", {
             // get: arraySign,   geen parameter, omdat het een property is
             get: function () {
                 return this.primitive(Atom.signum)
@@ -360,25 +349,107 @@ namespace Monadic {
             return results
         }
 
-        Object.defineProperty(Array.prototype, "indexGenerator", {
+        export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
+            //try {
+            alpha = (typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices
+            low = (typeof (low) === 'undefined') ? 0 : low
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high
+            if (high <= low) return indices
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]]
+            var t1, t2
+            var t3: boolean, t4: boolean
+            var i = low, j = high
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j]
+                t3 = alpha[t1] >= midValue, t4 = alpha[t2] <= midValue
+                if (t3 && t4) {         // swap elements
+                    indices[i] = t2
+                    indices[j] = t1
+                    i = i + 1
+                    j = j - 1
+                }
+                else {
+                    if (t3 === false) { i++ }
+                    if (t4 === false) { j-- }
+                }
+            }
+            gradeUp(alpha, indices, low, j)
+            gradeUp(alpha, indices, i, high)
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices
+        }
+
+        export var gradeDown = function (alpha, indices?: number[], low?: number, high?: number): number[] {
+            //try {
+            alpha = (typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices
+            low = (typeof (low) === 'undefined') ? 0 : low
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high
+            if (high <= low) return indices
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]]
+            var t1, t2
+            var t3: boolean, t4: boolean
+            var i = low, j = high
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j]
+                t3 = alpha[t1] <= midValue, t4 = alpha[t2] >= midValue
+                if (t3 && t4) {         // swap elements
+                    indices[i] = t2
+                    indices[j] = t1
+                    i = i + 1
+                    j = j - 1
+                }
+                else {
+                    if (t3 === false) { i++ }
+                    if (t4 === false) { j-- }
+                }
+            }
+            gradeUp(alpha, indices, low, j)
+            gradeUp(alpha, indices, i, high)
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices
+        }
+
+        export var reverse = function (alpha) {
+            try {
+                // Array.isArray(this) 
+                return alpha.reverse()
+            }
+            catch (error) {
+            }
+            finally {
+            }
+
+        }
+
+        export function shape(alpha): number[] {
+            try {
+                // Array.isArray(this) 
+                return alpha.length
+            }
+            catch (error) {
+            }
+            finally {
+            }
+        }
+
+        Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
             get: function (): number[] {
                 //
                 return this.primitive(NonScalar.indexGenerator)
-                try {
-                    var length = this[0].valueOf()
-                    var counter,
-                        results = new Array<number>(length)
-                    for (counter = 0; counter < length; counter++) {
-                        results[counter] = counter
-                    }
-                    return results
-                }
-                catch (error) { }
-                finally { }
             }
         })
 
-        Object.defineProperty(Array.prototype, "gradeUpJS", {
+        Object.defineProperty(Array.prototype, prefix + "gradeUpJS", {
             get: function (): number[] {
                 var compare = function (alpha, omega) {
                     loop++
@@ -390,21 +461,21 @@ namespace Monadic {
                         return 0;
                     }
                 }
- //               try {
-                    var length = this.length,
-                        loop = 0
-                    var thisIndex = new Array(length),
-                        results = new Array(length),
-                        indices = new Array(length)
-                    for (var counter = 0; counter < length; counter++) {
-                        thisIndex[counter] = { value: this[counter], index: counter }
-                    }
-                    results = thisIndex.sort(compare)
-                    for (var counter = 0; counter < length; counter++) {
-                        indices[counter] = results[counter].index
-                    }
-                    console.log('Loops :' + loop)
-                    return indices
+                //               try {
+                var length = this.length,
+                    loop = 0
+                var thisIndex = new Array(length),
+                    results = new Array(length),
+                    indices = new Array(length)
+                for (var counter = 0; counter < length; counter++) {
+                    thisIndex[counter] = { value: this[counter], index: counter }
+                }
+                results = thisIndex.sort(compare)
+                for (var counter = 0; counter < length; counter++) {
+                    indices[counter] = results[counter].index
+                }
+                console.log('Loops :' + loop)
+                return indices
                 //}
                 //catch (error) {
                 //}
@@ -413,89 +484,19 @@ namespace Monadic {
             }
         })
 
-        Object.defineProperty(Array.prototype, "gradeUp", {             // quickSort
+        Object.defineProperty(Array.prototype, prefix + "gradeUp", {             // quickSort
             get: function () {
-                var gradeUp = function (omega, indices?: number[], low?: number, high?: number): number[] {
-                    //try {
-                        omega = (typeof omega === 'number') ? [omega] : omega
-                        indices = (typeof (indices) === 'undefined') ? omega.length.indexGenerator : indices
-                        low = (typeof (low) === 'undefined') ? 0 : low
-                        high = (typeof (high) === 'undefined') ? omega.length - 1 : high
-                        if (high <= low) return indices
-                        var midValue = omega[indices[Math.floor((low + high) / 2)]]
-                        var t1, t2
-                        var t3: boolean, t4: boolean
-                        var i = low, j = high
-                        while (i <= j) {
-                            t1 = indices[i], t2 = indices[j]
-                            t3 = omega[t1] >= midValue, t4 = omega[t2] <= midValue
-                            if (t3 && t4) {         // swap elements
-                                indices[i] = t2
-                                indices[j] = t1
-                                i = i + 1
-                                j = j - 1
-                            }
-                            else {
-                                if (t3 === false) { i++ }
-                                if (t4 === false) { j-- }
-                            }
-                        }
-                        gradeUp(omega, indices, low, j)
-                        gradeUp(omega, indices, i, high)
-                    //}
-                    //catch (error) {
-                    //}
-                    //finally {
-                    //}
-                    return indices
-                }
                 return gradeUp(this)
             }
-
         })
 
-        Object.defineProperty(Array.prototype, "gradeDown", {             // quickSort
+        Object.defineProperty(Array.prototype, prefix + "gradeDown", {             // quickSort
             get: function () {
-                var gradeUp = function (omega, indices?: number[], low?: number, high?: number): number[] {
-                    //try {
-                    omega = (typeof omega === 'number') ? [omega] : omega
-                    indices = (typeof (indices) === 'undefined') ? omega.length.indexGenerator : indices
-                    low = (typeof (low) === 'undefined') ? 0 : low
-                    high = (typeof (high) === 'undefined') ? omega.length - 1 : high
-                    if (high <= low) return indices
-                    var midValue = omega[indices[Math.floor((low + high) / 2)]]
-                    var t1, t2
-                    var t3: boolean, t4: boolean
-                    var i = low, j = high
-                    while (i <= j) {
-                        t1 = indices[i], t2 = indices[j]
-                        t3 = omega[t1] <= midValue, t4 = omega[t2] >= midValue
-                        if (t3 && t4) {         // swap elements
-                            indices[i] = t2
-                            indices[j] = t1
-                            i = i + 1
-                            j = j - 1
-                        }
-                        else {
-                            if (t3 === false) { i++ }
-                            if (t4 === false) { j-- }
-                        }
-                    }
-                    gradeUp(omega, indices, low, j)
-                    gradeUp(omega, indices, i, high)
-                    //}
-                    //catch (error) {
-                    //}
-                    //finally {
-                    //}
-                    return indices
-                }
-                return gradeUp(this,this.length.indexGenerator,0,this.length-1)
+                return gradeDown(this, this.length.indexGenerator, 0, this.length - 1)
             }
-
         })
 
-        Object.defineProperty(Array.prototype, "gradeDownJS", {
+        Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
             get: function (): number[] {
                 var compare = function (alpha, omega) {
                     loop++
@@ -507,21 +508,21 @@ namespace Monadic {
                         return 0;
                     }
                 }
-  //              try {
-                    var length = this.length,
-                        loop = 0
-                    var thisIndex = new Array(length),
-                        results = new Array(length),
-                        indices = new Array(length)
-                    for (var counter = 0; counter < length; counter++) {
-                        thisIndex[counter] = { value: this[counter], index: counter }
-                    }
-                    results = thisIndex.sort(compare)
-                    for (var counter = 0; counter < length; counter++) {
-                        indices[counter] = results[counter].index
-                    }
-                    console.log('Loops :' + loop)
-                    return indices
+                //              try {
+                var length = this.length,
+                    loop = 0
+                var thisIndex = new Array(length),
+                    results = new Array(length),
+                    indices = new Array(length)
+                for (var counter = 0; counter < length; counter++) {
+                    thisIndex[counter] = { value: this[counter], index: counter }
+                }
+                results = thisIndex.sort(compare)
+                for (var counter = 0; counter < length; counter++) {
+                    indices[counter] = results[counter].index
+                }
+                console.log('Loops :' + loop)
+                return indices
                 //}
                 //catch (error) {
                 //}
@@ -530,32 +531,16 @@ namespace Monadic {
             }
         })
 
-        Object.defineProperty(Array.prototype, "shape", {
-            get: function shape(): number[] {
-                try {
-                    // Array.isArray(this) 
-                    return this.length
-                }
-                catch (error) {
-                }
-                finally {
-                }
+        Object.defineProperty(Array.prototype, prefix + "shape", {
+            get: function () {
+                return shape(this)
             }
         })
 
-        Object.defineProperty(Array.prototype, "transpose", {
-            get: function reverse() {
-                try {
-                    // Array.isArray(this) 
-                    return this.reverse()
-                }
-                catch (error) {
-                }
-                finally {
-                }
-
+        Object.defineProperty(Array.prototype, prefix + "transpose", {
+            get: function () {
+                return reverse(this)
             }
-
         })
     }
 
@@ -587,7 +572,7 @@ namespace Dyadic {            // export namespace voor ES6
 
         export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
 
-        Number.prototype.rotate = function (omega) {
+        Number.prototype[prefix + 'rotate'] = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             //     try {
             let counter: number,
@@ -611,7 +596,7 @@ namespace Dyadic {            // export namespace voor ES6
         //}
         // }
 
-        Number.prototype.deal = function (omega: number): number[] {
+        Number.prototype[prefix + 'deal'] = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {
                 let results = omega.indexGenerator
                 let h: number, j: number
@@ -669,63 +654,59 @@ namespace Dyadic {            // export namespace voor ES6
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
         
-        Array.prototype.plus = function (omega) {
+        Array.prototype[prefix + 'plus'] = function (omega) {
             return this.primitive(omega, scalar.plus)
         }
 
-        Array.prototype.minus = function (omega) {
+        Array.prototype[prefix + 'minus'] = function (omega) {
             return this.primitive(omega, scalar.minus)
         }
 
-        //Array.prototype.times = function (omega) {
-        //    return this.primitive(omega, scalar.times)
-        //}
-
-        Array.prototype['times'] = function (omega) {
+        Array.prototype[prefix + 'times'] = function (omega) {
             return this.primitive(omega, scalar.times)
         }
 
-        Array.prototype.divide = function (omega) {
+        Array.prototype[prefix + 'divide'] = function (omega) {
             return this.primitive(omega, scalar.divide)
         }
 
-        Array.prototype.residue = function (omega) {
+        Array.prototype[prefix + 'residue'] = function (omega) {
             return this.primitive(omega, scalar.residue)
         }
 
-        Array.prototype.minimum = function (omega) {
+        Array.prototype[prefix + 'minimum'] = function (omega) {
             return this.primitive(omega, scalar.minimum)
         }
 
-        Array.prototype.maximum = function (omega) {
+        Array.prototype[prefix + 'maximum'] = function (omega) {
             return this.primitive(omega, scalar.maximum)
         }
 
-        Array.prototype.power = function (omega) {
+        Array.prototype[prefix + 'power'] = function (omega) {
             return this.primitive(omega, scalar.power)
         }
 
 
-        Array.prototype.logarithm = function (omega) {
+        Array.prototype[prefix + 'logarithm'] = function (omega) {
             return this.primitive(omega, scalar.logarithm)
         }
 
-        Array.prototype.binomial = function (omega) {
+        Array.prototype[prefix + 'binomial'] = function (omega) {
             return this.primitive(omega, scalar.binomial)
         }
 
-        Array.prototype.rotate = function (omega) {
+        Array.prototype[prefix + 'rotate'] = function (omega) {
             return this[0].rotate(omega)
         }
 
-        Array.prototype.aplReduce = function (omega) {
+        Array.prototype[prefix + 'aplReduce'] = function (omega) {
             let aplReduce = function (omega, alpha) {
                 return alpha.reduceRight((l, r) => { return omega(r, l) })
             }
             return aplReduce(omega, this)
         }
 
-        Array.prototype.deal = function (omega): number[] {
+        Array.prototype[prefix + 'deal'] = function (omega): number[] {
             return this[0].deal(omega)    //, this[0].valueOf())
 
         }
