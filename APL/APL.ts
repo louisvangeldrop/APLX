@@ -170,7 +170,7 @@ namespace Monadic {
             }
         })
 
-        Object.defineProperty(Number.prototype, prefix + "ln", {
+               Object.defineProperty(Number.prototype, prefix + "ln", {
             get: function () {
                 return Atom.ln(this)
             }
@@ -230,11 +230,7 @@ namespace Monadic {
             }
         })
 
-        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
-            get: function () {
-                return NonScalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
-            }
-        })
+
     }
 
     export namespace Vector {
@@ -340,15 +336,6 @@ namespace Monadic {
 
     namespace NonScalar {
 
-        export var indexGenerator = (alpha) => {
-            // In Chrome 10xsneller dan het gebruik van "this"
-            var results = new Array<number>(alpha)    // sneller dan []
-            for (var counter = 0; counter < alpha; counter++) {
-                results[counter] = counter
-            }
-            return results
-        }
-
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
             alpha = (typeof alpha === 'number') ? [alpha] : alpha
@@ -419,6 +406,15 @@ namespace Monadic {
             return indices
         }
 
+        export var indexGenerator = (alpha) => {
+            // In Chrome 10xsneller dan het gebruik van "this"
+            var results = new Array<number>(alpha)    // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter
+            }
+            return results
+        }
+
         export var reverse = function (alpha) {
             try {
                 // Array.isArray(this) 
@@ -441,6 +437,12 @@ namespace Monadic {
             finally {
             }
         }
+
+        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
+            get: function () {
+                return NonScalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
+            }
+        })
 
         Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
             get: function (): number[] {

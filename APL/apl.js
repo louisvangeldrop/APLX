@@ -52,6 +52,11 @@ var Monadic;
                 return Atom.identity(this);
             }
         });
+        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
+            get: function () {
+                return NonScalar.indexGenerator(this.valueOf()); // In Chrome 10xsneller dan het gebruik van "this"
+            }
+        });
         Object.defineProperty(Number.prototype, prefix + "ln", {
             get: function () {
                 return Atom.ln(this);
@@ -100,11 +105,6 @@ var Monadic;
         Object.defineProperty(Number.prototype, prefix + "signum", {
             get: function () {
                 return Atom.signum(this);
-            }
-        });
-        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
-            get: function () {
-                return NonScalar.indexGenerator(this.valueOf()); // In Chrome 10xsneller dan het gebruik van "this"
             }
         });
     })(Atom = Monadic.Atom || (Monadic.Atom = {}));
@@ -191,14 +191,6 @@ var Monadic;
     ///#region "Scalar Monadic"
     var NonScalar;
     (function (NonScalar) {
-        NonScalar.indexGenerator = function (alpha) {
-            // In Chrome 10xsneller dan het gebruik van "this"
-            var results = new Array(alpha); // sneller dan []
-            for (var counter = 0; counter < alpha; counter++) {
-                results[counter] = counter;
-            }
-            return results;
-        };
         NonScalar.gradeUp = function (alpha, indices, low, high) {
             //try {
             alpha = (typeof alpha === 'number') ? [alpha] : alpha;
@@ -276,6 +268,14 @@ var Monadic;
             //finally {
             //}
             return indices;
+        };
+        NonScalar.indexGenerator = function (alpha) {
+            // In Chrome 10xsneller dan het gebruik van "this"
+            var results = new Array(alpha); // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter;
+            }
+            return results;
         };
         NonScalar.reverse = function (alpha) {
             try {
