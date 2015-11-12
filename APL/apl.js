@@ -433,7 +433,8 @@ var Dyadic;
                 var results = omega.indexGenerator;
                 var h, j;
                 for (var i = 0; i < alpha; i++) {
-                    j = i + Monadic.Atom.roll(omega - i); //Math.floor(Math.random() * (omega - i))
+                    j = i + Math.floor(Math.random() * (omega - i)); // j = i + (omega-i).roll
+                    //   [results[j], results[i]]=[results[i], results[j]]
                     h = results[i];
                     results[i] = results[j];
                     results[j] = h;
