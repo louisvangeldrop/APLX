@@ -52,11 +52,6 @@ var Monadic;
                 return Atom.identity(this);
             }
         });
-        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
-            get: function () {
-                return NonScalar.indexGenerator(this.valueOf()); // In Chrome 10xsneller dan het gebruik van "this"
-            }
-        });
         Object.defineProperty(Number.prototype, prefix + "ln", {
             get: function () {
                 return Atom.ln(this);
@@ -298,6 +293,11 @@ var Monadic;
             }
         }
         NonScalar.shape = shape;
+        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
+            get: function () {
+                return NonScalar.indexGenerator(this.valueOf()); // In Chrome 10xsneller dan het gebruik van "this"
+            }
+        });
         Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
             get: function () {
                 //
@@ -433,7 +433,7 @@ var Dyadic;
                 var results = omega.indexGenerator;
                 var h, j;
                 for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i));
+                    j = i + Monadic.Atom.roll(omega - i); //Math.floor(Math.random() * (omega - i))
                     h = results[i];
                     results[i] = results[j];
                     results[j] = h;
@@ -447,7 +447,7 @@ var Dyadic;
     (function (Vector) {
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-        Array.prototype.primitive = function (omega, primitive) {
+        Array.prototype[prefix + 'primitive'] = function (omega, primitive) {
             // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
             //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
             var counter, max, results;

@@ -52,7 +52,12 @@ class Greeter {
         //ss[0] = 0
         t0 = performance.now()
         //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
-        showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp)
+        try {
+            showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp)
+        }
+        catch (err ){ }
+        finally { }
+       
         var cpuGradeUp = performance.now() - t0
         //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
         //t0 = performance.now()
