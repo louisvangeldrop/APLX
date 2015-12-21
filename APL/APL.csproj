@@ -65,7 +65,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50914</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50914/?1e6</IISUrl>
+          <IISUrl>http://localhost:50914</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://rapsodeapl.azurewebsites.net/</CustomServerUrl>
