@@ -568,7 +568,7 @@ namespace Dyadic {            // export namespace voor ES6
 
         export var maximum = (alpha, omega) => Math.max(alpha, omega)
 
-        export var power = (alpha, omega) => Math.pow(alpha, omega)
+        export var power = (alpha, omega) => alpha ** omega//Math.pow(alpha, omega)
 
         export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha)
 

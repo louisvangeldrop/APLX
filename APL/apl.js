@@ -403,7 +403,7 @@ var Dyadic;
         Scalar.residue = function (alpha, omega) { return omega % alpha; };
         Scalar.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
         Scalar.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
-        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); };
+        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); }; //Math.pow(alpha, omega)
         Scalar.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
         Scalar.binomial = function (alpha, omega) { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
         Number.prototype[prefix + 'rotate'] = function (omega) {
@@ -434,7 +434,7 @@ var Dyadic;
                 var h, j;
                 for (var i = 0; i < alpha; i++) {
                     j = i + Math.floor(Math.random() * (omega - i)); // j = i + (omega-i).roll
-                    //   [results[j], results[i]]=[results[i], results[j]]
+                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
                     h = results[i];
                     results[i] = results[j];
                     results[j] = h;
