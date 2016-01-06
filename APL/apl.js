@@ -2,7 +2,7 @@ var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix;
 //#endregion
 var Monadic;
 (function (Monadic) {
-    ///#region "Scalar Monadic"
+    //#region "Scalar"
     var Atom;
     (function (Atom) {
         // TODO Extra scalar UNDO HACK. See Task List
@@ -182,8 +182,8 @@ var Monadic;
             }
         });
     })(Vector = Monadic.Vector || (Monadic.Vector = {}));
-    ///#endregion
-    ///#region "Scalar Monadic"
+    //#endregion
+    //#region "Non-Scalar"
     var NonScalar;
     (function (NonScalar) {
         NonScalar.gradeUp = function (alpha, indices, low, high) {
@@ -390,22 +390,23 @@ var Monadic;
                 return NonScalar.reverse(this);
             }
         });
-    })(NonScalar || (NonScalar = {}));
+    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
 var Dyadic;
 (function (Dyadic) {
-    var Scalar;
-    (function (Scalar) {
-        Scalar.plus = function (alpha, omega) { return alpha + omega; };
-        Scalar.minus = function (alpha, omega) { return alpha - omega; };
-        Scalar.times = function (alpha, omega) { return alpha * omega; };
-        Scalar.divide = function (alpha, omega) { return alpha / omega; };
-        Scalar.residue = function (alpha, omega) { return omega % alpha; };
-        Scalar.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
-        Scalar.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
-        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); };
-        Scalar.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
-        Scalar.binomial = function (alpha, omega) { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
+    //#region "Scalar"
+    var Atom;
+    (function (Atom) {
+        Atom.plus = function (alpha, omega) { return alpha + omega; };
+        Atom.minus = function (alpha, omega) { return alpha - omega; };
+        Atom.times = function (alpha, omega) { return alpha * omega; };
+        Atom.divide = function (alpha, omega) { return alpha / omega; };
+        Atom.residue = function (alpha, omega) { return omega % alpha; };
+        Atom.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
+        Atom.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
+        Atom.power = function (alpha, omega) { return Math.pow(alpha, omega); };
+        Atom.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
+        Atom.binomial = function (alpha, omega) { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
         Number.prototype[prefix + 'rotate'] = function (omega) {
             var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
             //     try {
@@ -443,7 +444,7 @@ var Dyadic;
             };
             return deal(omega, this.valueOf()); // 6xsneller dan function deal (...){}
         };
-    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    })(Atom = Dyadic.Atom || (Dyadic.Atom = {}));
     var Vector;
     (function (Vector) {
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/

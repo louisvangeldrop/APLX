@@ -4,7 +4,7 @@
 //import {APL} from "diversen";
 
 import vector = Dyadic.Vector
-import scalar = Dyadic.Scalar
+import scalar = Dyadic.Atom
 
 class Greeter {
     element: HTMLElement;

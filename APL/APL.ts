@@ -100,9 +100,10 @@ interface Number {
 
 namespace Monadic {
 
-    ///#region "Scalar Monadic"
+    //#region "Scalar"
 
-    export namespace Atom {
+    export namespace Atom {             // Number
+
         // TODO Extra scalar UNDO HACK. See Task List
 
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
@@ -233,7 +234,7 @@ namespace Monadic {
 
     }
 
-    export namespace Vector {
+    export namespace Vector {           // Array
 
         Object.defineProperty(Array.prototype, prefix + "ceiling", {
             get: function () {
@@ -330,11 +331,11 @@ namespace Monadic {
 
     }
 
-    ///#endregion
+    //#endregion
 
-    ///#region "Scalar Monadic"
+    //#region "Non-Scalar"
 
-    namespace NonScalar {
+    export namespace NonScalar {
 
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
@@ -546,13 +547,15 @@ namespace Monadic {
         })
     }
 
-    ///#endregion
+    //#endregion
 
 }
 
 namespace Dyadic {            // export namespace voor ES6
 
-    export namespace Scalar {
+//#region "Scalar"
+
+    export namespace Atom {
 
         export var plus = (alpha, omega) => alpha + omega
 
@@ -715,5 +718,10 @@ namespace Dyadic {            // export namespace voor ES6
 
         }
     }
+
+//#endregion
+
+//#region "Non-Scalar"
+//#endregion
 
 }
