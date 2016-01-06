@@ -29,7 +29,6 @@ class Greeter {
 
     start() {
         // console.profile('Number.iota')
-        // var apl = new APL.Vector()
         //  var aplg= apl.gradeDown
         var parms = location.search.split('?')
         var aantal: number = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6
@@ -44,7 +43,10 @@ class Greeter {
         var dd: number[] //= aantal.deal(aantal)
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal.deal(aantal))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
-       
+        var apldd   //:number[]
+
+        var aplcc=new APL.Vector(null,10)
+        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
         showPerformance(spanCPU, performance.now(), "sign", dd.signum)
 
         showPerformance(spanCPU, performance.now(), "identity", dd.same)
@@ -55,9 +57,9 @@ class Greeter {
         try {
             showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp)
         }
-        catch (err ){ }
+        catch (err) { }
         finally { }
-       
+
         var cpuGradeUp = performance.now() - t0
         //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
         //t0 = performance.now()
@@ -89,8 +91,8 @@ class Greeter {
         var perfEntries = performance.getEntries()
         for (var i = 0; i < perfMarks.length; i++) {
             this.spanCPU.innerHTML +=
-            "Name: " + perfMarks[i].name + " - " +
-            "CPU Time: " + perfMarks[i].duration + "<br />";  //  perfMarks[i].startTime
+                "Name: " + perfMarks[i].name + " - " +
+                "CPU Time: " + perfMarks[i].duration + "<br />";  //  perfMarks[i].startTime
         }
         var totalCpu = performance.now() - startPerformance
         this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`
@@ -107,7 +109,7 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
     //   var result = expression
     console.time("")
     var t0 = performance.now() - performanceNow
-    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 

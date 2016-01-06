@@ -15,21 +15,22 @@ namespace APL {               //export
     //}
    
     /**
-    * Extends the Array object wityh APL array functions
+    * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
     */
 
-    export class Vector extends Array<string | number | boolean | any> {
-
-        constructor(public Vector?, length?, ...rest) {
-            super(typeof Vector !== 'undefined' ?Vector:length)
-            var myThis=this
-            let aa = new Array([10].indexGenerator)
-            for (let i of aa) { i }
+    export class Vector<T> extends Array<string | number | boolean | any> {  //T>
+        
+        constructor(public Vector?: Array<T>, length?: number) {
+            super(typeof Vector !== 'null' ? Vector : length)
+            let aa = [10].indexGenerator
+            for (let i of aa) {
+                i
+            }
         }
 
         get louis(): number {
-            let bb = this.length
-            return 2 + 2
+            let bb = this.Vector.length
+            return bb
         }
 
         // property "shape"
@@ -39,7 +40,7 @@ namespace APL {               //export
          * @return {Array} Aantal element in de vector
          */
         get rho(): number | number[] {
-            return this.length
+            return this.Vector.length
         }
         /**
        * Zet het aantal elementen in de vector
@@ -51,7 +52,7 @@ namespace APL {               //export
         }
 
     }
-           
+
     export class APLArray<T extends Array<string | number | boolean | any>>{  //IAPLArray
        
         constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]
@@ -99,7 +100,7 @@ class HTMLPerformance {
     constructor(public element: HTMLElement, performanceNow, text: string, expression) {
         //   var result = expression
         var t0 = performance.now() - performanceNow
-        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`
 
         //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
     }
