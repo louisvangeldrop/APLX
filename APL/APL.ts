@@ -553,7 +553,7 @@ namespace Monadic {
 
 namespace Dyadic {            // export namespace voor ES6
 
-//#region "Scalar"
+    //#region "Scalar"
 
     export namespace Atom {
 
@@ -719,7 +719,7 @@ namespace Dyadic {            // export namespace voor ES6
         }
     }
 
-//#endregion
+    //#endregion
 
 //#region "Non-Scalar"
 //#endregion
