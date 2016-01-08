@@ -25,7 +25,7 @@
 
         export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
 
-        Number.prototype[prefix + 'rotate'] = function (omega) {
+        export var rotate = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             //     try {
             let counter: number,
@@ -49,7 +49,9 @@
         //}
         // }
 
-        Number.prototype[prefix + 'deal'] = function (omega: number): number[] {
+        Number.prototype[prefix + 'rotate'] = rotate
+
+        export var deal = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {
                 let results = omega.indexGenerator
                 let h: number, j: number
@@ -63,6 +65,9 @@
             }
             return deal(omega, this.valueOf())              // 6xsneller dan function deal (...){}
         }
+
+        Number.prototype[prefix + 'deal'] = deal
+
     }
 
     export namespace Vector {
