@@ -70,9 +70,6 @@
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
-
-
-
         export var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
             // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
             
@@ -112,63 +109,87 @@
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-
         
-        Array.prototype[prefix + 'plus'] = function (omega) {
+        export var plus = function (omega) {
             return this.primitive(omega, Scalar.plus)
         }
 
-        Array.prototype[prefix + 'minus'] = function (omega) {
+        Array.prototype[prefix + 'plus'] = plus
+
+        export var minus = function (omega) {
             return this.primitive(omega, Scalar.minus)
         }
 
-        Array.prototype[prefix + 'times'] = function (omega) {
+        Array.prototype[prefix + 'minus'] = minus
+
+        export var times = function (omega) {
             return this.primitive(omega, Scalar.times)
         }
 
-        Array.prototype[prefix + 'divide'] = function (omega) {
+        Array.prototype[prefix + 'times'] = times
+
+        export var divide = function (omega) {
             return this.primitive(omega, Scalar.divide)
         }
 
-        Array.prototype[prefix + 'residue'] = function (omega) {
+        Array.prototype[prefix + 'divide'] = divide
+
+        export var residue = function (omega) {
             return this.primitive(omega, Scalar.residue)
         }
 
-        Array.prototype[prefix + 'minimum'] = function (omega) {
+        Array.prototype[prefix + 'residue'] = residue
+
+        export var minimum = function (omega) {
             return this.primitive(omega, Scalar.minimum)
         }
 
-        Array.prototype[prefix + 'maximum'] = function (omega) {
+        Array.prototype[prefix + 'minimum'] = minimum
+
+        export var maximum = function (omega) {
             return this.primitive(omega, Scalar.maximum)
         }
 
-        Array.prototype[prefix + 'power'] = function (omega) {
+        Array.prototype[prefix + 'maximum'] = maximum
+
+        export var power = function (omega) {
             return this.primitive(omega, Scalar.power)
         }
 
+        Array.prototype[prefix + 'power'] = power
 
-        Array.prototype[prefix + 'logarithm'] = function (omega) {
+        export var logarithm = function (omega) {
             return this.primitive(omega, Scalar.logarithm)
         }
 
-        Array.prototype[prefix + 'binomial'] = function (omega) {
+        Array.prototype[prefix + 'logarithm'] = logarithm
+
+        export var binomial = function (omega) {
             return this.primitive(omega, Scalar.binomial)
         }
 
-        Array.prototype[prefix + 'rotate'] = function (omega) {
+        Array.prototype[prefix + 'binomial'] = binomial
+
+        export var rotate = function (omega) {
             return this[0].rotate(omega)
         }
 
-        Array.prototype[prefix + 'aplReduce'] = function (omega) {
+        Array.prototype[prefix + 'rotate'] = rotate
+
+        export var aplReduce = function (omega) {
             let aplReduce = function (omega, alpha) {
+                // TODO eigen reduceRight maken en verplaatsen naar Operators
                 return alpha.reduceRight((l, r) => { return omega(r, l) })
             }
             return aplReduce(omega, this)
         }
 
-        Array.prototype[prefix + 'deal'] = function (omega): number[] {
-            return this[0].deal(omega)    //, this[0].valueOf())
+        Array.prototype[prefix + 'aplReduce'] = aplReduce
 
+        export var deal = function (omega): number[] {
+            return this[0].deal(omega)    //, this[0].valueOf())
         }
+
+        Array.prototype[prefix + 'deal'] = deal
     }
 }
