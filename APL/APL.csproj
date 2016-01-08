@@ -25,7 +25,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="APL.ts" />
+    <TypeScriptCompile Include="Functions\Interfaces.ts" />
     <TypeScriptCompile Include="Functions\APLPrefix.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />

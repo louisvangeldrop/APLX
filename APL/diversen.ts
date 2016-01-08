@@ -92,10 +92,6 @@ namespace APL {               //export
     
 }
 
-namespace Dyadic {
-
-}
-
 class HTMLPerformance {
     constructor(public element: HTMLElement, performanceNow, text: string, expression) {
         //   var result = expression

@@ -3,8 +3,8 @@
 //import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
 //import {APL} from "diversen";
 
-import vector = Dyadic.Vector
-import scalar = Dyadic.Atom
+//import vector = Dyadic.Vector
+//import scalar = Dyadic.Scalar
 
 class Greeter {
     element: HTMLElement;
@@ -30,6 +30,8 @@ class Greeter {
     start() {
         // console.profile('Number.iota')
         //  var aplg= apl.gradeDown
+        const vector = Dyadic.Vector
+        let scalar = Dyadic.Scalar
         var parms = location.search.split('?')
         var aantal: number = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6
 
@@ -45,7 +47,7 @@ class Greeter {
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
-        var aplcc=new APL.Vector(null,10)
+        var aplcc = new APL.Vector(null, 10)
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
         showPerformance(spanCPU, performance.now(), "sign", dd.signum)
 
