@@ -37,7 +37,7 @@ class Greeter {
 
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5].indexGenerator
-
+        var testje=[3,4,5].reduceRight(scalar.plus)
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
         var t0: number

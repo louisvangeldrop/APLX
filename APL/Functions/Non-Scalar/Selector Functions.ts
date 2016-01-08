@@ -1,6 +1,6 @@
 ﻿namespace Monadic {
-     
-     export namespace NonScalar {
+
+    export namespace NonScalar {
 
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
@@ -73,26 +73,12 @@
         }
 
         export var indexGenerator = (alpha) => {
-            // In Chrome 10xsneller dan het gebruik van "this"
             var results = new Array<number>(alpha)    // sneller dan []
             for (var counter = 0; counter < alpha; counter++) {
                 results[counter] = counter
             }
             return results
         }
-
-        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
-            get: function () {
-                return NonScalar.indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
-            }
-        })
-
-        Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
-            get: function (): number[] {
-                //
-                return this.primitive(NonScalar.indexGenerator)
-            }
-        })
 
         Object.defineProperty(Array.prototype, prefix + "gradeUpJS", {
             get: function (): number[] {
@@ -175,6 +161,19 @@
                 //}
             }
         })
-      
+
+        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
+            get: function (): number[] {
+                return indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
+            }
+        })
+
+        Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
+            get: function (): number[] {
+                //
+                return this.primitive(indexGenerator)
+            }
+        })
+
     }
 }

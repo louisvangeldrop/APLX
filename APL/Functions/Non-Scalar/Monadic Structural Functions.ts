@@ -2,28 +2,15 @@
 
     export namespace NonScalar {
 
-        export var reverse = function (alpha) {
-            try {
-                // Array.isArray(this) 
-                return alpha.reverse()
-            }
-            catch (error) {
-            }
-            finally {
-            }
+        export var reverse = (alpha) => { return alpha.reverse() }
 
-        }
+        export var shape = (alpha): number[] => { return alpha.length }
 
-        export function shape(alpha): number[] {
-            try {
-                // Array.isArray(this) 
-                return alpha.length
+        Object.defineProperty(Array.prototype, prefix + "transpose", {
+            get: function () {
+                return reverse(this)
             }
-            catch (error) {
-            }
-            finally {
-            }
-        }
+        })
 
         Object.defineProperty(Array.prototype, prefix + "shape", {
             get: function () {
@@ -31,10 +18,5 @@
             }
         })
 
-        Object.defineProperty(Array.prototype, prefix + "transpose", {
-            get: function () {
-                return reverse(this)
-            }
-        })
     }
 }
