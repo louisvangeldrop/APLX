@@ -100,238 +100,238 @@ interface Number {
 
 namespace Monadic {
 
-    //#region "Scalar"
+    ////#region "Scalar"
 
-    export namespace Atom {             // Number
+    //export namespace Atom {             // Number
 
-        // TODO Extra scalar UNDO HACK. See Task List
+    //    // TODO Extra scalar UNDO HACK. See Task List
 
-        export var ceiling = (alpha) => { return Math.ceil(alpha) }
+    //    export var ceiling = (alpha) => { return Math.ceil(alpha) }
 
-        export var exponential = (alpha) => { return Math.exp(alpha) }
+    //    export var exponential = (alpha) => { return Math.exp(alpha) }
 
-        export var factorial = function (alpha) {
-            var result = 1
-            for (var i = 1; i <= alpha; i++) {
-                result = result * i
-            }
-            return result
-        }
+    //    export var factorial = function (alpha) {
+    //        var result = 1
+    //        for (var i = 1; i <= alpha; i++) {
+    //            result = result * i
+    //        }
+    //        return result
+    //    }
 
-        export var floor = (alpha) => Math.floor(alpha)
+    //    export var floor = (alpha) => Math.floor(alpha)
 
-        export var identity = (alpha) => alpha
+    //    export var identity = (alpha) => alpha
 
-        export var ln = (alpha) => Math.log(alpha)
+    //    export var ln = (alpha) => Math.log(alpha)
 
-        export var magnitude = (alpha) => Math.abs(alpha)
+    //    export var magnitude = (alpha) => Math.abs(alpha)
 
-        export var negative = (alpha) => !alpha
+    //    export var negative = (alpha) => !alpha
 
-        export var not = (alpha) => ~alpha
+    //    export var not = (alpha) => ~alpha
 
-        export var pi = (alpha) => Math.PI * alpha
+    //    export var pi = (alpha) => Math.PI * alpha
 
-        export var reciprocal = (alpha) => 1 / alpha
+    //    export var reciprocal = (alpha) => 1 / alpha
 
-        export var roll = (alpha) => Math.floor(Math.random() * alpha)
+    //    export var roll = (alpha) => Math.floor(Math.random() * alpha)
 
-        export var round = (alpha) => Math.round(alpha)
+    //    export var round = (alpha) => Math.round(alpha)
 
-        export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
+    //    export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
 
-        Object.defineProperty(Number.prototype, prefix + "ceiling", {            //
-            get: function () {
-                return Atom.ceiling(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "ceiling", {            //
+    //        get: function () {
+    //            return Atom.ceiling(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "exponential", {
-            get: function () {
-                return Atom.exponential(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "exponential", {
+    //        get: function () {
+    //            return Atom.exponential(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "factorial", {
-            get: function () {
-                return Atom.factorial(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "factorial", {
+    //        get: function () {
+    //            return Atom.factorial(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "floor", {
-            get: function () {
-                var myThis = this.valueOf()
-                return Atom.floor(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "floor", {
+    //        get: function () {
+    //            var myThis = this.valueOf()
+    //            return Atom.floor(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "identity", {
-            get: function () {
-                return Atom.identity(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "identity", {
+    //        get: function () {
+    //            return Atom.identity(this)
+    //        }
+    //    })
 
-               Object.defineProperty(Number.prototype, prefix + "ln", {
-            get: function () {
-                return Atom.ln(this)
-            }
-        })
+    //           Object.defineProperty(Number.prototype, prefix + "ln", {
+    //        get: function () {
+    //            return Atom.ln(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "magnitude", {
-            get: function () {
-                return Atom.magnitude(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "magnitude", {
+    //        get: function () {
+    //            return Atom.magnitude(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "negative", {
-            get: function () {
-                return Atom.negative(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "negative", {
+    //        get: function () {
+    //            return Atom.negative(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "not", {
-            get: function () {
-                return Atom.not(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "not", {
+    //        get: function () {
+    //            return Atom.not(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "pi", {
-            get: function () {
-                return Atom.pi(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "pi", {
+    //        get: function () {
+    //            return Atom.pi(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "reciprocal", {
-            get: function () {
-                return Atom.reciprocal(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "reciprocal", {
+    //        get: function () {
+    //            return Atom.reciprocal(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "roll", {
-            get: function () {
-                return Atom.roll(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "roll", {
+    //        get: function () {
+    //            return Atom.roll(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "round", {            //
-            get: function () {
-                return Atom.round(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "round", {            //
+    //        get: function () {
+    //            return Atom.round(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "same", {
-            get: function () {
-                return Atom.identity(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "same", {
+    //        get: function () {
+    //            return Atom.identity(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Number.prototype, prefix + "signum", {
-            get: function () {
-                return Atom.signum(this)
-            }
-        })
+    //    Object.defineProperty(Number.prototype, prefix + "signum", {
+    //        get: function () {
+    //            return Atom.signum(this)
+    //        }
+    //    })
 
 
-    }
+    //}
 
-    export namespace Vector {           // Array
+    //export namespace Vector {           // Array
 
-        Object.defineProperty(Array.prototype, prefix + "ceiling", {
-            get: function () {
-                return this.primitive(Atom.ceiling)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "ceiling", {
+    //        get: function () {
+    //            return this.primitive(Atom.ceiling)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "exponential", {
-            get: function () {
-                return this.primitive(Atom.exponential)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "exponential", {
+    //        get: function () {
+    //            return this.primitive(Atom.exponential)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "factorial", {
-            get: function () {
-                return this.primitive(Atom.factorial)   //(alpha) => { return factorial(alpha) }
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "factorial", {
+    //        get: function () {
+    //            return this.primitive(Atom.factorial)   //(alpha) => { return factorial(alpha) }
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "floor", {
-            get: function (): number[] {
-                return this.primitive(Atom.floor)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "floor", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.floor)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "identity", {
-            get: function (): number[] {
-                return Atom.identity(this)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "identity", {
+    //        get: function (): number[] {
+    //            return Atom.identity(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "same", {
-            get: function (): number[] {
-                return Atom.identity(this)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "same", {
+    //        get: function (): number[] {
+    //            return Atom.identity(this)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "ln", {
-            get: function (): number[] {
-                return this.primitive(Atom.ln)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "ln", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.ln)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "magnitude", {
-            get: function (): number[] {
-                return this.primitive(Atom.magnitude)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "magnitude", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.magnitude)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "negative", {
-            get: function (): number[] {
-                return this.primitive(Atom.negative)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "negative", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.negative)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "not", {
-            get: function (): number[] {
-                return this.primitive(Atom.not)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "not", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.not)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "pi", {
-            get: function (): number[] {
-                return this.primitive(Atom.pi)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "pi", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.pi)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "reciprocal", {
-            get: function (): number[] {
-                return this.primitive(Atom.reciprocal)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "reciprocal", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.reciprocal)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "roll", {
-            get: function (): number[] {
-                return this.primitive(Atom.roll)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "roll", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.roll)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "round", {
-            get: function (): number[] {
-                return this.primitive(Atom.round)
-            }
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "round", {
+    //        get: function (): number[] {
+    //            return this.primitive(Atom.round)
+    //        }
+    //    })
 
-        Object.defineProperty(Array.prototype, prefix + "signum", {
-            // get: arraySign,   geen parameter, omdat het een property is
-            get: function () {
-                return this.primitive(Atom.signum)
-            }
-            //set: function () {
-            //}
-        })
+    //    Object.defineProperty(Array.prototype, prefix + "signum", {
+    //        // get: arraySign,   geen parameter, omdat het een property is
+    //        get: function () {
+    //            return this.primitive(Atom.signum)
+    //        }
+    //        //set: function () {
+    //        //}
+    //    })
 
-    }
+    //}
 
-    //#endregion
+    ////#endregion
 
     //#region "Non-Scalar"
 
@@ -553,173 +553,173 @@ namespace Monadic {
 
 namespace Dyadic {            // export namespace voor ES6
 
-    //#region "Scalar"
+    ////#region "Scalar"
 
-    export namespace Atom {
+    //export namespace Atom {
 
-        export var plus = (alpha, omega) => alpha + omega
+    //    export var plus = (alpha, omega) => alpha + omega
 
-        export var minus = (alpha, omega) => alpha - omega
+    //    export var minus = (alpha, omega) => alpha - omega
 
-        export var times = (alpha, omega) => alpha * omega
+    //    export var times = (alpha, omega) => alpha * omega
 
-        export var divide = (alpha, omega) => alpha / omega
+    //    export var divide = (alpha, omega) => alpha / omega
 
-        export var residue = (alpha, omega) => omega % alpha
+    //    export var residue = (alpha, omega) => omega % alpha
 
-        export var minimum = (alpha, omega) => Math.min(alpha, omega)
+    //    export var minimum = (alpha, omega) => Math.min(alpha, omega)
 
-        export var maximum = (alpha, omega) => Math.max(alpha, omega)
+    //    export var maximum = (alpha, omega) => Math.max(alpha, omega)
 
-        export var power = (alpha, omega) => alpha ** omega
+    //    export var power = (alpha, omega) => alpha ** omega
 
-        export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha)
+    //    export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha)
 
-        export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
+    //    export var binomial = (alpha: number, omega: number) => omega.factorial / (alpha.factorial * (omega - alpha).factorial)   // zie !.coffee voor meer details
 
-        Number.prototype[prefix + 'rotate'] = function (omega) {
-            let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
-            //     try {
-            let counter: number,
-                max: number = omega.length,
-                results = new Array(max);
-            if (myThis > 0) {
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis]
-                }
-            } else {
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis]
-                }
-            }
-            return results
-        }
-        //catch (error) {
-        //    throw new Error('foutje')
-        //}
-        //finally {
-        //}
-        // }
+    //    Number.prototype[prefix + 'rotate'] = function (omega) {
+    //        let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
+    //        //     try {
+    //        let counter: number,
+    //            max: number = omega.length,
+    //            results = new Array(max);
+    //        if (myThis > 0) {
+    //            for (counter = 0; counter < max; counter++) {
+    //                results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis]
+    //            }
+    //        } else {
+    //            for (counter = 0; counter < max; counter++) {
+    //                results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis]
+    //            }
+    //        }
+    //        return results
+    //    }
+    //    //catch (error) {
+    //    //    throw new Error('foutje')
+    //    //}
+    //    //finally {
+    //    //}
+    //    // }
 
-        Number.prototype[prefix + 'deal'] = function (omega: number): number[] {
-            var deal = function (omega: number, alpha?: number) {
-                let results = omega.indexGenerator
-                let h: number, j: number
-                for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
+    //    Number.prototype[prefix + 'deal'] = function (omega: number): number[] {
+    //        var deal = function (omega: number, alpha?: number) {
+    //            let results = omega.indexGenerator
+    //            let h: number, j: number
+    //            for (var i = 0; i < alpha; i++) {
+    //                j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
                                       
-                 //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
-                    h = results[i]; results[i] = results[j]; results[j] = h
-                }
-                return results.slice(0, alpha)
-            }
-            return deal(omega, this.valueOf())              // 6xsneller dan function deal (...){}
-        }
-    }
+    //             //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
+    //                h = results[i]; results[i] = results[j]; results[j] = h
+    //            }
+    //            return results.slice(0, alpha)
+    //        }
+    //        return deal(omega, this.valueOf())              // 6xsneller dan function deal (...){}
+    //    }
+    //}
 
-    export namespace Vector {
+    //export namespace Vector {
 
-        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
-        //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+    //    // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+    //    //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
-        Array.prototype[prefix + 'primitive'] = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
-            // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
+    //    Array.prototype[prefix + 'primitive'] = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
+    //        // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
             
-            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-            let counter: number,
-                max: number,
-                results
-            if (typeof primitive === 'undefined') {  // omega is nu de primitive
-                primitive = omega
-                max = this.length
-                results = new Array(max)
-                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter])
-                }
-                return results
-            }
-            else {
-                max = Math.min(this.length, omega.length),
-                results = new Array(max);
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter], omega[counter])
-                }
-                return results
-            }
+    //        //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+    //        let counter: number,
+    //            max: number,
+    //            results
+    //        if (typeof primitive === 'undefined') {  // omega is nu de primitive
+    //            primitive = omega
+    //            max = this.length
+    //            results = new Array(max)
+    //            //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
+    //            for (counter = 0; counter < max; counter++) {
+    //                results[counter] = primitive(this[counter])
+    //            }
+    //            return results
+    //        }
+    //        else {
+    //            max = Math.min(this.length, omega.length),
+    //            results = new Array(max);
+    //            for (counter = 0; counter < max; counter++) {
+    //                results[counter] = primitive(this[counter], omega[counter])
+    //            }
+    //            return results
+    //        }
             
-            //}
-            //catch (error) {
-            //   // throw error
-            //}
-            //finally {
-            //}
+    //        //}
+    //        //catch (error) {
+    //        //   // throw error
+    //        //}
+    //        //finally {
+    //        //}
 
-        }
+    //    }
 
-        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
-        ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+    //    // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+    //    ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
         
-        Array.prototype[prefix + 'plus'] = function (omega) {
-            return this.primitive(omega, scalar.plus)
-        }
+    //    Array.prototype[prefix + 'plus'] = function (omega) {
+    //        return this.primitive(omega, scalar.plus)
+    //    }
 
-        Array.prototype[prefix + 'minus'] = function (omega) {
-            return this.primitive(omega, scalar.minus)
-        }
+    //    Array.prototype[prefix + 'minus'] = function (omega) {
+    //        return this.primitive(omega, scalar.minus)
+    //    }
 
-        Array.prototype[prefix + 'times'] = function (omega) {
-            return this.primitive(omega, scalar.times)
-        }
+    //    Array.prototype[prefix + 'times'] = function (omega) {
+    //        return this.primitive(omega, scalar.times)
+    //    }
 
-        Array.prototype[prefix + 'divide'] = function (omega) {
-            return this.primitive(omega, scalar.divide)
-        }
+    //    Array.prototype[prefix + 'divide'] = function (omega) {
+    //        return this.primitive(omega, scalar.divide)
+    //    }
 
-        Array.prototype[prefix + 'residue'] = function (omega) {
-            return this.primitive(omega, scalar.residue)
-        }
+    //    Array.prototype[prefix + 'residue'] = function (omega) {
+    //        return this.primitive(omega, scalar.residue)
+    //    }
 
-        Array.prototype[prefix + 'minimum'] = function (omega) {
-            return this.primitive(omega, scalar.minimum)
-        }
+    //    Array.prototype[prefix + 'minimum'] = function (omega) {
+    //        return this.primitive(omega, scalar.minimum)
+    //    }
 
-        Array.prototype[prefix + 'maximum'] = function (omega) {
-            return this.primitive(omega, scalar.maximum)
-        }
+    //    Array.prototype[prefix + 'maximum'] = function (omega) {
+    //        return this.primitive(omega, scalar.maximum)
+    //    }
 
-        Array.prototype[prefix + 'power'] = function (omega) {
-            return this.primitive(omega, scalar.power)
-        }
+    //    Array.prototype[prefix + 'power'] = function (omega) {
+    //        return this.primitive(omega, scalar.power)
+    //    }
 
 
-        Array.prototype[prefix + 'logarithm'] = function (omega) {
-            return this.primitive(omega, scalar.logarithm)
-        }
+    //    Array.prototype[prefix + 'logarithm'] = function (omega) {
+    //        return this.primitive(omega, scalar.logarithm)
+    //    }
 
-        Array.prototype[prefix + 'binomial'] = function (omega) {
-            return this.primitive(omega, scalar.binomial)
-        }
+    //    Array.prototype[prefix + 'binomial'] = function (omega) {
+    //        return this.primitive(omega, scalar.binomial)
+    //    }
 
-        Array.prototype[prefix + 'rotate'] = function (omega) {
-            return this[0].rotate(omega)
-        }
+    //    Array.prototype[prefix + 'rotate'] = function (omega) {
+    //        return this[0].rotate(omega)
+    //    }
 
-        Array.prototype[prefix + 'aplReduce'] = function (omega) {
-            let aplReduce = function (omega, alpha) {
-                return alpha.reduceRight((l, r) => { return omega(r, l) })
-            }
-            return aplReduce(omega, this)
-        }
+    //    Array.prototype[prefix + 'aplReduce'] = function (omega) {
+    //        let aplReduce = function (omega, alpha) {
+    //            return alpha.reduceRight((l, r) => { return omega(r, l) })
+    //        }
+    //        return aplReduce(omega, this)
+    //    }
 
-        Array.prototype[prefix + 'deal'] = function (omega): number[] {
-            return this[0].deal(omega)    //, this[0].valueOf())
+    //    Array.prototype[prefix + 'deal'] = function (omega): number[] {
+    //        return this[0].deal(omega)    //, this[0].valueOf())
 
-        }
-    }
+    //    }
+    //}
 
-    //#endregion
+    ////#endregion
 
 //#region "Non-Scalar"
 //#endregion
