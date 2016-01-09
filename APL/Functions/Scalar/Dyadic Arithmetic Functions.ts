@@ -18,7 +18,7 @@
 
         export var power = (alpha, omega) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
 
-        export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(this.valueOf()) / Math.log(omega) }
+        export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
 
         export var binomial = (alpha: number, omega: number) => alpha.factorial / (omega.factorial * (alpha - omega).factorial);
         Number.prototype[prefix + 'binomial'] = function (omega) { return this.valueOf().factorial / (omega.factorial * (this.valueOf() - omega).factorial) } // zie !.coffee voor meer details
