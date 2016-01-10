@@ -2,25 +2,25 @@
 
     export namespace Scalar {
 
-        export var plus = (alpha, omega) => alpha + omega; Number.prototype[prefix + 'plus'] = function (omega) { return this.valueOf() + omega }
+        export var plus = (alpha:number, omega:number) => alpha + omega; Number.prototype[prefix + 'plus'] = function (omega) { return this.valueOf() + omega }
 
-        export var minus = (alpha, omega) => alpha - omega; Number.prototype[prefix + 'minus'] = function (omega) { return this.valueOf() - omega }
+        export var minus = (alpha:number, omega:number) => alpha - omega; Number.prototype[prefix + 'minus'] = function (omega) { return this.valueOf() - omega }
 
-        export var times = (alpha, omega) => alpha * omega; Number.prototype[prefix + 'times'] = function (omega) { return this.valueOf() * omega }
+        export var times = (alpha:number, omega:number) => alpha * omega; Number.prototype[prefix + 'times'] = function (omega) { return this.valueOf() * omega }
 
-        export var divide = (alpha, omega) => alpha / omega; Number.prototype[prefix + 'divide'] = function (omega) { return this.valueOf() / omega }
+        export var divide = (alpha:number, omega:number) => alpha / omega; Number.prototype[prefix + 'divide'] = function (omega) { return this.valueOf() / omega }
 
-        export var residue = (alpha, omega) => omega % alpha; Number.prototype[prefix + 'residue'] = function (omega) { return this.valueOf() % omega }
+        export var residue = (alpha:number, omega:number) => omega % alpha; Number.prototype[prefix + 'residue'] = function (omega) { return this.valueOf() % omega }
 
-        export var minimum = (alpha, omega) => Math.min(alpha, omega); Number.prototype[prefix + 'minimum'] = function (omega) { return Math.min(this.valueOf(), omega) }
+        export var minimum = (alpha:number, omega:number) => Math.min(alpha, omega); Number.prototype[prefix + 'minimum'] = function (omega) { return Math.min(this.valueOf(), omega) }
 
-        export var maximum = (alpha, omega) => Math.max(alpha, omega); Number.prototype[prefix + 'maximun'] = function (omega) { return Math.max(this.valueOf(), + omega) }
+        export var maximum = (alpha:number, omega:number) => Math.max(alpha, omega); Number.prototype[prefix + 'maximun'] = function (omega) { return Math.max(this.valueOf(), + omega) }
 
-        export var power = (alpha, omega) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
+        export var power = (alpha:number, omega:number) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
 
-        export var logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
+        export var logarithm = (alpha:number, omega:number) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
 
-        export var binomial = (alpha: number, omega: number) => alpha.factorial / (omega.factorial * (alpha - omega).factorial);
+        export var binomial = (alpha: number, omega: number) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial) };
         Number.prototype[prefix + 'binomial'] = function (omega) { return this.valueOf().factorial / (omega.factorial * (this.valueOf() - omega).factorial) } // zie !.coffee voor meer details
 
         export var rotate = function (omega) {

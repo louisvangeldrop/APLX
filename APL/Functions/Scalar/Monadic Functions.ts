@@ -8,9 +8,10 @@ export namespace Scalar {             // Number
 
     export var exponential = (alpha) => { return Math.exp(alpha) }
 
-    export var factorial = function (alpha) {
-        var result = 1
-        for (var i = 1; i <= alpha; i++) {
+    export var factorial = function (alpha:number,omega?:number):number {
+        var result: number =1
+        omega = (typeof omega === 'undefined') ? 1 : omega + 1
+                for (var i = omega; i <= alpha; i++) {
             result = result * i
         }
         return result
