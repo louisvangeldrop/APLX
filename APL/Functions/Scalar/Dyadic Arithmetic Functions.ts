@@ -2,27 +2,27 @@
 
     export namespace Scalar {
 
-        export var plus = (alpha:number, omega:number) => alpha + omega; Number.prototype[prefix + 'plus'] = function (omega) { return this.valueOf() + omega }
+        export var plus = (alpha: number, omega: number) => alpha + omega; Number.prototype[prefix + 'plus'] = function (omega) { return this.valueOf() + omega }
 
-        export var minus = (alpha:number, omega:number) => alpha - omega; Number.prototype[prefix + 'minus'] = function (omega) { return this.valueOf() - omega }
+        export var minus = (alpha: number, omega: number) => alpha - omega; Number.prototype[prefix + 'minus'] = function (omega) { return this.valueOf() - omega }
 
-        export var times = (alpha:number, omega:number) => alpha * omega; Number.prototype[prefix + 'times'] = function (omega) { return this.valueOf() * omega }
+        export var times = (alpha: number, omega: number) => alpha * omega; Number.prototype[prefix + 'times'] = function (omega) { return this.valueOf() * omega }
 
-        export var divide = (alpha:number, omega:number) => alpha / omega; Number.prototype[prefix + 'divide'] = function (omega) { return this.valueOf() / omega }
+        export var divide = (alpha: number, omega: number) => alpha / omega; Number.prototype[prefix + 'divide'] = function (omega) { return this.valueOf() / omega }
 
-        export var residue = (alpha:number, omega:number) => omega % alpha; Number.prototype[prefix + 'residue'] = function (omega) { return this.valueOf() % omega }
+        export var residue = (alpha: number, omega: number) => omega % alpha; Number.prototype[prefix + 'residue'] = function (omega) { return this.valueOf() % omega }
 
-        export var minimum = (alpha:number, omega:number) => Math.min(alpha, omega); Number.prototype[prefix + 'minimum'] = function (omega) { return Math.min(this.valueOf(), omega) }
+        export var minimum = (alpha: number, omega: number) => Math.min(alpha, omega); Number.prototype[prefix + 'minimum'] = function (omega) { return Math.min(this.valueOf(), omega) }
 
-        export var maximum = (alpha:number, omega:number) => Math.max(alpha, omega); Number.prototype[prefix + 'maximun'] = function (omega) { return Math.max(this.valueOf(), + omega) }
+        export var maximum = (alpha: number, omega: number) => Math.max(alpha, omega); Number.prototype[prefix + 'maximun'] = function (omega) { return Math.max(this.valueOf(), + omega) }
 
-        export var power = (alpha:number, omega:number) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
+        export var power = (alpha: number, omega: number) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
 
-        export var logarithm = (alpha:number, omega:number) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
+        export var logarithm = (alpha: number, omega: number) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
 
         export var binomial = (alpha: number, omega: number) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial) };
         Number.prototype[prefix + 'binomial'] = function (omega) { return this.valueOf().factorial / (omega.factorial * (this.valueOf() - omega).factorial) } // zie !.coffee voor meer details
-
+        //TODO binomial factorial(alpha,omega)
         export var rotate = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             //     try {
@@ -91,12 +91,21 @@
                 return results
             }
             else {
-                max = Math.min(this.length, omega.length),
+                if (Array.isArray(omega)) {
+                    max = Math.min(this.length, omega.length),
+                        results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this[counter], omega[counter])
+                    }
+                    return results
+                } else {
+                    max = this.length
                     results = new Array(max);
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter], omega[counter])
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this[counter], omega)
+                    }
+                    return results
                 }
-                return results
             }
             
             //}
