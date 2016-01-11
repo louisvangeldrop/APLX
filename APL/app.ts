@@ -37,8 +37,8 @@ class Greeter {
 
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5].indexGenerator
-        var range0tot9=(10).indexGenerator
-        var testje=[3,4,5].aplReduce(scalar.minus)
+        var range0tot9 = (10).indexGenerator
+        var testje = [3, 4, 5].aplReduce(scalar.minus)
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
         var t0: number
@@ -49,6 +49,7 @@ class Greeter {
         var apldd   //:number[]
 
         var aplcc = new APL.Vector(null, 10)
+
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
         showPerformance(spanCPU, performance.now(), "sign", dd.signum)
 
@@ -76,6 +77,7 @@ class Greeter {
         performance.mark("Array.times start")
         var ee = dd.times(dd)
         performance.mark("Array.times stop")
+        var tn=(<any>10).plus(9)
         showPerformance(spanCPU, performance.now(), "negate", dd.negate)
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd))
         showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))

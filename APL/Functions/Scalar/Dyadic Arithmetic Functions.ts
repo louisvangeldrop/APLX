@@ -1,28 +1,89 @@
 ﻿namespace Dyadic {
 
+    export var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
+        // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
+            
+        //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+        let counter: number,
+            max: number,
+            results
+        if (typeof primitive === 'undefined') {  // omega is nu de primitive functie
+            primitive = omega
+            //if (!Array.isArray(this)) {
+            //    return primitive(this)
+            //}
+            max = this.length
+            results = new Array(max)
+            //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = primitive(this[counter])
+            }
+            return results
+        }
+        else {
+            if (Array.isArray(this)) {
+                if (Array.isArray(omega)) {
+                    //TODO max en isArray(this)
+                    max = Math.min(this.length, omega.length),
+                        results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this[counter], omega[counter])
+                    }
+                    return results
+                } else {
+                    max = this.length
+                    results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this[counter], omega.valueOf())
+                    }
+                    return results
+                }
+            } else {
+                if (Array.isArray(omega)) {
+                    //TODO max en isArray(this)
+                    max = omega.length,
+                        results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this.valueOf(), omega[counter])
+                    }
+                    return results
+                } else {
+                    return primitive(this, omega)
+                }
+            }
+        }
+    
+            
+        //}
+        //catch (error) {
+        //   // throw error
+        //}
+        //finally {
+        //}
+
+    }
+
+    Array.prototype[prefix + 'primitive'] = primitive
+    Number.prototype[prefix + 'primitive'] = primitive
+    String.prototype[prefix + 'primitive'] = primitive
+    Boolean.prototype[prefix + 'primitive'] = primitive
+
     export namespace Scalar {
 
-        export var plus = (alpha: number, omega: number) => alpha + omega; Number.prototype[prefix + 'plus'] = function (omega) { return this.valueOf() + omega }
+        export var plus = (alpha: number, omega: number) => alpha + omega
+        export var minus = (alpha: number, omega: number) => alpha - omega
+        export var times = (alpha: number, omega: number) => alpha * omega
+        export var divide = (alpha: number, omega: number) => alpha / omega
+        export var residue = (alpha: number, omega: number) => omega % alpha
+        export var minimum = (alpha: number, omega: number) => Math.min(alpha, omega)
+        export var maximum = (alpha: number, omega: number) => Math.max(alpha, omega)
+        export var power = (alpha: number, omega: number) => alpha ** omega
+        export var logarithm = (alpha: number, omega: number) => Math.log(omega) / Math.log(alpha)
+        export var binomial = (alpha: number, omega: number) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial) }
 
-        export var minus = (alpha: number, omega: number) => alpha - omega; Number.prototype[prefix + 'minus'] = function (omega) { return this.valueOf() - omega }
-
-        export var times = (alpha: number, omega: number) => alpha * omega; Number.prototype[prefix + 'times'] = function (omega) { return this.valueOf() * omega }
-
-        export var divide = (alpha: number, omega: number) => alpha / omega; Number.prototype[prefix + 'divide'] = function (omega) { return this.valueOf() / omega }
-
-        export var residue = (alpha: number, omega: number) => omega % alpha; Number.prototype[prefix + 'residue'] = function (omega) { return this.valueOf() % omega }
-
-        export var minimum = (alpha: number, omega: number) => Math.min(alpha, omega); Number.prototype[prefix + 'minimum'] = function (omega) { return Math.min(this.valueOf(), omega) }
-
-        export var maximum = (alpha: number, omega: number) => Math.max(alpha, omega); Number.prototype[prefix + 'maximun'] = function (omega) { return Math.max(this.valueOf(), + omega) }
-
-        export var power = (alpha: number, omega: number) => alpha ** omega; Number.prototype[prefix + 'power'] = function (omega) { return this.valueOf() ** omega }
-
-        export var logarithm = (alpha: number, omega: number) => Math.log(omega) / Math.log(alpha); Number.prototype[prefix + 'logarithm'] = function (omega) { return Math.log(omega) / Math.log(this.valueOf()) }
-
-        export var binomial = (alpha: number, omega: number) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial) };
-        Number.prototype[prefix + 'binomial'] = function (omega) { return this.valueOf().factorial / (omega.factorial * (this.valueOf() - omega).factorial) } // zie !.coffee voor meer details
         //TODO binomial factorial(alpha,omega)
+        //TODO rotate en deal horen niet hier
+
         export var rotate = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
             //     try {
@@ -73,121 +134,42 @@
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
 
-        export var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
-            // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
-            
-            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-            let counter: number,
-                max: number,
-                results
-            if (typeof primitive === 'undefined') {  // omega is nu de primitive
-                primitive = omega
-                max = this.length
-                results = new Array(max)
-                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter])
-                }
-                return results
-            }
-            else {
-                if (Array.isArray(omega)) {
-                    max = Math.min(this.length, omega.length),
-                        results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter], omega[counter])
-                    }
-                    return results
-                } else {
-                    max = this.length
-                    results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter], omega)
-                    }
-                    return results
-                }
-            }
-            
-            //}
-            //catch (error) {
-            //   // throw error
-            //}
-            //finally {
-            //}
-
-        }
-
-        Array.prototype[prefix + 'primitive'] = primitive
-
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
         
         export var plus = function (omega) {
             return this.primitive(omega, Scalar.plus)
         }
-
-        Array.prototype[prefix + 'plus'] = plus
-
         export var minus = function (omega) {
             return this.primitive(omega, Scalar.minus)
         }
-
-        Array.prototype[prefix + 'minus'] = minus
-
         export var times = function (omega) {
             return this.primitive(omega, Scalar.times)
         }
-
-        Array.prototype[prefix + 'times'] = times
-
         export var divide = function (omega) {
             return this.primitive(omega, Scalar.divide)
         }
-
-        Array.prototype[prefix + 'divide'] = divide
-
         export var residue = function (omega) {
             return this.primitive(omega, Scalar.residue)
         }
-
-        Array.prototype[prefix + 'residue'] = residue
-
         export var minimum = function (omega) {
             return this.primitive(omega, Scalar.minimum)
         }
-
-        Array.prototype[prefix + 'minimum'] = minimum
-
         export var maximum = function (omega) {
             return this.primitive(omega, Scalar.maximum)
         }
-
-        Array.prototype[prefix + 'maximum'] = maximum
-
         export var power = function (omega) {
             return this.primitive(omega, Scalar.power)
         }
-
-        Array.prototype[prefix + 'power'] = power
-
         export var logarithm = function (omega) {
             return this.primitive(omega, Scalar.logarithm)
         }
-
-        Array.prototype[prefix + 'logarithm'] = logarithm
-
         export var binomial = function (omega) {
             return this.primitive(omega, Scalar.binomial)
         }
-
-        Array.prototype[prefix + 'binomial'] = binomial
-
         export var rotate = function (omega) {
             return this[0].rotate(omega)
         }
-
-        Array.prototype[prefix + 'rotate'] = rotate
-
         export var aplReduce = function (omega) {
             let aplReduce = function (omega, alpha) {
                 // TODO eigen reduceRight maken en verplaatsen naar Operators
@@ -195,13 +177,34 @@
             }
             return aplReduce(omega, this)
         }
-
-        Array.prototype[prefix + 'aplReduce'] = aplReduce
-
         export var deal = function (omega): number[] {
             return this[0].deal(omega)    //, this[0].valueOf())
         }
 
+        Number.prototype[prefix + 'plus'] = Number.prototype[prefix + 'plus'] || plus
+        Number.prototype[prefix + 'minus'] = minus
+        Number.prototype[prefix + 'times'] = times
+        Number.prototype[prefix + 'divide'] = divide
+        Number.prototype[prefix + 'residue'] = residue
+        Number.prototype[prefix + 'minimum'] = minimum
+        Number.prototype[prefix + 'maximun'] = maximum
+        Number.prototype[prefix + 'power'] = power
+        Number.prototype[prefix + 'logarithm'] = logarithm
+        Number.prototype[prefix + 'binomial'] = binomial
+
+        Array.prototype[prefix + 'plus'] = plus
+        Array.prototype[prefix + 'minus'] = minus
+        Array.prototype[prefix + 'times'] = times
+        Array.prototype[prefix + 'divide'] = divide
+        Array.prototype[prefix + 'residue'] = residue
+        Array.prototype[prefix + 'minimum'] = minimum
+        Array.prototype[prefix + 'maximum'] = maximum
+        Array.prototype[prefix + 'power'] = power
+        Array.prototype[prefix + 'logarithm'] = logarithm
+        Array.prototype[prefix + 'binomial'] = binomial
+
+        Array.prototype[prefix + 'rotate'] = rotate
+        Array.prototype[prefix + 'aplReduce'] = aplReduce
         Array.prototype[prefix + 'deal'] = deal
     }
 }
