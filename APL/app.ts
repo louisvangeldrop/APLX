@@ -77,7 +77,7 @@ class Greeter {
         performance.mark("Array.times start")
         var ee = dd.times(dd)
         performance.mark("Array.times stop")
-        var tn=(<any>10).plus(9)
+        var tn = (<any>10).plus(9)
         showPerformance(spanCPU, performance.now(), "negate", dd.negate)
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd))
         showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))
