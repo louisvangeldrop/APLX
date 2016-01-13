@@ -72,7 +72,7 @@
             return indices
         }
 
-        export var indexGenerator = (alpha) => {
+        export var indexGenerator = (alpha:number):number[] => {
             var results = new Array<number>(alpha)    // sneller dan []
             for (var counter = 0; counter < alpha; counter++) {
                 results[counter] = counter
@@ -162,18 +162,8 @@
             }
         })
 
-        Object.defineProperty(Number.prototype, prefix + "indexGenerator", {
-            get: function (): number[] {
-                return indexGenerator(this.valueOf()) // In Chrome 10xsneller dan het gebruik van "this"
-            }
-        })
-
-        Object.defineProperty(Array.prototype, prefix + "indexGenerator", {
-            get: function (): number[] {
-                //
-                return this.primitive(indexGenerator)
-            }
-        })
+        addNumberProperty('indexGenerator', indexGenerator)
+        addArrayProperty('indexGenerator', indexGenerator)
 
     }
 }

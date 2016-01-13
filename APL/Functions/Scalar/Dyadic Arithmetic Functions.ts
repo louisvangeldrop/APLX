@@ -181,30 +181,31 @@
             return this[0].deal(omega)    //, this[0].valueOf())
         }
 
-        Number.prototype[prefix + 'plus'] = Number.prototype[prefix + 'plus'] || plus
-        Number.prototype[prefix + 'minus'] = minus
-        Number.prototype[prefix + 'times'] = times
-        Number.prototype[prefix + 'divide'] = divide
-        Number.prototype[prefix + 'residue'] = residue
-        Number.prototype[prefix + 'minimum'] = minimum
-        Number.prototype[prefix + 'maximun'] = maximum
-        Number.prototype[prefix + 'power'] = power
-        Number.prototype[prefix + 'logarithm'] = logarithm
-        Number.prototype[prefix + 'binomial'] = binomial
+        //    Number.prototype[prefix + 'plus'] = Number.prototype[prefix + 'plus'] || plus
+        addPrototype(Number, 'plus', plus)
+        addPrototype(Number, 'minus', minus)
+        addPrototype(Number, 'times', times)
+        addPrototype(Number, 'divide', divide)
+        addPrototype(Number, 'residue', residue)
+        addPrototype(Number, 'minimum', minimum)
+        addPrototype(Number, 'maximun', maximum)
+        addPrototype(Number, 'power', power)
+        addPrototype(Number, 'logarithm', logarithm)
+        addPrototype(Number, 'binomial', binomial)
 
-        Array.prototype[prefix + 'plus'] = plus
-        Array.prototype[prefix + 'minus'] = minus
-        Array.prototype[prefix + 'times'] = times
-        Array.prototype[prefix + 'divide'] = divide
-        Array.prototype[prefix + 'residue'] = residue
-        Array.prototype[prefix + 'minimum'] = minimum
-        Array.prototype[prefix + 'maximum'] = maximum
-        Array.prototype[prefix + 'power'] = power
-        Array.prototype[prefix + 'logarithm'] = logarithm
-        Array.prototype[prefix + 'binomial'] = binomial
+        addPrototype(Array, 'plus', plus)
+        addPrototype(Array, 'minus', minus)
+        addPrototype(Array, 'times', times)
+        addPrototype(Array, 'divide', divide)
+        addPrototype(Array, 'residue', residue)
+        addPrototype(Array, 'minimum', minimum)
+        addPrototype(Array, 'maximum', maximum)
+        addPrototype(Array, 'power', power)
+        addPrototype(Array, 'logarithm', logarithm)
+        addPrototype(Array, 'binomial', binomial)
 
-        Array.prototype[prefix + 'rotate'] = rotate
-        Array.prototype[prefix + 'aplReduce'] = aplReduce
-        Array.prototype[prefix + 'deal'] = deal
+        addPrototype(Array, 'rotate', rotate)
+        addPrototype(Array, 'aplReduce', aplReduce)
+        addPrototype(Array, 'deal', deal)
     }
 }
