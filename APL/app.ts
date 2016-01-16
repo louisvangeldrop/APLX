@@ -74,11 +74,9 @@ class Greeter {
         //var sign = dd.sign
         //   sign=dd.sign()
         //var bb=dd+dd not supported
-        performance.mark("Array.times start")
-        var ee = dd.times(dd)
-        performance.mark("Array.times stop")
         var tn = (<any>10).plus(9)
         showPerformance(spanCPU, performance.now(), "negate", dd.negate)
+        showPerformance(spanCPU, performance.now(), "times", dd.times(dd))
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd))
         showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))
         showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling)
@@ -89,7 +87,7 @@ class Greeter {
         performance.mark("Array.APLreduce stop")
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
         //       console.log(`min: ${min} som: ${som}`)
-        performance.measure("Array.times", "Array.times start", "Array.times stop")
+      
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
         // Print marks
         var perfMarks = performance.getEntriesByType("measure");   // "mark"

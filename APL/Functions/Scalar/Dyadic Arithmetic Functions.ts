@@ -67,6 +67,7 @@
     Number.prototype[prefix + 'primitive'] = primitive
     String.prototype[prefix + 'primitive'] = primitive
     Boolean.prototype[prefix + 'primitive'] = primitive
+    Date.prototype[prefix + 'primitive'] = primitive
 
     export namespace Scalar {
 
@@ -108,7 +109,7 @@
         //}
         // }
 
-        Number.prototype[prefix + 'rotate'] = rotate
+       addPrototype(Number, 'rotate', rotate)
 
         export var deal = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {
@@ -125,7 +126,7 @@
             return deal(omega, this.valueOf())              // 6xsneller dan function deal (...){}
         }
 
-        Number.prototype[prefix + 'deal'] = deal
+        addPrototype(Number, 'deal', deal)
 
     }
 
@@ -144,7 +145,7 @@
             return this.primitive(omega, Scalar.minus)
         }
         export var times = function (omega) {
-            return this.primitive(omega, Scalar.times)
+            return this.primitive(omega, Scalar.times) // return this.primitive(omega, Scalar.times)
         }
         export var divide = function (omega) {
             return this.primitive(omega, Scalar.divide)

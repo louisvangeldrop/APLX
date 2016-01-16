@@ -72,7 +72,7 @@
             return indices
         }
 
-        export var indexGenerator = (alpha:number):number[] => {
+        export var indexGenerator = (alpha: number): number[] => {
             var results = new Array<number>(alpha)    // sneller dan []
             for (var counter = 0; counter < alpha; counter++) {
                 results[counter] = counter
@@ -80,90 +80,81 @@
             return results
         }
 
-        Object.defineProperty(Array.prototype, prefix + "gradeUpJS", {
-            get: function (): number[] {
-                var compare = function (alpha, omega) {
-                    loop++
-                    if (alpha.value < omega.value) {
-                        return -1;
-                    } else if (alpha.value > omega.value) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-                //               try {
-                var length = this.length,
-                    loop = 0
-                var thisIndex = new Array(length),
-                    results = new Array(length),
-                    indices = new Array(length)
-                for (var counter = 0; counter < length; counter++) {
-                    thisIndex[counter] = { value: this[counter], index: counter }
-                }
-                results = thisIndex.sort(compare)
-                for (var counter = 0; counter < length; counter++) {
-                    indices[counter] = results[counter].index
-                }
-                console.log('Loops :' + loop)
-                return indices
-                //}
-                //catch (error) {
-                //}
-                //finally {
-                //}
-            }
-        })
+        addProperty(Array, "gradeUp", gradeUp)
+        addProperty(Array, "gradeDown", gradeDown)
 
-        Object.defineProperty(Array.prototype, prefix + "gradeUp", {             // quickSort
-            get: function () {
-                return gradeUp(this)
-            }
-        })
+        addProperty(Number, 'indexGenerator', indexGenerator)
+        addProperty(Array, 'indexGenerator', indexGenerator)
 
-        Object.defineProperty(Array.prototype, prefix + "gradeDown", {             // quickSort
-            get: function () {
-                return gradeDown(this, this.length.indexGenerator, 0, this.length - 1)
-            }
-        })
+        //Object.defineProperty(Array.prototype, prefix +'' , {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return -1;
+        //            } else if (alpha.value > omega.value) {
+        //                return 1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //               try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
 
-        Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
-            get: function (): number[] {
-                var compare = function (alpha, omega) {
-                    loop++
-                    if (alpha.value < omega.value) {
-                        return 1;
-                    } else if (alpha.value > omega.value) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                }
-                //              try {
-                var length = this.length,
-                    loop = 0
-                var thisIndex = new Array(length),
-                    results = new Array(length),
-                    indices = new Array(length)
-                for (var counter = 0; counter < length; counter++) {
-                    thisIndex[counter] = { value: this[counter], index: counter }
-                }
-                results = thisIndex.sort(compare)
-                for (var counter = 0; counter < length; counter++) {
-                    indices[counter] = results[counter].index
-                }
-                console.log('Loops :' + loop)
-                return indices
-                //}
-                //catch (error) {
-                //}
-                //finally {
-                //}
-            }
-        })
-
-        addNumberProperty('indexGenerator', indexGenerator)
-        addArrayProperty('indexGenerator', indexGenerator)
+        //    Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return 1;
+        //            } else if (alpha.value > omega.value) {
+        //                return -1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //              try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
 
     }
 }

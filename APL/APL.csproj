@@ -26,7 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Functions\Interfaces.ts" />
-    <TypeScriptCompile Include="Functions\APLProlog.ts" />
+    <TypeScriptCompile Include="APLProlog.ts" />
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Functions\Non-Scalar\Computational Functions.ts" />
