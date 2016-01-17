@@ -1,20 +1,19 @@
 ﻿namespace Dyadic {
 
     export namespace Scalar {
-        export var and = (alpha: boolean, omega: boolean) => { return (alpha && omega) }; Boolean.prototype[APLPrefix + 'and'] = function (omega) { return (this.valueOf() && omega) }
-        export var nand = (alpha: boolean, omega: boolean) => { return !(alpha && omega) }; Boolean.prototype[APLPrefix + 'nand'] = function (omega) { return (!(this.valueOf() && omega)) }
-        export var or = (alpha: boolean, omega: boolean) => { return (alpha || omega) }; Boolean.prototype[APLPrefix + 'or'] = function (omega) { return (this.valueOf() || omega) }
-        export var nor = (alpha: boolean, omega: boolean) => { return !(alpha || omega) }; Boolean.prototype[APLPrefix + 'nor'] = function (omega) { return (!(this.valueOf() || omega)) }
-        //TODO Aanpassen aan string
-        export var lt = (alpha: number, omega: number) => { return alpha < omega }; Number.prototype[APLPrefix + 'lt'] = function (omega) { return this.valueOf() < omega }
-        export var le = (alpha: number, omega: number) => { return alpha <= omega }; Number.prototype[APLPrefix + 'le'] = function (omega) { return this.valueOf() <= omega }
-        export var gt = (alpha: number, omega: number) => { return alpha > omega }; Number.prototype[APLPrefix + 'gt'] = function (omega) { return this.valueOf() > omega }
-        export var ge = (alpha: number, omega: number) => { return alpha >= omega }; Number.prototype[APLPrefix + 'ge'] = function (omega) { return this.valueOf() >= omega }
-        export var eq = (alpha: number, omega: number) => { return alpha === omega }; Number.prototype[APLPrefix + 'eq'] = function (omega) { return this.valueOf() === omega }
-        export var neq = (alpha: number , omega: number) => { return alpha !== omega }; Number.prototype[APLPrefix + 'neq'] = function (omega) { return this.valueOf() !== omega }
+        export var and = (alpha: boolean, omega: boolean) => { return (alpha && omega) }
+        export var nand = (alpha: boolean, omega: boolean) => { return !(alpha && omega) };
+        export var or = (alpha: boolean, omega: boolean) => { return (alpha || omega) };
+        export var nor = (alpha: boolean, omega: boolean) => { return !(alpha || omega) };
+
+        export var lt = (alpha: number, omega: number) => { return alpha < omega };
+        export var le = (alpha: number, omega: number) => { return alpha <= omega };
+        export var gt = (alpha: number, omega: number) => { return alpha > omega };
+        export var ge = (alpha: number, omega: number) => { return alpha >= omega };
+        export var eq = (alpha: number | string, omega: number | string) => { return alpha === omega };
+        export var neq = (alpha: number | string, omega: number | string) => { return alpha !== omega };
 
     }
-
 
     export namespace Vector {
 
@@ -29,6 +28,31 @@
         export var ge = function (omega) { return this.primitive(omega, Scalar.ge) }; Array.prototype[prefix + 'ge'] = ge
         export var eq = function (omega) { return this.primitive(omega, Scalar.eq) }; Array.prototype[prefix + 'eq'] = eq
         export var neq = function (omega) { return this.primitive(omega, Scalar.neq) }; Array.prototype[prefix + 'neq'] = neq
+
+        addPrototype(Boolean, 'and', and)
+        addPrototype(Boolean, 'nand', nand)
+        addPrototype(Boolean, 'or', or)
+        addPrototype(Boolean, 'nor', nor)
+        addPrototype(Number, 'lt', lt)
+        addPrototype(Number, 'le', le)
+        addPrototype(Number, 'gt', gt)
+        addPrototype(Number, 'ge', ge)
+        addPrototype(Number, 'eq', eq)
+        addPrototype(Number, 'neq', neq)
+
+        addPrototype(String, 'eq', eq)
+        addPrototype(String, 'neq', neq)
+
+        addPrototype(Array, 'and', and)
+        addPrototype(Array, 'nand', nand)
+        addPrototype(Array, 'or', or)
+        addPrototype(Array, 'nor', nor)
+        addPrototype(Array, 'lt', lt)
+        addPrototype(Array, 'le', le)
+        addPrototype(Array, 'gt', gt)
+        addPrototype(Array, 'ge', ge)
+        addPrototype(Array, 'eq', eq)
+        addPrototype(Array, 'neq', neq)
 
     }
 

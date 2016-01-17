@@ -9,12 +9,8 @@
             results
         if (typeof primitive === 'undefined') {  // omega is nu de primitive functie
             primitive = omega
-            //if (!Array.isArray(this)) {
-            //    return primitive(this)
-            //}
             max = this.length
             results = new Array(max)
-            //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
             for (counter = 0; counter < max; counter++) {
                 results[counter] = primitive(this[counter])
             }
@@ -48,7 +44,7 @@
                     }
                     return results
                 } else {
-                    return primitive(this, omega)
+                    return primitive(this.valueOf(), omega.valueOf())
                 }
             }
         }
@@ -87,7 +83,6 @@
 
         export var rotate = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
-            //     try {
             let counter: number,
                 max: number = omega.length,
                 results = new Array(max);
@@ -102,14 +97,8 @@
             }
             return results
         }
-        //catch (error) {
-        //    throw new Error('foutje')
-        //}
-        //finally {
-        //}
-        // }
 
-       addPrototype(Number, 'rotate', rotate)
+        addPrototype(Number, 'rotate', rotate)
 
         export var deal = function (omega: number): number[] {
             var deal = function (omega: number, alpha?: number) {

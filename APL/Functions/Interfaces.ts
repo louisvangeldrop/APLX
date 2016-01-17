@@ -53,7 +53,7 @@ interface Array<T> {
     gradeUp: T[]
     gradeUpQS: T[]
     gradeDown: T[]
-    negate: T[]
+    negative: T[]
     reciprocal: T[]
     exponential: T[]
     ln: T[]

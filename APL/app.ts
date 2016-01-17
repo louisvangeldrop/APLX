@@ -75,7 +75,7 @@ class Greeter {
         //   sign=dd.sign()
         //var bb=dd+dd not supported
         var tn = (<any>10).plus(9)
-        showPerformance(spanCPU, performance.now(), "negate", dd.negate)
+        showPerformance(spanCPU, performance.now(), "negate", dd.negative)
         showPerformance(spanCPU, performance.now(), "times", dd.times(dd))
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd))
         showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))

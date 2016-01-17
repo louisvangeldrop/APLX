@@ -2,7 +2,7 @@
 
     export namespace Scalar {             // Number
 
-        // TODO Extra scalar UNDO HACK. See Task List
+        // TODO Boolean not
 
         export var ceiling = (alpha) => { return Math.ceil(alpha) }
 
@@ -57,6 +57,8 @@
         addProperty(Number, "negative", Scalar.negative)
 
         addProperty(Number, "not", Scalar.not)
+
+        addProperty(Boolean,"not",Scalar.not)
 
         addProperty(Number, "pi", Scalar.pi)
 
