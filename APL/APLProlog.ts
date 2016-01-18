@@ -1,6 +1,6 @@
 ﻿var APLPrefix: string = ""
 
-var addPrototype = function (object, name: string, func) {
+var addPrototype = function (object, name: string, func:Function) {
     object.prototype[prefix + name] = object.prototype[prefix + name] || func
 }
 

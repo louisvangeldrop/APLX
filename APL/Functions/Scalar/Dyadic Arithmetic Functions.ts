@@ -81,41 +81,7 @@
         //TODO binomial factorial(alpha,omega)
         //TODO rotate en deal horen niet hier
 
-        export var rotate = function (omega) {
-            let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
-            let counter: number,
-                max: number = omega.length,
-                results = new Array(max);
-            if (myThis > 0) {
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis]
-                }
-            } else {
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis]
-                }
-            }
-            return results
-        }
-
-        addPrototype(Number, 'rotate', rotate)
-
-        export var deal = function (omega: number): number[] {
-            var deal = function (omega: number, alpha?: number) {
-                let results = omega.indexGenerator
-                let h: number, j: number
-                for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
-                                      
-                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
-                    h = results[i]; results[i] = results[j]; results[j] = h
-                }
-                return results.slice(0, alpha)
-            }
-            return deal(omega, this.valueOf())              // 6xsneller dan function deal (...){}
-        }
-
-        addPrototype(Number, 'deal', deal)
+       
 
     }
 
@@ -157,6 +123,8 @@
         export var binomial = function (omega) {
             return this.primitive(omega, Scalar.binomial)
         }
+
+        //TODO verplaatsen naar ????
         export var rotate = function (omega) {
             return this[0].rotate(omega)
         }
@@ -196,6 +164,6 @@
 
         addPrototype(Array, 'rotate', rotate)
         addPrototype(Array, 'aplReduce', aplReduce)
-        addPrototype(Array, 'deal', deal)
+        
     }
 }
