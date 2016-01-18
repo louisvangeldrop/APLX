@@ -80,6 +80,8 @@
             return results
         }
 
+        //TODO IndexGenerator vervangen door Range?
+
         addProperty(Number, 'indexGenerator', indexGenerator)
         addProperty(Array, 'indexGenerator', indexGenerator)
 
