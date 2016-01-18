@@ -80,35 +80,11 @@
             return results
         }
 
-        export var deal = function (omega: number | Array<number>): number[] {
-            let l: number=(Array.isArray(omega))? omega[0]:omega
-            let r: number = (Array.isArray(this)) ? this[0] : this
-            
-            let deal = function (omega: number, alpha: number) {
-                let results = omega.indexGenerator
-                let h: number, j: number
-                for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
-                                      
-                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
-                    h = results[i]; results[i] = results[j]; results[j] = h
-                }
-                return results.slice(0, alpha)
-            }
-            return deal(l.valueOf(), r.valueOf())              // 6xsneller dan function deal (...){}
-        }
-
-        //export var deal = function (omega): number[] {
-        //    return this[0].deal(omega)    //, this[0].valueOf())
-        //}
+        addProperty(Number, 'indexGenerator', indexGenerator)
+        addProperty(Array, 'indexGenerator', indexGenerator)
 
         addProperty(Array, "gradeUp", gradeUp)
         addProperty(Array, "gradeDown", gradeDown)
-
-        addProperty(Number, 'indexGenerator', indexGenerator)
-        addProperty(Array, 'indexGenerator', indexGenerator)
-        addPrototype(Number, 'deal', deal)
-        addPrototype(Array, 'deal', deal)
 
         //Object.defineProperty(Array.prototype, prefix +'' , {
         //    get: function (): number[] {
@@ -180,4 +156,33 @@
         //})
 
     }
+}
+
+namespace Dyadic {
+
+    export namespace NonScalar {
+
+        export var deal = function (omega: number | Array<number>): number[] {
+            let l: number = (Array.isArray(omega)) ? omega[0] : omega
+            let r: number = (Array.isArray(this)) ? this[0] : this
+
+            let deal = function (omega: number, alpha: number) {
+                let results = omega.indexGenerator
+                let h: number, j: number
+                for (var i = 0; i < alpha; i++) {
+                    j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
+                                      
+                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
+                    h = results[i]; results[i] = results[j]; results[j] = h
+                }
+                return results.slice(0, alpha)
+            }
+            return deal(l.valueOf(), r.valueOf())              // 6xsneller dan function deal (...){}
+        }
+
+        addPrototype(Number, 'deal', deal)
+        addPrototype(Array, 'deal', deal)
+    }
+
+
 }
