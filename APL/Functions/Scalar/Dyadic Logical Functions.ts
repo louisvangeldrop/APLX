@@ -29,30 +29,16 @@
         export var eq = function (omega) { return this.primitive(omega, Scalar.eq) }; Array.prototype[prefix + 'eq'] = eq
         export var neq = function (omega) { return this.primitive(omega, Scalar.neq) }; Array.prototype[prefix + 'neq'] = neq
 
-        addPrototype(Boolean, 'and', and)
-        addPrototype(Boolean, 'nand', nand)
-        addPrototype(Boolean, 'or', or)
-        addPrototype(Boolean, 'nor', nor)
-        addPrototype(Number, 'lt', lt)
-        addPrototype(Number, 'le', le)
-        addPrototype(Number, 'gt', gt)
-        addPrototype(Number, 'ge', ge)
-        addPrototype(Number, 'eq', eq)
-        addPrototype(Number, 'neq', neq)
-
-        addPrototype(String, 'eq', eq)
-        addPrototype(String, 'neq', neq)
-
-        addPrototype(Array, 'and', and)
-        addPrototype(Array, 'nand', nand)
-        addPrototype(Array, 'or', or)
-        addPrototype(Array, 'nor', nor)
-        addPrototype(Array, 'lt', lt)
-        addPrototype(Array, 'le', le)
-        addPrototype(Array, 'gt', gt)
-        addPrototype(Array, 'ge', ge)
-        addPrototype(Array, 'eq', eq)
-        addPrototype(Array, 'neq', neq)
+        addPrototype([Array, Boolean], 'and', and)
+        addPrototype([Array, Boolean], 'nand', nand)
+        addPrototype([Array, Boolean], 'or', or)
+        addPrototype([Array, Boolean], 'nor', nor)
+        addPrototype([Array, Number], 'lt', lt)
+        addPrototype([Array, Number], 'le', le)
+        addPrototype([Array, Number], 'gt', gt)
+        addPrototype([Array, Number], 'ge', ge)
+        addPrototype([Array, Number, String], 'eq', eq)
+        addPrototype([Array, Number, String], 'neq', neq)
 
     }
 

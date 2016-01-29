@@ -40,37 +40,35 @@
         export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
 
 
-        addProperty([Array,Number], 'ceiling', Scalar.ceiling)
+        addProperty([Array, Number], 'ceiling', Scalar.ceiling)
 
-        addProperty([Array,Number], "exponential", Scalar.exponential)
+        addProperty([Array, Number], "exponential", Scalar.exponential)
 
-        addProperty([Array,Number], "factorial", Scalar.factorial)
+        addProperty([Array, Number], "factorial", Scalar.factorial)
 
-        addProperty([Array,Number], "floor", Scalar.floor)
+        addProperty([Array, Number], "floor", Scalar.floor)
 
-        addProperty([Array,Number], "identity", Scalar.identity)
+        addProperty([Array, Number], "identity", Scalar.identity)
 
-        addProperty([Array,Number], "ln", Scalar.ln)
+        addProperty([Array, Number], "ln", Scalar.ln)
 
-        addProperty([Array,Number], "magnitude", Scalar.magnitude)
+        addProperty([Array, Number], "magnitude", Scalar.magnitude)
 
-        addProperty([Array,Number], "negative", Scalar.negative)
+        addProperty([Array, Number], "negative", Scalar.negative)
 
-        addProperty([Array,Number], "not", Scalar.not)
+        addProperty([Array, Number, Boolean], "not", Scalar.not)
 
-        addProperty([Array,Boolean], "not", Scalar.not)
+        addProperty([Array, Number], "pi", Scalar.pi)
 
-        addProperty([Array,Number], "pi", Scalar.pi)
+        addProperty([Array, Number], "reciprocal", Scalar.reciprocal)
 
-        addProperty([Array,Number], "reciprocal", Scalar.reciprocal)
+        addProperty([Array, Number], "roll", Scalar.roll)
 
-        addProperty([Array,Number], "roll", Scalar.roll)
+        addProperty([Array, Number], "round", Scalar.round)
 
-        addProperty([Array,Number], "round", Scalar.round)
+        addProperty([Array, Number], "same", Scalar.identity)
 
-        addProperty([Array,Number], "same", Scalar.identity)
-
-        addProperty([Array,Number], "signum", Scalar.signum)
+        addProperty([Array, Number], "signum", Scalar.signum)
 
     }
 

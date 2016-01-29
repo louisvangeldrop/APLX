@@ -84,8 +84,8 @@
                 
         addProperty([Number, Array], 'indexGenerator', indexGenerator)
 
-        addProperty(Array, "gradeUp", gradeUp)
-        addProperty(Array, "gradeDown", gradeDown)
+        addProperty(Array, "gradeUp", gradeUp,false)
+        addProperty(Array, "gradeDown", gradeDown,false)
 
         //Object.defineProperty(Array.prototype, prefix +'' , {
         //    get: function (): number[] {

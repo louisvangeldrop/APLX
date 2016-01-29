@@ -8,7 +8,6 @@ var addPrototype = function (object, name: string, func: Function) {
     } else {
         object.prototype[prefix + name] = object.prototype[prefix + name] || func
     }
-
 }
 
 var addProperty = function (object, name: string, func: Function, primitive: boolean = true) {
