@@ -27,7 +27,7 @@
 
         export var negative = (alpha) => -alpha
 
-        export var not = (alpha) => !alpha  
+        export var not = (alpha) => !alpha
 
         export var pi = (alpha) => Math.PI * alpha
 
@@ -41,6 +41,12 @@
 
 
         addProperty(Number, 'ceiling', Scalar.ceiling)
+
+        //Object.defineProperty(Number.prototype, prefix + name, {
+        //    get: function () {
+        //        return Scalar.ceiling(this.valueOf())
+        //    }
+        //})
 
         addProperty(Number, "exponential", Scalar.exponential)
 
@@ -58,7 +64,7 @@
 
         addProperty(Number, "not", Scalar.not)
 
-        addProperty(Boolean,"not",Scalar.not)
+        addProperty(Boolean, "not", Scalar.not)
 
         addProperty(Number, "pi", Scalar.pi)
 
@@ -76,35 +82,35 @@
 
     export namespace Vector {           // Array
 
-        addProperty(Array, 'ceiling', Scalar.ceiling)   
+        addProperty(Array, 'ceiling', Scalar.ceiling)
 
-        addProperty(Array, "exponential",Scalar.exponential)
-     
-        addProperty(Array,  "factorial",Scalar.factorial)
+        addProperty(Array, "exponential", Scalar.exponential)
 
-        addProperty(Array, "floor",Scalar.floor) 
+        addProperty(Array, "factorial", Scalar.factorial)
 
-        addProperty(Array,  "identity", Scalar.identity)
+        addProperty(Array, "floor", Scalar.floor)
 
-        addProperty(Array,  "same", Scalar.identity)
+        addProperty(Array, "identity", Scalar.identity)
 
-        addProperty(Array,  "ln", Scalar.ln)
+        addProperty(Array, "same", Scalar.identity)
 
-        addProperty(Array,  "magnitude",Scalar.magnitude )
+        addProperty(Array, "ln", Scalar.ln)
 
-        addProperty(Array,  "negative",Scalar.negative) 
+        addProperty(Array, "magnitude", Scalar.magnitude)
 
-        addProperty(Array,  "not", Scalar.not)
+        addProperty(Array, "negative", Scalar.negative)
 
-        addProperty(Array,  "pi", Scalar.pi)
+        addProperty(Array, "not", Scalar.not)
 
-        addProperty(Array,  "reciprocal", Scalar.reciprocal)
+        addProperty(Array, "pi", Scalar.pi)
 
-        addProperty(Array,  "roll", Scalar.roll)
+        addProperty(Array, "reciprocal", Scalar.reciprocal)
 
-        addProperty(Array,  "round",Scalar.round) 
+        addProperty(Array, "roll", Scalar.roll)
 
-        addProperty(Array,  "signum", Scalar.signum)
+        addProperty(Array, "round", Scalar.round)
+
+        addProperty(Array, "signum", Scalar.signum)
 
     }
 
