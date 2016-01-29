@@ -13,21 +13,27 @@
         export var eq = (alpha: number | string, omega: number | string) => { return alpha === omega };
         export var neq = (alpha: number | string, omega: number | string) => { return alpha !== omega };
 
+        export var gcd = (alpha, omega) => { while (omega) { var t = omega; omega = alpha % omega; alpha = t; }; return alpha }
+        export var lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / gcd(alpha, omega)); }
     }
 
     export namespace Vector {
 
-        export var and = function (omega) { return this.primitive(omega, Scalar.and) }; Array.prototype[prefix + 'and'] = and
-        export var nand = function (omega) { return this.primitive(omega, Scalar.nand) }; Array.prototype[prefix + 'nand'] = nand
-        export var or = function (omega) { return this.primitive(omega, Scalar.or) }; Array.prototype[prefix + 'or'] = or
-        export var nor = function (omega) { return this.primitive(omega, Scalar.nor) }; Array.prototype[prefix + 'nor'] = nor
+        export var and = function (omega) { return this.primitive(omega, Scalar.and) };
+        export var nand = function (omega) { return this.primitive(omega, Scalar.nand) };
+        export var or = function (omega) { return this.primitive(omega, Scalar.or) };
+        export var nor = function (omega) { return this.primitive(omega, Scalar.nor) };
 
-        export var lt = function (omega) { return this.primitive(omega, Scalar.lt) }; Array.prototype[prefix + 'lt'] = lt
-        export var le = function (omega) { return this.primitive(omega, Scalar.le) }; Array.prototype[prefix + 'le'] = le
-        export var gt = function (omega) { return this.primitive(omega, Scalar.gt) }; Array.prototype[prefix + 'gt'] = gt
-        export var ge = function (omega) { return this.primitive(omega, Scalar.ge) }; Array.prototype[prefix + 'ge'] = ge
-        export var eq = function (omega) { return this.primitive(omega, Scalar.eq) }; Array.prototype[prefix + 'eq'] = eq
-        export var neq = function (omega) { return this.primitive(omega, Scalar.neq) }; Array.prototype[prefix + 'neq'] = neq
+        export var lt = function (omega) { return this.primitive(omega, Scalar.lt) }
+        export var le = function (omega) { return this.primitive(omega, Scalar.le) }
+        export var gt = function (omega) { return this.primitive(omega, Scalar.gt) }
+        export var ge = function (omega) { return this.primitive(omega, Scalar.ge) }
+        export var eq = function (omega) { return this.primitive(omega, Scalar.eq) }
+        export var neq = function (omega) { return this.primitive(omega, Scalar.neq) }
+
+        export var gcd = function (omega) { return this.primitive(omega, Scalar.gcd) }
+        export var lcm = function (omega) { return this.primitive(omega, Scalar.lcm) }
+
 
         addPrototype([Array, Boolean], 'and', and)
         addPrototype([Array, Boolean], 'nand', nand)
@@ -39,6 +45,9 @@
         addPrototype([Array, Number], 'ge', ge)
         addPrototype([Array, Number, String], 'eq', eq)
         addPrototype([Array, Number, String], 'neq', neq)
+
+        addPrototype([Array, Number], 'gcd', gcd)
+        addPrototype([Array, Number], 'lcm', lcm)
 
     }
 
