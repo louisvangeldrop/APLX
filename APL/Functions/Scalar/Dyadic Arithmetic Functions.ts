@@ -124,6 +124,18 @@
             return this.primitive(omega, Scalar.binomial)
         }
 
+        //    Number.prototype[prefix + 'plus'] = Number.prototype[prefix + 'plus'] || plus
+        addPrototype([Array, Number], 'plus', plus)
+        addPrototype([Array, Number], 'minus', minus)
+        addPrototype([Array, Number], 'times', times)
+        addPrototype([Array, Number], 'divide', divide)
+        addPrototype([Array, Number], 'residue', residue)
+        addPrototype([Array, Number], 'minimum', minimum)
+        addPrototype([Array, Number], 'maximum', maximum)
+        addPrototype([Array, Number], 'power', power)
+        addPrototype([Array, Number], 'logarithm', logarithm)
+        addPrototype([Array, Number], 'binomial', binomial)
+
         //TODO verplaatsen naar ????
         export var rotate = function (omega) {
             return this[0].rotate(omega)
@@ -138,32 +150,8 @@
         export var deal = function (omega): number[] {
             return this[0].deal(omega)    //, this[0].valueOf())
         }
-
-        //    Number.prototype[prefix + 'plus'] = Number.prototype[prefix + 'plus'] || plus
-        addPrototype(Number, 'plus', plus)
-        addPrototype(Number, 'minus', minus)
-        addPrototype(Number, 'times', times)
-        addPrototype(Number, 'divide', divide)
-        addPrototype(Number, 'residue', residue)
-        addPrototype(Number, 'minimum', minimum)
-        addPrototype(Number, 'maximun', maximum)
-        addPrototype(Number, 'power', power)
-        addPrototype(Number, 'logarithm', logarithm)
-        addPrototype(Number, 'binomial', binomial)
-
-        addPrototype(Array, 'plus', plus)
-        addPrototype(Array, 'minus', minus)
-        addPrototype(Array, 'times', times)
-        addPrototype(Array, 'divide', divide)
-        addPrototype(Array, 'residue', residue)
-        addPrototype(Array, 'minimum', minimum)
-        addPrototype(Array, 'maximum', maximum)
-        addPrototype(Array, 'power', power)
-        addPrototype(Array, 'logarithm', logarithm)
-        addPrototype(Array, 'binomial', binomial)
-
         addPrototype(Array, 'rotate', rotate)
         addPrototype(Array, 'aplReduce', aplReduce)
-        
+
     }
 }

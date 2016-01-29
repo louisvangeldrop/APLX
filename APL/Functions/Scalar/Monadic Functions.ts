@@ -40,77 +40,37 @@
         export var signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0
 
 
-        addProperty(Number, 'ceiling', Scalar.ceiling)
+        addProperty([Array,Number], 'ceiling', Scalar.ceiling)
 
-        //Object.defineProperty(Number.prototype, prefix + name, {
-        //    get: function () {
-        //        return Scalar.ceiling(this.valueOf())
-        //    }
-        //})
+        addProperty([Array,Number], "exponential", Scalar.exponential)
 
-        addProperty(Number, "exponential", Scalar.exponential)
+        addProperty([Array,Number], "factorial", Scalar.factorial)
 
-        addProperty(Number, "factorial", Scalar.factorial)
+        addProperty([Array,Number], "floor", Scalar.floor)
 
-        addProperty(Number, "floor", Scalar.floor)
+        addProperty([Array,Number], "identity", Scalar.identity)
 
-        addProperty(Number, "identity", Scalar.identity)
+        addProperty([Array,Number], "ln", Scalar.ln)
 
-        addProperty(Number, "ln", Scalar.ln)
+        addProperty([Array,Number], "magnitude", Scalar.magnitude)
 
-        addProperty(Number, "magnitude", Scalar.magnitude)
+        addProperty([Array,Number], "negative", Scalar.negative)
 
-        addProperty(Number, "negative", Scalar.negative)
+        addProperty([Array,Number], "not", Scalar.not)
 
-        addProperty(Number, "not", Scalar.not)
+        addProperty([Array,Boolean], "not", Scalar.not)
 
-        addProperty(Boolean, "not", Scalar.not)
+        addProperty([Array,Number], "pi", Scalar.pi)
 
-        addProperty(Number, "pi", Scalar.pi)
+        addProperty([Array,Number], "reciprocal", Scalar.reciprocal)
 
-        addProperty(Number, "reciprocal", Scalar.reciprocal)
+        addProperty([Array,Number], "roll", Scalar.roll)
 
-        addProperty(Number, "roll", Scalar.roll)
+        addProperty([Array,Number], "round", Scalar.round)
 
-        addProperty(Number, "round", Scalar.round)
+        addProperty([Array,Number], "same", Scalar.identity)
 
-        addProperty(Number, "same", Scalar.identity)
-
-        addProperty(Number, "signum", Scalar.signum)
-
-    }
-
-    export namespace Vector {           // Array
-
-        addProperty(Array, 'ceiling', Scalar.ceiling)
-
-        addProperty(Array, "exponential", Scalar.exponential)
-
-        addProperty(Array, "factorial", Scalar.factorial)
-
-        addProperty(Array, "floor", Scalar.floor)
-
-        addProperty(Array, "identity", Scalar.identity)
-
-        addProperty(Array, "same", Scalar.identity)
-
-        addProperty(Array, "ln", Scalar.ln)
-
-        addProperty(Array, "magnitude", Scalar.magnitude)
-
-        addProperty(Array, "negative", Scalar.negative)
-
-        addProperty(Array, "not", Scalar.not)
-
-        addProperty(Array, "pi", Scalar.pi)
-
-        addProperty(Array, "reciprocal", Scalar.reciprocal)
-
-        addProperty(Array, "roll", Scalar.roll)
-
-        addProperty(Array, "round", Scalar.round)
-
-        addProperty(Array, "signum", Scalar.signum)
+        addProperty([Array,Number], "signum", Scalar.signum)
 
     }
 

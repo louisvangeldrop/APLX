@@ -81,9 +81,7 @@
         }
 
         //TODO IndexGenerator vervangen door Range?
-
-        //addProperty(Number, 'indexGenerator', indexGenerator)
-        //addProperty(Array, 'indexGenerator', indexGenerator)
+                
         addProperty([Number, Array], 'indexGenerator', indexGenerator)
 
         addProperty(Array, "gradeUp", gradeUp)
@@ -183,8 +181,8 @@ namespace Dyadic {
             return deal(l.valueOf(), r.valueOf())              // 6xsneller dan function deal (...){}
         }
 
-        addPrototype(Number, 'deal', deal)
-        addPrototype(Array, 'deal', deal)
+        addPrototype([Array, Number], 'deal', deal)
+
     }
 
 
