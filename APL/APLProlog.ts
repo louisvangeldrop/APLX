@@ -1,4 +1,4 @@
-﻿var APLPrefix: string = ""              //"APLX"
+﻿var APLPrefix: string = ""
 
 var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
@@ -19,7 +19,6 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
     else {
         if (Array.isArray(this)) {
             if (Array.isArray(omega)) {
-                //TODO max en isArray(this)
                 max = Math.min(this.length, omega.length),
                     results = new Array(max);
                 for (counter = 0; counter < max; counter++) {
@@ -36,7 +35,6 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
             }
         } else {
             if (Array.isArray(omega)) {
-                //TODO max en isArray(this)
                 max = omega.length,
                     results = new Array(max);
                 for (counter = 0; counter < max; counter++) {

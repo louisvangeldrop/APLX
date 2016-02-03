@@ -1,4 +1,19 @@
-﻿namespace Dyadic {
+﻿namespace Monadic {
+
+    export namespace NonScalar {
+
+        export var reverse = (alpha) => { return alpha.reverse() }
+
+        export var shape = (alpha): number[] => { return alpha.length }
+
+        addProperty([Array, Number, String], "reversed", reverse, false)
+
+        addProperty([Array, Number, String], "shape", shape, false)
+
+    }
+}
+
+namespace Dyadic {
 
     namespace NonScalar {
 
@@ -25,5 +40,5 @@
     }
 
 
-    
+
 }

@@ -30,10 +30,9 @@
     <TypeScriptCompile Include="diversen.ts" />
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="Functions\Non-Scalar\Computational Functions.ts" />
-    <TypeScriptCompile Include="Functions\Non-Scalar\Dyadic Structural Functions.ts" />
     <TypeScriptCompile Include="Functions\Non-Scalar\Selector Functions.ts" />
     <TypeScriptCompile Include="Functions\Non-Scalar\Selection Functions.ts" />
-    <TypeScriptCompile Include="Functions\Non-Scalar\Monadic Structural Functions.ts" />
+    <TypeScriptCompile Include="Functions\Non-Scalar\Structural Functions.ts" />
     <TypeScriptCompile Include="Functions\Scalar\Dyadic Logical Functions.ts" />
     <TypeScriptCompile Include="Functions\Scalar\Dyadic Arithmetic Functions.ts" />
     <TypeScriptCompile Include="Functions\Scalar\Monadic Functions.ts" />
