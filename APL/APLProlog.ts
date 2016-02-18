@@ -70,7 +70,7 @@ var addPrototype = function (object, name: string, func: Function) {
 var addProperty = function (object, name: string, func: Function, primitive: boolean = true) {
     if (Array.isArray(object) === true) {
         for (let i of object) {
-            addProperty(i, name, func)
+            addProperty(i, name, func,primitive)
         }
     } else {
         if (object.name === 'Array') {

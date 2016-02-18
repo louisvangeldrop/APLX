@@ -6,7 +6,7 @@
 //import vector = Dyadic.Vector
 //import scalar = Dyadic.Scalar
 
-class Greeter {
+class APLXTest {
     element: HTMLElement;
     span: HTMLElement;
     spanCPU: HTMLElement;
@@ -51,7 +51,7 @@ class Greeter {
         var aplcc = new APL.Vector(null, 10)
 
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
-        showPerformance(spanCPU, performance.now(), "sign", dd.signum)
+        showPerformance(spanCPU, performance.now(), "signum", dd.signum)
 
         showPerformance(spanCPU, performance.now(), "identity", dd.same)
         //var ss = dd.slice()
@@ -118,6 +118,6 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
 
 window.onload = () => {
     var el = document.getElementById('content');
-    var greeter = new Greeter(el);
+    var greeter = new APLXTest(el);
     greeter.start();
 };

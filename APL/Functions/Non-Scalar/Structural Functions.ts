@@ -2,15 +2,27 @@
 
     export namespace NonScalar {
 
-        export var reverse = (alpha) => { return alpha.reverse() }
+        export var depth = (alpha): any=> {
+            let _depth = {}
+            if (!Array.isArray(alpha)) { return 0 }
+            else {
+                return 1 + alpha.depth.aplReduce(Dyadic.Scalar.maximum)
+            }
 
-        export var shape = (alpha): number[] => { return alpha.length }
+        }
 
-        addProperty([Array, Number, String], "reversed", reverse, false)
+        addProperty([Array, Boolean, Date, Number, String], 'depth', depth, false)
 
-        addProperty([Array, Number, String], "shape", shape, false)
+        export var ravel = (alpha) => { return (Array.isArray(alpha) ? alpha : [alpha]) }; addProperty([Array, Boolean, Date, Number, String], "ravel", ravel)
+
+        export var reverse = (alpha) => { return alpha.reverse() }; addProperty([Array, Number, String], "reversed", reverse, false)
+
+        export var shape = (alpha): number[] => { return alpha.length }; addProperty([Array, Number, String], "shape", shape, false)
+
+        export var enlist = (alpha) => { }
 
     }
+
 }
 
 namespace Dyadic {
@@ -36,9 +48,6 @@ namespace Dyadic {
 
         addPrototype(Number, 'rotate', rotate)
 
-
     }
-
-
 
 }
