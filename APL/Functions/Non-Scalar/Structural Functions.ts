@@ -2,9 +2,10 @@
 
     export namespace NonScalar {
         export var depth = (alpha): any=> {
+            let _depth = (alpha, omega) => { return alpha.maximum(omega.depth) }
             if (!Array.isArray(alpha)) { return 0 }
             else {
-                return 1 + alpha.map(depth).aplReduce(Dyadic.Scalar.maximum)
+                return 1 + alpha.reduce(_depth, 0)
             }
         }
 

@@ -38,13 +38,15 @@ class APLXTest {
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
         var range0tot9 = (10)[APLPrefix + "indexGenerator"]
-        var testje = [3, 4, 5][APLPrefix +"aplReduce"](scalar.minus)
+        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus)
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
         var t0: number
         var startPerformance = performance.now()
         var dd: number[] //= aantal.deal(aantal)
-        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix+"deal"](aantal))
+        var cc: number
+        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
+        showPerformance(spanCPU, performance.now(), 'depth', cc = aantal[APLPrefix + "depth"])
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
