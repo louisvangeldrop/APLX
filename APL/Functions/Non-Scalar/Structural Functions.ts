@@ -1,14 +1,11 @@
 ﻿namespace Monadic {
 
     export namespace NonScalar {
-
         export var depth = (alpha): any=> {
-            let _depth = {}
             if (!Array.isArray(alpha)) { return 0 }
             else {
-                return 1 + alpha.depth.aplReduce(Dyadic.Scalar.maximum)
+                return 1 + alpha.map(depth).aplReduce(Dyadic.Scalar.maximum)
             }
-
         }
 
         addProperty([Array, Boolean, Date, Number, String], 'depth', depth, false)
