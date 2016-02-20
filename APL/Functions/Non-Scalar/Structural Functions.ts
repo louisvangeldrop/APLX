@@ -3,10 +3,7 @@
     export namespace NonScalar {
         export var depth = (alpha): any=> {
             let _depth = (alpha, omega) => { return alpha.maximum(omega.depth) }
-            if (!Array.isArray(alpha)) { return 0 }
-            else {
-                return 1 + alpha.reduce(_depth, 0)
-            }
+            return Array.isArray(alpha) ? 1 + alpha.reduce(_depth, 0) : 0
         }
 
         addProperty([Array, Boolean, Date, Number, String], 'depth', depth, false)
@@ -17,7 +14,24 @@
 
         export var shape = (alpha): number[] => { return alpha.length }; addProperty([Array, Number, String], "shape", shape, false)
 
-        export var enlist = (alpha) => { }
+        export var enlist = (alpha) => {
+            let result = []
+            function enlist(x, r) { Array.isArray(x) ? x.map(function (y) { enlist(y, r) }) : r.push(x) }
+            enlist(alpha, result)
+            return result
+            let depthLength = (alpha) => {
+                let _length = (alpha, omega) => { return alpha + depthLength(omega) }
+                if (!Array.isArray(alpha)) { return 1 }
+                else {
+                    return alpha.reduce(_length, 0)
+                }
+            }
+            let _enlist = (alpha, omega) => { return alpha.concat(omega) }
+            if (!Array.isArray(alpha)) { return 0 }
+            else { return alpha.reduce(_enlist, 0) }
+        }
+
+        addProperty([Array, Number, String], "enlist", enlist, false)
 
     }
 
