@@ -5,6 +5,7 @@
 interface NumberConstructor {
     iota<T>(length?: T): number[]
     rotate<T>(array: T[])
+    reshape<T>(array: T[])
     signum(): number
     identity(): number
     negative(): number
@@ -93,7 +94,7 @@ interface Number {
 interface Number {
     rotate<T>(array: T[])
     deal(omega: number): number[]
-
+    reshape<T>(array: T[])
 }
 
 //#endregion

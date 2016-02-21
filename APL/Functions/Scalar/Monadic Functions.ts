@@ -48,7 +48,7 @@
 
         addProperty([Array, Number], "floor", Scalar.floor)
 
-        addProperty([Array, Number], "identity", Scalar.identity)
+        addProperty([Array, Boolean, Date, Number, String], "identity", Scalar.identity)
 
         addProperty([Array, Number], "ln", Scalar.ln)
 
@@ -66,7 +66,7 @@
 
         addProperty([Array, Number], "round", Scalar.round)
 
-        addProperty([Array, Number], "same", Scalar.identity)
+        addProperty([Array, Boolean, Date, Number, String], "same", Scalar.identity)
 
         addProperty([Array, Number], "signum", Scalar.signum)
 

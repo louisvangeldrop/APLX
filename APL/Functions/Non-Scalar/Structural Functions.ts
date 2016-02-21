@@ -21,7 +21,7 @@
             return result
         }; addProperty([Array, Number, String], "enlist", enlist, false)
 
-        export var ravel = (alpha) => { return (Array.isArray(alpha) ? alpha : [alpha]) }; addProperty([Array, Boolean, Date, Number, String], "ravel", ravel)
+        export var ravel = (alpha): Array<any> => { return (Array.isArray(alpha) ? alpha : [alpha]) }; addProperty([Array, Boolean, Date, Number, String], "ravel", ravel, false)
 
         export var reverse = (alpha) => { return alpha.reverse() }; addProperty([Array, Number, String], "reversed", reverse, false)
 
@@ -34,6 +34,21 @@
 namespace Dyadic {
 
     namespace NonScalar {
+
+        export var concatenate = function (omega) { return this.ravel.concat(omega.ravel) }; addPrototype([Array, Boolean, Date, Number, String], 'concatenate', concatenate)
+
+        export var reshape = function (omega) {
+            omega = omega.ravel
+            let ol: number = omega.length
+            let myThis: number = this.valueOf()
+            let results = new Array(myThis)
+
+            for (let counter = 0; counter < myThis; counter++) {
+                results[counter] = omega[counter % ol]
+            }
+            return results
+        }; addPrototype(Number, 'reshape', reshape)
+
 
         export var rotate = function (omega) {
             let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
@@ -50,9 +65,7 @@ namespace Dyadic {
                 }
             }
             return results
-        }
-
-        addPrototype(Number, 'rotate', rotate)
+        }; addPrototype(Number, 'rotate', rotate)
 
     }
 

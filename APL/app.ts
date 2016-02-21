@@ -45,11 +45,12 @@ class APLXTest {
         var startPerformance = performance.now()
         var dd: number[] //= aantal.deal(aantal)
         var cc: number
+        var rr
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
-
+        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix+"reshape"](dd)))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
