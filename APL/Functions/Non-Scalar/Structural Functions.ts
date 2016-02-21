@@ -16,8 +16,8 @@
 
         export var enlist = (alpha) => {
             let result = []
-            let _enlist = (alpha, omega) => { Array.isArray(alpha) ? alpha.map((y) => { _enlist(y, omega) }) : omega.push(alpha) }
-            _enlist(alpha, result)
+            let _enlist = (alpha) => { Array.isArray(alpha) ? alpha.map((y) => { _enlist(y) }) : result.push(alpha) }
+            _enlist(alpha)
             return result
         }; addProperty([Array, Number, String], "enlist", enlist, false)
 
