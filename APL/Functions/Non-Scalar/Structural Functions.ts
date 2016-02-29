@@ -2,7 +2,7 @@
 
     export namespace NonScalar {
 
-        export var depth = (alpha): number=> {
+        export var depth = (alpha): number => {
             let _depth = (alpha: number, omega) => Math.max(alpha, omega.depth)      //.maximum(omega.depth) 
             return Array.isArray(alpha) ? 1 + alpha.reduce(_depth, 0) : 0
         }; addProperty([Array, Boolean, Date, Number, String], 'depth', depth, false)
@@ -35,10 +35,10 @@ namespace Dyadic {
 
     namespace NonScalar {
 
-        export var concatenate = function (omega) { return this.ravel.concat(omega.ravel) }; addPrototype([Array, Boolean, Date, Number, String], 'concatenate', concatenate)
+        export var concatenate = function (omega) { return this[APLPrefix + "ravel"].concat(omega.ravel) }; addPrototype([Array, Boolean, Date, Number, String], 'concatenate', concatenate)
 
         export var reshape = function (omega) {
-            omega = omega.ravel
+            omega = omega[APLPrefix + "ravel"]
             let ol: number = omega.length
             let myThis: number = this.valueOf()
             let results = new Array(myThis)
@@ -67,6 +67,41 @@ namespace Dyadic {
             return results
         }; addPrototype(Number, 'rotate', rotate)
 
+        export var partition = function (omega) {
+            omega = omega[APLPrefix + "ravel"]
+            let ol: number = omega.length
+            let myThis: Array<Boolean | Number> = this[APLPrefix + "ravel"]
+            let results = []                 // new Array(myThis.aplReduce(Dyadic.Scalar.plus))
+            let interim = []
+            let sw = false
+
+            for (let counter = 0; counter < ol; counter++) {
+                if (myThis[counter] === true || myThis[counter] === 1) {
+                    if (sw === false) {
+                        sw = true
+                        interim = []
+                        interim.push(omega[counter])
+                    }
+                    else {
+                        interim.push(omega[counter])
+                    }
+                }
+                else {
+                    if (sw === true) {
+                        results.push([interim])
+                    }
+                    sw = false
+                }
+
+            }
+
+            if (sw === true) {
+                results.push([interim])
+            }
+            return results
+
+        }
+        addPrototype([Array, Number], 'partition', partition)
     }
 
 }
