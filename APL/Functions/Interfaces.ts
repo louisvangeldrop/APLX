@@ -1,4 +1,4 @@
-﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix
+﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix      // APLPrefix?APLPrefix:''
 
 //#region "Interfaces"
 
@@ -67,6 +67,7 @@ interface Array<T> {
     same: T[]
     enclose: any
     indexGenerator: T[]
+    range: T[]
     ravel: T[]
     transpose: T[]
 }
@@ -87,6 +88,7 @@ interface Number {
     same: number
     enclose: any
     indexGenerator: number[]
+    range: Number[]
     ravel: number[]
     format: string
 }

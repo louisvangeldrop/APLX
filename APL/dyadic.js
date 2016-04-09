@@ -1,0 +1,131 @@
+export var Dyadic;
+(function (Dyadic) {
+    var Scalar;
+    (function (Scalar) {
+        Scalar.plus = (alpha, omega) => { return alpha + omega; };
+        Scalar.minus = (alpha, omega) => { return alpha - omega; };
+        Scalar.times = (alpha, omega) => { return alpha * omega; };
+        Scalar.divide = (alpha, omega) => { return alpha / omega; };
+        Scalar.residue = (alpha, omega) => { return omega % alpha; };
+        Scalar.minimum = (alpha, omega) => { return Math.min(alpha, omega); };
+        Scalar.maximum = (alpha, omega) => { return Math.max(alpha, omega); };
+        Scalar.power = (alpha, omega) => { return Math.pow(alpha, omega); };
+        Scalar.logarithm = (alpha, omega) => { return Math.log(omega) / Math.log(alpha); };
+        Scalar.binomial = (alpha, omega) => { return omega.factorial / (alpha.factorial * (omega - alpha).factorial); }; // zie !.coffee voor meer details
+        Number.prototype.rotate = function (omega) {
+            var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
+            //     try {
+            var counter, max = omega.length, results = new Array(max);
+            if (myThis > 0) {
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis];
+                }
+            }
+            else {
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis];
+                }
+            }
+            return results;
+        };
+        //catch (error) {
+        //    throw new Error('foutje')
+        //}
+        //finally {
+        //}
+        // }
+        Number.prototype.deal = function (omega) {
+            var deal = function (omega, alpha) {
+                var results = omega.indexGenerator;
+                var h, j, alpha;
+                for (var i = 0; i < alpha; i++) {
+                    j = i + Math.floor(Math.random() * (omega - i));
+                    h = results[i];
+                    results[i] = results[j];
+                    results[j] = h;
+                }
+                return results.slice(0, alpha);
+            };
+            return deal(omega, this.valueOf()); // 6xsneller dan function deal (...){}
+        };
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    var Vector;
+    (function (Vector) {
+        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+        //                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+        Array.prototype.primitive = function (omega, primitive) {
+            //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+            var counter, // let counter,
+            max, results;
+            if (typeof primitive === 'undefined') {
+                primitive = omega;
+                max = this.length;
+                results = new Array(max);
+                //for (var cnt = 0, max = this.length, results = <any>new Array(max); cnt++;){ }
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter]);
+                }
+                return results;
+            }
+            else {
+                max = Math.min(this.length, omega.length),
+                    results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter], omega[counter]);
+                }
+                return results;
+            }
+            //}
+            //catch (error) {
+            //   // throw error
+            //}
+            //finally {
+            //}
+        };
+        // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
+        ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
+        Array.prototype.plus = function (omega) {
+            return this.primitive(omega, Scalar.plus);
+        };
+        Array.prototype.minus = function (omega) {
+            return this.primitive(omega, Scalar.minus);
+        };
+        Array.prototype.times = function (omega) {
+            return this.primitive(omega, Scalar.times);
+        };
+        Array.prototype.divide = function (omega) {
+            return this.primitive(omega, Scalar.divide);
+        };
+        Array.prototype.residue = function (omega) {
+            return this.primitive(omega, Scalar.residue);
+        };
+        Array.prototype.minimum = function (omega) {
+            return this.primitive(omega, Scalar.minimum);
+        };
+        Array.prototype.maximum = function (omega) {
+            return this.primitive(omega, Scalar.maximum);
+        };
+        Array.prototype.power = function (omega) {
+            return this.primitive(omega, Scalar.power);
+        };
+        Array.prototype.logarithm = function (omega) {
+            return this.primitive(omega, Scalar.logarithm);
+        };
+        Array.prototype.binomial = function (omega) {
+            return this.primitive(omega, Scalar.binomial);
+        };
+        Array.prototype.rotate = function (omega) {
+            return this[0].rotate(omega);
+        };
+        Array.prototype.aplReduce = function (omega) {
+            var aplReduce = function (omega, alpha) {
+                return alpha.reduceRight((l, r) => { return omega(r, l); });
+            };
+            return aplReduce(omega, this);
+        };
+        Array.prototype.deal = function (omega) {
+            return this[0].deal(omega); //, this[0].valueOf())
+        };
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
+})(Dyadic || (Dyadic = {}));
+//# sourceMappingURL=dyadic.js.map

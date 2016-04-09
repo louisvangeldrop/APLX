@@ -1,0 +1,1 @@
+//# sourceMappingURL=scalar primitive.js.map

@@ -21,6 +21,8 @@ namespace APL {               //export
     export class Vector<T> extends Array<string | number | boolean | any> {  //T>
         
         constructor(public Vector?: Array<T>, length?: number) {
+            super(Vector?Vector:length)
+
             super(typeof Vector !== 'null' ? Vector : length)
             let aa = [10].indexGenerator
             for (let i of aa) {

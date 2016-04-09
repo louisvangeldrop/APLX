@@ -7,7 +7,7 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
     let counter: number,
         max: number,
         results
-    if (typeof primitive === 'undefined') {  // omega is nu de primitive functie
+    if (typeof primitive === 'undefined') {  // omega is nu de primitive functie. if(!primitive){....}
         primitive = omega
         max = this.length
         results = new Array(max)
