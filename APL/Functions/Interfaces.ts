@@ -36,6 +36,7 @@ interface Array<T> {
     minus(omega?): T[]
     times(omega?): T[]
     divide(omega?): T[]
+    inverse(omega?):T[]
     minimum(omega?): T[]
     maximum(omega?): T[]
     residue(omega?): T[]
@@ -45,6 +46,7 @@ interface Array<T> {
     rotate(omega?): T[]
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
+    domino(omega?):T[]
 
 }
 

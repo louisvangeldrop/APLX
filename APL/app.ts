@@ -37,7 +37,7 @@ class APLXTest {
 
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
-        var range0tot9 = (10)[APLPrefix + "indexGenerator"]
+        var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1)
         var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus)
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
@@ -46,11 +46,12 @@ class APLXTest {
         var dd: number[] //= aantal.deal(aantal)
         var cc: number
         var rr
+        rr = range1tot10.domino(range1tot10)
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
-        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix+"reshape"](dd)))
+        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
@@ -93,7 +94,7 @@ class APLXTest {
         performance.mark("Array.APLreduce stop")
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
         //       console.log(`min: ${min} som: ${som}`)
-      
+
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
         // Print marks
         var perfMarks = performance.getEntriesByType("measure");   // "mark"

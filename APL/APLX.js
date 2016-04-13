@@ -3,6 +3,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
+//#endregion
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
@@ -101,118 +103,6 @@ var addProperty = function (object, name, func, primitive) {
             });
         }
     }
-};
-// https://github.com/Microsoft/TypeScript/wiki
-//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
-//import {APL} from "diversen";
-//import vector = Dyadic.Vector
-//import scalar = Dyadic.Scalar
-var APLXTest = (function () {
-    /**
-    * Creates a new HTMLElement
-    */
-    function APLXTest(element) {
-        this.element = element;
-        this.element.innerHTML += "De tijd is: ";
-        this.span = document.createElement('span');
-        this.element.appendChild(this.span);
-        this.span.innerText = new Date().toUTCString();
-        //      this.element.innerHTML += "CPU time is: ";
-        this.spanCPU = document.createElement('span');
-        this.element.appendChild(this.spanCPU);
-        this.spanCPU.innerHTML = "<br/>";
-    }
-    APLXTest.prototype.start = function () {
-        var _this = this;
-        // console.profile('Number.iota')
-        //  var aplg= apl.gradeDown
-        var vector = Dyadic.Vector;
-        var scalar = Dyadic.Scalar;
-        var parms = location.search.split('?');
-        var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
-        var spanCPU = this.spanCPU;
-        var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
-        var range0tot9 = (10)[APLPrefix + "indexGenerator"];
-        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
-        this.spanCPU.innerHTML += "\n Aantal elementen = " + aantal + " <br />";
-        //[ll,aantal]=[aantal,ll]
-        var t0;
-        var startPerformance = performance.now();
-        var dd; //= aantal.deal(aantal)
-        var cc;
-        var rr;
-        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
-        showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
-        showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
-        showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
-        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
-        //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
-        var apldd; //:number[]
-        var aplcc = new APL.Vector(null, 10);
-        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
-        showPerformance(spanCPU, performance.now(), "signum", dd.signum);
-        showPerformance(spanCPU, performance.now(), "identity", dd.same);
-        //var ss = dd.slice()
-        //ss[0] = 0
-        t0 = performance.now();
-        //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
-        try {
-            showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp);
-        }
-        catch (err) { }
-        finally { }
-        var cpuGradeUp = performance.now() - t0;
-        //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
-        //t0 = performance.now()
-        //qq = dd.sort()
-        //t0 = performance.now() - t0
-        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
-        //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
-        //var sign = dd.sign
-        //   sign=dd.sign()
-        //var bb=dd+dd not supported
-        var tn = (10).plus(9);
-        showPerformance(spanCPU, performance.now(), "negate", dd.negative);
-        showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
-        showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
-        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map(function (alpha) { return -alpha; }));
-        showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
-        showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
-        performance.mark("Array.APLreduce start");
-        var min = dd.aplReduce(scalar.minus);
-        performance.mark("Array.APLreduce stop");
-        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
-        //       console.log(`min: ${min} som: ${som}`)
-        performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
-        // Print marks
-        var perfMarks = performance.getEntriesByType("measure"); // "mark"
-        var perfEntries = performance.getEntries();
-        for (var i = 0; i < perfMarks.length; i++) {
-            this.spanCPU.innerHTML +=
-                "Name: " + perfMarks[i].name + " - " +
-                    "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
-        }
-        var totalCpu = performance.now() - startPerformance;
-        this.spanCPU.innerHTML += "\n totale CPU-tijd: " + totalCpu + "<br />";
-        this.spanCPU.innerHTML += "\n totale CPU-tijd-gradeUp: " + (totalCpu - cpuGradeUp) + "<br />";
-        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
-    };
-    APLXTest.prototype.stop = function () {
-        clearTimeout(this.timerToken);
-    };
-    return APLXTest;
-}());
-var showPerformance = function (spanCPU, performanceNow, text, expression) {
-    //   var result = expression
-    console.time("");
-    var t0 = performance.now() - performanceNow;
-    spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
-    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
-};
-window.onload = function () {
-    var el = document.getElementById('content');
-    var greeter = new APLXTest(el);
-    greeter.start();
 };
 // https://github.com/ngn/apl
 // http://ngn.github.io/apl/web/index.html
@@ -316,8 +206,145 @@ var HTMLPerformance = (function () {
     }
     return HTMLPerformance;
 }());
-var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
-//#endregion
+// https://github.com/Microsoft/TypeScript/wiki
+//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
+//import {APL} from "diversen";
+//import vector = Dyadic.Vector
+//import scalar = Dyadic.Scalar
+var APLXTest = (function () {
+    /**
+    * Creates a new HTMLElement
+    */
+    function APLXTest(element) {
+        this.element = element;
+        this.element.innerHTML += "De tijd is: ";
+        this.span = document.createElement('span');
+        this.element.appendChild(this.span);
+        this.span.innerText = new Date().toUTCString();
+        //      this.element.innerHTML += "CPU time is: ";
+        this.spanCPU = document.createElement('span');
+        this.element.appendChild(this.spanCPU);
+        this.spanCPU.innerHTML = "<br/>";
+    }
+    APLXTest.prototype.start = function () {
+        var _this = this;
+        // console.profile('Number.iota')
+        //  var aplg= apl.gradeDown
+        var vector = Dyadic.Vector;
+        var scalar = Dyadic.Scalar;
+        var parms = location.search.split('?');
+        var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
+        var spanCPU = this.spanCPU;
+        var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
+        var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1);
+        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
+        this.spanCPU.innerHTML += "\n Aantal elementen = " + aantal + " <br />";
+        //[ll,aantal]=[aantal,ll]
+        var t0;
+        var startPerformance = performance.now();
+        var dd; //= aantal.deal(aantal)
+        var cc;
+        var rr;
+        rr = range1tot10.domino(range1tot10);
+        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
+        showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
+        showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
+        showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
+        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
+        //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
+        var apldd; //:number[]
+        var aplcc = new APL.Vector(null, 10);
+        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
+        showPerformance(spanCPU, performance.now(), "signum", dd.signum);
+        showPerformance(spanCPU, performance.now(), "identity", dd.same);
+        //var ss = dd.slice()
+        //ss[0] = 0
+        t0 = performance.now();
+        //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
+        try {
+            showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp);
+        }
+        catch (err) { }
+        finally { }
+        var cpuGradeUp = performance.now() - t0;
+        //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
+        //t0 = performance.now()
+        //qq = dd.sort()
+        //t0 = performance.now() - t0
+        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
+        //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
+        //var sign = dd.sign
+        //   sign=dd.sign()
+        //var bb=dd+dd not supported
+        var tn = (10).plus(9);
+        showPerformance(spanCPU, performance.now(), "negate", dd.negative);
+        showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
+        showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
+        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map(function (alpha) { return -alpha; }));
+        showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
+        showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
+        performance.mark("Array.APLreduce start");
+        var min = dd.aplReduce(scalar.minus);
+        performance.mark("Array.APLreduce stop");
+        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
+        //       console.log(`min: ${min} som: ${som}`)
+        performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
+        // Print marks
+        var perfMarks = performance.getEntriesByType("measure"); // "mark"
+        var perfEntries = performance.getEntries();
+        for (var i = 0; i < perfMarks.length; i++) {
+            this.spanCPU.innerHTML +=
+                "Name: " + perfMarks[i].name + " - " +
+                    "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
+        }
+        var totalCpu = performance.now() - startPerformance;
+        this.spanCPU.innerHTML += "\n totale CPU-tijd: " + totalCpu + "<br />";
+        this.spanCPU.innerHTML += "\n totale CPU-tijd-gradeUp: " + (totalCpu - cpuGradeUp) + "<br />";
+        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
+    };
+    APLXTest.prototype.stop = function () {
+        clearTimeout(this.timerToken);
+    };
+    return APLXTest;
+}());
+var showPerformance = function (spanCPU, performanceNow, text, expression) {
+    //   var result = expression
+    console.time("");
+    var t0 = performance.now() - performanceNow;
+    spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+};
+window.onload = function () {
+    var el = document.getElementById('content');
+    var greeter = new APLXTest(el);
+    greeter.start();
+};
+var Monadic;
+(function (Monadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        // domino←{(⍴⍵)⍴÷+/⍵}
+        //   det←{
+        //   ⎕IO ⎕ML←0 1            ⍝ Determinant of square matrix.
+        //       ⍺←1                     ⍝ product of co- factor coefficients so far
+        //       0 = n←⊃⍴⍵:⍺               ⍝ result for 0- by - 0
+        //       i j←(⍴⍵)⊤{
+        //       ⍵⍳⌈/⍵}|,⍵     ⍝ row and column index of maximal element
+        //       k←⍳n
+        //       (⍺×⍵[i;j]×¯1 * i + j)∇ ⍵[k~i;k~j] -⍵[k~i;j]∘.×⍵[i;k~j]÷⍵[i;j]
+        //       }
+        NonScalar.inverse = function (omega) { return omega.reciprocal.divide(omega.length); };
+        addProperty([Array], 'inverse', NonScalar.inverse, false);
+    })(NonScalar || (NonScalar = {}));
+})(Monadic || (Monadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.domino = function (omega) { return this.times(omega.inverse).aplReduce(Dyadic.Scalar.plus); };
+        addPrototype([Array], 'domino', NonScalar.domino);
+    })(NonScalar || (NonScalar = {}));
+})(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
     var NonScalar;
@@ -536,6 +563,55 @@ var Dyadic;
 })(Dyadic || (Dyadic = {}));
 var Dyadic;
 (function (Dyadic) {
+    var Scalar;
+    (function (Scalar) {
+        Scalar.and = function (alpha, omega) { return (alpha && omega); };
+        Scalar.nand = function (alpha, omega) { return !(alpha && omega); };
+        Scalar.or = function (alpha, omega) { return (alpha || omega); };
+        Scalar.nor = function (alpha, omega) { return !(alpha || omega); };
+        Scalar.lt = function (alpha, omega) { return alpha < omega; };
+        Scalar.le = function (alpha, omega) { return alpha <= omega; };
+        Scalar.gt = function (alpha, omega) { return alpha > omega; };
+        Scalar.ge = function (alpha, omega) { return alpha >= omega; };
+        Scalar.eq = function (alpha, omega) { return alpha === omega; };
+        Scalar.neq = function (alpha, omega) { return alpha !== omega; };
+        Scalar.gcd = function (alpha, omega) { while (omega) {
+            var t = omega;
+            omega = alpha % omega;
+            alpha = t;
+        } ; return alpha; };
+        Scalar.lcm = function (alpha, omega) { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    var Vector;
+    (function (Vector) {
+        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
+        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
+        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
+        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
+        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
+        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
+        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
+        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
+        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
+        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
+        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
+        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
+        addPrototype([Array, Boolean], 'and', Vector.and);
+        addPrototype([Array, Boolean], 'nand', Vector.nand);
+        addPrototype([Array, Boolean], 'or', Vector.or);
+        addPrototype([Array, Boolean], 'nor', Vector.nor);
+        addPrototype([Array, Number], 'lt', Vector.lt);
+        addPrototype([Array, Number], 'le', Vector.le);
+        addPrototype([Array, Number], 'gt', Vector.gt);
+        addPrototype([Array, Number], 'ge', Vector.ge);
+        addPrototype([Array, Number, String], 'eq', Vector.eq);
+        addPrototype([Array, Number, String], 'neq', Vector.neq);
+        addPrototype([Array, Number], 'gcd', Vector.gcd);
+        addPrototype([Array, Number], 'lcm', Vector.lcm);
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
+})(Dyadic || (Dyadic = {}));
+var Dyadic;
+(function (Dyadic) {
     addPrototype([Array, Number, String, Boolean, Date], 'primitive', primitive);
     var Scalar;
     (function (Scalar) {
@@ -613,55 +689,6 @@ var Dyadic;
         };
         addPrototype(Array, 'rotate', Vector.rotate);
         addPrototype(Array, 'aplReduce', Vector.aplReduce);
-    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
-})(Dyadic || (Dyadic = {}));
-var Dyadic;
-(function (Dyadic) {
-    var Scalar;
-    (function (Scalar) {
-        Scalar.and = function (alpha, omega) { return (alpha && omega); };
-        Scalar.nand = function (alpha, omega) { return !(alpha && omega); };
-        Scalar.or = function (alpha, omega) { return (alpha || omega); };
-        Scalar.nor = function (alpha, omega) { return !(alpha || omega); };
-        Scalar.lt = function (alpha, omega) { return alpha < omega; };
-        Scalar.le = function (alpha, omega) { return alpha <= omega; };
-        Scalar.gt = function (alpha, omega) { return alpha > omega; };
-        Scalar.ge = function (alpha, omega) { return alpha >= omega; };
-        Scalar.eq = function (alpha, omega) { return alpha === omega; };
-        Scalar.neq = function (alpha, omega) { return alpha !== omega; };
-        Scalar.gcd = function (alpha, omega) { while (omega) {
-            var t = omega;
-            omega = alpha % omega;
-            alpha = t;
-        } ; return alpha; };
-        Scalar.lcm = function (alpha, omega) { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
-    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
-    var Vector;
-    (function (Vector) {
-        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
-        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
-        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
-        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
-        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
-        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
-        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
-        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
-        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
-        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
-        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
-        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
-        addPrototype([Array, Boolean], 'and', Vector.and);
-        addPrototype([Array, Boolean], 'nand', Vector.nand);
-        addPrototype([Array, Boolean], 'or', Vector.or);
-        addPrototype([Array, Boolean], 'nor', Vector.nor);
-        addPrototype([Array, Number], 'lt', Vector.lt);
-        addPrototype([Array, Number], 'le', Vector.le);
-        addPrototype([Array, Number], 'gt', Vector.gt);
-        addPrototype([Array, Number], 'ge', Vector.ge);
-        addPrototype([Array, Number, String], 'eq', Vector.eq);
-        addPrototype([Array, Number, String], 'neq', Vector.neq);
-        addPrototype([Array, Number], 'gcd', Vector.gcd);
-        addPrototype([Array, Number], 'lcm', Vector.lcm);
     })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
