@@ -46,6 +46,7 @@ class APLXTest {
         var dd: number[] //= aantal.deal(aantal)
         var cc: number
         var rr
+        var ev=eval('(10).indexGenerator')
         rr = range1tot10.domino(range1tot10)
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
