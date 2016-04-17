@@ -28,6 +28,8 @@ namespace Dyadic {
         addPrototype([Array], 'domino', domino)
 
         export var decode = function (omega: Array<number>) { return omega.times(this.power(omega.length.indexGenerator.reverse())).aplReduce(Scalar.plus) } // decode←{+/⍵×⍺*(⌽⍳⍴⍺)}
-        addPrototype([Array,Number],'decode',decode)
+        addPrototype([Array, Number], 'decode', decode)
+
+
     }
 }

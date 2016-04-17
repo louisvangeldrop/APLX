@@ -42,9 +42,15 @@ namespace Dyadic {
             let ol: number = omega.length
             let myThis: number = this.valueOf()
             let results = new Array(myThis)
-
-            for (let counter = 0; counter < myThis; counter++) {
-                results[counter] = omega[counter % ol]
+            if (ol === 1) {
+                for (let counter = 0; counter < myThis; counter++) {
+                    results[counter] = omega[0]
+                }
+            }
+            else {
+                for (let counter = 0; counter < myThis; counter++) {
+                    results[counter] = omega[counter % ol]
+                }
             }
             return results
         }; addPrototype(Number, 'reshape', reshape)
