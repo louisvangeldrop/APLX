@@ -2,7 +2,7 @@
 
 var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
-            
+
     //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
     let counter: number,
         max: number,
@@ -19,9 +19,8 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
     else {
         if (Array.isArray(this)) {
             if (Array.isArray(omega)) {
-                //TODO Length Conformance ???
                 max = Math.max(this.length, omega.length),
-                    results = new Array(max)
+                results = new Array(max)
                 var alpha = (this.length !== 1) ? this : max.reshape(this)
                 omega = (omega.length !== 1) ? omega : max.reshape(omega)
                 for (counter = 0; counter < max; counter++) {
@@ -49,8 +48,8 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
             }
         }
     }
-    
-            
+
+
     //}
     //catch (error) {
     //   // throw error
@@ -73,7 +72,7 @@ var addPrototype = function (object, name: string, func: Function) {
 var addProperty = function (object, name: string, func: Function, primitive: boolean = true) {
     if (Array.isArray(object) === true) {
         for (let i of object) {
-            addProperty(i, name, func,primitive)
+            addProperty(i, name, func, primitive)
         }
     } else {
         if (object.name === 'Array') {
