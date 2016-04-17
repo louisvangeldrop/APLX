@@ -46,7 +46,9 @@ interface Array<T> {
     rotate(omega?): T[]
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
-    domino(omega?):T[]
+    domino(omega?): T[]
+    decode(omega?): T[]
+    encode(omega?): T[]
 
 }
 

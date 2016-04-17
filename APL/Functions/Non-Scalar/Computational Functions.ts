@@ -26,5 +26,8 @@ namespace Dyadic {
 
         export var domino = function (omega: Array<number>) { return this.times(omega.inverse).aplReduce(Scalar.plus) }
         addPrototype([Array], 'domino', domino)
+
+        export var decode = function (omega: Array<number>) { return omega.times(this.power(omega.length.indexGenerator.reverse())).aplReduce(Scalar.plus) } // decode←{+/⍵×⍺*(⌽⍳⍴⍺)}
+        addPrototype([Array,Number],'decode',decode)
     }
 }
