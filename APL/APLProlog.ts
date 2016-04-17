@@ -19,10 +19,13 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
     else {
         if (Array.isArray(this)) {
             if (Array.isArray(omega)) {
-                max = Math.min(this.length, omega.length),
-                    results = new Array(max);
+                //TODO Length Conformance ???
+                max = Math.max(this.length, omega.length),
+                    results = new Array(max)
+                var alpha = (this.length !== 1) ? this : max.reshape(this)
+                omega = (omega.length !== 1) ? omega : max.reshape(omega)
                 for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter], omega[counter])
+                    results[counter] = primitive(alpha[counter], omega[counter])
                 }
                 return results
             } else {
