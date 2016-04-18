@@ -11,6 +11,8 @@ interface NumberConstructor {
     negative(): number
     reciprocal(): number
     exponential(): number
+    //maximum(): number
+    //minimum(): number
     ln(): number
     pi(): number
     factorial(): number
@@ -36,7 +38,7 @@ interface Array<T> {
     minus(omega?): T[]
     times(omega?): T[]
     divide(omega?): T[]
-    inverse(omega?):T[]
+    inverse(omega?): T[]
     minimum(omega?): T[]
     maximum(omega?): T[]
     residue(omega?): T[]
@@ -47,7 +49,7 @@ interface Array<T> {
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
     domino(omega?): T[]
-    decode(omega?): T[]
+    decode(omega?): number
     encode(omega?): T[]
 
 }
@@ -76,7 +78,7 @@ interface Array<T> {
     transpose: T[]
 }
 
-interface Number {
+interface Number {          // property
     signum: number
     identity: number
     negate: number
@@ -100,7 +102,9 @@ interface Number {
 interface Number {
     rotate<T>(array: T[])
     deal(omega: number): number[]
-    reshape<T>(array: T[])
+    reshape(omega:any)
+    maximum(omega: number): number
+    minimum(omega: number): number
 }
 
 //#endregion

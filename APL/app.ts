@@ -48,6 +48,7 @@ class APLXTest {
         var rr
         var ev=eval('(10).indexGenerator')
         rr = range1tot10.domino(range1tot10)
+        cc=[2,2,2,2].decode([1,2,3,4])
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
