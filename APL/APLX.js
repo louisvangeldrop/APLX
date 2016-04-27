@@ -3,58 +3,57 @@ var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
-    //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
-    let counter, max, results;
-    if (typeof primitive === 'undefined') {
-        primitive = omega;
-        max = this.length;
-        results = new Array(max);
-        for (counter = 0; counter < max; counter++) {
-            results[counter] = primitive(this[counter]);
-        }
-        return results;
-    }
-    else {
-        if (Array.isArray(this)) {
-            if (Array.isArray(omega)) {
-                max = Math.max(this.length, omega.length),
-                    results = new Array(max);
-                var alpha = (this.length !== 1) ? this : max.reshape(this);
-                omega = (omega.length !== 1) ? omega : max.reshape(omega);
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(alpha[counter], omega[counter]);
-                }
-                return results;
+    try {
+        let counter, max, results;
+        if (typeof primitive === 'undefined') {
+            primitive = omega;
+            max = this.length;
+            results = new Array(max);
+            for (counter = 0; counter < max; counter++) {
+                results[counter] = primitive(this[counter]);
             }
-            else {
-                max = this.length;
-                results = new Array(max);
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this[counter], omega.valueOf());
-                }
-                return results;
-            }
+            return results;
         }
         else {
-            if (Array.isArray(omega)) {
-                max = omega.length,
-                    results = new Array(max);
-                for (counter = 0; counter < max; counter++) {
-                    results[counter] = primitive(this.valueOf(), omega[counter]);
+            if (Array.isArray(this)) {
+                if (Array.isArray(omega)) {
+                    max = Math.max(this.length, omega.length),
+                        results = new Array(max);
+                    var alpha = (this.length !== 1) ? this : max.reshape(this);
+                    omega = (omega.length !== 1) ? omega : max.reshape(omega);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(alpha[counter], omega[counter]);
+                    }
+                    return results;
                 }
-                return results;
+                else {
+                    max = this.length;
+                    results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this[counter], omega.valueOf());
+                    }
+                    return results;
+                }
             }
             else {
-                return primitive(this.valueOf(), omega.valueOf());
+                if (Array.isArray(omega)) {
+                    max = omega.length,
+                        results = new Array(max);
+                    for (counter = 0; counter < max; counter++) {
+                        results[counter] = primitive(this.valueOf(), omega[counter]);
+                    }
+                    return results;
+                }
+                else {
+                    return primitive(this.valueOf(), omega.valueOf());
+                }
             }
         }
     }
-    //}
-    //catch (error) {
-    //   // throw error
-    //}
-    //finally {
-    //}
+    catch (error) {
+    }
+    finally {
+    }
 };
 var addPrototype = function (object, name, func) {
     if (Array.isArray(object) === true) {
