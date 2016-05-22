@@ -1,4 +1,4 @@
-﻿// https://github.com/Microsoft/TypeScript/wiki
+// https://github.com/Microsoft/TypeScript/wiki
 
 //import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
 //import {APL} from "diversen";
@@ -9,7 +9,7 @@
 class APLXTest {
     element: HTMLElement;
     span: HTMLElement;
-    spanCPU: HTMLElement;
+    spanCPU: HTMLSpanElement;
     timerToken: number;
     /**
     * Creates a new HTMLElement
@@ -22,7 +22,7 @@ class APLXTest {
         this.span.innerText = new Date().toUTCString();
 
         //      this.element.innerHTML += "CPU time is: ";
-        this.spanCPU = document.createElement('span');
+        this.spanCPU = document.createElement('span') as HTMLSpanElement;
         this.element.appendChild(this.spanCPU);
         this.spanCPU.innerHTML = "<br/>"
     }
