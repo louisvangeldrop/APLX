@@ -17,7 +17,7 @@ class APLXTest {
     constructor(element: HTMLElement) {
         this.element = element;
         this.element.innerHTML += "De tijd is: ";
-        this.span = document.createElement('span');
+        this.span = document.createElement('span') as HTMLSpanElement;
         this.element.appendChild(this.span);
         this.span.innerText = new Date().toUTCString();
 
