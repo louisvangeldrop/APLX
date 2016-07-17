@@ -81,11 +81,11 @@
         }
 
         //TODO IndexGenerator vervangen door Range?
-                
+
         addProperty([Number, Array], 'indexGenerator', indexGenerator)
 
-        addProperty(Array, "gradeUp", gradeUp,false)
-        addProperty(Array, "gradeDown", gradeDown,false)
+        addProperty(Array, "gradeUp", gradeUp, false)
+        addProperty(Array, "gradeDown", gradeDown, false)
 
         //Object.defineProperty(Array.prototype, prefix +'' , {
         //    get: function (): number[] {
@@ -168,11 +168,11 @@ namespace Dyadic {
             let r: number = (Array.isArray(this)) ? this[0] : this
 
             let deal = function (omega: number, alpha: number) {
-                let results = omega.indexGenerator
+                let results = omega[APLPrefix + 'indexGenerator']
                 let h: number, j: number
                 for (var i = 0; i < alpha; i++) {
                     j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
-                                      
+
                     //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
                     h = results[i]; results[i] = results[j]; results[j] = h
                 }

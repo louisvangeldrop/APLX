@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outFile": "../APLX.js"
+    },
+    "exclude": [
+        "node_modules",
+        "wwwroot"
+    ]
+}
