@@ -8,8 +8,8 @@
 
 class APLXTest {
     element: HTMLElement;
-    span: HTMLElement;
-    spanCPU: HTMLElement;
+    span:HTMLSpanElement;
+    spanCPU: HTMLSpanElement;
     timerToken: number;
     /**
     * Creates a new HTMLElement
