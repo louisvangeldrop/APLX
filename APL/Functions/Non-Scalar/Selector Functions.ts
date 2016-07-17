@@ -173,7 +173,7 @@ namespace Dyadic {
                 for (var i = 0; i < alpha; i++) {
                     j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
                                       
-                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
+                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
                     h = results[i]; results[i] = results[j]; results[j] = h
                 }
                 return results.slice(0, alpha)

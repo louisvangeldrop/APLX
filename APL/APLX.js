@@ -1,15 +1,10 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
 //#endregion
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
     try {
-        var counter = void 0, max = void 0, results = void 0;
+        let counter, max, results;
         if (typeof primitive === 'undefined') {
             primitive = omega;
             max = this.length;
@@ -62,8 +57,7 @@ var primitive = function (omega, primitive) {
 };
 var addPrototype = function (object, name, func) {
     if (Array.isArray(object) === true) {
-        for (var _i = 0, object_1 = object; _i < object_1.length; _i++) {
-            var i = object_1[_i];
+        for (let i of object) {
             addPrototype(i, name, func);
         }
     }
@@ -71,11 +65,9 @@ var addPrototype = function (object, name, func) {
         object.prototype[prefix + name] = object.prototype[prefix + name] || func;
     }
 };
-var addProperty = function (object, name, func, primitive) {
-    if (primitive === void 0) { primitive = true; }
+var addProperty = function (object, name, func, primitive = true) {
     if (Array.isArray(object) === true) {
-        for (var _i = 0, object_2 = object; _i < object_2.length; _i++) {
-            var i = object_2[_i];
+        for (let i of object) {
             addProperty(i, name, func, primitive);
         }
     }
@@ -117,51 +109,40 @@ var APL;
     /**
     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
     */
-    var Vector = (function (_super) {
-        __extends(Vector, _super);
-        function Vector(Vector, length) {
-            _super.call(this, Vector ? Vector : length);
+    class Vector extends Array {
+        constructor(Vector, length) {
+            super(Vector ? Vector : length);
             this.Vector = Vector;
             //   super(typeof Vector !== 'null' ? Vector : length)
-            var aa = [10].indexGenerator;
-            for (var _i = 0, aa_1 = aa; _i < aa_1.length; _i++) {
-                var i = aa_1[_i];
+            let aa = [10].indexGenerator;
+            for (let i of aa) {
                 i;
             }
         }
-        Object.defineProperty(Vector.prototype, "louis", {
-            get: function () {
-                var bb = this.Vector.length;
-                return bb;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Vector.prototype, "rho", {
-            // property "shape"
-            /**
-             *
-             * @param {number}
-             * @return {Array} Aantal element in de vector
-             */
-            get: function () {
-                return this.Vector.length;
-            },
-            /**
-           * Zet het aantal elementen in de vector
-            * @param {number} Aantal element in de vector
-            */
-            set: function (length) {
-                //TODO: Zet de shape van het Array. 
-            },
-            enumerable: true,
-            configurable: true
-        });
-        return Vector;
-    }(Array));
+        get louis() {
+            let bb = this.Vector.length;
+            return bb;
+        }
+        // property "shape"
+        /**
+         *
+         * @param {number}
+         * @return {Array} Aantal element in de vector
+         */
+        get rho() {
+            return this.Vector.length;
+        }
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
+        set rho(length) {
+            //TODO: Zet de shape van het Array. 
+        }
+    }
     APL.Vector = Vector;
-    var APLArray = (function () {
-        function APLArray(APLArray, length) {
+    class APLArray {
+        constructor(APLArray, length) {
             this.APLArray = APLArray;
             this.length = length;
             this.APLArray = typeof APLArray === 'undefined' ? new Array() : APLArray;
@@ -170,53 +151,51 @@ var APL;
             }
             //  this._array = new Array<T>(length)
         }
-        Object.defineProperty(APLArray.prototype, "shape", {
-            // property "shape"
-            /**
-             *
-             * @param {number}
-             * @return {Array} Aantal element in de vector
-             */
-            get: function () {
-                return this.APLArray.length;
-            },
-            /**
-           * Zet het aantal elementen in de vector
-            * @param {number} Aantal element in de vector
-            */
-            set: function (length) {
-                //TODO: Zet de shape van het Array. 
-            },
-            enumerable: true,
-            configurable: true
-        });
-        APLArray.prototype.plus = function (omega) {
-            this.plus = function (omega) { var aa = this.Array.length; };
-        };
-        return APLArray;
-    }());
+        // property "shape"
+        /**
+         *
+         * @param {number}
+         * @return {Array} Aantal element in de vector
+         */
+        get shape() {
+            return this.APLArray.length;
+        }
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
+        set shape(length) {
+            //TODO: Zet de shape van het Array. 
+        }
+        plus(omega) {
+            this.plus = function (omega) {
+                var aa = this.Array.length;
+                for (let item of omega) {
+                }
+            };
+        }
+    }
     APL.APLArray = APLArray;
 })(APL || (APL = {}));
-var HTMLPerformance = (function () {
-    function HTMLPerformance(element, performanceNow, text, expression) {
+class HTMLPerformance {
+    constructor(element, performanceNow, text, expression) {
         this.element = element;
         //   var result = expression
         var t0 = performance.now() - performanceNow;
-        element.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
         //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
     }
-    return HTMLPerformance;
-}());
+}
 // https://github.com/Microsoft/TypeScript/wiki
 //import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
 //import {APL} from "diversen";
 //import vector = Dyadic.Vector
 //import scalar = Dyadic.Scalar
-var APLXTest = (function () {
+class APLXTest {
     /**
     * Creates a new HTMLElement
     */
-    function APLXTest(element) {
+    constructor(element) {
         this.element = element;
         this.element.innerHTML += "De tijd is: ";
         this.span = document.createElement('span');
@@ -227,19 +206,18 @@ var APLXTest = (function () {
         this.element.appendChild(this.spanCPU);
         this.spanCPU.innerHTML = "<br/>";
     }
-    APLXTest.prototype.start = function () {
-        var _this = this;
+    start() {
         // console.profile('Number.iota')
         //  var aplg= apl.gradeDown
-        var vector = Dyadic.Vector;
-        var scalar = Dyadic.Scalar;
+        const vector = Dyadic.Vector;
+        let scalar = Dyadic.Scalar;
         var parms = location.search.split('?');
         var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
         var spanCPU = this.spanCPU;
         var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
         var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1);
         var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
-        this.spanCPU.innerHTML += "\n Aantal elementen = " + aantal + " <br />";
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`;
         //[ll,aantal]=[aantal,ll]
         var t0;
         var startPerformance = performance.now();
@@ -283,7 +261,7 @@ var APLXTest = (function () {
         showPerformance(spanCPU, performance.now(), "negate", dd.negative);
         showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
-        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map(function (alpha) { return -alpha; }));
+        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha; }));
         showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
         showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
         performance.mark("Array.APLreduce start");
@@ -301,23 +279,22 @@ var APLXTest = (function () {
                     "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
         }
         var totalCpu = performance.now() - startPerformance;
-        this.spanCPU.innerHTML += "\n totale CPU-tijd: " + totalCpu + "<br />";
-        this.spanCPU.innerHTML += "\n totale CPU-tijd-gradeUp: " + (totalCpu - cpuGradeUp) + "<br />";
-        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
-    };
-    APLXTest.prototype.stop = function () {
+        this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`;
+        this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}<br />`;
+        this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
+    }
+    stop() {
         clearTimeout(this.timerToken);
-    };
-    return APLXTest;
-}());
+    }
+}
 var showPerformance = function (spanCPU, performanceNow, text, expression) {
     //   var result = expression
     console.time("");
     var t0 = performance.now() - performanceNow;
-    spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 };
-window.onload = function () {
+window.onload = () => {
     var el = document.getElementById('content');
     var greeter = new APLXTest(el);
     greeter.start();
@@ -336,7 +313,7 @@ var Monadic;
         //       k←⍳n
         //       (⍺×⍵[i;j]×¯1 * i + j)∇ ⍵[k~i;k~j] -⍵[k~i;j]∘.×⍵[i;k~j]÷⍵[i;j]
         //       }
-        NonScalar.inverse = function (omega) { return omega[APLPrefix + 'reciprocal'][APLPrefix + 'divide'](omega.length); };
+        NonScalar.inverse = (omega) => { return omega[APLPrefix + 'reciprocal'][APLPrefix + 'divide'](omega.length); };
         addProperty([Array], 'inverse', NonScalar.inverse, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
@@ -349,15 +326,15 @@ var Dyadic;
         };
         addPrototype([Array], 'domino', NonScalar.domino);
         NonScalar.decode = function (omega) {
-            var max = this[APLPrefix + 'ravel'].length[APLPrefix + 'maximum'](omega[APLPrefix + 'ravel'].length);
-            var alpha = max.reshape(this);
+            let max = this[APLPrefix + 'ravel'].length[APLPrefix + 'maximum'](omega[APLPrefix + 'ravel'].length);
+            let alpha = max.reshape(this);
             omega = max.reshape(omega);
-            var result = omega[max - 1];
-            var temp = alpha[max - 1];
+            let result = omega[max - 1];
+            let temp = alpha[max - 1];
             if (max === 1) {
                 return result;
             }
-            for (var i = max - 2; i > -1; i--) {
+            for (let i = max - 2; i > -1; i--) {
                 result += omega[i] * temp;
                 temp *= alpha[i];
             }
@@ -449,7 +426,7 @@ var Monadic;
             //}
             return indices;
         };
-        NonScalar.indexGenerator = function (alpha) {
+        NonScalar.indexGenerator = (alpha) => {
             var results = new Array(alpha); // sneller dan []
             for (var counter = 0; counter < alpha; counter++) {
                 results[counter] = counter;
@@ -467,14 +444,14 @@ var Dyadic;
     var NonScalar;
     (function (NonScalar) {
         NonScalar.deal = function (omega) {
-            var l = (Array.isArray(omega)) ? omega[0] : omega;
-            var r = (Array.isArray(this)) ? this[0] : this;
-            var deal = function (omega, alpha) {
-                var results = omega.indexGenerator;
-                var h, j;
+            let l = (Array.isArray(omega)) ? omega[0] : omega;
+            let r = (Array.isArray(this)) ? this[0] : this;
+            let deal = function (omega, alpha) {
+                let results = omega.indexGenerator;
+                let h, j;
                 for (var i = 0; i < alpha; i++) {
                     j = i + Math.floor(Math.random() * (omega - i)); // j = i + (omega-i).roll
-                    //   [results[j], results[i]]=[results[i], results[j]]   destructuring werkt nog niet
+                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
                     h = results[i];
                     results[i] = results[j];
                     results[j] = h;
@@ -490,30 +467,30 @@ var Monadic;
 (function (Monadic) {
     var NonScalar;
     (function (NonScalar) {
-        NonScalar.depth = function (alpha) {
-            var _depth = function (alpha, omega) { return Math.max(alpha, omega.depth); }; //.maximum(omega.depth) 
+        NonScalar.depth = (alpha) => {
+            let _depth = (alpha, omega) => Math.max(alpha, omega.depth); //.maximum(omega.depth) 
             return Array.isArray(alpha) ? 1 + alpha.reduce(_depth, 0) : 0;
         };
         addProperty([Array, Boolean, Date, Number, String], 'depth', NonScalar.depth, false);
-        NonScalar.depthLength = function (alpha) {
-            var count = 0;
-            var _length = function (alpha) { Array.isArray(alpha) ? alpha.map(function (alpha) { _length(alpha); }) : count += 1; };
+        NonScalar.depthLength = (alpha) => {
+            let count = 0;
+            let _length = alpha => { Array.isArray(alpha) ? alpha.map(alpha => { _length(alpha); }) : count += 1; };
             _length(alpha);
             return count;
         };
         addProperty([Array, Boolean, Date, Number, String], 'depthLength', NonScalar.depthLength, false);
-        NonScalar.enlist = function (alpha) {
-            var result = [];
-            var _enlist = function (alpha) { Array.isArray(alpha) ? alpha.map(function (y) { _enlist(y); }) : result.push(alpha); };
+        NonScalar.enlist = (alpha) => {
+            let result = [];
+            let _enlist = (alpha) => { Array.isArray(alpha) ? alpha.map((y) => { _enlist(y); }) : result.push(alpha); };
             _enlist(alpha);
             return result;
         };
         addProperty([Array, Number, String], "enlist", NonScalar.enlist, false);
-        NonScalar.ravel = function (alpha) { return (Array.isArray(alpha) ? alpha : [alpha]); };
+        NonScalar.ravel = (alpha) => { return (Array.isArray(alpha) ? alpha : [alpha]); };
         addProperty([Array, Boolean, Date, Number, String], "ravel", NonScalar.ravel, false);
-        NonScalar.reverse = function (alpha) { return alpha.reverse(); };
+        NonScalar.reverse = (alpha) => { return alpha.reverse(); };
         addProperty([Array, Number, String], "reversed", NonScalar.reverse, false);
-        NonScalar.shape = function (alpha) { return alpha.length; };
+        NonScalar.shape = (alpha) => { return alpha.length; };
         addProperty([Array, Number, String], "shape", NonScalar.shape, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
@@ -525,16 +502,16 @@ var Dyadic;
         addPrototype([Array, Boolean, Date, Number, String], 'concatenate', NonScalar.concatenate);
         NonScalar.reshape = function (omega) {
             omega = omega[APLPrefix + "ravel"];
-            var ol = omega.length;
-            var myThis = this.valueOf();
-            var results = new Array(myThis);
+            let ol = omega.length;
+            let myThis = this.valueOf();
+            let results = new Array(myThis);
             if (ol === 1) {
-                for (var counter = 0; counter < myThis; counter++) {
+                for (let counter = 0; counter < myThis; counter++) {
                     results[counter] = omega[0];
                 }
             }
             else {
-                for (var counter = 0; counter < myThis; counter++) {
+                for (let counter = 0; counter < myThis; counter++) {
                     results[counter] = omega[counter % ol];
                 }
             }
@@ -542,8 +519,8 @@ var Dyadic;
         };
         addPrototype(Number, 'reshape', NonScalar.reshape);
         NonScalar.rotate = function (omega) {
-            var myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
-            var counter, max = omega.length, results = new Array(max);
+            let myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
+            let counter, max = omega.length, results = new Array(max);
             if (myThis > 0) {
                 for (counter = 0; counter < max; counter++) {
                     results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis];
@@ -559,12 +536,12 @@ var Dyadic;
         addPrototype(Number, 'rotate', NonScalar.rotate);
         NonScalar.partition = function (omega) {
             omega = omega[APLPrefix + "ravel"];
-            var ol = omega.length;
-            var myThis = this[APLPrefix + "ravel"];
-            var results = []; // new Array(myThis.aplReduce(Dyadic.Scalar.plus))
-            var interim = [];
-            var sw = false;
-            for (var counter = 0; counter < ol; counter++) {
+            let ol = omega.length;
+            let myThis = this[APLPrefix + "ravel"];
+            let results = []; // new Array(myThis.aplReduce(Dyadic.Scalar.plus))
+            let interim = [];
+            let sw = false;
+            for (let counter = 0; counter < ol; counter++) {
                 if (myThis[counter] === true || myThis[counter] === 1) {
                     if (sw === false) {
                         sw = true;
@@ -594,22 +571,22 @@ var Dyadic;
 (function (Dyadic) {
     var Scalar;
     (function (Scalar) {
-        Scalar.and = function (alpha, omega) { return (alpha && omega); };
-        Scalar.nand = function (alpha, omega) { return !(alpha && omega); };
-        Scalar.or = function (alpha, omega) { return (alpha || omega); };
-        Scalar.nor = function (alpha, omega) { return !(alpha || omega); };
-        Scalar.lt = function (alpha, omega) { return alpha < omega; };
-        Scalar.le = function (alpha, omega) { return alpha <= omega; };
-        Scalar.gt = function (alpha, omega) { return alpha > omega; };
-        Scalar.ge = function (alpha, omega) { return alpha >= omega; };
-        Scalar.eq = function (alpha, omega) { return alpha === omega; };
-        Scalar.neq = function (alpha, omega) { return alpha !== omega; };
-        Scalar.gcd = function (alpha, omega) { while (omega) {
+        Scalar.and = (alpha, omega) => { return (alpha && omega); };
+        Scalar.nand = (alpha, omega) => { return !(alpha && omega); };
+        Scalar.or = (alpha, omega) => { return (alpha || omega); };
+        Scalar.nor = (alpha, omega) => { return !(alpha || omega); };
+        Scalar.lt = (alpha, omega) => { return alpha < omega; };
+        Scalar.le = (alpha, omega) => { return alpha <= omega; };
+        Scalar.gt = (alpha, omega) => { return alpha > omega; };
+        Scalar.ge = (alpha, omega) => { return alpha >= omega; };
+        Scalar.eq = (alpha, omega) => { return alpha === omega; };
+        Scalar.neq = (alpha, omega) => { return alpha !== omega; };
+        Scalar.gcd = (alpha, omega) => { while (omega) {
             var t = omega;
             omega = alpha % omega;
             alpha = t;
         } ; return alpha; };
-        Scalar.lcm = function (alpha, omega) { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
+        Scalar.lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
     })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
     var Vector;
     (function (Vector) {
@@ -644,16 +621,16 @@ var Dyadic;
     addPrototype([Array, Number, String, Boolean, Date], 'primitive', primitive);
     var Scalar;
     (function (Scalar) {
-        Scalar.plus = function (alpha, omega) { return alpha + omega; };
-        Scalar.minus = function (alpha, omega) { return alpha - omega; };
-        Scalar.times = function (alpha, omega) { return alpha * omega; };
-        Scalar.divide = function (alpha, omega) { return alpha / omega; };
-        Scalar.residue = function (alpha, omega) { return omega % alpha; };
-        Scalar.minimum = function (alpha, omega) { return Math.min(alpha, omega); };
-        Scalar.maximum = function (alpha, omega) { return Math.max(alpha, omega); };
-        Scalar.power = function (alpha, omega) { return Math.pow(alpha, omega); };
-        Scalar.logarithm = function (alpha, omega) { return Math.log(omega) / Math.log(alpha); };
-        Scalar.binomial = function (alpha, omega) { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial); };
+        Scalar.plus = (alpha, omega) => alpha + omega;
+        Scalar.minus = (alpha, omega) => alpha - omega;
+        Scalar.times = (alpha, omega) => alpha * omega;
+        Scalar.divide = (alpha, omega) => alpha / omega;
+        Scalar.residue = (alpha, omega) => omega % alpha;
+        Scalar.minimum = (alpha, omega) => Math.min(alpha, omega);
+        Scalar.maximum = (alpha, omega) => Math.max(alpha, omega);
+        Scalar.power = (alpha, omega) => Math.pow(alpha, omega);
+        Scalar.logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha);
+        Scalar.binomial = (alpha, omega) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial); };
     })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
     var Vector;
     (function (Vector) {
@@ -707,9 +684,9 @@ var Dyadic;
             return this[0].rotate(omega);
         };
         Vector.aplReduce = function (omega) {
-            var aplReduce = function (omega, alpha) {
+            let aplReduce = function (omega, alpha) {
                 // TODO eigen reduceRight maken en verplaatsen naar Operators
-                return alpha.reduceRight(function (l, r) { return omega(r, l); });
+                return alpha.reduceRight((l, r) => { return omega(r, l); });
             };
             return aplReduce(omega, this);
         };
@@ -725,8 +702,8 @@ var Monadic;
     var Scalar;
     (function (Scalar) {
         // TODO Boolean not
-        Scalar.ceiling = function (alpha) { return Math.ceil(alpha); };
-        Scalar.exponential = function (alpha) { return Math.exp(alpha); };
+        Scalar.ceiling = (alpha) => { return Math.ceil(alpha); };
+        Scalar.exponential = (alpha) => { return Math.exp(alpha); };
         Scalar.factorial = function (alpha, omega) {
             var result = 1;
             omega = (typeof omega === 'undefined') ? 1 : omega + 1;
@@ -735,17 +712,17 @@ var Monadic;
             }
             return result;
         };
-        Scalar.floor = function (alpha) { return Math.floor(alpha); };
-        Scalar.identity = function (alpha) { return alpha; };
-        Scalar.ln = function (alpha) { return Math.log(alpha); };
-        Scalar.magnitude = function (alpha) { return Math.abs(alpha); };
-        Scalar.negative = function (alpha) { return -alpha; };
-        Scalar.not = function (alpha) { return !alpha; };
-        Scalar.pi = function (alpha) { return Math.PI * alpha; };
-        Scalar.reciprocal = function (alpha) { return 1 / alpha; };
-        Scalar.roll = function (alpha) { return Math.floor(Math.random() * alpha); };
-        Scalar.round = function (alpha) { return Math.round(alpha); };
-        Scalar.signum = function (alpha) { return alpha > 0 ? 1 : alpha < 0 ? -1 : 0; };
+        Scalar.floor = (alpha) => Math.floor(alpha);
+        Scalar.identity = (alpha) => alpha;
+        Scalar.ln = (alpha) => Math.log(alpha);
+        Scalar.magnitude = (alpha) => Math.abs(alpha);
+        Scalar.negative = (alpha) => -alpha;
+        Scalar.not = (alpha) => !alpha;
+        Scalar.pi = (alpha) => Math.PI * alpha;
+        Scalar.reciprocal = (alpha) => 1 / alpha;
+        Scalar.roll = (alpha) => Math.floor(Math.random() * alpha);
+        Scalar.round = (alpha) => Math.round(alpha);
+        Scalar.signum = (alpha) => alpha > 0 ? 1 : alpha < 0 ? -1 : 0;
         addProperty([Array, Number], 'ceiling', Scalar.ceiling);
         addProperty([Array, Number], "exponential", Scalar.exponential);
         addProperty([Array, Number], "factorial", Scalar.factorial);

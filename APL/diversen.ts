@@ -85,9 +85,15 @@ namespace APL {               //export
 
         }
 
-        plus(omega) {
-            this.plus = function (omega) { var aa = this.Array.length }
+        plus(omega:Array<number>) {
+            this.plus = function (omega) {
+                var aa = this.Array.length
+                for (let item of omega) {
+                    
+                }
+            }
         }
+
     }
 
     // Array.prototype.push.apply(ar1,ar2) //concatenate
