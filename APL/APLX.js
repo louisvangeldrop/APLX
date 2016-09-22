@@ -472,6 +472,15 @@ var Monadic;
         addProperty([Array, Boolean, Date, Number, String], "same", NonScalar.identity, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.right = function (omega) {
+            return omega;
+        };
+    })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
+})(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
     var NonScalar;
