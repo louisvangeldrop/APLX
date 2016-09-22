@@ -17,6 +17,9 @@ namespace Dyadic {
 
     export namespace NonScalar {
 
+        export var right = function (omega: any) {
+            return omega
+        }
 
     }
 
