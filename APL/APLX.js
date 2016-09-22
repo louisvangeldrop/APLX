@@ -467,6 +467,15 @@ var Monadic;
 (function (Monadic) {
     var NonScalar;
     (function (NonScalar) {
+        NonScalar.identity = (alpha) => alpha;
+        addProperty([Array, Boolean, Date, Number, String], "identity", NonScalar.identity, false);
+        addProperty([Array, Boolean, Date, Number, String], "same", NonScalar.identity, false);
+    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
+})(Monadic || (Monadic = {}));
+var Monadic;
+(function (Monadic) {
+    var NonScalar;
+    (function (NonScalar) {
         NonScalar.depth = (alpha) => {
             let _depth = (alpha, omega) => Math.max(alpha, omega.depth); //.maximum(omega.depth) 
             return Array.isArray(alpha) ? 1 + alpha.reduce(_depth, 0) : 0;
@@ -713,7 +722,6 @@ var Monadic;
             return result;
         };
         Scalar.floor = (alpha) => Math.floor(alpha);
-        Scalar.identity = (alpha) => alpha;
         Scalar.ln = (alpha) => Math.log(alpha);
         Scalar.magnitude = (alpha) => Math.abs(alpha);
         Scalar.negative = (alpha) => -alpha;
@@ -727,7 +735,6 @@ var Monadic;
         addProperty([Array, Number], "exponential", Scalar.exponential);
         addProperty([Array, Number], "factorial", Scalar.factorial);
         addProperty([Array, Number], "floor", Scalar.floor);
-        addProperty([Array, Boolean, Date, Number, String], "identity", Scalar.identity);
         addProperty([Array, Number], "ln", Scalar.ln);
         addProperty([Array, Number], "magnitude", Scalar.magnitude);
         addProperty([Array, Number], "negative", Scalar.negative);
@@ -736,7 +743,6 @@ var Monadic;
         addProperty([Array, Number], "reciprocal", Scalar.reciprocal);
         addProperty([Array, Number], "roll", Scalar.roll);
         addProperty([Array, Number], "round", Scalar.round);
-        addProperty([Array, Boolean, Date, Number, String], "same", Scalar.identity);
         addProperty([Array, Number], "signum", Scalar.signum);
     })(Scalar = Monadic.Scalar || (Monadic.Scalar = {}));
 })(Monadic || (Monadic = {}));
