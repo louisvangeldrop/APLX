@@ -6,10 +6,10 @@
 //import vector = Dyadic.Vector
 //import scalar = Dyadic.Scalar
 
-class Greeter {
+class APLXTest {
     element: HTMLElement;
-    span: HTMLElement;
-    spanCPU: HTMLElement;
+    span:HTMLSpanElement;
+    spanCPU: HTMLSpanElement;
     timerToken: number;
     /**
     * Creates a new HTMLElement
@@ -17,7 +17,7 @@ class Greeter {
     constructor(element: HTMLElement) {
         this.element = element;
         this.element.innerHTML += "De tijd is: ";
-        this.span = document.createElement('span');
+        this.span = document.createElement('span') as HTMLSpanElement;
         this.element.appendChild(this.span);
         this.span.innerText = new Date().toUTCString();
 
@@ -37,21 +37,30 @@ class Greeter {
 
         var spanCPU = this.spanCPU
         var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
-        var range0tot9 = (10)[APLPrefix + "indexGenerator"]
-        var testje = [3, 4, 5][APLPrefix +"aplReduce"](scalar.minus)
+        var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1)
+        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus)
         this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`
         //[ll,aantal]=[aantal,ll]
         var t0: number
         var startPerformance = performance.now()
         var dd: number[] //= aantal.deal(aantal)
-        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix+"deal"](aantal))
+        var cc: number
+        var rr
+        var ev=eval('(10).indexGenerator')
+        rr = range1tot10.domino(range1tot10)
+        cc=[2,2,2,2].decode([1,2,3,4])
+        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
+        showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
+        showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
+        showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
+        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
         var aplcc = new APL.Vector(null, 10)
 
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
-        showPerformance(spanCPU, performance.now(), "sign", dd.signum)
+        showPerformance(spanCPU, performance.now(), "signum", dd.signum)
 
         showPerformance(spanCPU, performance.now(), "identity", dd.same)
         //var ss = dd.slice()
@@ -87,7 +96,7 @@ class Greeter {
         performance.mark("Array.APLreduce stop")
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
         //       console.log(`min: ${min} som: ${som}`)
-      
+
         performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
         // Print marks
         var perfMarks = performance.getEntriesByType("measure");   // "mark"
@@ -118,6 +127,6 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
 
 window.onload = () => {
     var el = document.getElementById('content');
-    var greeter = new Greeter(el);
+    var greeter = new APLXTest(el);
     greeter.start();
 };

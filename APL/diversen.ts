@@ -21,7 +21,9 @@ namespace APL {               //export
     export class Vector<T> extends Array<string | number | boolean | any> {  //T>
         
         constructor(public Vector?: Array<T>, length?: number) {
-            super(typeof Vector !== 'null' ? Vector : length)
+            super(Vector?Vector:length)
+
+         //   super(typeof Vector !== 'null' ? Vector : length)
             let aa = [10].indexGenerator
             for (let i of aa) {
                 i
@@ -83,9 +85,15 @@ namespace APL {               //export
 
         }
 
-        plus(omega) {
-            this.plus = function (omega) { var aa = this.Array.length }
+        plus(omega:Array<number>) {
+            this.plus = function (omega) {
+                var aa = this.Array.length
+                for (let item of omega) {
+                    
+                }
+            }
         }
+
     }
 
     // Array.prototype.push.apply(ar1,ar2) //concatenate

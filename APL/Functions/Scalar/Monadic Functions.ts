@@ -19,8 +19,6 @@
 
         export var floor = (alpha) => Math.floor(alpha)
 
-        export var identity = (alpha) => alpha
-
         export var ln = (alpha) => Math.log(alpha)
 
         export var magnitude = (alpha) => Math.abs(alpha)
@@ -48,8 +46,6 @@
 
         addProperty([Array, Number], "floor", Scalar.floor)
 
-        addProperty([Array, Number], "identity", Scalar.identity)
-
         addProperty([Array, Number], "ln", Scalar.ln)
 
         addProperty([Array, Number], "magnitude", Scalar.magnitude)
@@ -65,8 +61,6 @@
         addProperty([Array, Number], "roll", Scalar.roll)
 
         addProperty([Array, Number], "round", Scalar.round)
-
-        addProperty([Array, Number], "same", Scalar.identity)
 
         addProperty([Array, Number], "signum", Scalar.signum)
 

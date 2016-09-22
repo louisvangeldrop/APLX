@@ -1,15 +1,18 @@
-﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix
+﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix      // APLPrefix?APLPrefix:''
 
 //#region "Interfaces"
 
 interface NumberConstructor {
     iota<T>(length?: T): number[]
     rotate<T>(array: T[])
+    reshape<T>(array: T[])
     signum(): number
     identity(): number
     negative(): number
     reciprocal(): number
     exponential(): number
+    //maximum(): number
+    //minimum(): number
     ln(): number
     pi(): number
     factorial(): number
@@ -35,6 +38,7 @@ interface Array<T> {
     minus(omega?): T[]
     times(omega?): T[]
     divide(omega?): T[]
+    inverse(omega?): T[]
     minimum(omega?): T[]
     maximum(omega?): T[]
     residue(omega?): T[]
@@ -44,6 +48,9 @@ interface Array<T> {
     rotate(omega?): T[]
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
+    domino(omega?): T[]
+    decode(omega?): number
+    encode(omega?): T[]
 
 }
 
@@ -66,11 +73,12 @@ interface Array<T> {
     same: T[]
     enclose: any
     indexGenerator: T[]
+    range: T[]
     ravel: T[]
     transpose: T[]
 }
 
-interface Number {
+interface Number {          // property
     signum: number
     identity: number
     negate: number
@@ -86,6 +94,7 @@ interface Number {
     same: number
     enclose: any
     indexGenerator: number[]
+    range: Number[]
     ravel: number[]
     format: string
 }
@@ -93,7 +102,9 @@ interface Number {
 interface Number {
     rotate<T>(array: T[])
     deal(omega: number): number[]
-
+    reshape(omega:any)
+    maximum(omega: number): number
+    minimum(omega: number): number
 }
 
 //#endregion
