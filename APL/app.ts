@@ -8,7 +8,7 @@
 
 class APLXTest {
     element: HTMLElement;
-    span:HTMLSpanElement;
+    span: HTMLSpanElement;
     spanCPU: HTMLSpanElement;
     timerToken: number;
     /**
@@ -46,9 +46,10 @@ class APLXTest {
         var dd: number[] //= aantal.deal(aantal)
         var cc: number
         var rr
-        var ev=eval('(10).indexGenerator')
+        var ev = eval('(10).indexGenerator')
         rr = range1tot10.domino(range1tot10)
-        cc=[2,2,2,2].decode([1,2,3,4])
+        cc = [2, 2, 2, 2].decode([1, 2, 3, 4])
+        dd = cc.decode([2, 2, 2, 2])
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
