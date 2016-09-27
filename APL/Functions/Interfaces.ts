@@ -49,7 +49,7 @@ interface Array<T> {
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
     domino(omega?): T[]
-    decode(omega?): number
+    //decode(omega?): number
     encode(omega?): T[]
 
 }
@@ -99,12 +99,13 @@ interface Number {          // property
     format: string
 }
 
-interface Number {
+interface Number {      // prototype
     rotate<T>(array: T[])
     deal(omega: number): number[]
-    reshape(omega:any)
+    reshape(omega: any)
     maximum(omega: number): number
     minimum(omega: number): number
+    decode(omega: number | number[])
 }
 
 //#endregion

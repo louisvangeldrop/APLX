@@ -16,13 +16,15 @@
 
         export var inverse = (omega: Array<number>) => { return omega[APLPrefix + 'reciprocal'][APLPrefix + 'divide'](omega.length) }
         addProperty([Array], 'inverse', inverse, false)
+
+
     }
 
 }
 
 namespace Dyadic {
 
-    namespace NonScalar {
+    export namespace NonScalar {
 
         export var domino = function (omega: Array<number>) {
             return this[APLPrefix + 'times'](omega[APLPrefix + 'inverse'])[APLPrefix + 'aplReduce'](Scalar.plus)
@@ -47,6 +49,12 @@ namespace Dyadic {
 
         addPrototype([Array, Number], 'decode', decode)
 
+        export var encode = function (omega: number[]):number|number[]  {   // ...omega:number[]
+             return omega          
+               // (1000).encode( 24, 60, 60)
+        }
+
+        addPrototype(Number, 'encode', encode)
 
     }
 }
