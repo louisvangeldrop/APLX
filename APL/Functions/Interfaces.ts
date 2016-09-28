@@ -30,7 +30,7 @@ interface ArrayConstructor {
 
 }
 
-interface Array<T> {
+interface Array<T> {        //  prototype
     primitive(left?, right?): T[]
     deal(omega: number, alpha?: number): number[]
     iota(length?: number)
@@ -50,11 +50,11 @@ interface Array<T> {
     aplReduce(alpha?, omega?): T[]
     domino(omega?): T[]
     decode(omega?): number
-    // encode(omega?): T[]
+    left(omega?):T[]
 
 }
 
-interface Array<T> {
+interface Array<T> {        // property
     signum: T[]
     identity: T[]
     gradeUp: T[]
@@ -107,7 +107,11 @@ interface Number {      // prototype
     minimum(omega: number): number
     decode(omega: number | number[])
     encode(omega: number | number[])
+    left(omega?):number
 }
 
+interface String {
+    left(omega):string
+}
 //#endregion
 
