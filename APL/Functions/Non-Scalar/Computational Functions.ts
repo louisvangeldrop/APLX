@@ -33,8 +33,8 @@ namespace Dyadic {
 
         export var decode = function (omega: Array<number> | Number): number {
             let max: number = this[APLPrefix + 'ravel'].length[APLPrefix + 'maximum'](omega[APLPrefix + 'ravel'].length)
-            let alpha = max.reshape(this)
-            omega = max.reshape(omega)
+            let alpha = max[APLPrefix + 'reshape'](this)
+            omega = max[APLPrefix + 'reshape'](omega)
             let result = omega[max - 1]
             let temp = alpha[max - 1]
             if (max === 1) { return result }
@@ -49,9 +49,21 @@ namespace Dyadic {
 
         addPrototype([Array, Number], 'decode', decode)
 
-        export var encode = function (omega: number[]):number|number[]  {   // ...omega:number[]
-             return omega          
-               // (1000).encode( 24, 60, 60)
+        export var encode = function (omega: number | number[]): number | number[] {   // ...omega:number[]
+            if (typeof omega === 'number') { return omega === 0 ? this : this % omega }
+            let max = omega.length
+            let result = max[APLPrefix + 'reshape'](0)
+            let divider = this
+            for (let i = max - 1; i > -1; i--) {
+                if (omega[i] === 0) {
+                    result[i] = divider
+                    return result
+                }
+                result[i] = divider % omega[i]
+                divider = Math.floor(divider / omega[i])
+            }
+            return result
+            // (1000).encode( [24, 60, 60])
         }
 
         addPrototype(Number, 'encode', encode)

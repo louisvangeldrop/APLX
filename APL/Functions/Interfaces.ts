@@ -49,8 +49,8 @@ interface Array<T> {
     slash(omega?): T[]
     aplReduce(alpha?, omega?): T[]
     domino(omega?): T[]
-    //decode(omega?): number
-    encode(omega?): T[]
+    decode(omega?): number
+    // encode(omega?): T[]
 
 }
 
@@ -106,6 +106,7 @@ interface Number {      // prototype
     maximum(omega: number): number
     minimum(omega: number): number
     decode(omega: number | number[])
+    encode(omega: number | number[])
 }
 
 //#endregion
