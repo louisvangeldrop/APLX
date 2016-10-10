@@ -2,6 +2,7 @@
 // https://github.com/ngn/apl
 // http://ngn.github.io/apl/web/index.html
 // http://repl.it/languages/APL
+// http://help.dyalog.com/15.0/
 
 namespace APL {               //export
     //   declare var Array, Number
