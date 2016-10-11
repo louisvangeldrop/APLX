@@ -38,6 +38,7 @@
     <TypeScriptCompile Include="Functions\Scalar\Monadic Functions.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dyalog.chm" />
     <None Include="rapsodeapl %282%29.pubxml" />
     <None Include="rapsodeapl.pubxml" />
     <None Include="web.Debug.config">
