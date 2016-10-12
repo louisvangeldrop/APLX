@@ -4,7 +4,7 @@
 
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
-            alpha = (typeof alpha === 'number') ? [alpha] : alpha
+            alpha = Array.isArray(alpha)?alpha:[alpha]              //(typeof alpha === 'number') ? [alpha] : alpha
             indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices
             low = (typeof (low) === 'undefined') ? 0 : low
             high = (typeof (high) === 'undefined') ? alpha.length - 1 : high
@@ -39,7 +39,7 @@
 
         export var gradeDown = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
-            alpha = (typeof alpha === 'number') ? [alpha] : alpha
+            alpha = Array.isArray(alpha) ? alpha : [alpha]              //(typeof alpha === 'number') ? [alpha] : alpha
             indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices
             low = (typeof (low) === 'undefined') ? 0 : low
             high = (typeof (high) === 'undefined') ? alpha.length - 1 : high
@@ -62,8 +62,8 @@
                     if (t4 === false) { j-- }
                 }
             }
-            gradeUp(alpha, indices, low, j)
-            gradeUp(alpha, indices, i, high)
+            gradeDown(alpha, indices, low, j)
+            gradeDown(alpha, indices, i, high)
             //}
             //catch (error) {
             //}
