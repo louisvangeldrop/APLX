@@ -489,8 +489,17 @@ var Monadic;
     var NonScalar;
     (function (NonScalar) {
         NonScalar.identity = (alpha) => alpha;
+        NonScalar.discose = (alpha) => {
+            if (Array.isArray(alpha)) {
+                return alpha[0];
+            }
+            else {
+                return alpha;
+            }
+        };
         addProperty([Array, Boolean, Date, Number, String], "identity", NonScalar.identity, false);
         addProperty([Array, Boolean, Date, Number, String], "same", NonScalar.identity, false);
+        addProperty([Array, Boolean, Date, Number, String], "disclose", NonScalar.discose, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
 var Dyadic;
@@ -503,9 +512,12 @@ var Dyadic;
         NonScalar.right = function (omega) {
             return omega;
         };
+        NonScalar.pick = (omega) => {
+        };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
+    addPrototype([Array, Boolean, Date, Number, String], 'pick', NonScalar.pick);
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {

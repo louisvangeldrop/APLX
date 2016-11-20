@@ -8,6 +8,7 @@ interface NumberConstructor {
     reshape<T>(array: T[])
     signum(): number
     identity(): number
+    disclose():number
     negative(): number
     reciprocal(): number
     exponential(): number
@@ -57,6 +58,7 @@ interface Array<T> {        //  prototype
 interface Array<T> {        // property
     signum: T[]
     identity: T[]
+    disclose:T[]
     gradeUp: T[]
     gradeUpQS: T[]
     gradeDown: T[]
