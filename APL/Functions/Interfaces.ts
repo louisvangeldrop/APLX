@@ -51,7 +51,8 @@ interface Array<T> {        //  prototype
     domino(omega?): T[]
     decode(omega?): number
     left(omega?):T[]
-
+    right(omega?): T[]
+    pick(omega?): T[]
 }
 
 interface Array<T> {        // property
