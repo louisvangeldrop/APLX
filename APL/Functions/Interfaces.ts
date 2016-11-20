@@ -1,5 +1,17 @@
 ﻿var prefix: string = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix      // APLPrefix?APLPrefix:''
 
+/*
+    Conventie: Monadic => property
+               Dyadic  => prototype
+
+    Bijv. var aa = 10
+              aa.negate => ¯10
+          var bb = [10,20]
+              (1).rotate(bb)        alpha ⌽ bb
+              [1,2,3].minus([3,2,1]) => ¯2 0 2
+*/
+
+
 //#region "Interfaces"
 
 interface NumberConstructor {
@@ -110,7 +122,8 @@ interface Number {      // prototype
     minimum(omega: number): number
     decode(omega: number | number[])
     encode(omega: number | number[])
-    left(omega?):number
+    left(omega?): number
+    pick<T>(array:T[]):any
 }
 
 interface String {

@@ -23,7 +23,7 @@
 
         export var ravel = (alpha): Array<any> => { return (Array.isArray(alpha) ? alpha : [alpha]) }; addProperty([Array, Boolean, Date, Number, String], "ravel", ravel, false)
 
-        export var reverse = (alpha) => { return alpha.reverse() }; addProperty([Array, Number, String], "reversed", reverse, false)
+        export var reversed = (alpha) => { return [].concat(alpha).reverse() }; addProperty([Array, Number, String], "reversed", reversed, false)
 
         export var shape = (alpha): number[] => { return alpha.length }; addProperty([Array, Number, String], "shape", shape, false)
 

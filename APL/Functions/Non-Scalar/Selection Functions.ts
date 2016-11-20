@@ -27,7 +27,7 @@ namespace Dyadic {
             return omega
         }
 
-        export var pick = function(omega: number)  {
+        export var pick = function (omega: number) {
             if (~Array.isArray(this)) {
                 return this
             } else {
@@ -38,5 +38,5 @@ namespace Dyadic {
 
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
-    addPrototype([Array, Boolean, Date, Number, String], 'pick', NonScalar.pick)
+    addPrototype([Array, Number], 'pick', NonScalar.pick)
 }
