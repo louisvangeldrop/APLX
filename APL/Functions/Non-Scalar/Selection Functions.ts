@@ -27,8 +27,12 @@ namespace Dyadic {
             return omega
         }
 
-        export var pick = (omega: any) => {
-
+        export var pick = function(omega: number)  {
+            if (~Array.isArray(this)) {
+                return this
+            } else {
+                return this[omega]
+            }
         }
     }
 
