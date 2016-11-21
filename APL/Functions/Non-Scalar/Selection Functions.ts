@@ -27,11 +27,11 @@ namespace Dyadic {
             return omega
         }
 
-        export var pick = function (omega: number) {
-            if (~Array.isArray(this)) {
-                return this
+        export var pick = function (omega: any) {
+            if (Array.isArray(omega)) {
+                return omega[this]
             } else {
-                return this[omega]
+                return omega
             }
         }
     }

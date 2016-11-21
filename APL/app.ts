@@ -50,7 +50,7 @@ class APLXTest {
         rr = range1tot10.domino(range1tot10)
         cc = [2, 2, 2, 2].decode([1, 2, 3, 4])
         dd = cc.encode([2, 2, 2, 2])
-        
+        rr=(2).pick([1,2,3])
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
