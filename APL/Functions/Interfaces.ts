@@ -121,7 +121,8 @@ interface Number {      // prototype
     decode(omega: number | number[])
     encode(omega: number | number[])
     left(omega?): number
-    pick<T>(array:T[]):any
+    pick<T>(array: T[]): any
+    take<T>(array:T[]):any
 }
 
 interface String {

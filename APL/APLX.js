@@ -230,6 +230,7 @@ class APLXTest {
         cc = [2, 2, 2, 2].decode([1, 2, 3, 4]);
         dd = cc.encode([2, 2, 2, 2]);
         rr = (2).pick([1, 2, 3]);
+        rr = (-3).take(dd);
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
@@ -521,10 +522,30 @@ var Dyadic;
                 return omega;
             }
         };
+        NonScalar.take = function (omega) {
+            omega = Array.isArray(omega) ? omega : [omega];
+            let length = omega.length;
+            let size = Math.abs(this.valueOf());
+            let max = Math.min(length, size);
+            let results = size[APLPrefix + 'reshape'](0); // (new Array(size)).fill(0)
+            if (this.valueOf() > 0) {
+                for (let i = 0; i < max; i++) {
+                    results[i] = omega[i];
+                }
+            }
+            if (this.valueOf() < 0) {
+                let ix = size - max;
+                for (let i = 0; i < max; i++) {
+                    results[ix + i] = omega[length - max + i];
+                }
+            }
+            return results;
+        };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
     addPrototype([Array, Number], 'pick', NonScalar.pick);
+    addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take);
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
