@@ -34,9 +34,30 @@ namespace Dyadic {
                 return omega
             }
         }
+
+        export var take = function (omega: any) {
+            omega = Array.isArray(omega) ? omega : [omega]
+            let length: number = omega.length
+            let size = Math.abs(this.valueOf())
+            let max = Math.min(length, size)
+            let results = size[APLPrefix + 'reshape'](0) // (new Array(size)).fill(0)
+            if (this.valueOf() > 0) {
+                for (let i = 0; i < max; i++) {
+                    results[i] = omega[i]
+                }
+            }
+            if (this.valueOf() < 0) {
+                let ix = size - max
+                for (let i = 0; i < max; i++) {
+                    results[ix + i] = omega[length - max + i]
+                }
+            }
+            return results
+        }
     }
 
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
     addPrototype([Array, Number], 'pick', NonScalar.pick)
+    addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take)
 }
