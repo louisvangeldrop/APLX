@@ -41,10 +41,11 @@ namespace Dyadic {
             omega = omega[APLPrefix + "ravel"]
             let ol: number = omega.length
             let myThis: number = this.valueOf()
-            let results = new Array(myThis)
+            let results = new Array(Math.abs(myThis))
             if (ol === 1) {
+                const fillValue = myThis < 0 ? 0 : omega[0]
                 for (let counter = 0; counter < myThis; counter++) {
-                    results[counter] = omega[0]
+                    results[counter] = fillValue
                 }
             }
             else {

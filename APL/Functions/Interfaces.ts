@@ -66,6 +66,7 @@ interface Array<T> {        //  prototype
     left(omega?): T[]
     right(omega?): T[]
     pick(omega?): T[]
+    replicate(omega?): T[]
 }
 
 interface Array<T> {        // property
@@ -126,6 +127,7 @@ interface Number {      // prototype
     pick<T>(array: T[]): any
     take<T>(array: T[]): any
     drop<T>(array: T[]): any
+    replicate<T>(array: T[]): any
 }
 
 interface String {
