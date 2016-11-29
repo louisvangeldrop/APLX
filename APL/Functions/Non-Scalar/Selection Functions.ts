@@ -54,10 +54,31 @@ namespace Dyadic {
             }
             return results
         }
+
+        export var drop = function (omega: any): any {
+            omega = Array.isArray(omega) ? omega : [omega]
+            const length: number = omega.length
+            const resultLength: number = Math.max(0, length - Math.abs(this))
+
+            let results = new Array(resultLength)
+
+            if (this < 0) {
+                for (let i = 0; i < resultLength; i++) {
+                    results[i] = omega[i]
+                }
+            }
+            else {
+                for (let i = 0; i < resultLength; i++) {
+                    results[i] = omega[this + i]
+                }
+            }
+            return results
+        }
     }
 
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
     addPrototype([Array, Number], 'pick', NonScalar.pick)
     addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take)
+    addPrototype([Array, Boolean, Date, Number, String], 'drop', NonScalar.drop)
 }
