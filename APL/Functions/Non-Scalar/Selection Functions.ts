@@ -76,16 +76,28 @@ namespace Dyadic {
         }
 
         export var replicate = function (omega: any) {
-            const myThis: Array<number> = this[APLPrefix + 'ravel']
+            const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
             const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Scalar.plus)
             let results = new Array(length)
-            const rsh = APLPrefix + 'reshape'
+            //const reshape = APLPrefix + 'reshape'
             let ix = 0
             for (let i = 0; i < myThis.length; i++) {
-                const temp = myThis[i][rsh](omega[i])
-                for (let j = 0; j < temp.length; j++) {
-                    results[i + j] = temp[j]
+                //const temp = myThis[i][reshape](omega[i])
+                let size = 0
+                if (typeof myThis[i] === 'boolean') {
+                    size = myThis[i] === true ? 1 : 0
+
+                } else {
+                    size = Math.abs(<number>myThis[i])
                 }
+
+                for (let j = 0; j < size; j++) {
+                    results[ix] = myThis[i] > 0 ? omega[i] : 0
+                    ix++
+                }
+                //for (let j = 0; j < temp.length; j++) {
+                //    results[i + j] = temp[j]
+                //}
             }
             return results
         }

@@ -231,7 +231,8 @@ class APLXTest {
         dd = cc.encode([2, 2, 2, 2]);
         rr = (2).pick([1, 2, 3]);
         rr = (-3).take(dd);
-        rr = ([1, 2]).replicate([3, 4]);
+        rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6]);
+        rr = [true, false, false, true].replicate([3, 4, 5, 6]);
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
@@ -563,12 +564,20 @@ var Dyadic;
             const myThis = this[APLPrefix + 'ravel'];
             const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
             let results = new Array(length);
-            const rsh = APLPrefix + 'reshape';
+            //const reshape = APLPrefix + 'reshape'
             let ix = 0;
             for (let i = 0; i < myThis.length; i++) {
-                const temp = myThis[i][rsh](omega[i]);
-                for (let j = 0; j < temp.length; j++) {
-                    results[i + j] = temp[j];
+                //const temp = myThis[i][reshape](omega[i])
+                let size = 0;
+                if (typeof myThis[i] === 'boolean') {
+                    size = myThis[i] === true ? 1 : 0;
+                }
+                else {
+                    size = Math.abs(myThis[i]);
+                }
+                for (let j = 0; j < size; j++) {
+                    results[ix] = myThis[i] > 0 ? omega[i] : 0;
+                    ix++;
                 }
             }
             return results;
