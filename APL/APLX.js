@@ -541,11 +541,29 @@ var Dyadic;
             }
             return results;
         };
+        NonScalar.drop = function (omega) {
+            omega = Array.isArray(omega) ? omega : [omega];
+            const length = omega.length;
+            const resultLength = Math.max(0, length - Math.abs(this));
+            let results = new Array(resultLength);
+            if (this < 0) {
+                for (let i = 0; i < resultLength; i++) {
+                    results[i] = omega[i];
+                }
+            }
+            else {
+                for (let i = 0; i < resultLength; i++) {
+                    results[i] = omega[this + i];
+                }
+            }
+            return results;
+        };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
     addPrototype([Array, Number], 'pick', NonScalar.pick);
     addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take);
+    addPrototype([Array, Boolean, Date, Number, String], 'drop', NonScalar.drop);
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {

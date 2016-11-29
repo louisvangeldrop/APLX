@@ -20,7 +20,7 @@ interface NumberConstructor {
     reshape<T>(array: T[])
     signum(): number
     identity(): number
-    disclose():number
+    disclose(): number
     negative(): number
     reciprocal(): number
     exponential(): number
@@ -63,7 +63,7 @@ interface Array<T> {        //  prototype
     aplReduce(alpha?, omega?): T[]
     domino(omega?): T[]
     decode(omega?): number
-    left(omega?):T[]
+    left(omega?): T[]
     right(omega?): T[]
     pick(omega?): T[]
 }
@@ -71,7 +71,7 @@ interface Array<T> {        //  prototype
 interface Array<T> {        // property
     signum: T[]
     identity: T[]
-    disclose:T[]
+    disclose: T[]
     gradeUp: T[]
     gradeUpQS: T[]
     gradeDown: T[]
@@ -124,11 +124,12 @@ interface Number {      // prototype
     encode(omega: number | number[])
     left(omega?): number
     pick<T>(array: T[]): any
-    take<T>(array:T[]):any
+    take<T>(array: T[]): any
+    drop<T>(array: T[]): any
 }
 
 interface String {
-    left(omega):string
+    left(omega): string
 }
 //#endregion
 
