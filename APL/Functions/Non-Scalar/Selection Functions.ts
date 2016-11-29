@@ -74,11 +74,27 @@ namespace Dyadic {
             }
             return results
         }
+
+        export var replicate = function (omega: any) {
+            const myThis: Array<number> = this[APLPrefix + 'ravel']
+            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Scalar.plus)
+            let results = new Array(length)
+            const rsh = APLPrefix + 'reshape'
+            let ix = 0
+            for (let i = 0; i < myThis.length; i++) {
+                const temp = myThis[i][rsh](omega[i])
+                for (let j = 0; j < temp.length; j++) {
+                    results[i + j] = temp[j]
+                }
+            }
+            return results
+        }
     }
 
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
     addPrototype([Array, Number], 'pick', NonScalar.pick)
-    addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take)
-    addPrototype([Array, Boolean, Date, Number, String], 'drop', NonScalar.drop)
+    addPrototype([Number], 'take', NonScalar.take)
+    addPrototype([Number], 'drop', NonScalar.drop)
+    addPrototype([Array, Number], 'replicate', NonScalar.replicate)
 }

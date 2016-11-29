@@ -231,6 +231,7 @@ class APLXTest {
         dd = cc.encode([2, 2, 2, 2]);
         rr = (2).pick([1, 2, 3]);
         rr = (-3).take(dd);
+        rr = ([1, 2]).replicate([3, 4]);
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
@@ -558,12 +559,27 @@ var Dyadic;
             }
             return results;
         };
+        NonScalar.replicate = function (omega) {
+            const myThis = this[APLPrefix + 'ravel'];
+            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
+            let results = new Array(length);
+            const rsh = APLPrefix + 'reshape';
+            let ix = 0;
+            for (let i = 0; i < myThis.length; i++) {
+                const temp = myThis[i][rsh](omega[i]);
+                for (let j = 0; j < temp.length; j++) {
+                    results[i + j] = temp[j];
+                }
+            }
+            return results;
+        };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
     addPrototype([Array, Number], 'pick', NonScalar.pick);
-    addPrototype([Array, Boolean, Date, Number, String], 'take', NonScalar.take);
-    addPrototype([Array, Boolean, Date, Number, String], 'drop', NonScalar.drop);
+    addPrototype([Number], 'take', NonScalar.take);
+    addPrototype([Number], 'drop', NonScalar.drop);
+    addPrototype([Array, Number], 'replicate', NonScalar.replicate);
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
@@ -606,10 +622,11 @@ var Dyadic;
             omega = omega[APLPrefix + "ravel"];
             let ol = omega.length;
             let myThis = this.valueOf();
-            let results = new Array(myThis);
+            let results = new Array(Math.abs(myThis));
             if (ol === 1) {
+                const fillValue = myThis < 0 ? 0 : omega[0];
                 for (let counter = 0; counter < myThis; counter++) {
-                    results[counter] = omega[0];
+                    results[counter] = fillValue;
                 }
             }
             else {
