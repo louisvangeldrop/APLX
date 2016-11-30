@@ -233,11 +233,13 @@ class APLXTest {
         rr = (-3).take(dd);
         rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6]);
         rr = [true, false, false, true].replicate([3, 4, 5, 6]);
+        rr = [1, 2, 3, 4, 1].unique;
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
         showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
+        showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
         var aplcc = new APL.Vector(null, 10);
@@ -501,9 +503,24 @@ var Monadic;
                 return alpha;
             }
         };
+        NonScalar.unique = (alpha) => {
+            //let index = Monadic.NonScalar.gradeUp(alpha)
+            //let results = []
+            //let bitVector = new Array<boolean>(alpha.length)
+            //bitVector[index[0]] = true
+            //for (let i = 1; i < alpha.length; i++) {
+            //    bitVector[index[i]] = alpha[index[i - 1]] !== alpha[index[i]]
+            //}
+            //for (let i = 0; i < alpha.length; i++) {
+            //    if (bitVector[i] === true) { results.push(alpha[i]) }
+            //}
+            //return results
+            return Array.from(new Set(alpha));
+        };
         addProperty([Array, Boolean, Date, Number, String], "identity", NonScalar.identity, false);
         addProperty([Array, Boolean, Date, Number, String], "same", NonScalar.identity, false);
         addProperty([Array, Boolean, Date, Number, String], "disclose", NonScalar.discose, false);
+        addProperty([Array, Boolean, Date, Number, String], "unique", NonScalar.unique, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
 var Dyadic;

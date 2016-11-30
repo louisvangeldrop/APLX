@@ -92,6 +92,7 @@ interface Array<T> {        // property
     range: T[]
     ravel: T[]
     transpose: T[]
+    unique:T[]
 }
 
 interface Number {          // property
@@ -110,9 +111,10 @@ interface Number {          // property
     same: number
     enclose: any
     indexGenerator: number[]
-    range: Number[]
+    range: number[]
     ravel: number[]
     format: string
+    unique: number[]
 }
 
 interface Number {      // prototype
