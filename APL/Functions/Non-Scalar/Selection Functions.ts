@@ -9,20 +9,20 @@
         }
 
         export var unique = (alpha) => {
-            //let index = Monadic.NonScalar.gradeUp(alpha)
-            //let results = []
-            //let bitVector = new Array<boolean>(alpha.length)
-            //bitVector[index[0]] = true
-            //for (let i = 1; i < alpha.length; i++) {
-            //    bitVector[index[i]] = alpha[index[i - 1]] !== alpha[index[i]]
+            let index = Monadic.NonScalar.gradeUp(alpha)
+            let results = []
+            let bitVector = new Array<boolean>(alpha.length)
+            bitVector[index[0]] = true
+            for (let i = 1; i < alpha.length; i++) {
+                bitVector[index[i]] = alpha[index[i - 1]] !== alpha[index[i]]
 
-            //}
-            //for (let i = 0; i < alpha.length; i++) {
-            //    if (bitVector[i] === true) { results.push(alpha[i]) }
-            //}
-            //return results
+            }
+            for (let i = 0; i < alpha.length; i++) {
+                if (bitVector[i] === true) { results.push(alpha[i]) }
+            }
+            return results
 
-            return Array.from(new Set(alpha))
+            // return Array.from(new Set(alpha))
         }
 
         addProperty([Array, Boolean, Date, Number, String], "identity", NonScalar.identity, false)
