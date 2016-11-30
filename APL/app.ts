@@ -54,11 +54,13 @@ class APLXTest {
         rr = (-3).take(dd)
         rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6])
         rr = [true, false, false, true].replicate([3, 4, 5, 6])
+        rr= [1,2,3,4,1].unique
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
         showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
+        showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"])
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
