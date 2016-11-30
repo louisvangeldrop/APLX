@@ -39,10 +39,11 @@ var Dyadic;
             omega = omega[APLPrefix + "ravel"];
             var ol = omega.length;
             var myThis = this.valueOf();
-            var results = new Array(myThis);
+            var results = new Array(Math.abs(myThis));
             if (ol === 1) {
+                var fillValue = myThis < 0 ? 0 : omega[0];
                 for (var counter = 0; counter < myThis; counter++) {
-                    results[counter] = omega[0];
+                    results[counter] = fillValue;
                 }
             }
             else {
