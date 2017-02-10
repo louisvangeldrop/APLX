@@ -8,23 +8,23 @@ namespace APL {               //export
     //   declare var Array, Number
     type APLNumber = Number
     type APLVector = number[] | string[]
-
+    let propName = 'take'
     //type APLArray=Array<string|number|boolean|any>
 
     //export interface IAPLArray extends Array<string|number|boolean|any> {
     //    slash()
     //}
-   
+
     /**
     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
     */
 
     export class Vector<T> extends Array<string | number | boolean | any> {  //T>
-        
-        constructor(public Vector?: Array<T>, length?: number) {
-            super(Vector?Vector:length)
 
-         //   super(typeof Vector !== 'null' ? Vector : length)
+        constructor(public Vector?: Array<T>, length?: number) {
+            super(Vector ? Vector : length)
+
+            //   super(typeof Vector !== 'null' ? Vector : length)
             let aa = [10].indexGenerator
             for (let i of aa) {
                 i
@@ -53,18 +53,20 @@ namespace APL {               //export
             //TODO: Zet de shape van het Array. 
 
         }
+        set [propName](length: number | number[]) {
+        }
 
     }
 
     export class APLArray<T extends Array<string | number | boolean | any>>{  //IAPLArray
-       
+
         constructor(public APLArray?: Array<T>, private length?: number) {   // "super" kan helaas niet. Array is een interface. |number[]
             this.APLArray = typeof APLArray === 'undefined' ? new Array<T>() : APLArray
 
             if (typeof length !== 'undefined') {
                 APLArray.length = length
             }
-           
+
             //  this._array = new Array<T>(length)
         }
 
@@ -86,11 +88,11 @@ namespace APL {               //export
 
         }
 
-        plus(omega:Array<number>) {
+        plus(omega: Array<number>) {
             this.plus = function (omega) {
                 var aa = this.Array.length
                 for (let item of omega) {
-                    
+
                 }
             }
         }
@@ -98,7 +100,7 @@ namespace APL {               //export
     }
 
     // Array.prototype.push.apply(ar1,ar2) //concatenate
-    
+
 }
 
 class HTMLPerformance {
