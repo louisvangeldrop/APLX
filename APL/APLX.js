@@ -491,6 +491,31 @@ var Dyadic;
             return results;
         };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
+    Dyadic.expand = function (omega) {
+        const myThis = this[APLPrefix + 'ravel'];
+        const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
+        let results = new Array(length);
+        //const expand = APLPrefix + 'expand'
+        let ix = 0;
+        for (let i = 0; i < myThis.length; i++) {
+            //const temp = myThis[i][reshape](omega[i])
+            let size = 0;
+            if (typeof myThis[i] === 'boolean') {
+                size = myThis[i] === true ? 1 : 0;
+            }
+            else {
+                size = Math.abs(myThis[i]);
+            }
+            for (let j = 0; j < size; j++) {
+                results[ix] = myThis[i] > 0 ? omega[i] : 0;
+                ix++;
+            }
+            //for (let j = 0; j < temp.length; j++) {
+            //    results[i + j] = temp[j]
+            //}
+        }
+        return results;
+    };
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
     addPrototype([Array, Number], 'pick', NonScalar.pick);

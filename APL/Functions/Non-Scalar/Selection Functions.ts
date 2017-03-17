@@ -147,12 +147,12 @@ namespace Dyadic {
         }
         return results
     }
-}
 
-addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
-addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
-addPrototype([Array, Number], 'pick', NonScalar.pick)
-addPrototype([Number], 'take', NonScalar.take)
-addPrototype([Number], 'drop', NonScalar.drop)
-addPrototype([Array, Number], 'replicate', NonScalar.replicate)
+
+    addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
+    addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
+    addPrototype([Array, Number], 'pick', NonScalar.pick)
+    addPrototype([Number], 'take', NonScalar.take)
+    addPrototype([Number], 'drop', NonScalar.drop)
+    addPrototype([Array, Number], 'replicate', NonScalar.replicate)
 }
