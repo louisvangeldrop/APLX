@@ -67,6 +67,7 @@ interface Array<T> {        //  prototype
     right(omega?): T[]
     pick(omega?): T[]
     replicate(omega?): T[]
+    expand(omega?): T[]
 }
 
 interface Array<T> {        // property
