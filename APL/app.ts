@@ -64,8 +64,9 @@ class APLXTest {
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
-        var aplcc = new APL.Vector(null, 10)
-
+        var aplVector = new APL.Vector(null, 10)
+        aplVector.shape=100
+        
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
         showPerformance(spanCPU, performance.now(), "signum", dd.signum)
 
