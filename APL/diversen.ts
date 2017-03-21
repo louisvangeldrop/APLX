@@ -21,18 +21,13 @@ namespace APL {               //export
 
     export class Vector<T> extends Array<string | number | boolean | any> {  //T>
 
-        constructor(public Vector?: Array<T>, length?: number) {
-            super(Vector ? Vector : length)
-
+        constructor(public vector?: Array<T>, length?: number) {
+            super(vector ? vector : length)
             //   super(typeof Vector !== 'null' ? Vector : length)
-            let aa = [10].indexGenerator
-            for (let i of aa) {
-                i
-            }
         }
 
-        get louis(): number {
-            let bb = this.Vector.length
+        louis(): number {
+            let bb = this.length
             return bb
         }
 
@@ -42,20 +37,27 @@ namespace APL {               //export
          * @param {number} 
          * @return {Array} Aantal element in de vector
          */
-        get rho(): number | number[] {
-            return this.Vector.length
+        get shape(): number {
+            return this.length
         }
         /**
        * Zet het aantal elementen in de vector
         * @param {number} Aantal element in de vector
         */
-        set rho(length: number | number[]) {
+        set shape(length: number) {
             //TODO: Zet de shape van het Array. 
-
+            this.length = <number>length
         }
         set [propName](length: number | number[]) {
         }
 
+        get length(): number {
+            return this.length
+        }
+        set length(length: number) {
+            //TODO: Zet de shape van het Array. 
+            this.length = <number>length
+        }
     }
 
     export class APLArray<T extends Array<string | number | boolean | any>>{  //IAPLArray

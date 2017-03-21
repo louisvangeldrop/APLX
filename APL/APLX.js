@@ -151,7 +151,8 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
-        var aplcc = new APL.Vector(null, 10);
+        var aplVector = new APL.Vector(null, 10);
+        aplVector.shape = 100;
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
         showPerformance(spanCPU, performance.now(), "signum", dd.signum);
         showPerformance(spanCPU, performance.now(), "identity", dd.same);
@@ -231,17 +232,13 @@ var APL;
     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
     */
     class Vector extends Array {
-        constructor(Vector, length) {
-            super(Vector ? Vector : length);
-            this.Vector = Vector;
+        constructor(vector, length) {
+            super(vector ? vector : length);
+            this.vector = vector;
             //   super(typeof Vector !== 'null' ? Vector : length)
-            let aa = [10].indexGenerator;
-            for (let i of aa) {
-                i;
-            }
         }
-        get louis() {
-            let bb = this.Vector.length;
+        louis() {
+            let bb = this.length;
             return bb;
         }
         // property "shape"
@@ -250,17 +247,25 @@ var APL;
          * @param {number}
          * @return {Array} Aantal element in de vector
          */
-        get rho() {
-            return this.Vector.length;
+        get shape() {
+            return this.length;
         }
         /**
        * Zet het aantal elementen in de vector
         * @param {number} Aantal element in de vector
         */
-        set rho(length) {
+        set shape(length) {
             //TODO: Zet de shape van het Array. 
+            this.length = length;
         }
         set [propName](length) {
+        }
+        get length() {
+            return this.length;
+        }
+        set length(length) {
+            //TODO: Zet de shape van het Array. 
+            this.length = length;
         }
     }
     APL.Vector = Vector;
@@ -490,38 +495,39 @@ var Dyadic;
             }
             return results;
         };
+        NonScalar.expand = function (omega) {
+            const myThis = this[APLPrefix + 'ravel'];
+            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'maximum'](1)[APLPrefix + 'aplReduce'](Dyadic.Scalar.plus); // +/1⌈|⍵
+            let results = new Array(length);
+            //const expand = APLPrefix + 'expand'
+            let ix = 0;
+            for (let i = 0; i < myThis.length; i++) {
+                //const temp = myThis[i][reshape](omega[i])
+                let size = 0;
+                if (typeof myThis[i] === 'boolean') {
+                    size = myThis[i] === true ? 1 : 0;
+                }
+                else {
+                    size = Math.abs(myThis[i]);
+                }
+                for (let j = 0; j < size; j++) {
+                    results[ix] = myThis[i] > 0 ? omega[i] : 0;
+                    ix++;
+                }
+                //for (let j = 0; j < temp.length; j++) {
+                //    results[i + j] = temp[j]
+                //}
+            }
+            return results;
+        };
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
-    Dyadic.expand = function (omega) {
-        const myThis = this[APLPrefix + 'ravel'];
-        const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
-        let results = new Array(length);
-        //const expand = APLPrefix + 'expand'
-        let ix = 0;
-        for (let i = 0; i < myThis.length; i++) {
-            //const temp = myThis[i][reshape](omega[i])
-            let size = 0;
-            if (typeof myThis[i] === 'boolean') {
-                size = myThis[i] === true ? 1 : 0;
-            }
-            else {
-                size = Math.abs(myThis[i]);
-            }
-            for (let j = 0; j < size; j++) {
-                results[ix] = myThis[i] > 0 ? omega[i] : 0;
-                ix++;
-            }
-            //for (let j = 0; j < temp.length; j++) {
-            //    results[i + j] = temp[j]
-            //}
-        }
-        return results;
-    };
     addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
     addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
     addPrototype([Array, Number], 'pick', NonScalar.pick);
     addPrototype([Number], 'take', NonScalar.take);
     addPrototype([Number], 'drop', NonScalar.drop);
     addPrototype([Array, Number], 'replicate', NonScalar.replicate);
+    addPrototype([Array, Number], 'expand', NonScalar.expand);
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
