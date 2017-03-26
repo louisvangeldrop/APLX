@@ -95,8 +95,10 @@ namespace Dyadic {
 
         export var replicate = function (omega: any) {
             const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
+            const myOmega = omega[APLPrefix + 'ravel']
             const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Scalar.plus)
             let results = new Array(length)
+            let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0
             //const reshape = APLPrefix + 'reshape'
             let ix = 0
             for (let i = 0; i < myThis.length; i++) {
@@ -110,7 +112,7 @@ namespace Dyadic {
                 }
 
                 for (let j = 0; j < size; j++) {
-                    results[ix] = myThis[i] > 0 ? omega[i] : 0
+                    results[ix] = myThis[i] > 0 ? myOmega[i] : fillElement
                     ix++
                 }
                 //for (let j = 0; j < temp.length; j++) {
@@ -122,37 +124,39 @@ namespace Dyadic {
 
         export var expand = function (omega: any) {
             const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
-            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'maximum'](1)[APLPrefix + 'aplReduce'](Scalar.plus) // +/1⌈|⍵
-            let results = new Array(length)
+            const myOmega = omega[APLPrefix + 'ravel']
+            // const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'maximum'](1)[APLPrefix + 'aplReduce'](Scalar.plus) // +/1⌈|⍵
+            let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0
+
+            let results = new Array()
             //const expand = APLPrefix + 'expand'
             let ix = 0
             for (let i = 0; i < myThis.length; i++) {
                 //const temp = myThis[i][reshape](omega[i])
+
                 let size = 0
                 if (typeof myThis[i] === 'boolean') {
-                    size = myThis[i] === true ? 1 : 0
-
-                } else {
-                    size = Math.abs(<number>myThis[i])
+                    myThis[i] = myThis[i] === true ? 1 : 0
                 }
-
+                size = Math.abs(<number>myThis[i])
+                size = size === 0 ? 1 : size
                 for (let j = 0; j < size; j++) {
-                    results[ix] = myThis[i] > 0 ? omega[i] : 0
-                    ix++
+                    results.push(myThis[i] > 0 ? myOmega[ix] : fillElement)
                 }
+                ix = myThis[i] > 0 ? ix + 1 : ix
                 //for (let j = 0; j < temp.length; j++) {
                 //    results[i + j] = temp[j]
                 //}
             }
             return results
         }
-    }
 
-    addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
-    addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
-    addPrototype([Array, Number], 'pick', NonScalar.pick)
-    addPrototype([Number], 'take', NonScalar.take)
-    addPrototype([Number], 'drop', NonScalar.drop)
-    addPrototype([Array, Number], 'replicate', NonScalar.replicate)
-    addPrototype([Array, Number], 'expand', NonScalar.expand)
+        addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
+        addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
+        addPrototype([Array, Number], 'pick', NonScalar.pick)
+        addPrototype([Number], 'take', NonScalar.take)
+        addPrototype([Number], 'drop', NonScalar.drop)
+        addPrototype([Array, Number], 'replicate', NonScalar.replicate)
+        addPrototype([Array, Number], 'expand', NonScalar.expand)
+    }
 }

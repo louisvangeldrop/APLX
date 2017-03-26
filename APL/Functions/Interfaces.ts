@@ -93,7 +93,7 @@ interface Array<T> {        // property
     range: T[]
     ravel: T[]
     transpose: T[]
-    unique:T[]
+    unique: T[]
 }
 
 interface Number {          // property
@@ -131,6 +131,7 @@ interface Number {      // prototype
     take<T>(array: T[]): any
     drop<T>(array: T[]): any
     replicate<T>(array: T[]): any
+    expand<T>(array: T[]): any
 }
 
 interface String {

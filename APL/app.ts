@@ -54,7 +54,8 @@ class APLXTest {
         rr = (-3).take(dd)
         rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6])
         rr = [true, false, false, true].replicate([3, 4, 5, 6])
-        rr= [1,2,3,4,1].unique
+        rr = [1, 2, 3, 4, 1].unique
+        rr = [1, 0, 1, 1].expand([1, 2, 3])
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
         showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
         showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
@@ -65,8 +66,8 @@ class APLXTest {
         var apldd   //:number[]
 
         var aplVector = new APL.Vector(null, 10)
-        aplVector.shape=100
-        
+        aplVector.shape = 100
+
         showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd))
         showPerformance(spanCPU, performance.now(), "signum", dd.signum)
 
