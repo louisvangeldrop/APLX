@@ -250,6 +250,7 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
         showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
         showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
+        showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd));
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
         var aplVector = new APL.Vector(null, 10);
@@ -711,6 +712,34 @@ var Dyadic;
             }
             return results;
         };
+        NonScalar.excluding = function (omega) {
+            const myThis = this[APLPrefix + 'ravel'];
+            const myOmega = new Set(omega[APLPrefix + 'ravel']);
+            let results = new Set(myThis);
+            for (let elem of myOmega) {
+                results.delete(elem);
+            }
+            return Array.from(results);
+        };
+        NonScalar.intersection = function (omega) {
+            const myThis = new Set(this[APLPrefix + 'ravel']);
+            const myOmega = new Set(omega[APLPrefix + 'ravel']);
+            let results = new Set();
+            for (let elem of myOmega) {
+                if (myThis.has(elem)) {
+                    results.add(elem);
+                }
+            }
+            return Array.from(results);
+        };
+        NonScalar.union = function (omega) {
+            let results = new Set(this[APLPrefix + 'ravel']);
+            const myOmega = new Set(omega[APLPrefix + 'ravel']);
+            for (let elem of myOmega) {
+                results.add(elem);
+            }
+            return Array.from(results);
+        };
         addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
         addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
         addPrototype([Array, Number], 'pick', NonScalar.pick);
@@ -718,6 +747,9 @@ var Dyadic;
         addPrototype([Number], 'drop', NonScalar.drop);
         addPrototype([Array, Number], 'replicate', NonScalar.replicate);
         addPrototype([Array, Number], 'expand', NonScalar.expand);
+        addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding);
+        addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection);
+        addPrototype([Array, Boolean, Date, Number, String], 'union', NonScalar.union);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;

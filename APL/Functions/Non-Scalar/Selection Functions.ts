@@ -151,6 +151,37 @@ namespace Dyadic {
             return results
         }
 
+        export var excluding = function (omega: any) {
+            const myThis: Array<any> = this[APLPrefix + 'ravel']
+            const myOmega = new Set(omega[APLPrefix + 'ravel'])
+            let results = new Set(myThis)
+            for (let elem of myOmega) {
+                results.delete(elem)
+            }
+            return Array.from(results)
+        }
+
+        export var intersection = function (omega: any) {
+            const myThis = new Set(this[APLPrefix + 'ravel'])
+            const myOmega = new Set(omega[APLPrefix + 'ravel'])
+            let results = new Set()
+            for (let elem of myOmega) {
+                if (myThis.has(elem)) {
+                    results.add(elem)
+                }
+            }
+            return Array.from(results)
+        }
+
+        export var union = function (omega: any) {
+            let results = new Set(this[APLPrefix + 'ravel'])
+            const myOmega = new Set(omega[APLPrefix + 'ravel'])
+            for (let elem of myOmega) {
+                results.add(elem)
+            }
+            return Array.from(results)
+        }
+
         addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
         addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right)
         addPrototype([Array, Number], 'pick', NonScalar.pick)
@@ -158,5 +189,8 @@ namespace Dyadic {
         addPrototype([Number], 'drop', NonScalar.drop)
         addPrototype([Array, Number], 'replicate', NonScalar.replicate)
         addPrototype([Array, Number], 'expand', NonScalar.expand)
+        addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding)
+        addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection)
+        addPrototype([Array, Boolean, Date, Number, String], 'union', NonScalar.union)
     }
 }
