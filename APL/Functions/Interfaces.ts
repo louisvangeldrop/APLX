@@ -68,6 +68,9 @@ interface Array<T> {        //  prototype
     pick(omega?): T[]
     replicate(omega?): T[]
     expand(omega?): T[]
+    excluding(omega?): T[]
+    intersection(omega?): T[]
+    union(omega?): T[]
 }
 
 interface Array<T> {        // property
@@ -132,6 +135,9 @@ interface Number {      // prototype
     drop<T>(array: T[]): any
     replicate<T>(array: T[]): any
     expand<T>(array: T[]): any
+    excluding<T>(array: T[]): any
+    intersection<T>(array: T[]): any
+    union<T>(array: T[]): any
 }
 
 interface String {

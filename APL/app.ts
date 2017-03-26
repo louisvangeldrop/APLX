@@ -62,6 +62,7 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
         showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
         showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"])
+        showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
