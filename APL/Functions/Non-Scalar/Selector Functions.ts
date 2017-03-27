@@ -83,7 +83,6 @@
         //TODO IndexGenerator vervangen door Range?
 
         addProperty([Number, Array], 'indexGenerator', indexGenerator)
-
         addProperty(Array, "gradeUp", gradeUp, false)
         addProperty(Array, "gradeDown", gradeDown, false)
 

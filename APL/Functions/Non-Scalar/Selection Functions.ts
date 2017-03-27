@@ -93,7 +93,38 @@ namespace Dyadic {
             return results
         }
 
+        //TODO 'replicate' hoort hier niet thuis
         export var replicate = function (omega: any) {
+            const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
+            const myOmega = omega[APLPrefix + 'ravel']
+            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Scalar.plus)
+            let results = new Array(length)
+            let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0
+            //const reshape = APLPrefix + 'reshape'
+            let ix = 0
+            for (let i = 0; i < myThis.length; i++) {
+                //const temp = myThis[i][reshape](omega[i])
+                let size = 0
+                if (typeof myThis[i] === 'boolean') {
+                    size = myThis[i] === true ? 1 : 0
+
+                } else {
+                    size = Math.abs(<number>myThis[i])
+                }
+
+                for (let j = 0; j < size; j++) {
+                    results[ix] = myThis[i] > 0 ? myOmega[i] : fillElement
+                    ix++
+                }
+                //for (let j = 0; j < temp.length; j++) {
+                //    results[i + j] = temp[j]
+                //}
+            }
+            return results
+        }
+
+        //TODO 'scan' hoort hier niet thuis
+        export var scan = function (omega: any) {
             const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
             const myOmega = omega[APLPrefix + 'ravel']
             const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Scalar.plus)
@@ -188,6 +219,7 @@ namespace Dyadic {
         addPrototype([Number], 'take', NonScalar.take)
         addPrototype([Number], 'drop', NonScalar.drop)
         addPrototype([Array, Number], 'replicate', NonScalar.replicate)
+        addPrototype([Array, Number], 'scan', NonScalar.scan)
         addPrototype([Array, Number], 'expand', NonScalar.expand)
         addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding)
         addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection)

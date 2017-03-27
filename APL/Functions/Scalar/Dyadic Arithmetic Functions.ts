@@ -18,7 +18,7 @@
         //TODO binomial factorial(alpha,omega)
         //TODO rotate en deal horen niet hier
 
-       
+
 
     }
 
@@ -29,7 +29,7 @@
 
         // Voor meer info over "this" zie: http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/
         ////                                 https://github.com/Microsoft/TypeScript/wiki/Functions 
-        
+
         export var plus = function (omega) {
             return this.primitive(omega, Scalar.plus)
         }
@@ -73,22 +73,9 @@
         addPrototype([Array, Number], 'logarithm', logarithm)
         addPrototype([Array, Number], 'binomial', binomial)
 
-        //TODO verplaatsen naar ????
-        export var rotate = function (omega) {
-            return this[0].rotate(omega)
-        }
-        export var aplReduce = function (omega) {
-            let aplReduce = function (omega, alpha) {
-                // TODO eigen reduceRight maken en verplaatsen naar Operators
-                return alpha.reduceRight((l, r) => { return omega(r, l) })
-            }
-            return aplReduce(omega, this)
-        }
+
         export var deal = function (omega): number[] {
             return this[0].deal(omega)    //, this[0].valueOf())
         }
-        addPrototype(Array, 'rotate', rotate)
-        addPrototype(Array, 'aplReduce', aplReduce)
-
     }
 }

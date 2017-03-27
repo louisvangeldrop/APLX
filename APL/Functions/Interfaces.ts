@@ -60,7 +60,9 @@ interface Array<T> {        //  prototype
     binomial(omega?): T[]
     rotate(omega?): T[]
     slash(omega?): T[]
+    catenate(omega?): T[]
     aplReduce(alpha?, omega?): T[]
+    scan(alpha?,omeg?):T[]
     domino(omega?): T[]
     decode(omega?): number
     left(omega?): T[]
@@ -125,6 +127,7 @@ interface Number {      // prototype
     rotate<T>(array: T[])
     deal(omega: number): number[]
     reshape(omega: any)
+    catenate(omega: any)
     maximum(omega: number): number
     minimum(omega: number): number
     decode(omega: number | number[])
@@ -142,6 +145,7 @@ interface Number {      // prototype
 
 interface String {
     left(omega): string
+    catenate(omega: any)
 }
 //#endregion
 
