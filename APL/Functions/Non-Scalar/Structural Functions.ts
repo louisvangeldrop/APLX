@@ -35,7 +35,8 @@ namespace Dyadic {
 
     namespace NonScalar {
 
-        export var concatenate = function (omega) { return this[APLPrefix + "ravel"].concat(omega.ravel) }; addPrototype([Array, Boolean, Date, Number, String], 'concatenate', concatenate)
+        export var catenate = function (omega) { return this[APLPrefix + "ravel"].concat(omega.ravel) }
+        addPrototype([Array, Boolean, Date, Number, String], 'catenate', catenate)
 
         export var reshape = function (omega) {
             omega = omega[APLPrefix + "ravel"]
@@ -73,6 +74,16 @@ namespace Dyadic {
             }
             return results
         }; addPrototype(Number, 'rotate', rotate)
+
+        //TODO aplReduce hoort hier niet thuis. Misschien een Operator.ts maken
+        export var aplReduce = function (omega) {
+            let aplReduce =  (omega:Function, alpha)=> {
+                // TODO eigen reduceRight maken en verplaatsen naar Operators
+                return alpha.reduceRight((l, r) => { return omega(r, l) })
+            }
+            return aplReduce(omega, this)
+        }
+        addPrototype([Array, Number, String, Boolean, Date], 'aplReduce', aplReduce)
 
         export var partition = function (omega) {
             omega = omega[APLPrefix + "ravel"]
