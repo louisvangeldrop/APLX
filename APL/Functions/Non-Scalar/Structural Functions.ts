@@ -73,11 +73,11 @@ namespace Dyadic {
                 }
             }
             return results
-        }; addPrototype(Number, 'rotate', rotate)
+        }; addPrototype([Array, Number], 'rotate', rotate)
 
         //TODO aplReduce hoort hier niet thuis. Misschien een Operator.ts maken
         export var aplReduce = function (omega) {
-            let aplReduce =  (omega:Function, alpha)=> {
+            let aplReduce = (omega: Function, alpha) => {
                 // TODO eigen reduceRight maken en verplaatsen naar Operators
                 return alpha.reduceRight((l, r) => { return omega(r, l) })
             }
