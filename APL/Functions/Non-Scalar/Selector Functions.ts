@@ -4,7 +4,7 @@
 
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
             //try {
-            alpha = Array.isArray(alpha)?alpha:[alpha]              //(typeof alpha === 'number') ? [alpha] : alpha
+            alpha = Array.isArray(alpha) ? alpha : [alpha]              //(typeof alpha === 'number') ? [alpha] : alpha
             indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices
             low = (typeof (low) === 'undefined') ? 0 : low
             high = (typeof (high) === 'undefined') ? alpha.length - 1 : high
@@ -166,16 +166,16 @@ namespace Dyadic {
             let l: number = (Array.isArray(omega)) ? omega[0] : omega
             let r: number = (Array.isArray(this)) ? this[0] : this
 
-            let deal = function (omega: number, alpha: number) {
-                let results = omega[APLPrefix + 'indexGenerator']
+            let deal = (l: number, r: number) => {
+                let results = l[APLPrefix + 'indexGenerator']
                 let h: number, j: number
-                for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i))   // j = i + (omega-i).roll
+                for (var i = 0; i < r; i++) {
+                    j = i + Math.floor(Math.random() * (l - i))   // j = i + (omega-i).roll
 
                     //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
                     h = results[i]; results[i] = results[j]; results[j] = h
                 }
-                return results.slice(0, alpha)
+                return results.slice(0, r)
             }
             return deal(l.valueOf(), r.valueOf())              // 6xsneller dan function deal (...){}
         }

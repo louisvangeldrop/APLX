@@ -1,3 +1,5 @@
+var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
+//#endregion
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
@@ -96,6 +98,104 @@ var addProperty = function (object, name, func, primitive = true) {
         }
     }
 };
+// https://github.com/ngn/apl
+// http://ngn.github.io/apl/web/index.html
+// http://repl.it/languages/APL
+// http://help.dyalog.com/15.0/
+var APL;
+(function (APL) {
+    let propName = 'take';
+    //type APLArray=Array<string|number|boolean|any>
+    //export interface IAPLArray extends Array<string|number|boolean|any> {
+    //    slash()
+    //}
+    /**
+    * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
+    */
+    class Vector extends Array {
+        constructor(vector, length) {
+            super(vector ? vector : length);
+            this.vector = vector;
+            //   super(typeof Vector !== 'null' ? Vector : length)
+        }
+        louis() {
+            let bb = this.length;
+            return bb;
+        }
+        // property "shape"
+        /**
+         *
+         * @param {number}
+         * @return {Array} Aantal element in de vector
+         */
+        get shape() {
+            return this.length;
+        }
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
+        set shape(length) {
+            //TODO: Zet de shape van het Array. 
+            this.length = length;
+        }
+        set [propName](length) {
+        }
+        get length() {
+            return this.length;
+        }
+        set length(length) {
+            //TODO: Zet de shape van het Array. 
+            this.length = length;
+        }
+    }
+    APL.Vector = Vector;
+    class APLArray {
+        constructor(APLArray, length) {
+            this.APLArray = APLArray;
+            this.length = length;
+            this.APLArray = typeof APLArray === 'undefined' ? new Array() : APLArray;
+            if (typeof length !== 'undefined') {
+                APLArray.length = length;
+            }
+            //  this._array = new Array<T>(length)
+        }
+        // property "shape"
+        /**
+         *
+         * @param {number}
+         * @return {Array} Aantal element in de vector
+         */
+        get shape() {
+            return this.APLArray.length;
+        }
+        /**
+       * Zet het aantal elementen in de vector
+        * @param {number} Aantal element in de vector
+        */
+        set shape(length) {
+            //TODO: Zet de shape van het Array. 
+        }
+        plus(omega) {
+            this.plus = function (omega) {
+                var aa = this.Array.length;
+                for (let item of omega) {
+                }
+            };
+        }
+    }
+    APL.APLArray = APLArray;
+    // Array.prototype.push.apply(ar1,ar2) //concatenate
+})(APL || (APL = {}));
+class HTMLPerformance {
+    constructor(element, performanceNow, text, expression) {
+        this.element = element;
+        //   var result = expression
+        var t0 = performance.now() - performanceNow;
+        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
+        //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+    }
+}
 // https://github.com/Microsoft/TypeScript/wiki
 //import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
 //import {APL} from "diversen";
@@ -219,106 +319,6 @@ window.onload = () => {
     var greeter = new APLXTest(el);
     greeter.start();
 };
-// https://github.com/ngn/apl
-// http://ngn.github.io/apl/web/index.html
-// http://repl.it/languages/APL
-// http://help.dyalog.com/15.0/
-var APL;
-(function (APL) {
-    let propName = 'take';
-    //type APLArray=Array<string|number|boolean|any>
-    //export interface IAPLArray extends Array<string|number|boolean|any> {
-    //    slash()
-    //}
-    /**
-    * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
-    */
-    class Vector extends Array {
-        constructor(vector, length) {
-            super(vector ? vector : length);
-            this.vector = vector;
-            //   super(typeof Vector !== 'null' ? Vector : length)
-        }
-        louis() {
-            let bb = this.length;
-            return bb;
-        }
-        // property "shape"
-        /**
-         *
-         * @param {number}
-         * @return {Array} Aantal element in de vector
-         */
-        get shape() {
-            return this.length;
-        }
-        /**
-       * Zet het aantal elementen in de vector
-        * @param {number} Aantal element in de vector
-        */
-        set shape(length) {
-            //TODO: Zet de shape van het Array. 
-            this.length = length;
-        }
-        set [propName](length) {
-        }
-        get length() {
-            return this.length;
-        }
-        set length(length) {
-            //TODO: Zet de shape van het Array. 
-            this.length = length;
-        }
-    }
-    APL.Vector = Vector;
-    class APLArray {
-        constructor(APLArray, length) {
-            this.APLArray = APLArray;
-            this.length = length;
-            this.APLArray = typeof APLArray === 'undefined' ? new Array() : APLArray;
-            if (typeof length !== 'undefined') {
-                APLArray.length = length;
-            }
-            //  this._array = new Array<T>(length)
-        }
-        // property "shape"
-        /**
-         *
-         * @param {number}
-         * @return {Array} Aantal element in de vector
-         */
-        get shape() {
-            return this.APLArray.length;
-        }
-        /**
-       * Zet het aantal elementen in de vector
-        * @param {number} Aantal element in de vector
-        */
-        set shape(length) {
-            //TODO: Zet de shape van het Array. 
-        }
-        plus(omega) {
-            this.plus = function (omega) {
-                var aa = this.Array.length;
-                for (let item of omega) {
-                }
-            };
-        }
-    }
-    APL.APLArray = APLArray;
-    // Array.prototype.push.apply(ar1,ar2) //concatenate
-})(APL || (APL = {}));
-class HTMLPerformance {
-    constructor(element, performanceNow, text, expression) {
-        this.element = element;
-        //   var result = expression
-        var t0 = performance.now() - performanceNow;
-        element.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
-        //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
-    }
-}
-var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
-//#endregion
 var Monadic;
 (function (Monadic) {
     var NonScalar;
@@ -381,6 +381,193 @@ var Dyadic;
             // (1000).encode( [24, 60, 60])
         };
         addPrototype(Number, 'encode', NonScalar.encode);
+    })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
+})(Dyadic || (Dyadic = {}));
+var Monadic;
+(function (Monadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.gradeUp = function (alpha, indices, low, high) {
+            //try {
+            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
+            low = (typeof (low) === 'undefined') ? 0 : low;
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
+            if (high <= low)
+                return indices;
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
+            var t1, t2;
+            var t3, t4;
+            var i = low, j = high;
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j];
+                t3 = alpha[t1] >= midValue, t4 = alpha[t2] <= midValue;
+                if (t3 && t4) {
+                    indices[i] = t2;
+                    indices[j] = t1;
+                    i = i + 1;
+                    j = j - 1;
+                }
+                else {
+                    if (t3 === false) {
+                        i++;
+                    }
+                    if (t4 === false) {
+                        j--;
+                    }
+                }
+            }
+            NonScalar.gradeUp(alpha, indices, low, j);
+            NonScalar.gradeUp(alpha, indices, i, high);
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices;
+        };
+        NonScalar.gradeDown = function (alpha, indices, low, high) {
+            //try {
+            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
+            low = (typeof (low) === 'undefined') ? 0 : low;
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
+            if (high <= low)
+                return indices;
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
+            var t1, t2;
+            var t3, t4;
+            var i = low, j = high;
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j];
+                t3 = alpha[t1] <= midValue, t4 = alpha[t2] >= midValue;
+                if (t3 && t4) {
+                    indices[i] = t2;
+                    indices[j] = t1;
+                    i = i + 1;
+                    j = j - 1;
+                }
+                else {
+                    if (t3 === false) {
+                        i++;
+                    }
+                    if (t4 === false) {
+                        j--;
+                    }
+                }
+            }
+            NonScalar.gradeDown(alpha, indices, low, j);
+            NonScalar.gradeDown(alpha, indices, i, high);
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices;
+        };
+        NonScalar.indexGenerator = (alpha) => {
+            var results = new Array(alpha); // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter;
+            }
+            return results;
+        };
+        //TODO IndexGenerator vervangen door Range?
+        addProperty([Number, Array], 'indexGenerator', NonScalar.indexGenerator);
+        addProperty(Array, "gradeUp", NonScalar.gradeUp, false);
+        addProperty(Array, "gradeDown", NonScalar.gradeDown, false);
+        //Object.defineProperty(Array.prototype, prefix +'' , {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return -1;
+        //            } else if (alpha.value > omega.value) {
+        //                return 1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //               try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
+        //    Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return 1;
+        //            } else if (alpha.value > omega.value) {
+        //                return -1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //              try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
+    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
+})(Monadic || (Monadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.deal = function (omega) {
+            let l = (Array.isArray(omega)) ? omega[0] : omega;
+            let r = (Array.isArray(this)) ? this[0] : this;
+            let deal = (l, r) => {
+                let results = l[APLPrefix + 'indexGenerator'];
+                let h, j;
+                for (var i = 0; i < r; i++) {
+                    j = i + Math.floor(Math.random() * (l - i)); // j = i + (omega-i).roll
+                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
+                    h = results[i];
+                    results[i] = results[j];
+                    results[j] = h;
+                }
+                return results.slice(0, r);
+            };
+            return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
+        };
+        addPrototype([Array, Number], 'deal', NonScalar.deal);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
@@ -588,197 +775,11 @@ var Dyadic;
         addPrototype([Number], 'take', NonScalar.take);
         addPrototype([Number], 'drop', NonScalar.drop);
         addPrototype([Array, Number], 'replicate', NonScalar.replicate);
+        addPrototype([Array, Number], 'scan', NonScalar.scan);
         addPrototype([Array, Number], 'expand', NonScalar.expand);
         addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding);
         addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection);
         addPrototype([Array, Boolean, Date, Number, String], 'union', NonScalar.union);
-    })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
-})(Dyadic || (Dyadic = {}));
-var Monadic;
-(function (Monadic) {
-    var NonScalar;
-    (function (NonScalar) {
-        NonScalar.gradeUp = function (alpha, indices, low, high) {
-            //try {
-            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
-            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
-            low = (typeof (low) === 'undefined') ? 0 : low;
-            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
-            if (high <= low)
-                return indices;
-            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
-            var t1, t2;
-            var t3, t4;
-            var i = low, j = high;
-            while (i <= j) {
-                t1 = indices[i], t2 = indices[j];
-                t3 = alpha[t1] >= midValue, t4 = alpha[t2] <= midValue;
-                if (t3 && t4) {
-                    indices[i] = t2;
-                    indices[j] = t1;
-                    i = i + 1;
-                    j = j - 1;
-                }
-                else {
-                    if (t3 === false) {
-                        i++;
-                    }
-                    if (t4 === false) {
-                        j--;
-                    }
-                }
-            }
-            NonScalar.gradeUp(alpha, indices, low, j);
-            NonScalar.gradeUp(alpha, indices, i, high);
-            //}
-            //catch (error) {
-            //}
-            //finally {
-            //}
-            return indices;
-        };
-        NonScalar.gradeDown = function (alpha, indices, low, high) {
-            //try {
-            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
-            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
-            low = (typeof (low) === 'undefined') ? 0 : low;
-            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
-            if (high <= low)
-                return indices;
-            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
-            var t1, t2;
-            var t3, t4;
-            var i = low, j = high;
-            while (i <= j) {
-                t1 = indices[i], t2 = indices[j];
-                t3 = alpha[t1] <= midValue, t4 = alpha[t2] >= midValue;
-                if (t3 && t4) {
-                    indices[i] = t2;
-                    indices[j] = t1;
-                    i = i + 1;
-                    j = j - 1;
-                }
-                else {
-                    if (t3 === false) {
-                        i++;
-                    }
-                    if (t4 === false) {
-                        j--;
-                    }
-                }
-            }
-            NonScalar.gradeDown(alpha, indices, low, j);
-            NonScalar.gradeDown(alpha, indices, i, high);
-            //}
-            //catch (error) {
-            //}
-            //finally {
-            //}
-            return indices;
-        };
-        NonScalar.indexGenerator = (alpha) => {
-            var results = new Array(alpha); // sneller dan []
-            for (var counter = 0; counter < alpha; counter++) {
-                results[counter] = counter;
-            }
-            return results;
-        };
-        //TODO IndexGenerator vervangen door Range?
-        addProperty([Number, Array], 'indexGenerator', NonScalar.indexGenerator);
-        addProperty(Array, "gradeUp", NonScalar.gradeUp, false);
-        addProperty(Array, "gradeDown", NonScalar.gradeDown, false);
-        //Object.defineProperty(Array.prototype, prefix +'' , {
-        //    get: function (): number[] {
-        //        var compare = function (alpha, omega) {
-        //            loop++
-        //            if (alpha.value < omega.value) {
-        //                return -1;
-        //            } else if (alpha.value > omega.value) {
-        //                return 1;
-        //            } else {
-        //                return 0;
-        //            }
-        //        }
-        //        //               try {
-        //        var length = this.length,
-        //            loop = 0
-        //        var thisIndex = new Array(length),
-        //            results = new Array(length),
-        //            indices = new Array(length)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            thisIndex[counter] = { value: this[counter], index: counter }
-        //        }
-        //        results = thisIndex.sort(compare)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            indices[counter] = results[counter].index
-        //        }
-        //        console.log('Loops :' + loop)
-        //        return indices
-        //        //}
-        //        //catch (error) {
-        //        //}
-        //        //finally {
-        //        //}
-        //    }
-        //})
-        //    Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
-        //    get: function (): number[] {
-        //        var compare = function (alpha, omega) {
-        //            loop++
-        //            if (alpha.value < omega.value) {
-        //                return 1;
-        //            } else if (alpha.value > omega.value) {
-        //                return -1;
-        //            } else {
-        //                return 0;
-        //            }
-        //        }
-        //        //              try {
-        //        var length = this.length,
-        //            loop = 0
-        //        var thisIndex = new Array(length),
-        //            results = new Array(length),
-        //            indices = new Array(length)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            thisIndex[counter] = { value: this[counter], index: counter }
-        //        }
-        //        results = thisIndex.sort(compare)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            indices[counter] = results[counter].index
-        //        }
-        //        console.log('Loops :' + loop)
-        //        return indices
-        //        //}
-        //        //catch (error) {
-        //        //}
-        //        //finally {
-        //        //}
-        //    }
-        //})
-    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
-})(Monadic || (Monadic = {}));
-var Dyadic;
-(function (Dyadic) {
-    var NonScalar;
-    (function (NonScalar) {
-        NonScalar.deal = function (omega) {
-            let l = (Array.isArray(omega)) ? omega[0] : omega;
-            let r = (Array.isArray(this)) ? this[0] : this;
-            let deal = function (omega, alpha) {
-                let results = omega[APLPrefix + 'indexGenerator'];
-                let h, j;
-                for (var i = 0; i < alpha; i++) {
-                    j = i + Math.floor(Math.random() * (omega - i)); // j = i + (omega-i).roll
-                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
-                    h = results[i];
-                    results[i] = results[j];
-                    results[j] = h;
-                }
-                return results.slice(0, alpha);
-            };
-            return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
-        };
-        addPrototype([Array, Number], 'deal', NonScalar.deal);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
@@ -852,10 +853,10 @@ var Dyadic;
             }
             return results;
         };
-        addPrototype(Number, 'rotate', NonScalar.rotate);
+        addPrototype([Array, Number], 'rotate', NonScalar.rotate);
         //TODO aplReduce hoort hier niet thuis. Misschien een Operator.ts maken
         NonScalar.aplReduce = function (omega) {
-            let aplReduce = function (omega, alpha) {
+            let aplReduce = (omega, alpha) => {
                 // TODO eigen reduceRight maken en verplaatsen naar Operators
                 return alpha.reduceRight((l, r) => { return omega(r, l); });
             };
@@ -894,6 +895,55 @@ var Dyadic;
         };
         addPrototype([Array, Number], 'partition', NonScalar.partition);
     })(NonScalar || (NonScalar = {}));
+})(Dyadic || (Dyadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var Scalar;
+    (function (Scalar) {
+        Scalar.and = (alpha, omega) => { return (alpha && omega); };
+        Scalar.nand = (alpha, omega) => { return !(alpha && omega); };
+        Scalar.or = (alpha, omega) => { return (alpha || omega); };
+        Scalar.nor = (alpha, omega) => { return !(alpha || omega); };
+        Scalar.lt = (alpha, omega) => { return alpha < omega; };
+        Scalar.le = (alpha, omega) => { return alpha <= omega; };
+        Scalar.gt = (alpha, omega) => { return alpha > omega; };
+        Scalar.ge = (alpha, omega) => { return alpha >= omega; };
+        Scalar.eq = (alpha, omega) => { return alpha === omega; };
+        Scalar.neq = (alpha, omega) => { return alpha !== omega; };
+        Scalar.gcd = (alpha, omega) => { while (omega) {
+            var t = omega;
+            omega = alpha % omega;
+            alpha = t;
+        } ; return alpha; };
+        Scalar.lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    var Vector;
+    (function (Vector) {
+        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
+        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
+        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
+        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
+        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
+        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
+        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
+        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
+        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
+        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
+        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
+        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
+        addPrototype([Array, Boolean], 'and', Vector.and);
+        addPrototype([Array, Boolean], 'nand', Vector.nand);
+        addPrototype([Array, Boolean], 'or', Vector.or);
+        addPrototype([Array, Boolean], 'nor', Vector.nor);
+        addPrototype([Array, Number], 'lt', Vector.lt);
+        addPrototype([Array, Number], 'le', Vector.le);
+        addPrototype([Array, Number], 'gt', Vector.gt);
+        addPrototype([Array, Number], 'ge', Vector.ge);
+        addPrototype([Array, Number, String], 'eq', Vector.eq);
+        addPrototype([Array, Number, String], 'neq', Vector.neq);
+        addPrototype([Array, Number], 'gcd', Vector.gcd);
+        addPrototype([Array, Number], 'lcm', Vector.lcm);
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
 })(Dyadic || (Dyadic = {}));
 var Dyadic;
 (function (Dyadic) {
@@ -963,55 +1013,6 @@ var Dyadic;
         Vector.deal = function (omega) {
             return this[0].deal(omega); //, this[0].valueOf())
         };
-    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
-})(Dyadic || (Dyadic = {}));
-var Dyadic;
-(function (Dyadic) {
-    var Scalar;
-    (function (Scalar) {
-        Scalar.and = (alpha, omega) => { return (alpha && omega); };
-        Scalar.nand = (alpha, omega) => { return !(alpha && omega); };
-        Scalar.or = (alpha, omega) => { return (alpha || omega); };
-        Scalar.nor = (alpha, omega) => { return !(alpha || omega); };
-        Scalar.lt = (alpha, omega) => { return alpha < omega; };
-        Scalar.le = (alpha, omega) => { return alpha <= omega; };
-        Scalar.gt = (alpha, omega) => { return alpha > omega; };
-        Scalar.ge = (alpha, omega) => { return alpha >= omega; };
-        Scalar.eq = (alpha, omega) => { return alpha === omega; };
-        Scalar.neq = (alpha, omega) => { return alpha !== omega; };
-        Scalar.gcd = (alpha, omega) => { while (omega) {
-            var t = omega;
-            omega = alpha % omega;
-            alpha = t;
-        } ; return alpha; };
-        Scalar.lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
-    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
-    var Vector;
-    (function (Vector) {
-        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
-        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
-        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
-        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
-        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
-        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
-        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
-        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
-        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
-        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
-        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
-        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
-        addPrototype([Array, Boolean], 'and', Vector.and);
-        addPrototype([Array, Boolean], 'nand', Vector.nand);
-        addPrototype([Array, Boolean], 'or', Vector.or);
-        addPrototype([Array, Boolean], 'nor', Vector.nor);
-        addPrototype([Array, Number], 'lt', Vector.lt);
-        addPrototype([Array, Number], 'le', Vector.le);
-        addPrototype([Array, Number], 'gt', Vector.gt);
-        addPrototype([Array, Number], 'ge', Vector.ge);
-        addPrototype([Array, Number, String], 'eq', Vector.eq);
-        addPrototype([Array, Number, String], 'neq', Vector.neq);
-        addPrototype([Array, Number], 'gcd', Vector.gcd);
-        addPrototype([Array, Number], 'lcm', Vector.lcm);
     })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
