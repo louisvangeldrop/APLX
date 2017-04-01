@@ -1,5 +1,3 @@
-var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
-//#endregion
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
@@ -97,6 +95,129 @@ var addProperty = function (object, name, func, primitive = true) {
             });
         }
     }
+};
+// https://github.com/Microsoft/TypeScript/wiki
+//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
+//import {APL} from "diversen";
+//import vector = Dyadic.Vector
+//import scalar = Dyadic.Scalar
+class APLXTest {
+    /**
+    * Creates a new HTMLElement
+    */
+    constructor(element) {
+        this.element = element;
+        this.element.innerHTML += "De tijd is: ";
+        this.span = document.createElement('span');
+        this.element.appendChild(this.span);
+        this.span.innerText = new Date().toUTCString();
+        //      this.element.innerHTML += "CPU time is: ";
+        this.spanCPU = document.createElement('span');
+        this.element.appendChild(this.spanCPU);
+        this.spanCPU.innerHTML = "<br/>";
+    }
+    start() {
+        // console.profile('Number.iota')
+        //  var aplg= apl.gradeDown
+        const vector = Dyadic.Vector;
+        let scalar = Dyadic.Scalar;
+        var parms = location.search.split('?');
+        var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
+        var spanCPU = this.spanCPU;
+        var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
+        var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1);
+        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`;
+        //[ll,aantal]=[aantal,ll]
+        var t0;
+        var startPerformance = performance.now();
+        var dd; //= aantal.deal(aantal)
+        var cc;
+        var rr;
+        var ev = eval('(10).indexGenerator');
+        rr = range1tot10.domino(range1tot10);
+        cc = [2, 2, 2, 2].decode([1, 2, 3, 4]);
+        dd = cc.encode([2, 2, 2, 2]);
+        rr = (2).pick([1, 2, 3]);
+        rr = (-3).take(dd);
+        rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6]);
+        rr = [true, false, false, true].replicate([3, 4, 5, 6]);
+        rr = [1, 2, 3, 4, 1].unique;
+        rr = [1, 0, 1, 1].expand([1, 2, 3]);
+        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
+        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
+        showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
+        showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
+        showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
+        showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
+        //showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
+        //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
+        var apldd; //:number[]
+        var aplVector = new APL.Vector(null, 10);
+        aplVector.shape = 100;
+        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
+        showPerformance(spanCPU, performance.now(), "signum", dd.signum);
+        showPerformance(spanCPU, performance.now(), "identity", dd.same);
+        //var ss = dd.slice()
+        //ss[0] = 0
+        t0 = performance.now();
+        //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
+        try {
+            showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp);
+        }
+        catch (err) { }
+        finally { }
+        var cpuGradeUp = performance.now() - t0;
+        //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
+        //t0 = performance.now()
+        //qq = dd.sort()
+        //t0 = performance.now() - t0
+        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
+        //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
+        //var sign = dd.sign
+        //   sign=dd.sign()
+        //var bb=dd+dd not supported
+        var tn = (10).plus(9);
+        showPerformance(spanCPU, performance.now(), "negate", dd.negative);
+        showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
+        showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
+        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha; }));
+        showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
+        showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
+        performance.mark("Array.APLreduce start");
+        var min = dd.aplReduce(scalar.minus);
+        performance.mark("Array.APLreduce stop");
+        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
+        //       console.log(`min: ${min} som: ${som}`)
+        performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
+        // Print marks
+        var perfMarks = performance.getEntriesByType("measure"); // "mark"
+        var perfEntries = performance.getEntries();
+        for (var i = 0; i < perfMarks.length; i++) {
+            this.spanCPU.innerHTML +=
+                "Name: " + perfMarks[i].name + " - " +
+                    "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
+        }
+        var totalCpu = performance.now() - startPerformance;
+        this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`;
+        this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}<br />`;
+        this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
+    }
+    stop() {
+        clearTimeout(this.timerToken);
+    }
+}
+var showPerformance = function (spanCPU, performanceNow, text, expression) {
+    //   var result = expression
+    console.time("");
+    var t0 = performance.now() - performanceNow;
+    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
+    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+};
+window.onload = () => {
+    var el = document.getElementById('content');
+    var greeter = new APLXTest(el);
+    greeter.start();
 };
 // https://github.com/ngn/apl
 // http://ngn.github.io/apl/web/index.html
@@ -196,129 +317,8 @@ class HTMLPerformance {
         //      return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
     }
 }
-// https://github.com/Microsoft/TypeScript/wiki
-//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
-//import {APL} from "diversen";
-//import vector = Dyadic.Vector
-//import scalar = Dyadic.Scalar
-class APLXTest {
-    /**
-    * Creates a new HTMLElement
-    */
-    constructor(element) {
-        this.element = element;
-        this.element.innerHTML += "De tijd is: ";
-        this.span = document.createElement('span');
-        this.element.appendChild(this.span);
-        this.span.innerText = new Date().toUTCString();
-        //      this.element.innerHTML += "CPU time is: ";
-        this.spanCPU = document.createElement('span');
-        this.element.appendChild(this.spanCPU);
-        this.spanCPU.innerHTML = "<br/>";
-    }
-    start() {
-        // console.profile('Number.iota')
-        //  var aplg= apl.gradeDown
-        const vector = Dyadic.Vector;
-        let scalar = Dyadic.Scalar;
-        var parms = location.search.split('?');
-        var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
-        var spanCPU = this.spanCPU;
-        var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
-        var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1);
-        var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
-        this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`;
-        //[ll,aantal]=[aantal,ll]
-        var t0;
-        var startPerformance = performance.now();
-        var dd; //= aantal.deal(aantal)
-        var cc;
-        var rr;
-        var ev = eval('(10).indexGenerator');
-        rr = range1tot10.domino(range1tot10);
-        cc = [2, 2, 2, 2].decode([1, 2, 3, 4]);
-        dd = cc.encode([2, 2, 2, 2]);
-        rr = (2).pick([1, 2, 3]);
-        rr = (-3).take(dd);
-        rr = ([1, 0, 2, 1]).replicate([3, 4, 5, 6]);
-        rr = [true, false, false, true].replicate([3, 4, 5, 6]);
-        rr = [1, 2, 3, 4, 1].unique;
-        rr = [1, 0, 1, 1].expand([1, 2, 3]);
-        showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
-        showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
-        //showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
-        //showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
-        //showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
-        //showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"])
-        //showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
-        //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
-        var apldd; //:number[]
-        var aplVector = new APL.Vector(null, 10);
-        aplVector.shape = 100;
-        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
-        showPerformance(spanCPU, performance.now(), "signum", dd.signum);
-        showPerformance(spanCPU, performance.now(), "identity", dd.same);
-        //var ss = dd.slice()
-        //ss[0] = 0
-        t0 = performance.now();
-        //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
-        try {
-            showPerformance(spanCPU, performance.now(), 'gradeup/down', dd.gradeUp);
-        }
-        catch (err) { }
-        finally { }
-        var cpuGradeUp = performance.now() - t0;
-        //this.spanCPU.innerHTML += "\n gradeUp/Down CPU-tijd: " + t0.toString() + "<br />"
-        //t0 = performance.now()
-        //qq = dd.sort()
-        //t0 = performance.now() - t0
-        // this.spanCPU.innerHTML += "\n Array.sort CPU-tijd: " + t0.toString() + "<br />"
-        //     var zz = gradeUpSort(dd)       // [2,3,4,5,4,3,2])
-        //var sign = dd.sign
-        //   sign=dd.sign()
-        //var bb=dd+dd not supported
-        var tn = (10).plus(9);
-        showPerformance(spanCPU, performance.now(), "negate", dd.negative);
-        showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
-        showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
-        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha; }));
-        showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
-        showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
-        performance.mark("Array.APLreduce start");
-        var min = dd.aplReduce(scalar.minus);
-        performance.mark("Array.APLreduce stop");
-        showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
-        //       console.log(`min: ${min} som: ${som}`)
-        performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop");
-        // Print marks
-        var perfMarks = performance.getEntriesByType("measure"); // "mark"
-        var perfEntries = performance.getEntries();
-        for (var i = 0; i < perfMarks.length; i++) {
-            this.spanCPU.innerHTML +=
-                "Name: " + perfMarks[i].name + " - " +
-                    "CPU Time: " + perfMarks[i].duration + "<br />"; //  perfMarks[i].startTime
-        }
-        var totalCpu = performance.now() - startPerformance;
-        this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`;
-        this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}<br />`;
-        this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
-    }
-    stop() {
-        clearTimeout(this.timerToken);
-    }
-}
-var showPerformance = function (spanCPU, performanceNow, text, expression) {
-    //   var result = expression
-    console.time("");
-    var t0 = performance.now() - performanceNow;
-    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
-    // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
-};
-window.onload = () => {
-    var el = document.getElementById('content');
-    var greeter = new APLXTest(el);
-    greeter.start();
-};
+var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix?APLPrefix:''
+//#endregion
 var Monadic;
 (function (Monadic) {
     var NonScalar;
@@ -381,193 +381,6 @@ var Dyadic;
             // (1000).encode( [24, 60, 60])
         };
         addPrototype(Number, 'encode', NonScalar.encode);
-    })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
-})(Dyadic || (Dyadic = {}));
-var Monadic;
-(function (Monadic) {
-    var NonScalar;
-    (function (NonScalar) {
-        NonScalar.gradeUp = function (alpha, indices, low, high) {
-            //try {
-            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
-            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
-            low = (typeof (low) === 'undefined') ? 0 : low;
-            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
-            if (high <= low)
-                return indices;
-            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
-            var t1, t2;
-            var t3, t4;
-            var i = low, j = high;
-            while (i <= j) {
-                t1 = indices[i], t2 = indices[j];
-                t3 = alpha[t1] >= midValue, t4 = alpha[t2] <= midValue;
-                if (t3 && t4) {
-                    indices[i] = t2;
-                    indices[j] = t1;
-                    i = i + 1;
-                    j = j - 1;
-                }
-                else {
-                    if (t3 === false) {
-                        i++;
-                    }
-                    if (t4 === false) {
-                        j--;
-                    }
-                }
-            }
-            NonScalar.gradeUp(alpha, indices, low, j);
-            NonScalar.gradeUp(alpha, indices, i, high);
-            //}
-            //catch (error) {
-            //}
-            //finally {
-            //}
-            return indices;
-        };
-        NonScalar.gradeDown = function (alpha, indices, low, high) {
-            //try {
-            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
-            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
-            low = (typeof (low) === 'undefined') ? 0 : low;
-            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
-            if (high <= low)
-                return indices;
-            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
-            var t1, t2;
-            var t3, t4;
-            var i = low, j = high;
-            while (i <= j) {
-                t1 = indices[i], t2 = indices[j];
-                t3 = alpha[t1] <= midValue, t4 = alpha[t2] >= midValue;
-                if (t3 && t4) {
-                    indices[i] = t2;
-                    indices[j] = t1;
-                    i = i + 1;
-                    j = j - 1;
-                }
-                else {
-                    if (t3 === false) {
-                        i++;
-                    }
-                    if (t4 === false) {
-                        j--;
-                    }
-                }
-            }
-            NonScalar.gradeDown(alpha, indices, low, j);
-            NonScalar.gradeDown(alpha, indices, i, high);
-            //}
-            //catch (error) {
-            //}
-            //finally {
-            //}
-            return indices;
-        };
-        NonScalar.indexGenerator = (alpha) => {
-            var results = new Array(alpha); // sneller dan []
-            for (var counter = 0; counter < alpha; counter++) {
-                results[counter] = counter;
-            }
-            return results;
-        };
-        //TODO IndexGenerator vervangen door Range?
-        addProperty([Number, Array], 'indexGenerator', NonScalar.indexGenerator);
-        addProperty(Array, "gradeUp", NonScalar.gradeUp, false);
-        addProperty(Array, "gradeDown", NonScalar.gradeDown, false);
-        //Object.defineProperty(Array.prototype, prefix +'' , {
-        //    get: function (): number[] {
-        //        var compare = function (alpha, omega) {
-        //            loop++
-        //            if (alpha.value < omega.value) {
-        //                return -1;
-        //            } else if (alpha.value > omega.value) {
-        //                return 1;
-        //            } else {
-        //                return 0;
-        //            }
-        //        }
-        //        //               try {
-        //        var length = this.length,
-        //            loop = 0
-        //        var thisIndex = new Array(length),
-        //            results = new Array(length),
-        //            indices = new Array(length)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            thisIndex[counter] = { value: this[counter], index: counter }
-        //        }
-        //        results = thisIndex.sort(compare)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            indices[counter] = results[counter].index
-        //        }
-        //        console.log('Loops :' + loop)
-        //        return indices
-        //        //}
-        //        //catch (error) {
-        //        //}
-        //        //finally {
-        //        //}
-        //    }
-        //})
-        //    Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
-        //    get: function (): number[] {
-        //        var compare = function (alpha, omega) {
-        //            loop++
-        //            if (alpha.value < omega.value) {
-        //                return 1;
-        //            } else if (alpha.value > omega.value) {
-        //                return -1;
-        //            } else {
-        //                return 0;
-        //            }
-        //        }
-        //        //              try {
-        //        var length = this.length,
-        //            loop = 0
-        //        var thisIndex = new Array(length),
-        //            results = new Array(length),
-        //            indices = new Array(length)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            thisIndex[counter] = { value: this[counter], index: counter }
-        //        }
-        //        results = thisIndex.sort(compare)
-        //        for (var counter = 0; counter < length; counter++) {
-        //            indices[counter] = results[counter].index
-        //        }
-        //        console.log('Loops :' + loop)
-        //        return indices
-        //        //}
-        //        //catch (error) {
-        //        //}
-        //        //finally {
-        //        //}
-        //    }
-        //})
-    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
-})(Monadic || (Monadic = {}));
-var Dyadic;
-(function (Dyadic) {
-    var NonScalar;
-    (function (NonScalar) {
-        NonScalar.deal = function (omega) {
-            let l = (Array.isArray(omega)) ? omega[0] : omega;
-            let r = (Array.isArray(this)) ? this[0] : this;
-            let deal = (l, r) => {
-                let results = l[APLPrefix + 'indexGenerator'];
-                let h, j;
-                for (var i = 0; i < r; i++) {
-                    j = i + Math.floor(Math.random() * (l - i)); // j = i + (omega-i).roll
-                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
-                    h = results[i];
-                    results[i] = results[j];
-                    results[j] = h;
-                }
-                return results.slice(0, r);
-            };
-            return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
-        };
-        addPrototype([Array, Number], 'deal', NonScalar.deal);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
@@ -762,12 +575,14 @@ var Dyadic;
             return Array.from(results);
         };
         NonScalar.union = function (omega) {
-            let results = new Set(this[APLPrefix + 'ravel']);
-            const myOmega = new Set(omega[APLPrefix + 'ravel']);
-            for (let elem of myOmega) {
-                results.add(elem);
-            }
-            return Array.from(results);
+            let results = this[APLPrefix + 'ravel'][APLPrefix + 'catenate'](omega[APLPrefix + 'ravel']);
+            return results[APLPrefix + 'unique'];
+            //results = new Set(this[APLPrefix + 'ravel'])
+            //const myOmega = new Set(omega[APLPrefix + 'ravel'])
+            //for (let elem of myOmega) {
+            //    results.add(elem)
+            //}
+            //return Array.from(results)
         };
         addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
         addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
@@ -780,6 +595,193 @@ var Dyadic;
         addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding);
         addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection);
         addPrototype([Array, Boolean, Date, Number, String], 'union', NonScalar.union);
+    })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
+})(Dyadic || (Dyadic = {}));
+var Monadic;
+(function (Monadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.gradeUp = function (alpha, indices, low, high) {
+            //try {
+            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
+            low = (typeof (low) === 'undefined') ? 0 : low;
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
+            if (high <= low)
+                return indices;
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
+            var t1, t2;
+            var t3, t4;
+            var i = low, j = high;
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j];
+                t3 = alpha[t1] >= midValue, t4 = alpha[t2] <= midValue;
+                if (t3 && t4) {
+                    indices[i] = t2;
+                    indices[j] = t1;
+                    i = i + 1;
+                    j = j - 1;
+                }
+                else {
+                    if (t3 === false) {
+                        i++;
+                    }
+                    if (t4 === false) {
+                        j--;
+                    }
+                }
+            }
+            NonScalar.gradeUp(alpha, indices, low, j);
+            NonScalar.gradeUp(alpha, indices, i, high);
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices;
+        };
+        NonScalar.gradeDown = function (alpha, indices, low, high) {
+            //try {
+            alpha = Array.isArray(alpha) ? alpha : [alpha]; //(typeof alpha === 'number') ? [alpha] : alpha
+            indices = (typeof (indices) === 'undefined') ? alpha.length.indexGenerator : indices;
+            low = (typeof (low) === 'undefined') ? 0 : low;
+            high = (typeof (high) === 'undefined') ? alpha.length - 1 : high;
+            if (high <= low)
+                return indices;
+            var midValue = alpha[indices[Math.floor((low + high) / 2)]];
+            var t1, t2;
+            var t3, t4;
+            var i = low, j = high;
+            while (i <= j) {
+                t1 = indices[i], t2 = indices[j];
+                t3 = alpha[t1] <= midValue, t4 = alpha[t2] >= midValue;
+                if (t3 && t4) {
+                    indices[i] = t2;
+                    indices[j] = t1;
+                    i = i + 1;
+                    j = j - 1;
+                }
+                else {
+                    if (t3 === false) {
+                        i++;
+                    }
+                    if (t4 === false) {
+                        j--;
+                    }
+                }
+            }
+            NonScalar.gradeDown(alpha, indices, low, j);
+            NonScalar.gradeDown(alpha, indices, i, high);
+            //}
+            //catch (error) {
+            //}
+            //finally {
+            //}
+            return indices;
+        };
+        NonScalar.indexGenerator = (alpha) => {
+            var results = new Array(alpha); // sneller dan []
+            for (var counter = 0; counter < alpha; counter++) {
+                results[counter] = counter;
+            }
+            return results;
+        };
+        //TODO IndexGenerator vervangen door Range?
+        addProperty([Number, Array], 'indexGenerator', NonScalar.indexGenerator);
+        addProperty(Array, "gradeUp", NonScalar.gradeUp, false);
+        addProperty(Array, "gradeDown", NonScalar.gradeDown, false);
+        //Object.defineProperty(Array.prototype, prefix +'' , {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return -1;
+        //            } else if (alpha.value > omega.value) {
+        //                return 1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //               try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
+        //    Object.defineProperty(Array.prototype, prefix + "gradeDownJS", {
+        //    get: function (): number[] {
+        //        var compare = function (alpha, omega) {
+        //            loop++
+        //            if (alpha.value < omega.value) {
+        //                return 1;
+        //            } else if (alpha.value > omega.value) {
+        //                return -1;
+        //            } else {
+        //                return 0;
+        //            }
+        //        }
+        //        //              try {
+        //        var length = this.length,
+        //            loop = 0
+        //        var thisIndex = new Array(length),
+        //            results = new Array(length),
+        //            indices = new Array(length)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            thisIndex[counter] = { value: this[counter], index: counter }
+        //        }
+        //        results = thisIndex.sort(compare)
+        //        for (var counter = 0; counter < length; counter++) {
+        //            indices[counter] = results[counter].index
+        //        }
+        //        console.log('Loops :' + loop)
+        //        return indices
+        //        //}
+        //        //catch (error) {
+        //        //}
+        //        //finally {
+        //        //}
+        //    }
+        //})
+    })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
+})(Monadic || (Monadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var NonScalar;
+    (function (NonScalar) {
+        NonScalar.deal = function (omega) {
+            let l = (Array.isArray(omega)) ? omega[0] : omega;
+            let r = (Array.isArray(this)) ? this[0] : this;
+            let deal = (l, r) => {
+                let results = l[APLPrefix + 'indexGenerator'];
+                let h, j;
+                for (var i = 0; i < r; i++) {
+                    j = i + Math.floor(Math.random() * (l - i)); // j = i + (omega-i).roll
+                    //   [results[j], results[i]]=[results[i], results[j]]   //destructuring werkt nog niet
+                    h = results[i];
+                    results[i] = results[j];
+                    results[j] = h;
+                }
+                return results.slice(0, r);
+            };
+            return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
+        };
+        addPrototype([Array, Number], 'deal', NonScalar.deal);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
@@ -898,55 +900,6 @@ var Dyadic;
 })(Dyadic || (Dyadic = {}));
 var Dyadic;
 (function (Dyadic) {
-    var Scalar;
-    (function (Scalar) {
-        Scalar.and = (alpha, omega) => { return (alpha && omega); };
-        Scalar.nand = (alpha, omega) => { return !(alpha && omega); };
-        Scalar.or = (alpha, omega) => { return (alpha || omega); };
-        Scalar.nor = (alpha, omega) => { return !(alpha || omega); };
-        Scalar.lt = (alpha, omega) => { return alpha < omega; };
-        Scalar.le = (alpha, omega) => { return alpha <= omega; };
-        Scalar.gt = (alpha, omega) => { return alpha > omega; };
-        Scalar.ge = (alpha, omega) => { return alpha >= omega; };
-        Scalar.eq = (alpha, omega) => { return alpha === omega; };
-        Scalar.neq = (alpha, omega) => { return alpha !== omega; };
-        Scalar.gcd = (alpha, omega) => { while (omega) {
-            var t = omega;
-            omega = alpha % omega;
-            alpha = t;
-        } ; return alpha; };
-        Scalar.lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
-    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
-    var Vector;
-    (function (Vector) {
-        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
-        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
-        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
-        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
-        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
-        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
-        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
-        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
-        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
-        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
-        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
-        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
-        addPrototype([Array, Boolean], 'and', Vector.and);
-        addPrototype([Array, Boolean], 'nand', Vector.nand);
-        addPrototype([Array, Boolean], 'or', Vector.or);
-        addPrototype([Array, Boolean], 'nor', Vector.nor);
-        addPrototype([Array, Number], 'lt', Vector.lt);
-        addPrototype([Array, Number], 'le', Vector.le);
-        addPrototype([Array, Number], 'gt', Vector.gt);
-        addPrototype([Array, Number], 'ge', Vector.ge);
-        addPrototype([Array, Number, String], 'eq', Vector.eq);
-        addPrototype([Array, Number, String], 'neq', Vector.neq);
-        addPrototype([Array, Number], 'gcd', Vector.gcd);
-        addPrototype([Array, Number], 'lcm', Vector.lcm);
-    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
-})(Dyadic || (Dyadic = {}));
-var Dyadic;
-(function (Dyadic) {
     addPrototype([Array, Number, String, Boolean, Date], 'primitive', primitive);
     var Scalar;
     (function (Scalar) {
@@ -1013,6 +966,55 @@ var Dyadic;
         Vector.deal = function (omega) {
             return this[0].deal(omega); //, this[0].valueOf())
         };
+    })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
+})(Dyadic || (Dyadic = {}));
+var Dyadic;
+(function (Dyadic) {
+    var Scalar;
+    (function (Scalar) {
+        Scalar.and = (alpha, omega) => { return (alpha && omega); };
+        Scalar.nand = (alpha, omega) => { return !(alpha && omega); };
+        Scalar.or = (alpha, omega) => { return (alpha || omega); };
+        Scalar.nor = (alpha, omega) => { return !(alpha || omega); };
+        Scalar.lt = (alpha, omega) => { return alpha < omega; };
+        Scalar.le = (alpha, omega) => { return alpha <= omega; };
+        Scalar.gt = (alpha, omega) => { return alpha > omega; };
+        Scalar.ge = (alpha, omega) => { return alpha >= omega; };
+        Scalar.eq = (alpha, omega) => { return alpha === omega; };
+        Scalar.neq = (alpha, omega) => { return alpha !== omega; };
+        Scalar.gcd = (alpha, omega) => { while (omega) {
+            var t = omega;
+            omega = alpha % omega;
+            alpha = t;
+        } ; return alpha; };
+        Scalar.lcm = (alpha, omega) => { return (!alpha || !omega) ? 0 : Math.abs((alpha * omega) / Scalar.gcd(alpha, omega)); };
+    })(Scalar = Dyadic.Scalar || (Dyadic.Scalar = {}));
+    var Vector;
+    (function (Vector) {
+        Vector.and = function (omega) { return this.primitive(omega, Scalar.and); };
+        Vector.nand = function (omega) { return this.primitive(omega, Scalar.nand); };
+        Vector.or = function (omega) { return this.primitive(omega, Scalar.or); };
+        Vector.nor = function (omega) { return this.primitive(omega, Scalar.nor); };
+        Vector.lt = function (omega) { return this.primitive(omega, Scalar.lt); };
+        Vector.le = function (omega) { return this.primitive(omega, Scalar.le); };
+        Vector.gt = function (omega) { return this.primitive(omega, Scalar.gt); };
+        Vector.ge = function (omega) { return this.primitive(omega, Scalar.ge); };
+        Vector.eq = function (omega) { return this.primitive(omega, Scalar.eq); };
+        Vector.neq = function (omega) { return this.primitive(omega, Scalar.neq); };
+        Vector.gcd = function (omega) { return this.primitive(omega, Scalar.gcd); };
+        Vector.lcm = function (omega) { return this.primitive(omega, Scalar.lcm); };
+        addPrototype([Array, Boolean], 'and', Vector.and);
+        addPrototype([Array, Boolean], 'nand', Vector.nand);
+        addPrototype([Array, Boolean], 'or', Vector.or);
+        addPrototype([Array, Boolean], 'nor', Vector.nor);
+        addPrototype([Array, Number], 'lt', Vector.lt);
+        addPrototype([Array, Number], 'le', Vector.le);
+        addPrototype([Array, Number], 'gt', Vector.gt);
+        addPrototype([Array, Number], 'ge', Vector.ge);
+        addPrototype([Array, Number, String], 'eq', Vector.eq);
+        addPrototype([Array, Number, String], 'neq', Vector.neq);
+        addPrototype([Array, Number], 'gcd', Vector.gcd);
+        addPrototype([Array, Number], 'lcm', Vector.lcm);
     })(Vector = Dyadic.Vector || (Dyadic.Vector = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
