@@ -205,12 +205,14 @@ namespace Dyadic {
         }
 
         export var union = function (omega: any) {
-            let results = new Set(this[APLPrefix + 'ravel'])
-            const myOmega = new Set(omega[APLPrefix + 'ravel'])
-            for (let elem of myOmega) {
-                results.add(elem)
-            }
-            return Array.from(results)
+            let results = this[APLPrefix + 'ravel'][APLPrefix + 'catenate'](omega[APLPrefix + 'ravel'])
+            return results[APLPrefix + 'unique']
+            //results = new Set(this[APLPrefix + 'ravel'])
+            //const myOmega = new Set(omega[APLPrefix + 'ravel'])
+            //for (let elem of myOmega) {
+            //    results.add(elem)
+            //}
+            //return Array.from(results)
         }
 
         addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left)
