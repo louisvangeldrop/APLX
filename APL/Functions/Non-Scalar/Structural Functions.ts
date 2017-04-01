@@ -59,7 +59,8 @@ namespace Dyadic {
 
 
         export var rotate = function (omega) {
-            let myThis = this.valueOf()           // XXX xsneller dan het gebruik van this
+
+            let myThis: number = Array.isArray(this) ? this[0] : this          // XXX xsneller dan het gebruik van this
             let counter: number,
                 max: number = omega.length,
                 results = new Array(max);

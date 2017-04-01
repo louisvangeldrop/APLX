@@ -3,58 +3,58 @@ var prefix = (typeof (APLPrefix) === 'undefined') ? '' : APLPrefix; // APLPrefix
 var APLPrefix = ""; //"APLX"
 var primitive = function (omega, primitive) {
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
-    try {
-        let counter, max, results;
-        if (typeof primitive === 'undefined') {
-            primitive = omega;
-            max = this.length;
-            results = new Array(max);
-            for (counter = 0; counter < max; counter++) {
-                results[counter] = primitive(this[counter]);
-            }
-            return results;
+    //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+    let counter, max, results;
+    if (typeof primitive === 'undefined') {
+        primitive = omega;
+        max = this.length;
+        results = new Array(max);
+        for (counter = 0; counter < max; counter++) {
+            results[counter] = primitive(this[counter]);
         }
-        else {
-            if (Array.isArray(this)) {
-                if (Array.isArray(omega)) {
-                    max = Math.max(this.length, omega.length),
-                        results = new Array(max);
-                    var alpha = (this.length !== 1) ? this : max.reshape(this);
-                    omega = (omega.length !== 1) ? omega : max.reshape(omega);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(alpha[counter], omega[counter]);
-                    }
-                    return results;
-                }
-                else {
-                    max = this.length;
+        return results;
+    }
+    else {
+        if (Array.isArray(this)) {
+            if (Array.isArray(omega)) {
+                max = Math.max(this.length, omega.length),
                     results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this[counter], omega.valueOf());
-                    }
-                    return results;
+                var alpha = (this.length !== 1) ? this : max.reshape(this);
+                omega = (omega.length !== 1) ? omega : max.reshape(omega);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(alpha[counter], omega[counter]);
                 }
+                return results;
             }
             else {
-                if (Array.isArray(omega)) {
-                    max = omega.length,
-                        results = new Array(max);
-                    for (counter = 0; counter < max; counter++) {
-                        results[counter] = primitive(this.valueOf(), omega[counter]);
-                    }
-                    return results;
+                max = this.length;
+                results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this[counter], omega.valueOf());
                 }
-                else {
-                    return primitive(this.valueOf(), omega.valueOf());
+                return results;
+            }
+        }
+        else {
+            if (Array.isArray(omega)) {
+                max = omega.length,
+                    results = new Array(max);
+                for (counter = 0; counter < max; counter++) {
+                    results[counter] = primitive(this.valueOf(), omega[counter]);
                 }
+                return results;
+            }
+            else {
+                return primitive(this.valueOf(), omega.valueOf());
             }
         }
     }
-    catch (error) {
-        // throw error
-    }
-    finally {
-    }
+    //}
+    //catch (error) {
+    //    throw error
+    //}
+    //finally {
+    //}
 };
 var addPrototype = function (object, name, func) {
     if (Array.isArray(object) === true) {
@@ -245,12 +245,12 @@ class APLXTest {
         rr = [1, 2, 3, 4, 1].unique;
         rr = [1, 0, 1, 1].expand([1, 2, 3]);
         showPerformance(spanCPU, performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal));
-        showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"]);
-        showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"]);
-        showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
         showPerformance(spanCPU, performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)));
-        showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
-        showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd));
+        //showPerformance(spanCPU, performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
+        //showPerformance(spanCPU, performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
+        //showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
+        //showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"])
+        //showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
         var aplVector = new APL.Vector(null, 10);
@@ -839,7 +839,7 @@ var Dyadic;
         };
         addPrototype(Number, 'reshape', NonScalar.reshape);
         NonScalar.rotate = function (omega) {
-            let myThis = this.valueOf(); // XXX xsneller dan het gebruik van this
+            let myThis = Array.isArray(this) ? this[0] : this; // XXX xsneller dan het gebruik van this
             let counter, max = omega.length, results = new Array(max);
             if (myThis > 0) {
                 for (counter = 0; counter < max; counter++) {

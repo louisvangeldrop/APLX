@@ -3,7 +3,7 @@
 var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx sneller dan pure declaratie "function primitive(...) {}" .Uitkijken met lambda. "this." klopt niet meer 
     // tenzij je het volgende  doet: https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Functions.md
 
-    try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
+    //try {                                 // Try..catch maakt primitive ongeveer 4x langzamer
     let counter: number,
         max: number,
         results
@@ -48,14 +48,12 @@ var primitive = function (omega, primitive?) {  // Toekennen aan var is Xx snell
             }
         }
     }
-
-
-    }
-    catch (error) {
-       // throw error
-    }
-    finally {
-    }
+    //}
+    //catch (error) {
+    //    throw error
+    //}
+    //finally {
+    //}
 
 }
 

@@ -23,7 +23,7 @@
 
         export var magnitude = (alpha) => Math.abs(alpha)
 
-        export var negative = (alpha) => -alpha
+        export var negative = (alpha) => - alpha
 
         export var not = (alpha) => !alpha
 
