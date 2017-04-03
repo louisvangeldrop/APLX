@@ -782,6 +782,17 @@ var Dyadic;
             return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
         };
         addPrototype([Array, Number], 'deal', NonScalar.deal);
+        NonScalar.index = function (omega) {
+            let l = Array.isArray(this) ? this : this[APLPrefix + 'ravel'];
+            let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel'];
+            const rho = l.length;
+            let z = new Array(rho);
+            for (let i = 0; i < rho; i++) {
+                z[i] = r[l[i]];
+            }
+            return z;
+        };
+        addPrototype([Array, Number], 'index', NonScalar.index);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
