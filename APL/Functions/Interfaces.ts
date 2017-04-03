@@ -126,7 +126,7 @@ interface Number {          // property
 
 interface Number {      // prototype
     rotate<T>(array: T[])
-    deal(omega: number): number[]S
+    deal(omega: number): number[]
     from(omega: any): Array<any>
     reshape(omega: any)
     catenate(omega: any)
