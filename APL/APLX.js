@@ -151,6 +151,7 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"]);
         showPerformance(spanCPU, performance.now(), 'unique', dd = dd[APLPrefix + "unique"]);
         //showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
+        showPerformance(spanCPU, performance.now(), 'from', rr = dd[APLPrefix + 'from'](dd));
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
         var aplVector = new APL.Vector(null, 10);
@@ -782,7 +783,7 @@ var Dyadic;
             return deal(l.valueOf(), r.valueOf()); // 6xsneller dan function deal (...){}
         };
         addPrototype([Array, Number], 'deal', NonScalar.deal);
-        NonScalar.index = function (omega) {
+        NonScalar.from = function (omega) {
             let l = Array.isArray(this) ? this : this[APLPrefix + 'ravel'];
             let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel'];
             const rho = l.length;
@@ -792,7 +793,7 @@ var Dyadic;
             }
             return z;
         };
-        addPrototype([Array, Number], 'index', NonScalar.index);
+        addPrototype([Array, Number], 'from', NonScalar.from);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;

@@ -182,7 +182,7 @@ namespace Dyadic {
 
         addPrototype([Array, Number], 'deal', deal)
 
-        export var index = function (omega: any | Array<any>): Array<any> {
+        export var from = function (omega: any | Array<any>): Array<any> {
             let l: Array<number> = Array.isArray(this) ? this : this[APLPrefix + 'ravel']
             let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel']
             const rho = l.length
@@ -192,7 +192,7 @@ namespace Dyadic {
             }
             return z
         }
-        addPrototype([Array, Number], 'index', index)
+        addPrototype([Array, Number], 'from', from)
     }
 
 
