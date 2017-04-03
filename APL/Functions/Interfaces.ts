@@ -46,7 +46,7 @@ interface ArrayConstructor {
 interface Array<T> {        //  prototype
     primitive(left?, right?): T[]
     deal(omega: number, alpha?: number): number[]
-    index(omega: any): Array<any>
+    from(omega: any): Array<any>
     iota(length?: number)
     plus(omega?): T[]
     minus(omega?): T[]
@@ -126,8 +126,8 @@ interface Number {          // property
 
 interface Number {      // prototype
     rotate<T>(array: T[])
-    deal(omega: number): number[]
-    index(omega: any): Array<any>
+    deal(omega: number): number[]S
+    from(omega: any): Array<any>
     reshape(omega: any)
     catenate(omega: any)
     maximum(omega: number): number
