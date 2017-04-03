@@ -192,7 +192,20 @@ namespace Dyadic {
             }
             return z
         }
+
         addPrototype([Array, Number], 'from', from)
+
+        export var indicesOf = function (omega: any): Number | Array<Number> {
+            let l: Array<number> = Array.isArray(this) ? this : this[APLPrefix + 'ravel']
+            let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel']
+            const rho = r.length
+            let z: Number | Array<Number> = new Array(rho)
+            for (let i = 0; i < rho; i++) {
+                z[i] = l.indexOf(r[i])
+            }
+            return z
+        }
+        addPrototype(Array, 'indicesOf', indicesOf)
     }
 
 
