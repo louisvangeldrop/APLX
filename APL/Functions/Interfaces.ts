@@ -48,6 +48,7 @@ interface Array<T> {        //  prototype
     deal(omega: number, alpha?: number): number[]
     from(omega: any): Array<any>
     indicesOf(omega: any): Array<any>
+    memberShip(omega: any): Array<boolean>
     iota(length?: number)
     plus(omega?): T[]
     minus(omega?): T[]
@@ -130,6 +131,7 @@ interface Number {      // prototype
     deal(omega: number): number[]
     from(omega: any): Array<any>
     indicesOf(omega: any): Array<any>
+    memberShip(omega: any): Array<boolean>
     reshape(omega: any)
     catenate(omega: any)
     maximum(omega: number): number
