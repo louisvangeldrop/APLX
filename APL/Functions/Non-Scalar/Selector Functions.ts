@@ -198,14 +198,28 @@ namespace Dyadic {
         export var indicesOf = function (omega: any): Number | Array<Number> {
             let l: Array<number> = Array.isArray(this) ? this : this[APLPrefix + 'ravel']
             let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel']
-            const rho = r.length
-            let z: Number | Array<Number> = new Array(rho)
-            for (let i = 0; i < rho; i++) {
+            const rrho = r.length
+            const lrho = l.length
+            let z: Number | Array<Number> = new Array(rrho)
+            for (let i = 0; i < rrho; i++) {
                 z[i] = l.indexOf(r[i])
+                z[i] = z[i] === -1 ? lrho : z[i]
             }
             return z
         }
         addPrototype(Array, 'indicesOf', indicesOf)
+
+        export var memberShip = function (omega: any): Boolean | Array<Boolean> {
+            let l: Array<number> = Array.isArray(this) ? this : this[APLPrefix + 'ravel']
+            let r: Array<any> = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel']
+            const lrho = l.length
+            let z: Boolean | Array<Boolean> = new Array(lrho)
+            for (let i = 0; i < lrho; i++) {
+                z[i] = r.indexOf(l[i]) === -1 ? false : true
+            }
+            return z
+        }
+        addPrototype(Array, 'memberShip', memberShip)
     }
 
 

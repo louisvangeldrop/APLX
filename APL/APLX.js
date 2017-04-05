@@ -797,14 +797,27 @@ var Dyadic;
         NonScalar.indicesOf = function (omega) {
             let l = Array.isArray(this) ? this : this[APLPrefix + 'ravel'];
             let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel'];
-            const rho = r.length;
-            let z = new Array(rho);
-            for (let i = 0; i < rho; i++) {
+            const rrho = r.length;
+            const lrho = l.length;
+            let z = new Array(rrho);
+            for (let i = 0; i < rrho; i++) {
                 z[i] = l.indexOf(r[i]);
+                z[i] = z[i] === -1 ? lrho : z[i];
             }
             return z;
         };
         addPrototype(Array, 'indicesOf', NonScalar.indicesOf);
+        NonScalar.memberShip = function (omega) {
+            let l = Array.isArray(this) ? this : this[APLPrefix + 'ravel'];
+            let r = Array.isArray(omega) ? omega : omega[APLPrefix + 'ravel'];
+            const lrho = l.length;
+            let z = new Array(lrho);
+            for (let i = 0; i < lrho; i++) {
+                z[i] = r.indexOf(l[i]) === -1 ? false : true;
+            }
+            return z;
+        };
+        addPrototype(Array, 'memberShip', NonScalar.memberShip);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
