@@ -220,7 +220,57 @@ namespace Dyadic {
             return z
         }
         addPrototype(Array, 'memberShip', memberShip)
+
+        export var match = function (omega): boolean {
+            // if the other array is a falsy value, return
+            if (!omega)
+                return false;
+
+            // compare lengths - can save a lot of time 
+            if (this.length != omega.length)
+                return false;
+
+            for (var i = 0, l = this.length; i < l; i++) {
+                // Check if we have nested arrays
+                if (this[i] instanceof Array && omega[i] instanceof Array) {
+                    // recurse into the nested arrays
+                    if (!this[i].match(omega[i]))
+                        return false;
+                }
+                else if (this[i] != omega[i]) {
+                    // Warning - two different object instances will never be equal: {x:20} != {x:20}
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        addPrototype([Array, Number], 'match', match)
+
+        export var notMatch = function (omega): boolean {
+            // if the other array is a falsy value, return
+            if (!omega)
+                return false;
+
+            // compare lengths - can save a lot of time 
+            if (this.length != omega.length)
+                return false;
+
+            for (var i = 0, l = this.length; i < l; i++) {
+                // Check if we have nested arrays
+                if (this[i] instanceof Array && omega[i] instanceof Array) {
+                    // recurse into the nested arrays
+                    if (!this[i].notMatch(omega[i]))
+                        return false;
+                }
+                else if (this[i] != omega[i]) {
+                    // Warning - two different object instances will never be equal: {x:20} != {x:20}
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        addPrototype([Array, Number], 'notMatch', notMatch)
     }
-
-
 }
