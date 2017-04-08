@@ -4,7 +4,7 @@
 
         export var identity = (alpha) => alpha
 
-        export var discose = (alpha) => {
+        export var disclose = (alpha) => {
             if (Array.isArray(alpha)) { return alpha[0] } else { return alpha }
         }
 
@@ -27,7 +27,7 @@
 
         addProperty([Array, Boolean, Date, Number, String], "identity", NonScalar.identity, false)
         addProperty([Array, Boolean, Date, Number, String], "same", NonScalar.identity, false)
-        addProperty([Array, Boolean, Date, Number, String], "disclose", NonScalar.discose, false)
+        addProperty([Array, Boolean, Date, Number, String], "disclose", NonScalar.disclose, false)
         addProperty([Array, Boolean, Date, Number, String], "unique", NonScalar.unique, false)
     }
 
