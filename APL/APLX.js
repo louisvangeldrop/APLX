@@ -1101,13 +1101,12 @@ var Monadic;
 })(Monadic || (Monadic = {}));
 var Dyadic;
 (function (Dyadic) {
-    //TODO 'scan' hoort hier niet thuis
+    // ToDo Vooropig alleen commutatieve Scan
     Dyadic.scan = function (omega) {
         const myThis = this[APLPrefix + 'ravel'];
-        const myOmega = omega[APLPrefix + 'ravel'];
-        const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
+        const length = myThis.length;
         let results = new Array(length);
-        let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0;
+        let fillElement = typeof myThis[0] === 'string' ? ' ' : 0;
         //const reshape = APLPrefix + 'reshape'
         let ix = 0;
         for (let i = 0; i < myThis.length; i++) {
@@ -1119,12 +1118,9 @@ var Dyadic;
             else {
                 size = Math.abs(myThis[i]);
             }
-            for (let j = 0; j < size; j++) {
-                results[ix] = myThis[i] > 0 ? myOmega[i] : fillElement;
-                ix++;
-            }
-            //for (let j = 0; j < temp.length; j++) {
-            //    results[i + j] = temp[j]
+            //for (let j = 0; j < size; j++) {
+            //    results[ix] = myThis[i] > 0 ? myOmega[i] : fillElement
+            //    ix++
             //}
         }
         return results;
