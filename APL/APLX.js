@@ -790,6 +790,21 @@ var Dyadic;
         };
         addPrototype(Array, 'memberShip', NonScalar.memberShip);
         NonScalar.match = function (omega) {
+            // http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+            //// arrayCompare :: (a -> b -> Bool) -> [a] -> [b] -> Bool
+            //const arrayCompare = f => ([x, ...xs]) => ([y, ...ys]) => {
+            //    if (x === undefined && y === undefined)
+            //        return true
+            //    else if (!f(x)(y))
+            //        return false
+            //    else
+            //        return arrayCompare(f)(xs)(ys)
+            //}
+            //const equal = x => y => x === y
+            //const arrayEqual = arrayCompare(equal)
+            //let xs = [1, 2, 3]
+            //let ys = [1, 2, 3]
+            //console.log(arrayEqual(xs)(ys))
             // if the other array is a falsy value, return
             if (!omega)
                 return false;
