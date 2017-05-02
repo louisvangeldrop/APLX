@@ -8,21 +8,10 @@
         let fillElement = typeof myThis[0] === 'string' ? ' ' : 0
         //const reshape = APLPrefix + 'reshape'
         let ix = 0
-        for (let i = 0; i < myThis.length; i++) {
+        results[0] = myThis[0]
+        for (let i = 1; i < length; i++) {
             //const temp = myThis[i][reshape](omega[i])
-            let size = 0
-            if (typeof myThis[i] === 'boolean') {
-                size = myThis[i] === true ? 1 : 0
-
-            } else {
-                size = Math.abs(<number>myThis[i])
-            }
-
-            //for (let j = 0; j < size; j++) {
-            //    results[ix] = myThis[i] > 0 ? myOmega[i] : fillElement
-            //    ix++
-            //}
-
+            results[i] = omega(results[i - 1], myThis[i])
         }
         return results
     }
