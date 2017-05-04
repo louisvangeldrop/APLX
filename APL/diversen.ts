@@ -32,9 +32,11 @@ namespace APL {               //export
         }
 
         // property "shape"
+        // @ts-check
+        //
         /**
          * 
-         * @param {number} 
+         * @param {number} shape
          * @return {Array} Aantal element in de vector
          */
         get shape(): number {
