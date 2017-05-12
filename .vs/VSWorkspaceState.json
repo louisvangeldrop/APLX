@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\APL",
-    "\\APL\\Functions"
+    "\\APL\\Functions",
+    "\\APL\\Operators"
   ],
-  "SelectedNode": "\\APL\\Functions",
+  "SelectedNode": "\\APL\\Operators\\Operator.ts",
   "PreviewInSolutionExplorer": false
 }

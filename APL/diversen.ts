@@ -8,6 +8,7 @@ namespace APL {               //export
     //   declare var Array, Number
     type APLNumber = Number
     type APLVector = number[] | string[]
+    type myType = {prop1:10,prop2:'Hallo'}
     let propName = 'take'
     //type APLArray=Array<string|number|boolean|any>
 
