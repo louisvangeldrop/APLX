@@ -101,22 +101,27 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))
         showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling)
         showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd))
-
-        performance.mark("Array.APLreduce start")
-        var min = dd.aplReduce(scalar.minus)
-        performance.mark("Array.APLreduce stop")
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
+        showPerformance(spanCPU, performance.now(), "Array.APLreduce start", dd.aplReduce(scalar.minus))
         //       console.log(`min: ${min} som: ${som}`)
 
-        performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
-        // Print marks
-        var perfMarks = performance.getEntriesByType("measure");   // "mark"
-        var perfEntries = performance.getEntries()
-        for (var i = 0; i < perfMarks.length; i++) {
-            this.spanCPU.innerHTML +=
-                "Name: " + perfMarks[i].name + " - " +
-                "CPU Time: " + perfMarks[i].duration + "<br />";  //  perfMarks[i].startTime
-        }
+        //try {
+        //    performance.mark("Array.APLreduce start")
+        //    var min = dd.aplReduce(scalar.minus)
+        //    performance.mark("Array.APLreduce stop")
+        //    performance.measure("Array.APLreduce", "Array.APLreduce start", "Array.APLreduce stop")
+        //    // Print marks
+        //    var perfMarks = performance.getEntriesByType("measure");   // "mark"
+        //    var perfEntries = performance.getEntries()
+        //    for (var i = 0; i < perfMarks.length; i++) {
+        //        this.spanCPU.innerHTML +=
+        //            "Name: " + perfMarks[i].name + " - " +
+        //            "CPU Time: " + perfMarks[i].duration + "<br />";  //  perfMarks[i].startTime
+        //    }
+        //}
+        //catch (e) {
+        //}
+
         var totalCpu = performance.now() - startPerformance
         this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`
         this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}<br />`

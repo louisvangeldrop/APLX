@@ -1,5 +1,11 @@
 ﻿namespace Dyadic {
 
+    /*
+    https://medium.com/javascript-scene
+    https://medium.com/javascript-scene/composing-software-an-introduction-27b72500d6ea
+    https://medium.com/javascript-scene/elements-of-javascript-style-caa8821cb99f
+    */
+
     // ToDo Vooropig alleen commutatieve Scan
     export var scan = function (omega: Function) {
         const myThis: Array<number | boolean> = this[APLPrefix + 'ravel']
