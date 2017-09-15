@@ -288,7 +288,7 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
         showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
-        showPerformance(spanCPU, performance.now(), "Array.APLreduce start", dd.aplReduce(scalar.minus));
+        showPerformance(spanCPU, performance.now(), "Array.APLreduce", dd.aplReduce(scalar.minus));
         //       console.log(`min: ${min} som: ${som}`)
         //try {
         //    performance.mark("Array.APLreduce start")
