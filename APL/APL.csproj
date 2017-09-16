@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dyalog.chm" />
+    <None Include="rapsode.apl - Web Deploy.pubxml" />
+    <None Include="rapsode.PublishSettings" />
     <None Include="rapsodeapl - Web Deploy.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
