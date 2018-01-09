@@ -35,9 +35,6 @@
   <ItemGroup>
     <Content Include="APLX\APLX.js.map" />
     <None Include="rapsode.apl - Web Deploy.pubxml" />
-    <None Include="rapsode.ftp.pubxml">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="rapsode.PublishSettings" />
     <None Include="rapsodeapl - Web Deploy.pubxml" />
     <None Include="web.Debug.config">

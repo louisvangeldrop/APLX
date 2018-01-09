@@ -6,6 +6,8 @@
 //import vector = Dyadic.Vector
 //import scalar = Dyadic.Scalar
 
+declare var process
+
 class APLXTest {
     element: HTMLElement;
     span: HTMLSpanElement;
@@ -139,6 +141,11 @@ var showPerformance = function (spanCPU: HTMLElement, performanceNow, text: stri
     var t0 = performance.now() - performanceNow
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+}
+
+var showPerformanceNode = (ph, fun) => {
+    let bb = process.hrtime(ph)
+    return bb.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
 }
 
 window.onload = () => {

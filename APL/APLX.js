@@ -794,7 +794,7 @@ var Dyadic;
             }
             else {
                 for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis < 0 ? counter + myThis - max : counter + myThis];
+                    results[counter] = omega[counter + myThis < 0 ? max + myThis + counter : counter + myThis];
                 }
             }
             return results;

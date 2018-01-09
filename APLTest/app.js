@@ -1,8 +1,4 @@
 // https://github.com/Microsoft/TypeScript/wiki
-//import {Dyadic} from "Dyadic"     // In dyadic.ts export toeveoegen aan namespace Dyadic
-//import {APL} from "diversen";
-//import vector = Dyadic.Vector
-//import scalar = Dyadic.Scalar
 class APLXTest {
     /**
     * Creates a new HTMLElement
@@ -121,6 +117,10 @@ var showPerformance = function (spanCPU, performanceNow, text, expression) {
     var t0 = performance.now() - performanceNow;
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
+};
+var showPerformanceNode = (ph, fun) => {
+    let bb = process.hrtime(ph);
+    return bb.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6);
 };
 window.onload = () => {
     var el = document.getElementById('content');
