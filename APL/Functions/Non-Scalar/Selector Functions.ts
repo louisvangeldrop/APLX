@@ -1,5 +1,7 @@
 ﻿namespace Monadic {
 
+    //const on = (a, b) => x => a(b(x))   // on(Math.floor,Math.max)(argument)    =>  a(b(x))
+
     export namespace NonScalar {
 
         export var gradeUp = function (alpha, indices?: number[], low?: number, high?: number): number[] {
