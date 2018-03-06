@@ -449,7 +449,7 @@ var Dyadic;
 })(Dyadic || (Dyadic = {}));
 var Monadic;
 (function (Monadic) {
-    const on = (a, b) => x => a(b(x)); // on(Math.floor,Math.max)(argument)    =>  a(b(x))
+    //const on = (f, g) => omega => f(g(omega))   // on(Math.floor,Math.max)(argument)    =>  f(g(omega))
     let NonScalar;
     (function (NonScalar) {
         NonScalar.gradeUp = function (alpha, indices, low, high) {

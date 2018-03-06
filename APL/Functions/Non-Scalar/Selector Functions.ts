@@ -1,6 +1,6 @@
 ﻿namespace Monadic {
 
-    //const on = (a, b) => x => a(b(x))   // on(Math.floor,Math.max)(argument)    =>  a(b(x))
+    //const on = (f, g) => omega => f(g(omega))   // on(Math.floor,Math.max)(argument)    =>  f(g(omega))
 
     export namespace NonScalar {
 
