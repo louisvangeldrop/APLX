@@ -6,8 +6,13 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Functions/Non-Scalar/*.js": true,
-    "**/Functions/Scalar/*.js": true,
-    "**/Functions/*.js": true
+    "**/APL/Functions/Non-Scalar/*.js": true,
+    "**/APL/Functions/Scalar/*.js": true,
+    "**/APL/Functions/*.d.ts": true,
+    "**/APL/Functions/Non-Scalar/*.d.ts": true,
+    "**/APL/Functions/Scalar/*.d.ts": true,
+    "**/APL/Functions/*.js": true,
+    "**/APL/*.d.ts": true,
+    "**/APL/*.js": true
   }
 }
