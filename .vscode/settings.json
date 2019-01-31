@@ -14,5 +14,7 @@
     "**/APL/Functions/*.js": true,
     "**/APL/*.d.ts": true,
     "**/APL/*.js": true
-  }
+  },
+  "appService.defaultWebAppToDeploy": "/subscriptions/05dd416f-44cd-4a1d-beb9-164e3220b832/resourceGroups/Default-Web-WestEurope/providers/Microsoft.Web/sites/rapsodeapl",
+  "appService.deploySubpath": ""
 }
