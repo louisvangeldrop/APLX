@@ -9,7 +9,15 @@ namespace APL {
   type APLNumber = Number;
   type APLVector = number[] | string[];
   type myType = { prop1: 10; prop2: "Hallo" };
-  type funType = (a) => void;
+  type Fruit = "apple" | "orange";
+  type Color = "red" | "orange";
+
+  type FruitEater = (fruit: Fruit) => number; // eats and ranks the fruit
+  type ColorConsumer = (color: Color) => string; // consumes and describes the colors
+
+  declare let f: FruitEater | ColorConsumer;
+  // f("orange")
+
   let propName = "take";
   //type APLArray=Array<string|number|boolean|any>
 
