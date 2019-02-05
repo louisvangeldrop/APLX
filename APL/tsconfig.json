@@ -1,10 +1,7 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "outFile": "../APLX.js"
-    },
-    "exclude": [
-        "node_modules",
-        "wwwroot"
-    ]
+  "compilerOptions": {
+    "target": "es6",
+    "outFile": "../AplTest/APLX.js"
+  },
+  "exclude": ["node_modules", "wwwroot"]
 }

@@ -102,6 +102,7 @@ var addProperty = function (object, name, func, primitive = true) {
 // http://help.dyalog.com/15.0/
 var APL;
 (function (APL) {
+    // f("orange")
     let propName = "take";
     //type APLArray=Array<string|number|boolean|any>
     //export interface IAPLArray extends Array<string|number|boolean|any> {
@@ -469,8 +470,8 @@ var Monadic;
 (function (Monadic) {
     let NonScalar;
     (function (NonScalar) {
-        NonScalar.identity = (alpha) => alpha;
-        NonScalar.disclose = (alpha) => {
+        NonScalar.identity = alpha => alpha;
+        NonScalar.disclose = alpha => {
             if (Array.isArray(alpha)) {
                 return alpha[0];
             }
@@ -478,9 +479,11 @@ var Monadic;
                 return alpha;
             }
         };
-        NonScalar.unique = (alpha) => {
-            let index = Monadic.NonScalar.gradeUp(alpha);
+        NonScalar.unique = alpha => {
             let results = [];
+            /* results = Array.from(new Set(alpha.flat()));
+            return results; */
+            let index = Monadic.NonScalar.gradeUp(alpha);
             let bitVector = new Array(alpha.length);
             bitVector[index[0]] = true;
             for (let i = 1; i < alpha.length; i++) {
@@ -523,7 +526,7 @@ var Dyadic;
             let length = omega.length;
             let size = Math.abs(this.valueOf());
             let max = Math.min(length, size);
-            let results = size[APLPrefix + 'reshape'](0); // (new Array(size)).fill(0)
+            let results = size[APLPrefix + "reshape"](0); // (new Array(size)).fill(0)
             if (this.valueOf() > 0) {
                 for (let i = 0; i < max; i++) {
                     results[i] = omega[i];
@@ -556,17 +559,17 @@ var Dyadic;
         };
         //TODO 'replicate' hoort hier niet thuis
         NonScalar.replicate = function (omega) {
-            const myThis = this[APLPrefix + 'ravel'];
-            const myOmega = omega[APLPrefix + 'ravel'];
-            const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'aplReduce'](Dyadic.Scalar.plus);
+            const myThis = this[APLPrefix + "ravel"];
+            const myOmega = omega[APLPrefix + "ravel"];
+            const length = myThis[APLPrefix + "magnitude"][APLPrefix + "aplReduce"](Dyadic.Scalar.plus);
             let results = new Array(length);
-            let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0;
+            let fillElement = typeof myOmega[0] === "string" ? " " : 0;
             //const reshape = APLPrefix + 'reshape'
             let ix = 0;
             for (let i = 0; i < myThis.length; i++) {
                 //const temp = myThis[i][reshape](omega[i])
                 let size = 0;
-                if (typeof myThis[i] === 'boolean') {
+                if (typeof myThis[i] === "boolean") {
                     size = myThis[i] === true ? 1 : 0;
                 }
                 else {
@@ -583,17 +586,17 @@ var Dyadic;
             return results;
         };
         NonScalar.expand = function (omega) {
-            const myThis = this[APLPrefix + 'ravel'];
-            const myOmega = omega[APLPrefix + 'ravel'];
+            const myThis = this[APLPrefix + "ravel"];
+            const myOmega = omega[APLPrefix + "ravel"];
             // const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'maximum'](1)[APLPrefix + 'aplReduce'](Scalar.plus) // +/1⌈|⍵
-            let fillElement = typeof myOmega[0] === 'string' ? ' ' : 0;
+            let fillElement = typeof myOmega[0] === "string" ? " " : 0;
             let results = new Array();
             //const expand = APLPrefix + 'expand'
             let ix = 0;
             for (let i = 0; i < myThis.length; i++) {
                 //const temp = myThis[i][reshape](omega[i])
                 let size = 0;
-                if (typeof myThis[i] === 'boolean') {
+                if (typeof myThis[i] === "boolean") {
                     myThis[i] = myThis[i] === true ? 1 : 0;
                 }
                 size = Math.abs(myThis[i]);
@@ -609,8 +612,8 @@ var Dyadic;
             return results;
         };
         NonScalar.excluding = function (omega) {
-            const myThis = this[APLPrefix + 'ravel'];
-            const myOmega = new Set(omega[APLPrefix + 'ravel']);
+            const myThis = this[APLPrefix + "ravel"];
+            const myOmega = new Set(omega[APLPrefix + "ravel"]);
             let results = new Set(myThis);
             for (let elem of myOmega) {
                 results.delete(elem);
@@ -618,8 +621,8 @@ var Dyadic;
             return Array.from(results);
         };
         NonScalar.intersection = function (omega) {
-            const myThis = new Set(this[APLPrefix + 'ravel']);
-            const myOmega = new Set(omega[APLPrefix + 'ravel']);
+            const myThis = new Set(this[APLPrefix + "ravel"]);
+            const myOmega = new Set(omega[APLPrefix + "ravel"]);
             let results = new Set();
             for (let elem of myOmega) {
                 if (myThis.has(elem)) {
@@ -629,8 +632,8 @@ var Dyadic;
             return Array.from(results);
         };
         NonScalar.union = function (omega) {
-            let results = this[APLPrefix + 'ravel'][APLPrefix + 'catenate'](omega[APLPrefix + 'ravel']);
-            return results[APLPrefix + 'unique'];
+            let results = this[APLPrefix + "ravel"][APLPrefix + "catenate"](omega[APLPrefix + "ravel"]);
+            return results[APLPrefix + "unique"];
             //results = new Set(this[APLPrefix + 'ravel'])
             //const myOmega = new Set(omega[APLPrefix + 'ravel'])
             //for (let elem of myOmega) {
@@ -638,16 +641,16 @@ var Dyadic;
             //}
             //return Array.from(results)
         };
-        addPrototype([Array, Boolean, Date, Number, String], 'left', NonScalar.left);
-        addPrototype([Array, Boolean, Date, Number, String], 'right', NonScalar.right);
-        addPrototype([Array, Number], 'pick', NonScalar.pick);
-        addPrototype([Number], 'take', NonScalar.take);
-        addPrototype([Number], 'drop', NonScalar.drop);
-        addPrototype([Array, Number], 'replicate', NonScalar.replicate);
-        addPrototype([Array, Number], 'expand', NonScalar.expand);
-        addPrototype([Array, Boolean, Date, Number, String], 'excluding', NonScalar.excluding);
-        addPrototype([Array, Boolean, Date, Number, String], 'intersection', NonScalar.intersection);
-        addPrototype([Array, Boolean, Date, Number, String], 'union', NonScalar.union);
+        addPrototype([Array, Boolean, Date, Number, String], "left", NonScalar.left);
+        addPrototype([Array, Boolean, Date, Number, String], "right", NonScalar.right);
+        addPrototype([Array, Number], "pick", NonScalar.pick);
+        addPrototype([Number], "take", NonScalar.take);
+        addPrototype([Number], "drop", NonScalar.drop);
+        addPrototype([Array, Number], "replicate", NonScalar.replicate);
+        addPrototype([Array, Number], "expand", NonScalar.expand);
+        addPrototype([Array, Boolean, Date, Number, String], "excluding", NonScalar.excluding);
+        addPrototype([Array, Boolean, Date, Number, String], "intersection", NonScalar.intersection);
+        addPrototype([Array, Boolean, Date, Number, String], "union", NonScalar.union);
     })(NonScalar = Dyadic.NonScalar || (Dyadic.NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Monadic;
@@ -937,29 +940,48 @@ var Monadic;
     let NonScalar;
     (function (NonScalar) {
         NonScalar.depth = (alpha) => {
-            let _depth = (alpha, omega) => Math.max(alpha, omega.depth); //.maximum(omega.depth) 
+            let _depth = (alpha, omega) => Math.max(alpha, omega.depth); //.maximum(omega.depth)
             return Array.isArray(alpha) ? 1 + alpha.reduce(_depth, 0) : 0;
         };
-        addProperty([Array, Boolean, Date, Number, String], 'depth', NonScalar.depth, false);
+        addProperty([Array, Boolean, Date, Number, String], "depth", NonScalar.depth, false);
         NonScalar.depthLength = (alpha) => {
             let count = 0;
-            let _length = alpha => { Array.isArray(alpha) ? alpha.map(alpha => { _length(alpha); }) : count += 1; };
+            let _length = alpha => {
+                Array.isArray(alpha)
+                    ? alpha.map(alpha => {
+                        _length(alpha);
+                    })
+                    : (count += 1);
+            };
             _length(alpha);
             return count;
         };
-        addProperty([Array, Boolean, Date, Number, String], 'depthLength', NonScalar.depthLength, false);
-        NonScalar.enlist = (alpha) => {
+        addProperty([Array, Boolean, Date, Number, String], "depthLength", NonScalar.depthLength, false);
+        NonScalar.enlist = alpha => {
             let result = [];
-            let _enlist = (alpha) => { Array.isArray(alpha) ? alpha.map((y) => { _enlist(y); }) : result.push(alpha); };
+            // result = alpha.flat();
+            let _enlist = alpha => {
+                Array.isArray(alpha)
+                    ? alpha.map(y => {
+                        _enlist(y);
+                    })
+                    : result.push(alpha);
+            };
             _enlist(alpha);
             return result;
         };
         addProperty([Array, Number, String], "enlist", NonScalar.enlist, false);
-        NonScalar.ravel = (alpha) => { return (Array.isArray(alpha) ? alpha : [alpha]); };
+        NonScalar.ravel = (alpha) => {
+            return Array.isArray(alpha) ? alpha : [alpha];
+        };
         addProperty([Array, Boolean, Date, Number, String], "ravel", NonScalar.ravel, false);
-        NonScalar.reversed = (alpha) => { return [].concat(alpha).reverse(); };
+        NonScalar.reversed = alpha => {
+            return [].concat(alpha).reverse();
+        };
         addProperty([Array, Number, String], "reversed", NonScalar.reversed, false);
-        NonScalar.shape = (alpha) => { return alpha.length; };
+        NonScalar.shape = (alpha) => {
+            return alpha.length;
+        };
         addProperty([Array, Number, String], "shape", NonScalar.shape, false);
     })(NonScalar = Monadic.NonScalar || (Monadic.NonScalar = {}));
 })(Monadic || (Monadic = {}));
@@ -967,8 +989,10 @@ var Dyadic;
 (function (Dyadic) {
     let NonScalar;
     (function (NonScalar) {
-        NonScalar.catenate = function (omega) { return this[APLPrefix + "ravel"].concat(omega.ravel); };
-        addPrototype([Array, Boolean, Date, Number, String], 'catenate', NonScalar.catenate);
+        NonScalar.catenate = function (omega) {
+            return this[APLPrefix + "ravel"].concat(omega.ravel);
+        };
+        addPrototype([Array, Boolean, Date, Number, String], "catenate", NonScalar.catenate);
         NonScalar.reshape = function (omega) {
             omega = omega[APLPrefix + "ravel"];
             let ol = omega.length;
@@ -987,23 +1011,27 @@ var Dyadic;
             }
             return results;
         };
-        addPrototype(Number, 'reshape', NonScalar.reshape);
+        addPrototype(Number, "reshape", NonScalar.reshape);
         NonScalar.rotate = function (omega) {
             let myThis = Array.isArray(this) ? this[0] : this; // XXX xsneller dan het gebruik van this
             let counter, max = omega.length, results = new Array(max);
             if (myThis > 0) {
                 for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis >= max ? counter + myThis - max : counter + myThis];
+                    results[counter] =
+                        omega[counter + myThis >= max
+                            ? counter + myThis - max
+                            : counter + myThis];
                 }
             }
             else {
                 for (counter = 0; counter < max; counter++) {
-                    results[counter] = omega[counter + myThis < 0 ? max + myThis + counter : counter + myThis];
+                    results[counter] =
+                        omega[counter + myThis < 0 ? max + myThis + counter : counter + myThis];
                 }
             }
             return results;
         };
-        addPrototype([Array, Number], 'rotate', NonScalar.rotate);
+        addPrototype([Array, Number], "rotate", NonScalar.rotate);
         NonScalar.partition = function (omega) {
             omega = omega[APLPrefix + "ravel"];
             let ol = omega.length;
@@ -1034,7 +1062,7 @@ var Dyadic;
             }
             return results;
         };
-        addPrototype([Array, Number], 'partition', NonScalar.partition);
+        addPrototype([Array, Number], "partition", NonScalar.partition);
     })(NonScalar || (NonScalar = {}));
 })(Dyadic || (Dyadic = {}));
 var Dyadic;
