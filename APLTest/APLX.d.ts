@@ -4,10 +4,10 @@ declare var addPrototype: (object: any, name: string, func: Function) => void;
 declare var addProperty: (object: any, name: string, func: Function, primitive?: boolean) => void;
 declare namespace APL {
     /**
-    * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
-    */
+     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
+     */
     class Vector<T> extends Array<string | number | boolean | any> {
-        vector: Array<T>;
+        vector?: Array<T>;
         constructor(vector?: Array<T>, length?: number);
         louis(): number;
         /**
@@ -16,15 +16,15 @@ declare namespace APL {
          * @return {Array} Aantal element in de vector
          */
         /**
-       * Zet het aantal elementen in de vector
+        * Zet het aantal elementen in de vector
         * @param {number} Aantal element in de vector
         */
         shape: number;
         length: number;
     }
     class APLArray<T extends Array<string | number | boolean | any>> {
-        APLArray: Array<T>;
-        private length;
+        APLArray?: Array<T>;
+        private length?;
         constructor(APLArray?: Array<T>, length?: number);
         /**
          *
@@ -32,7 +32,7 @@ declare namespace APL {
          * @return {Array} Aantal element in de vector
          */
         /**
-       * Zet het aantal elementen in de vector
+        * Zet het aantal elementen in de vector
         * @param {number} Aantal element in de vector
         */
         shape: number | number[];
@@ -42,6 +42,110 @@ declare namespace APL {
 declare class HTMLPerformance {
     element: HTMLElement;
     constructor(element: HTMLElement, performanceNow: any, text: string, expression: any);
+}
+interface Number {
+    rotate<T>(array: T[]): any;
+    deal(omega: number): number[];
+}
+interface NumberConstructor {
+    iota<T>(length?: T): number[];
+    rotate<T>(array: T[]): any;
+    signum(): number;
+    identity(): number;
+    negate(): number;
+    reciprocal(): number;
+    exponential(): number;
+    ln(): number;
+    pi(): number;
+    factorial(): number;
+    roll(): number;
+    magnitude(): number;
+    ceiling(): number;
+    floor(): number;
+    same(): number;
+}
+interface ArrayConstructor {
+    ceiling(array: number[]): number[];
+    floor(array: number[]): number[];
+    iota<T>(length: T): number[];
+}
+interface Array<T> {
+    primitive(left?: any, right?: any): T[];
+    deal(omega: number, alpha?: number): number[];
+    iota(length?: number): any;
+    plus(omega?: any): T[];
+    minus(omega?: any): T[];
+    times(omega?: any): T[];
+    divide(omega?: any): T[];
+    minimum(omega?: any): T[];
+    maximum(omega?: any): T[];
+    residue(omega?: any): T[];
+    power(omega?: any): T[];
+    logarithm(omega?: any): T[];
+    binomial(omega?: any): T[];
+    rotate(omega?: any): T[];
+    slash(omega?: any): T[];
+    aplReduce(alpha?: any, omega?: any): T[];
+}
+interface Number {
+    signum: number;
+    identity: number;
+    negate: number;
+    reciprocal: number;
+    exponential: number;
+    ln: number;
+    pi: number;
+    factorial: number;
+    roll: number;
+    magnitude: number;
+    ceiling: number;
+    floor: number;
+    same: number;
+    enclose: any;
+    indexGenerator: number[];
+    ravel: number[];
+    format: string;
+}
+interface NumberConstructor {
+    iota<T>(length?: T): number[];
+    rotate<T>(array: T[]): any;
+    signum(): number;
+    identity(): number;
+    negate(): number;
+    reciprocal(): number;
+    exponential(): number;
+    ln(): number;
+    pi(): number;
+    factorial(): number;
+    roll(): number;
+    magnitude(): number;
+    ceiling(): number;
+    floor(): number;
+    same(): number;
+}
+interface Array<T> {
+    signum: T[];
+    identity: T[];
+    gradeUp: T[];
+    gradeUpSort: T[];
+    gradeUpQS: T[];
+    gradeDown: T[];
+    negate: T[];
+    reciprocal: T[];
+    exponential: T[];
+    ln: T[];
+    pi: T[];
+    factorial: T[];
+    roll: T[];
+    magnitude: T[];
+    ceiling: T[];
+    floor: T[];
+    same: T[];
+    enclose: any;
+    indexGenerator: T[];
+    ravel: T[];
+    transpose: T[];
+    format: string;
 }
 declare var prefix: string;
 interface NumberConstructor {
@@ -108,6 +212,7 @@ interface Array<T> {
     identity: T[];
     disclose: T[];
     gradeUp: T[];
+    gradeUpSort: T[];
     gradeUpQS: T[];
     gradeDown: T[];
     negative: T[];
@@ -214,6 +319,7 @@ declare namespace Monadic {
     namespace NonScalar {
         var gradeUp: (alpha: any, indices?: number[], low?: number, high?: number) => number[];
         var gradeDown: (alpha: any, indices?: number[], low?: number, high?: number) => number[];
+        var gradeUpSort: (alpha: any) => any;
         var indexGenerator: (alpha: number) => number[];
     }
 }

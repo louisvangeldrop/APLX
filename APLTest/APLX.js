@@ -104,6 +104,11 @@ var APL;
 (function (APL) {
     // f("orange")
     let propName = "take";
+    const equal = (x) => (y) => x === y;
+    const on = (f, g) => (x) => f(g(x));
+    on(r => 1 + r, r => 2 * r)(5);
+    equal(4)(4);
+    on(equal(true), equal(4))(4); // true===(4===4) */
     //type APLArray=Array<string|number|boolean|any>
     //export interface IAPLArray extends Array<string|number|boolean|any> {
     //    slash()
@@ -1089,3 +1094,4 @@ var Dyadic;
     };
     addPrototype([Array, Number, String, Boolean, Date], 'aplReduce', Dyadic.aplReduce);
 })(Dyadic || (Dyadic = {}));
+//# sourceMappingURL=APLX.js.map

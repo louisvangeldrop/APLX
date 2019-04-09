@@ -19,6 +19,15 @@ namespace APL {
   // f("orange")
 
   let propName = "take";
+
+  declare function compose<T, U, V>(f: (arg: T) => U, g: (arg: U) => V): (arg: T) => V;
+  const equal = (x: any) => (y: any) => x === y;
+  const on = (f: Function, g: Function) => (x: any) => f(g(x));
+  on(r => 1 + r, r => 2 * r)(5)
+  equal(4)(4);
+  on(equal(true), equal(4))(4); // true===(4===4) */
+
+
   //type APLArray=Array<string|number|boolean|any>
 
   //export interface IAPLArray extends Array<string|number|boolean|any> {
@@ -61,7 +70,7 @@ namespace APL {
       //TODO: Zet de shape van het Array.
       this.length = <number>length;
     }
-    set [propName](length: number | number[]) {}
+    set [propName](length: number | number[]) { }
 
     get length(): number {
       return this.length;
@@ -105,7 +114,7 @@ namespace APL {
     }
 
     plus(omega: Array<number>) {
-      this.plus = function(omega) {
+      this.plus = function (omega) {
         var aa = this.Array.length;
         for (let item of omega) {
         }

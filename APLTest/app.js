@@ -1,9 +1,9 @@
 // https://github.com/Microsoft/TypeScript/wiki
-var APLXTest = /** @class */ (function () {
+class APLXTest {
     /**
     * Creates a new HTMLElement
     */
-    function APLXTest(element) {
+    constructor(element) {
         this.element = element;
         this.element.innerHTML += "De tijd is: ";
         this.span = document.createElement('span');
@@ -14,19 +14,18 @@ var APLXTest = /** @class */ (function () {
         this.element.appendChild(this.spanCPU);
         this.spanCPU.innerHTML = "<br/>";
     }
-    APLXTest.prototype.start = function () {
-        var _this = this;
+    start() {
         // console.profile('Number.iota')
         //  var aplg= apl.gradeDown
-        var vector = Dyadic.Vector;
-        var scalar = Dyadic.Scalar;
+        const vector = Dyadic.Vector;
+        let scalar = Dyadic.Scalar;
         var parms = location.search.split('?');
         var aantal = parms.length > 1 ? parseFloat(parms[1].replace('/', ' ')) : 5e6;
         var spanCPU = this.spanCPU;
         var nestedArray = [4, 5][APLPrefix + "indexGenerator"];
         var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1);
         var testje = [3, 4, 5][APLPrefix + "aplReduce"](scalar.minus);
-        this.spanCPU.innerHTML += "\n Aantal elementen = " + aantal + " <br />";
+        this.spanCPU.innerHTML += `\n Aantal elementen = ${aantal} <br />`;
         //[ll,aantal]=[aantal,ll]
         var t0;
         var startPerformance = performance.now();
@@ -81,7 +80,7 @@ var APLXTest = /** @class */ (function () {
         showPerformance(spanCPU, performance.now(), "negate", dd.negative);
         showPerformance(spanCPU, performance.now(), "times", dd.times(dd));
         showPerformance(spanCPU, performance.now(), "divide", dd.divide(dd));
-        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map(function (alpha) { return -alpha; }));
+        showPerformance(spanCPU, performance.now(), "map -alpha", dd.map((alpha) => { return -alpha; }));
         showPerformance(spanCPU, performance.now(), 'ceiling', dd.ceiling);
         showPerformance(spanCPU, performance.now(), 'rotate', [-10].rotate(dd));
         showPerformance(spanCPU, performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus));
@@ -104,27 +103,26 @@ var APLXTest = /** @class */ (function () {
         //catch (e) {
         //}
         var totalCpu = performance.now() - startPerformance;
-        this.spanCPU.innerHTML += "\n totale CPU-tijd: " + totalCpu + "<br />";
-        this.spanCPU.innerHTML += "\n totale CPU-tijd-gradeUp: " + (totalCpu - cpuGradeUp) + "<br />";
-        this.timerToken = setInterval(function () { return _this.span.innerHTML = new Date().toUTCString(); }, 500);
-    };
-    APLXTest.prototype.stop = function () {
+        this.spanCPU.innerHTML += `\n totale CPU-tijd: ${totalCpu}<br />`;
+        this.spanCPU.innerHTML += `\n totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}<br />`;
+        this.timerToken = setInterval(() => this.span.innerHTML = new Date().toUTCString(), 500);
+    }
+    stop() {
         clearTimeout(this.timerToken);
-    };
-    return APLXTest;
-}());
+    }
+}
 var showPerformance = function (spanCPU, performanceNow, text, expression) {
     //   var result = expression
     console.time("");
     var t0 = performance.now() - performanceNow;
-    spanCPU.innerHTML += "\n " + text + " CPU-tijd: " + t0.toString() + " <br />";
+    spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 };
-var showPerformanceNode = function (ph, fun) {
-    var bb = process.hrtime(ph);
-    return bb.times([1e9, 1]).reduceRight(function (l, r) { return l + r; }).divide(1e6);
+var showPerformanceNode = (ph, fun) => {
+    let bb = process.hrtime(ph);
+    return bb.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6);
 };
-window.onload = function () {
+window.onload = () => {
     var el = document.getElementById('content');
     var greeter = new APLXTest(el);
     greeter.start();

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "outFile": "../AplTest/APLX.js"
+    "skipLibCheck": true,
+    "outFile": "../AplTest/APLX.js",
+    "skipDefaultLibCheck": true,
+    "sourceMap": true,
+    "declaration": true
   },
   "exclude": ["node_modules", "wwwroot"]
 }

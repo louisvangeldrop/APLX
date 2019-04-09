@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\APL"
+    "\\APL",
+    "\\APL\\Functions",
+    "\\APL\\Functions\\Non-Scalar"
   ],
+  "SelectedNode": "\\APL\\Functions\\Non-Scalar\\Computational Functions.ts",
   "PreviewInSolutionExplorer": false
 }
