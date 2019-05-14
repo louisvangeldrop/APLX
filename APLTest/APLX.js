@@ -677,7 +677,7 @@ var Dyadic;
             const rho = l.length;
             let z = new Array(rho);
             for (let i = 0; i < rho; i++) {
-                z[i] = r[(l[i] >= 0) ? l[i] : rho + l[i]];
+                z[i] = r[l[i] >= 0 ? l[i] : r.length + l[i]];
             }
             return z;
         };
