@@ -113,7 +113,7 @@ class APLXTest {
 }
 var showPerformance = function (spanCPU, performanceNow, text, expression) {
     //   var result = expression
-    console.time("");
+    // console.time("")
     var t0 = performance.now() - performanceNow;
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`;
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
