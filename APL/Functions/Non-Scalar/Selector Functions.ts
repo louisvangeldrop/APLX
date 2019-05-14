@@ -2,7 +2,7 @@
   //const on = (f, g) => omega => f(g(omega))   // on(Math.floor,Math.max)(argument)    =>  f(g(omega))
 
   export namespace NonScalar {
-    export var gradeUp = function(
+    export var gradeUp = function (
       alpha,
       indices?: number[],
       low?: number,
@@ -48,7 +48,7 @@
       return indices;
     };
 
-    export var gradeDown = function(
+    export var gradeDown = function (
       alpha,
       indices?: number[],
       low?: number,
@@ -94,14 +94,14 @@
       return indices;
     };
 
-    export var gradeUpSort = function(alpha) {
+    export var gradeUpSort = function (alpha) {
       // temporary array holds objects with position and sort-value
-      var mapped = alpha.map(function(el, i) {
+      var mapped = alpha.map(function (el, i) {
         return { index: i, value: el }; // .toLowerCase()
       });
 
       // sorting the mapped array containing the reduced values
-      mapped.sort(function(a, b) {
+      mapped.sort(function (a, b) {
         if (a.value > b.value) {
           return 1;
         }
@@ -201,7 +201,7 @@
 
 namespace Dyadic {
   export namespace NonScalar {
-    export var deal = function(omega: number | Array<number>): number[] {
+    export var deal = function (omega: number | Array<number>): number[] {
       let l: number = Array.isArray(omega) ? omega[0] : omega;
       let r: number = Array.isArray(this) ? this[0] : this;
 
@@ -223,7 +223,7 @@ namespace Dyadic {
 
     addPrototype([Array, Number], "deal", deal);
 
-    export var from = function(omega: any | Array<any>): Array<any> {
+    export var from = function (omega: any | Array<any>): Array<any> {
       let l: Array<number> = Array.isArray(this)
         ? this
         : this[APLPrefix + "ravel"];
@@ -231,14 +231,14 @@ namespace Dyadic {
       const rho = l.length;
       let z = new Array(rho);
       for (let i = 0; i < rho; i++) {
-        z[i] = r[l[i]];
+        z[i] = r[(l[i] >= 0) ? l[i] : rho + l[i]];
       }
       return z;
     };
 
     addPrototype([Array, Number], "from", from);
 
-    export var indicesOf = function(omega: any): Number | Array<Number> {
+    export var indicesOf = function (omega: any): Number | Array<Number> {
       let l: Array<number> = Array.isArray(this)
         ? this
         : this[APLPrefix + "ravel"];
@@ -254,7 +254,7 @@ namespace Dyadic {
     };
     addPrototype(Array, "indicesOf", indicesOf);
 
-    export var memberShip = function(omega: any): Boolean | Array<Boolean> {
+    export var memberShip = function (omega: any): Boolean | Array<Boolean> {
       let l: Array<number> = Array.isArray(this)
         ? this
         : this[APLPrefix + "ravel"];
@@ -270,7 +270,7 @@ namespace Dyadic {
     };
     addPrototype(Array, "memberShip", memberShip);
 
-    export var match = function(omega): boolean {
+    export var match = function (omega): boolean {
       // http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
       //// arrayCompare :: (a -> b -> Bool) -> [a] -> [b] -> Bool
       //const arrayCompare = f => ([x, ...xs]) => ([y, ...ys]) => {
@@ -309,7 +309,7 @@ namespace Dyadic {
 
     addPrototype([Array, Number], "match", match);
 
-    export var notMatch = function(omega): boolean {
+    export var notMatch = function (omega): boolean {
       // if the other array is a falsy value, return
       if (!omega) return false;
 

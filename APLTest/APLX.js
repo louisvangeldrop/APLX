@@ -677,7 +677,7 @@ var Dyadic;
             const rho = l.length;
             let z = new Array(rho);
             for (let i = 0; i < rho; i++) {
-                z[i] = r[l[i]];
+                z[i] = r[(l[i] >= 0) ? l[i] : rho + l[i]];
             }
             return z;
         };
@@ -915,7 +915,7 @@ var Dyadic;
         Scalar.residue = (alpha, omega) => omega % alpha;
         Scalar.minimum = (alpha, omega) => Math.min(alpha, omega);
         Scalar.maximum = (alpha, omega) => Math.max(alpha, omega);
-        Scalar.power = (alpha, omega) => Math.pow(alpha, omega);
+        Scalar.power = (alpha, omega) => alpha ** omega;
         Scalar.logarithm = (alpha, omega) => Math.log(omega) / Math.log(alpha);
         Scalar.binomial = (alpha, omega) => { (alpha < omega || omega < 0) ? 0 : alpha.factorial / (omega.factorial * (alpha - omega).factorial); };
         //TODO binomial factorial(alpha,omega)

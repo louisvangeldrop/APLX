@@ -7,7 +7,7 @@
       "request": "launch",
       "name": "Launch Chrome",
       "url": "http://localhost:8080/?1e6",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/APLTest"
     },
     {
       // Name of configuration; appears in the launch configuration drop down menu.
