@@ -118,11 +118,16 @@ var APL;
      */
     class Vector extends Array {
         //T>
-        constructor(vector, length) {
-            super(vector ? vector : length);
-            this.vector = vector;
-            //   super(typeof Vector !== 'null' ? Vector : length)
-        }
+        // constructor(vector: Array<T> | number) {
+        //   if (Array.isArray(vector)) {
+        //     super()
+        //     this.concat(vector)
+        //     // for (let i of vector) { this.push(i) }
+        //   } else {
+        //     super(vector) //, length);
+        //   }
+        //   //   super(typeof Vector !== 'null' ? Vector : length)
+        // }
         louis() {
             let bb = this.length;
             return bb;

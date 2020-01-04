@@ -7,20 +7,20 @@ declare namespace APL {
      * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
      */
     class Vector<T> extends Array<string | number | boolean | any> {
-        vector?: Array<T>;
-        constructor(vector?: Array<T>, length?: number);
         louis(): number;
         /**
          *
          * @param {number} shape
          * @return {Array} Aantal element in de vector
          */
+        get shape(): number;
         /**
-        * Zet het aantal elementen in de vector
-        * @param {number} Aantal element in de vector
-        */
-        shape: number;
-        length: number;
+         * Zet het aantal elementen in de vector
+         * @param {number} Aantal element in de vector
+         */
+        set shape(length: number);
+        get length(): number;
+        set length(length: number);
     }
     class APLArray<T extends Array<string | number | boolean | any>> {
         APLArray?: Array<T>;
@@ -31,11 +31,12 @@ declare namespace APL {
          * @param {number}
          * @return {Array} Aantal element in de vector
          */
+        get shape(): number | number[];
         /**
-        * Zet het aantal elementen in de vector
-        * @param {number} Aantal element in de vector
-        */
-        shape: number | number[];
+         * Zet het aantal elementen in de vector
+         * @param {number} Aantal element in de vector
+         */
+        set shape(length: number | number[]);
         plus(omega: Array<number>): void;
     }
 }
@@ -311,7 +312,7 @@ declare namespace Dyadic {
         var replicate: (omega: any) => any[];
         var expand: (omega: any) => any[];
         var excluding: (omega: any) => any[];
-        var intersection: (omega: any) => any[];
+        var intersection: (omega: any) => unknown[];
         var union: (omega: any) => any;
     }
 }

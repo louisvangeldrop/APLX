@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2019",
     "skipLibCheck": true,
     "outFile": "../AplTest/APLX.js",
     "skipDefaultLibCheck": true,
     "sourceMap": true,
     "declaration": true
   },
-  "exclude": ["node_modules", "wwwroot"]
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
 }

@@ -38,13 +38,7 @@ namespace APL {
    * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
    */
 
-  export class Vector<T> extends Array<string | number | boolean | any> {
-    //T>
-
-    constructor(public vector?: Array<T>, length?: number) {
-      super(vector ? vector : length);
-      //   super(typeof Vector !== 'null' ? Vector : length)
-    }
+  export class Vector<T> extends Array<T> {
 
     louis(): number {
       let bb = this.length;
