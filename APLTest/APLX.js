@@ -114,20 +114,9 @@ var APL;
     //    slash()
     //}
     /**
-     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
+     * Extends the Array object with APL array functions.
      */
-    class Vector extends Array {
-        //T>
-        // constructor(vector: Array<T> | number) {
-        //   if (Array.isArray(vector)) {
-        //     super()
-        //     this.concat(vector)
-        //     // for (let i of vector) { this.push(i) }
-        //   } else {
-        //     super(vector) //, length);
-        //   }
-        //   //   super(typeof Vector !== 'null' ? Vector : length)
-        // }
+    class Array extends globalThis.Array {
         louis() {
             let bb = this.length;
             return bb;
@@ -160,7 +149,19 @@ var APL;
             this.length = length;
         }
     }
-    APL.Vector = Vector;
+    APL.Array = Array;
+    class Number extends globalThis.Number {
+        constructor() {
+            super(...arguments);
+            this.louis = 1;
+            this.aap = this.louis + 1;
+            /**
+             * function ipv lambda voor this support
+             */
+            this.with = function (f) { return (a) => f(this, a); }; //(10).with((a,b)=>a+b)(4)
+        }
+    }
+    APL.Number = Number;
     class APLArray {
         //IAPLArray
         constructor(APLArray, length) {

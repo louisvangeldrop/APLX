@@ -4,9 +4,9 @@ declare var addPrototype: (object: any, name: string, func: Function) => void;
 declare var addProperty: (object: any, name: string, func: Function, primitive?: boolean) => void;
 declare namespace APL {
     /**
-     * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
+     * Extends the Array object with APL array functions.
      */
-    class Vector<T> extends Array<string | number | boolean | any> {
+    class Array<T> extends globalThis.Array<T> {
         louis(): number;
         /**
          *
@@ -21,6 +21,14 @@ declare namespace APL {
         set shape(length: number);
         get length(): number;
         set length(length: number);
+    }
+    class Number extends globalThis.Number {
+        private louis;
+        aap: number;
+        /**
+         * function ipv lambda voor this support
+         */
+        with: (f: any) => (a: any) => any;
     }
     class APLArray<T extends Array<string | number | boolean | any>> {
         APLArray?: Array<T>;

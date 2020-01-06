@@ -52,9 +52,9 @@ class APLXTest {
         showPerformance(spanCPU, performance.now(), 'from', rr = dd[APLPrefix + 'from'](dd));
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd; //:number[]
-        var aplVector = new APL.Vector([4, 3, 5], 10);
+        var aplVector = new APL.Array([4, 3, 5], 10);
         aplVector.shape = 100;
-        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Vector(dd));
+        showPerformance(spanCPU, performance.now(), 'APLVector', apldd = new APL.Array(dd));
         showPerformance(spanCPU, performance.now(), "signum", dd.signum);
         showPerformance(spanCPU, performance.now(), "identity", dd.same);
         //var ss = dd.slice()

@@ -35,10 +35,10 @@ namespace APL {
   //}
 
   /**
-   * Extends the Array object wityh APL array functions. Subclassing of Array not yet supported
+   * Extends the Array object with APL array functions.
    */
 
-  export class Vector<T> extends Array<T> {
+  export class Array<T> extends globalThis.Array<T> {
 
     louis(): number {
       let bb = this.length;
@@ -74,6 +74,18 @@ namespace APL {
       this.length = <number>length;
     }
   }
+
+
+  export class Number extends globalThis.Number {
+    private louis = 1
+    public aap = this.louis + 1
+
+    /**
+     * function ipv lambda voor this support
+     */
+    public with = function (f) { return a => f(this, a) } //(10).with((a,b)=>a+b)(4)
+  }
+
 
   export class APLArray<T extends Array<string | number | boolean | any>> {
     //IAPLArray
