@@ -7,6 +7,8 @@ aplmaster/
 *.suo
 *.user
 *.sln.docstates
+APLTest/*.js
+APLTest/*.js.map
 
 # Build results
 [Dd]ebug/
@@ -192,3 +194,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite
+APLTest/APLX.js.map
+APLTest/APLX.js

@@ -158,7 +158,7 @@ var APL;
             /**
              * function ipv lambda voor this support
              */
-            this.with = function (f) { return (a) => f(this, a); }; //(10).with((a,b)=>a+b)(4)
+            this.with = function (f) { return a => f(this, a); }; //(10).with((a,b)=>a+b)(4)
         }
     }
     APL.Number = Number;
