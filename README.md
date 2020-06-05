@@ -1,3 +1,3 @@
-APL Vector functions. See http://help.dyalog.com/15.0/ Language Reference Guide for functional description. 
+APL Vector functions. See http://help.dyalog.com/15.0/ Language Reference Guide for functional description.
 
-APLTest/app.ts contains some examples of howto use the Javascript prototype extensions.
+APLTest/app.ts contains some examples of how to use the Javascript prototype extensions.
