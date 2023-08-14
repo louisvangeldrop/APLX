@@ -11,7 +11,7 @@
     },
     {
       // Name of configuration; appears in the launch configuration drop down menu.
-      "name": "Launch app.js",
+      "name": "Launch appNode.js",
       // Type of configuration.
       "type": "node",
       // Workspace relative or absolute path to the program.
@@ -19,7 +19,7 @@
       // Automatically stop program after launch.
       "stopOnEntry": false,
       // Command line arguments passed to the program.
-      "args": [],
+      "args": [1e6],
       // Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
       "cwd": ".",
       // Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
@@ -38,11 +38,16 @@
     {
       "name": "Attach",
       "type": "node",
+      "protocol": "inspector",
       // TCP/IP address. Default is "localhost".
+      "localRoot": ".",
+      "stopOnEntry": true,
+      "smartStep": true,
+      "request": "attach",
       "address": "localhost",
       // Port to attach to.
       "port": 5858,
-      "sourceMaps": false
+      "sourceMaps": true
     }
   ]
 }

@@ -293,13 +293,13 @@ interface String {
 }
 declare namespace Monadic {
     namespace NonScalar {
-        var inverse: (omega: number[]) => any;
+        var inverse: (omega: Array<number>) => any;
     }
 }
 declare namespace Dyadic {
     namespace NonScalar {
-        var domino: (omega: number[]) => any;
-        var decode: (omega: Number | number[]) => number;
+        var domino: (omega: Array<number>) => any;
+        var decode: (omega: Array<number> | Number) => number;
         var encode: (omega: number | number[]) => number | number[];
     }
 }
@@ -334,10 +334,10 @@ declare namespace Monadic {
 }
 declare namespace Dyadic {
     namespace NonScalar {
-        var deal: (omega: number | number[]) => number[];
-        var from: (omega: any) => any[];
-        var indicesOf: (omega: any) => Number | Number[];
-        var memberShip: (omega: any) => Boolean | Boolean[];
+        var deal: (omega: number | Array<number>) => number[];
+        var from: (omega: any | Array<any>) => Array<any>;
+        var indicesOf: (omega: any) => Number | Array<Number>;
+        var memberShip: (omega: any) => Boolean | Array<Boolean>;
         var match: (omega: any) => boolean;
         var notMatch: (omega: any) => boolean;
     }
@@ -347,7 +347,7 @@ declare namespace Monadic {
         var depth: (alpha: any) => number;
         var depthLength: (alpha: any) => number;
         var enlist: (alpha: any) => any[];
-        var ravel: (alpha: any) => any[];
+        var ravel: (alpha: any) => Array<any>;
         var reversed: (alpha: any) => any[];
         var shape: (alpha: any) => number[];
     }
@@ -391,8 +391,8 @@ declare namespace Dyadic {
         var le: (alpha: number, omega: number) => boolean;
         var gt: (alpha: number, omega: number) => boolean;
         var ge: (alpha: number, omega: number) => boolean;
-        var eq: (alpha: string | number, omega: string | number) => boolean;
-        var neq: (alpha: string | number, omega: string | number) => boolean;
+        var eq: (alpha: number | string, omega: number | string) => boolean;
+        var neq: (alpha: number | string, omega: number | string) => boolean;
         var gcd: (alpha: any, omega: any) => any;
         var lcm: (alpha: any, omega: any) => number;
     }

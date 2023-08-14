@@ -151,18 +151,17 @@ var APL;
     }
     APL.Array = Array;
     class Number extends globalThis.Number {
-        constructor() {
-            super(...arguments);
-            this.louis = 1;
-            this.aap = this.louis + 1;
-            /**
-             * function ipv lambda voor this support
-             */
-            this.with = function (f) { return a => f(this, a); }; //(10).with((a,b)=>a+b)(4)
-        }
+        louis = 1;
+        aap = this.louis + 1;
+        /**
+         * function ipv lambda voor this support
+         */
+        with = function (f) { return a => f(this, a); }; //(10).with((a,b)=>a+b)(4)
     }
     APL.Number = Number;
     class APLArray {
+        APLArray;
+        length;
         //IAPLArray
         constructor(APLArray, length) {
             this.APLArray = APLArray;
@@ -203,6 +202,7 @@ var APL;
     // Array.prototype.push.apply(ar1,ar2) //concatenate
 })(APL || (APL = {}));
 class HTMLPerformance {
+    element;
     constructor(element, performanceNow, text, expression) {
         this.element = element;
         //   var result = expression
