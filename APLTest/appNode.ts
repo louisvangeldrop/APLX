@@ -7,7 +7,7 @@
 //import scalar = Dyadic.Scal
 
 declare var process
-var logs = []
+var logs: string[] = []
 // var APL = require('./APLX.js')
 // import './APLX.mjs'
 
