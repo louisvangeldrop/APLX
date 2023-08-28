@@ -54,7 +54,7 @@ class APLXTest {
         // var aplVector = new APL.Array([4, 3, 5], 10)
         // aplVector.shape = 100
 
-        showPerformance(process.hrtime(), 'APLVector', apldd = new APL.Array(dd))
+        // showPerformance(process.hrtime(), 'APLVector', apldd = new APL.Array(dd))
         showPerformance(process.hrtime(), "signum", dd.signum)
 
         showPerformance(process.hrtime(), "identity", dd.same)

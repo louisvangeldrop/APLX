@@ -59,15 +59,15 @@
 
 namespace Dyadic {
   export namespace NonScalar {
-    export var left = function(omega) {
+    export var left = function (omega) {
       return this;
     };
 
-    export var right = function(omega: any) {
+    export var right = function (omega: any) {
       return omega;
     };
 
-    export var pick = function(omega: any) {
+    export var pick = function (omega: any) {
       if (Array.isArray(omega)) {
         return omega[this];
       } else {
@@ -75,7 +75,7 @@ namespace Dyadic {
       }
     };
 
-    export var take = function(omega: any) {
+    export var take = function (omega: any) {
       omega = Array.isArray(omega) ? omega : [omega];
       let length: number = omega.length;
       let size = Math.abs(this.valueOf());
@@ -95,7 +95,7 @@ namespace Dyadic {
       return results;
     };
 
-    export var drop = function(omega: any): any {
+    export var drop = function (omega: any): any {
       omega = Array.isArray(omega) ? omega : [omega];
       const length: number = omega.length;
       const resultLength: number = Math.max(0, length - Math.abs(this));
@@ -115,8 +115,8 @@ namespace Dyadic {
     };
 
     //TODO 'replicate' hoort hier niet thuis
-    export var replicate = function(omega: any) {
-      const myThis: Array<number | boolean> = this[APLPrefix + "ravel"];
+    export var replicate = function (omega: any) {
+      const myThis: number[] & boolean[] = this[APLPrefix + "ravel"];
       const myOmega = omega[APLPrefix + "ravel"];
       const length = myThis[APLPrefix + "magnitude"][APLPrefix + "aplReduce"](
         Scalar.plus
@@ -145,8 +145,8 @@ namespace Dyadic {
       return results;
     };
 
-    export var expand = function(omega: any) {
-      const myThis: Array<number | boolean> = this[APLPrefix + "ravel"];
+    export var expand = function (omega: any) {
+      const myThis: number[] & boolean[] = this[APLPrefix + "ravel"];
       const myOmega = omega[APLPrefix + "ravel"];
       // const length = myThis[APLPrefix + 'magnitude'][APLPrefix + 'maximum'](1)[APLPrefix + 'aplReduce'](Scalar.plus) // +/1⌈|⍵
       let fillElement = typeof myOmega[0] === "string" ? " " : 0;
@@ -174,7 +174,7 @@ namespace Dyadic {
       return results;
     };
 
-    export var excluding = function(omega: any) {
+    export var excluding = function (omega: any) {
       const myThis: Array<any> = this[APLPrefix + "ravel"];
       const myOmega = new Set(omega[APLPrefix + "ravel"]);
       let results = new Set(myThis);
@@ -184,7 +184,7 @@ namespace Dyadic {
       return Array.from(results);
     };
 
-    export var intersection = function(omega: any) {
+    export var intersection = function (omega: any) {
       const myThis = new Set(this[APLPrefix + "ravel"]);
       const myOmega = new Set(omega[APLPrefix + "ravel"]);
       let results = new Set();
@@ -196,7 +196,7 @@ namespace Dyadic {
       return Array.from(results);
     };
 
-    export var union = function(omega: any) {
+    export var union = function (omega: any) {
       let results = this[APLPrefix + "ravel"][APLPrefix + "catenate"](
         omega[APLPrefix + "ravel"]
       );

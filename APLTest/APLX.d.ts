@@ -2,56 +2,6 @@ declare var APLPrefix: string;
 declare var primitive: (omega: any, primitive?: any) => any;
 declare var addPrototype: (object: any, name: string, func: Function) => void;
 declare var addProperty: (object: any, name: string, func: Function, primitive?: boolean) => void;
-declare namespace APL {
-    /**
-     * Extends the Array object with APL array functions.
-     */
-    class Array<T> extends globalThis.Array<T> {
-        louis(): number;
-        /**
-         *
-         * @param {number} shape
-         * @return {Array} Aantal element in de vector
-         */
-        get shape(): number;
-        /**
-         * Zet het aantal elementen in de vector
-         * @param {number} Aantal element in de vector
-         */
-        set shape(length: number);
-        get length(): number;
-        set length(length: number);
-    }
-    class Number extends globalThis.Number {
-        private louis;
-        aap: number;
-        /**
-         * function ipv lambda voor this support
-         */
-        with: (f: any) => (a: any) => any;
-    }
-    class APLArray<T extends Array<string | number | boolean | any>> {
-        APLArray?: Array<T>;
-        private length?;
-        constructor(APLArray?: Array<T>, length?: number);
-        /**
-         *
-         * @param {number}
-         * @return {Array} Aantal element in de vector
-         */
-        get shape(): number | number[];
-        /**
-         * Zet het aantal elementen in de vector
-         * @param {number} Aantal element in de vector
-         */
-        set shape(length: number | number[]);
-        plus(omega: Array<number>): void;
-    }
-}
-declare class HTMLPerformance {
-    element: HTMLElement;
-    constructor(element: HTMLElement, performanceNow: any, text: string, expression: any);
-}
 interface Number {
     rotate<T>(array: T[]): any;
     deal(omega: number): number[];
