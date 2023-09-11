@@ -2,5 +2,5 @@
 
 APLTest/app.ts contains some examples of how to use the Javascript prototype extensions.
 
-Voor node.js: appNode.ts+APLX.js => aplNode.js
-
+Voor node.js: appNode.ts+APLX.js => aplNode.js --inspect-brk=5858
+ 

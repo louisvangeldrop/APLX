@@ -11,6 +11,8 @@ var logs: string[] = []
 // var APL = require('./APLX.js')
 // import './APLX.mjs'
 
+const { performance } = require('node:perf_hooks');
+
 class APLXTest {
 
     start() {
@@ -20,6 +22,7 @@ class APLXTest {
         let scalar = Dyadic.Scalar
 
         let aantal: number = parseFloat(process.argv[2] ?? 1e6) //location.search.split('?')
+        aantal = isNaN(aantal) ? 1e6 : aantal
         // var APLPrefix = ''
         // var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
         // var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1)
@@ -39,55 +42,55 @@ class APLXTest {
         rr = [true, false, false, true].replicate([3, 4, 5, 6])
         rr = [1, 2, 3, 4, 1].unique
         rr = [1, 0, 1, 1].expand([1, 2, 3])
-        var startPerformance = process.hrtime()
-        showPerformance(process.hrtime(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
-        showPerformance(process.hrtime(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
-        showPerformance(process.hrtime(), 'depth', cc = dd[APLPrefix + "depth"])
-        showPerformance(process.hrtime(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
-        showPerformance(process.hrtime(), 'enlist', dd = dd[APLPrefix + "enlist"])
-        showPerformance(process.hrtime(), 'unique', dd = dd[APLPrefix + "unique"])
-        //showPerformance(spanCPU, process.hrtime(), 'union', rr = dd[APLPrefix + "union"](dd))
-        showPerformance(process.hrtime(), 'from', rr = dd[APLPrefix + 'from'](dd))
+        var startPerformance = performance.now()
+        showPerformance(performance.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
+        showPerformance(performance.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
+        showPerformance(performance.now(), 'depth', cc = dd[APLPrefix + "depth"])
+        showPerformance(performance.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
+        showPerformance(performance.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
+        showPerformance(performance.now(), 'unique', dd = dd[APLPrefix + "unique"])
+        //showPerformance(spanCPU, performance.now(), 'union', rr = dd[APLPrefix + "union"](dd))
+        showPerformance(performance.now(), 'from', rr = dd[APLPrefix + 'from'](dd))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
         // var aplVector = new APL.Array([4, 3, 5], 10)
         // aplVector.shape = 100
 
-        // showPerformance(process.hrtime(), 'APLVector', apldd = new APL.Array(dd))
-        showPerformance(process.hrtime(), "signum", dd.signum)
+        // showPerformance(performance.now(), 'APLVector', apldd = new APL.Array(dd))
+        showPerformance(performance.now(), "signum", dd.signum)
 
-        showPerformance(process.hrtime(), "identity", dd.same)
+        showPerformance(performance.now(), "identity", dd.same)
         //var ss = dd.slice()
         //ss[0] = 0
-        t0 = process.hrtime()
+        t0 = performance.now()
         //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         try {
-            showPerformance(process.hrtime(), 'gradeup/down', dd.gradeUp)
+            showPerformance(performance.now(), 'gradeup/down', dd.gradeUp)
         }
         catch (err) { }
         finally { }
 
-        var cpuGradeUp = process.hrtime(t0)
+        var cpuGradeUp = performance.now() - t0
 
         var tn = (<any>10).plus(9)
-        showPerformance(process.hrtime(), "negate", dd.negative)
-        showPerformance(process.hrtime(), "times", dd.times(dd))
-        showPerformance(process.hrtime(), "divide", dd.divide(dd))
-        showPerformance(process.hrtime(), "map -alpha", dd.map((alpha) => { return -alpha }))
-        showPerformance(process.hrtime(), 'ceiling', dd.ceiling)
-        showPerformance(process.hrtime(), 'rotate', [-10].rotate(dd))
-        showPerformance(process.hrtime(), "Array.reduceRight", dd.reduceRight(scalar.plus))
-        showPerformance(process.hrtime(), "Array.APLreduce", dd.aplReduce(scalar.minus))
+        showPerformance(performance.now(), "negate", dd.negative)
+        showPerformance(performance.now(), "times", dd.times(dd))
+        showPerformance(performance.now(), "divide", dd.divide(dd))
+        showPerformance(performance.now(), "map -alpha", dd.map((alpha) => { return -alpha }))
+        showPerformance(performance.now(), 'ceiling', dd.ceiling)
+        showPerformance(performance.now(), 'rotate', [-10].rotate(dd))
+        showPerformance(performance.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
+        showPerformance(performance.now(), "Array.APLreduce", dd.aplReduce(scalar.minus))
 
 
-        var totalCpu = process.hrtime(startPerformance)
-        totalCpu = totalCpu.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
+        var totalCpu = performance.now() - startPerformance
+        // totalCpu = totalCpu.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
         for (let elm of logs) {
             console.log(elm)
         }
         console.log(`totale CPU-tijd: ${totalCpu}`)
-        cpuGradeUp = cpuGradeUp.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
+        // cpuGradeUp = cpuGradeUp.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
         console.log(`totale CPU-tijd-gradeUp: ${totalCpu - cpuGradeUp}`)
 
     }
@@ -100,16 +103,16 @@ class APLXTest {
 var showPerformanceWeb = function (spanCPU: HTMLElement, performanceNow, text: string, expression) {
     //   var result = expression
     // console.time("")
-    var t0 = process.hrtime() - performanceNow
+    var t0 = performance.now() - performanceNow
     spanCPU.innerHTML += `\n ${text} CPU-tijd: ${t0.toString()} <br />`
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 
-var showPerformance = (ph, text: string, fun) => {
-    let cpuTime = process.hrtime(ph)
-    let t0 = cpuTime.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
-    logs.push(`${text} CPU-tijd: ${t0.toString()}`)
-    return t0
+var showPerformance = (performanceNow, text: string, fun) => {
+    let cpuTime = performance.now() - performanceNow
+    // let t0 = cpuTime.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
+    logs.push(`${text} CPU-tijd: ${cpuTime.toString()}`)
+    return cpuTime
 }
 
 var greeter = new APLXTest();
