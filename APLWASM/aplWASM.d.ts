@@ -12,5 +12,5 @@ declare class APLXTest {
     stop(): void;
 }
 declare var showPerformanceWeb: (spanCPU: HTMLElement, performanceNow: any, text: string, expression: any) => void;
-declare var showPerformance: (text: string, fun: any) => any;
+declare var showPerformance: (performanceNow: number, text: string, fun: any) => number;
 declare var greeter: APLXTest;

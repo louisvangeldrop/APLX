@@ -44,50 +44,50 @@ class APLXTest {
         rr = [true, false, false, true].replicate([3, 4, 5, 6])
         rr = [1, 2, 3, 4, 1].unique
         rr = [1, 0, 1, 1].expand([1, 2, 3])
-        var startPerformance = 0
+        var startPerformance = Date.now()
         console.log(rr.toString())
-        showPerformance('deal', dd = aantal[APLPrefix + "deal"](aantal))
-        showPerformance('reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
-        showPerformance('depth', cc = dd[APLPrefix + "depth"])
-        showPerformance('depthLength', cc = dd[APLPrefix + "depthLength"])
-        showPerformance('enlist', dd = dd[APLPrefix + "enlist"])
-        showPerformance('unique', dd = dd[APLPrefix + "unique"])
-        //showPerformance(spanCPU,  'union', rr = dd[APLPrefix + "union"](dd))
-        showPerformance('from', rr = dd[APLPrefix + 'from'](dd))
+        showPerformance(Date.now(), 'deal', dd = aantal[APLPrefix + "deal"](aantal))
+        showPerformance(Date.now(), 'reshape', rr = (aantal[APLPrefix + "reshape"](dd)))
+        showPerformance(Date.now(), 'depth', cc = dd[APLPrefix + "depth"])
+        showPerformance(Date.now(), 'depthLength', cc = dd[APLPrefix + "depthLength"])
+        showPerformance(Date.now(), 'enlist', dd = dd[APLPrefix + "enlist"])
+        showPerformance(Date.now(), 'unique', dd = dd[APLPrefix + "unique"])
+        //showPerformance(Date.now(),spanCPU,  'union', rr = dd[APLPrefix + "union"](dd))
+        showPerformance(Date.now(), 'from', rr = dd[APLPrefix + 'from'](dd))
         //var maxValue = dd.aplReduce((l, r) => { return Math.max(l, r) })
         var apldd   //:number[]
 
         // var aplVector = new APL.Array([4, 3, 5], 10)
         // aplVector.shape = 100
 
-        // showPerformance( 'APLVector', apldd = new APL.Array(dd))
-        showPerformance("signum", dd.signum)
+        // showPerformance(Date.now(), 'APLVector', apldd = new APL.Array(dd))
+        showPerformance(Date.now(), "signum", dd.signum)
 
-        showPerformance("identity", dd.same)
+        showPerformance(Date.now(), "identity", dd.same)
         //var ss = dd.slice()
         //ss[0] = 0
-        t0 = 0
+        t0 = Date.now()
         //  var qq = dd.gradeDown  //   QS Chrome is even snel als Array.sort met index. Bij IE Array.sort veel sneller
         try {
-            showPerformance('gradeup/down', dd.gradeUp)
+            showPerformance(Date.now(), 'gradeup/down', dd.gradeUp)
         }
         catch (err) { }
         finally { }
 
-        var cpuGradeUp = 100
+        var cpuGradeUp = Date.now() - t0
 
         var tn = (<any>10).plus(9)
-        showPerformance("negate", dd.negative)
-        showPerformance("times", dd.times(dd))
-        showPerformance("divide", dd.divide(dd))
-        showPerformance("map -alpha", dd.map((alpha) => { return -alpha }))
-        showPerformance('ceiling', dd.ceiling)
-        showPerformance('rotate', [-10].rotate(dd))
-        showPerformance("Array.reduceRight", dd.reduceRight(scalar.plus))
-        showPerformance("Array.APLreduce", dd.aplReduce(scalar.minus))
+        showPerformance(Date.now(), "negate", dd.negative)
+        showPerformance(Date.now(), "times", dd.times(dd))
+        showPerformance(Date.now(), "divide", dd.divide(dd))
+        showPerformance(Date.now(), "map -alpha", dd.map((alpha) => { return -alpha }))
+        showPerformance(Date.now(), 'ceiling', dd.ceiling)
+        showPerformance(Date.now(), 'rotate', [-10].rotate(dd))
+        showPerformance(Date.now(), "Array.reduceRight", dd.reduceRight(scalar.plus))
+        showPerformance(Date.now(), "Array.APLreduce", dd.aplReduce(scalar.minus))
 
 
-        var totalCpu = 300
+        var totalCpu = Date.now() - startPerformance
         // totalCpu = totalCpu.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
         for (let elm of logs) {
             console.log(elm)
@@ -111,8 +111,8 @@ var showPerformanceWeb = function (spanCPU: HTMLElement, performanceNow, text: s
     // return `\n ${text} CPU-tijd: ${t0.toString() } <br />`
 }
 
-var showPerformance = (text: string, fun) => {
-    let cpuTime = fun.ravel.length //performance.now() - performanceNow
+var showPerformance = (performanceNow: number, text: string, fun) => {
+    let cpuTime = Date.now() - performanceNow
     // let t0 = cpuTime.times([1e9, 1]).reduceRight((l, r) => l + r).divide(1e6)
     logs.push(`${text} CPU-tijd: ${cpuTime.toString()}`)
     return cpuTime
