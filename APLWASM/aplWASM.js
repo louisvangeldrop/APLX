@@ -1001,7 +1001,8 @@ class APLXTest {
         //  var aplg= apl.gradeDown
         const vector = Dyadic.Vector;
         let scalar = Dyadic.Scalar;
-        let aantal = 1e6; //location.search.split('?')
+        console.log(Javy);
+        let aantal = 1e6; //parseFloat(scriptArgs[2] ?? 1e6) //location.search.split('?')
         aantal = isNaN(aantal) ? 1e6 : aantal;
         // var APLPrefix = ''
         // var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
