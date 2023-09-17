@@ -1003,7 +1003,7 @@ class APLXTest {
         let scalar = Dyadic.Scalar;
         // console.log(Javy)
         let aantal = 1e6; //parseFloat(scriptArgs[2] ?? 1e6) //location.search.split('?')
-        aantal = isNaN(aantal) ? 1e6 : aantal;
+        // aantal = isNaN(aantal) ? 1e6 : aantal
         // var APLPrefix = ''
         // var nestedArray = [4, 5][APLPrefix + "indexGenerator"]
         // var range1tot10 = ((10)[APLPrefix + "indexGenerator"]).plus(1)
