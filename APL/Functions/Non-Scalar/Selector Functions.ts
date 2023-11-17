@@ -114,7 +114,7 @@
     };
 
     export var indexGenerator = (alpha: number): number[] => {
-      var results = new Array<number>(alpha); // sneller dan []
+      var results = new Array<number>(alpha); // sneller dan [...Array(alpha).keys()]
       for (var counter = 0; counter < alpha; counter++) {
         results[counter] = counter;
       }
