@@ -415,6 +415,7 @@ var Monadic;
                 (t1 = indices[i]), (t2 = indices[j]);
                 (t3 = alpha[t1] <= midValue), (t4 = alpha[t2] >= midValue);
                 if (t3 && t4) {
+                    // [indices[i], indices[j]] = [indices[j], indices[i]] 
                     // swap elements
                     indices[i] = t2;
                     indices[j] = t1;
@@ -457,7 +458,7 @@ var Monadic;
             return mapped.map(a => a.index);
         };
         NonScalar.indexGenerator = (alpha) => {
-            var results = new Array(alpha); // sneller dan []
+            var results = new Array(alpha); // sneller dan [...Array(alpha).keys()]
             for (var counter = 0; counter < alpha; counter++) {
                 results[counter] = counter;
             }
