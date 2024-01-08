@@ -70,6 +70,7 @@
         (t1 = indices[i]), (t2 = indices[j]);
         (t3 = alpha[t1] <= midValue), (t4 = alpha[t2] >= midValue);
         if (t3 && t4) {
+          // [indices[i], indices[j]] = [indices[j], indices[i]] 
           // swap elements
           indices[i] = t2;
           indices[j] = t1;
