@@ -118,5 +118,6 @@ var showPerformance = (performanceNow: number, text: string, fun) => {
     return cpuTime
 }
 
-var greeter = new APLXTest();
+export var greeter = new APLXTest();
+
 greeter.start()
