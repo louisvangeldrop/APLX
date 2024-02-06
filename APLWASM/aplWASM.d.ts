@@ -5,10 +5,12 @@ declare function addProperty(object: any, name: any, func: any, primitive?: bool
 declare var prefix: string;
 declare var Monadic: any;
 declare var Dyadic: any;
-declare module "appWASM" {
-    class APLXTest {
-        start(): void;
-        stop(): void;
-    }
-    export var greeter: APLXTest;
+declare var process: any;
+declare var logs: string[];
+declare class APLXTest {
+    start(): void;
+    stop(): void;
 }
+declare var showPerformanceWeb: (spanCPU: HTMLElement, performanceNow: any, text: string, expression: any) => void;
+declare var showPerformance: (performanceNow: number, text: string, fun: any) => number;
+declare var greeter: APLXTest;

@@ -6,3 +6,4 @@ APLTest/app.ts contains some examples of how to use the Javascript prototype ext
 
 Voor node.js: appNode.ts+APLX.js => aplNode.js --inspect-brk=5858
  
+node --jitless

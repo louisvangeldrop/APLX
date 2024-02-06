@@ -117,7 +117,6 @@ var showPerformance = (performanceNow: number, text: string, fun) => {
     logs.push(`${text} CPU-tijd: ${cpuTime.toString()}`)
     return cpuTime
 }
-
-export var greeter = new APLXTest();
+var greeter = new APLXTest();
 
 greeter.start()
