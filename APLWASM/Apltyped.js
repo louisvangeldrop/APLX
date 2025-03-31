@@ -16,6 +16,7 @@ function indexGenerator(alpha) {
 ;
 let seed = 0; //uint32
 function gradeUp(alpha, indices, low, high) {
+    // indices.sort((a, b) => alpha[a] - alpha[b]);
     if (high <= low)
         return;
     let midValue = alpha[indices[Math.floor((low + high) / 2)]];
@@ -82,15 +83,15 @@ function from(alpha, omega) {
     return z;
 }
 // { indexGenerator, deal, from, gradeUp, ravel }
-export function main(n, length) {
+function main(n, length) {
     const dd = deal(length, length);
-    const indexes = indexGenerator(length); //deal(length, length)
-    // const ai = performance.now()
+    const indexes = indexGenerator(length); //Array.from(dd.keys());
+    const ai = performance.now()
     for (var i = 0; i < n; i++) {
         gradeUp(dd, indexes, 0, length - 1); //, indexes) //, nul, length - 1)
     }
     // const index = gradeUp(dd, indexes, nul, l1)//, indexes) //, nul, length - 1)
-    // console.log(performance.now() - ai)
+    console.log(performance.now() - ai)
     let test = true;
     let gg = indexes.map((a, x, arr) => test = test && dd[a] === x);
     // console.log(test)
@@ -102,3 +103,4 @@ export function main(n, length) {
 var length = 7281;
 var n = 1000;
 main(n, length)
+console.log()

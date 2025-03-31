@@ -8,7 +8,7 @@ wasmtime .\aplWASM.wasm
 porf -t apltyped.ts 
 porf native apltyped.ts apltyped.exe  -O2 --compiler=clang-cl --module --no-pgo
 wasmedge --enable-all apltyped.wasm m/main 0, 128, 0, 128, 1000, 1, 7281, 1
-wasmtime --invoke main apltyped.grok.wasm 10 1000000
+ptime wasmtime --invoke main apltyped.grok.wasm 10 1000000
 
 node --experimental-wasm-modules
 
