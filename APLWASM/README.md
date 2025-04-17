@@ -4,6 +4,7 @@ wasmtime .\aplWASM.wasm
 .\wamrc -o aplWASM.aot aplWASM.wasm
 .\iwasm .\aplWASM.aot
 
+ptime wasmtime  --invoke main apltyped.grok.wasm 100 1000000
 
 porf -t apltyped.ts 
 porf native apltyped.ts apltyped.exe  -O2 --compiler=clang-cl --module --no-pgo
