@@ -7,6 +7,7 @@
 // var print = console.log ?? print
 // var performance = performance ? performance : Date
 function indexGenerator(alpha) {
+    return Array.from({ length: alpha }, (_, i) => i);
     let results = new Array(alpha); // sneller dan []
     for (let counter = 0; counter < alpha; counter++) {
         results[counter] = counter;
@@ -86,12 +87,12 @@ function from(alpha, omega) {
 function main(n, length) {
     const dd = deal(length, length);
     const indexes = indexGenerator(length); //Array.from(dd.keys());
-    const ai = performance.now()
+    // const ai = performance.now()
     for (var i = 0; i < n; i++) {
         gradeUp(dd, indexes, 0, length - 1); //, indexes) //, nul, length - 1)
     }
     // const index = gradeUp(dd, indexes, nul, l1)//, indexes) //, nul, length - 1)
-    console.log(performance.now() - ai)
+    // console.log(performance.now() - ai)
     let test = true;
     let gg = indexes.map((a, x, arr) => test = test && dd[a] === x);
     // console.log(test)
@@ -103,4 +104,4 @@ function main(n, length) {
 var length = 7281;
 var n = 1000;
 main(n, length)
-console.log()
+// console.log()

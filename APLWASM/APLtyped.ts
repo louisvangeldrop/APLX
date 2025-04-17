@@ -91,7 +91,7 @@ function from(alpha: number[], omega: number[]) {
 
 // { indexGenerator, deal, from, gradeUp, ravel }
 
-export function main(n: number, length: number) {
+function main(n: number, length: number) {
     const dd: number[] = deal(length, length)
     const indexes: number[] = indexGenerator(length) //deal(length, length)
     // const ai = performance.now()
