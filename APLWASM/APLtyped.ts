@@ -106,9 +106,9 @@ function main(n: number, length: number) {
     // print(dd[index[length - 1]]);
     // const sorted: number[] = from(index, dd)
     // print(sorted[length - 1]);
-    return 1//index
+    return [index, dd]
 }
 
 var length = 7281
 var n = 1000
-console.log(main(n, length))
+main(n, length)

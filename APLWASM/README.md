@@ -15,7 +15,10 @@ ptime iwasm -f main apltyped.grok.aot 10 1000000
 wasmedge compile --enable-all apltyped.grok.wasm apltyped.grok.wasmedge
 ptime wasmedge --enable-all apltyped.grok.wasmedge main 1 1000000
 
+porf wasm apltyped.js apltyped.wasm  -O2 --compiler=clang-cl --module --no-pgo --no-wasm-exceptions
 node --experimental-wasm-modules
+var apl=await import('./apltyped.wasm')
+var ai=Date.now();apl.main(0, 128, 0, 128, 1000, 1, 7281, 1);Date.now()-ai
 
 
 

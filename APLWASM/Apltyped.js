@@ -84,7 +84,7 @@ function from(alpha, omega) {
     return z;
 }
 // { indexGenerator, deal, from, gradeUp, ravel }
-function main(n, length) {
+export function main(n, length) {
     const dd = deal(length, length);
     const indexes = indexGenerator(length); //Array.from(dd.keys());
     // const ai = performance.now()
@@ -99,7 +99,7 @@ function main(n, length) {
     // print(dd[index[length - 1]]);
     // const sorted: number[] = from(index, dd)
     // print(sorted[length - 1]);
-    return [indexes, dd] //index;
+    return 100;//[indexes, dd] //index;
 }
 var length = 7281;
 var n = 1000;

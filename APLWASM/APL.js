@@ -72,8 +72,8 @@ function from(alpha, omega) {
 ;
 
 // var performance = Date// var print = console.log
-var print = print ? print : console.log
-var performance = performance ? performance : Date
+var print = print ?? console.log
+var performance = performance ?? Date
 
 function main(n, length) {
     const ai = performance.now();
